@@ -6,9 +6,9 @@ import type { Task, TaskStatus } from "@/lib/types";
 export default async function TasksPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string; status?: string }>;
+  searchParams: Promise<{ error?: string; status?: string; q?: string }>;
 }) {
-  const { error, status } = await searchParams;
+  const { error, status, q } = await searchParams;
   const supabase = await createClient();
 
   let query = supabase
@@ -19,6 +19,10 @@ export default async function TasksPage({
 
   if (status) {
     query = query.eq("status", status);
+  }
+
+  if (q) {
+    query = query.or(`title.ilike.%${q}%,description.ilike.%${q}%`);
   }
 
   const { data: tasksData } = await query;
@@ -48,7 +52,13 @@ export default async function TasksPage({
         {statusFilters.map((f) => (
           <Link
             key={f.label}
-            href={f.value ? `/tasks?status=${f.value}` : "/tasks"}
+            href={
+              f.value
+                ? `/tasks?status=${f.value}${q ? `&q=${encodeURIComponent(q)}` : ""}`
+                : q
+                  ? `/tasks?q=${encodeURIComponent(q)}`
+                  : "/tasks"
+            }
             className={`rounded-full px-3 py-1 text-sm ${
               status === f.value || (!status && !f.value)
                 ? "bg-pclaranja text-white"
@@ -59,6 +69,22 @@ export default async function TasksPage({
           </Link>
         ))}
       </div>
+
+      <form className="flex gap-2">
+        {status && <input type="hidden" name="status" value={status} />}
+        <input
+          name="q"
+          defaultValue={q}
+          placeholder="Buscar por título ou descrição..."
+          className="flex-1 rounded-lg border border-pccinza/40 px-3 py-2 text-sm shadow-sm focus:border-pclaranja focus:ring-pclaranja"
+        />
+        <button
+          type="submit"
+          className="rounded-lg bg-pclaranja px-4 py-2 text-sm font-semibold text-white hover:bg-pclaranjadark"
+        >
+          Buscar
+        </button>
+      </form>
 
       {error && <div className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</div>}
 

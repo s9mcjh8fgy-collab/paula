@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { CHANNEL_LABELS, STATUS_LABELS, type Interaction, type InteractionStatus } from "@/lib/types";
+import { DeleteInteractionButton } from "./interaction-actions";
 
 export default async function InteractionsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ status?: string }>;
+  searchParams: Promise<{ status?: string; q?: string }>;
 }) {
-  const { status } = await searchParams;
+  const { status, q } = await searchParams;
   const supabase = await createClient();
 
   let query = supabase
@@ -17,6 +18,10 @@ export default async function InteractionsPage({
 
   if (status) {
     query = query.eq("status", status);
+  }
+
+  if (q) {
+    query = query.or(`summary.ilike.%${q}%,response.ilike.%${q}%,requested_by.ilike.%${q}%`);
   }
 
   const { data } = await query;
@@ -45,7 +50,13 @@ export default async function InteractionsPage({
         {statusFilters.map((f) => (
           <Link
             key={f.label}
-            href={f.value ? `/interactions?status=${f.value}` : "/interactions"}
+            href={
+              f.value
+                ? `/interactions?status=${f.value}${q ? `&q=${encodeURIComponent(q)}` : ""}`
+                : q
+                  ? `/interactions?q=${encodeURIComponent(q)}`
+                  : "/interactions"
+            }
             className={`rounded-full px-3 py-1 text-sm ${
               status === f.value || (!status && !f.value)
                 ? "bg-pclaranja text-white"
@@ -56,6 +67,22 @@ export default async function InteractionsPage({
           </Link>
         ))}
       </div>
+
+      <form className="flex gap-2">
+        {status && <input type="hidden" name="status" value={status} />}
+        <input
+          name="q"
+          defaultValue={q}
+          placeholder="Buscar por palavra-chave no resumo, resposta ou solicitante..."
+          className="flex-1 rounded-lg border border-pccinza/40 px-3 py-2 text-sm shadow-sm focus:border-pclaranja focus:ring-pclaranja"
+        />
+        <button
+          type="submit"
+          className="rounded-lg bg-pclaranja px-4 py-2 text-sm font-semibold text-white hover:bg-pclaranjadark"
+        >
+          Buscar
+        </button>
+      </form>
 
       <div className="overflow-hidden rounded-lg border border-pccinza/20 bg-white">
         <table className="min-w-full divide-y divide-pccinza/20">
@@ -102,9 +129,12 @@ export default async function InteractionsPage({
                   </span>
                 </td>
                 <td className="whitespace-nowrap px-4 py-2 text-sm">
-                  <Link href={`/interactions/${i.id}/edit`} className="text-pclaranja hover:underline">
-                    Editar
-                  </Link>
+                  <div className="flex items-center gap-3">
+                    <Link href={`/interactions/${i.id}/edit`} className="text-pclaranja hover:underline">
+                      Editar
+                    </Link>
+                    <DeleteInteractionButton interactionId={i.id} />
+                  </div>
                 </td>
               </tr>
             ))}

@@ -65,6 +65,13 @@ export async function createInteraction(formData: FormData) {
   redirect(`/clients/${clientId}`);
 }
 
+export async function deleteInteraction(interactionId: string) {
+  const supabase = await createClient();
+  await supabase.from("interactions").delete().eq("id", interactionId);
+  revalidatePath("/");
+  revalidatePath("/interactions");
+}
+
 export async function updateInteraction(interactionId: string, formData: FormData) {
   const supabase = await createClient();
 
