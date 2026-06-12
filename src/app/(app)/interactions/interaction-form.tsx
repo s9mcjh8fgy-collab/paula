@@ -82,6 +82,17 @@ export function InteractionForm({
       </div>
 
       <div>
+        <label className="block text-sm font-medium text-pcmarrom">Título *</label>
+        <input
+          name="title"
+          required
+          placeholder="Ex: Termo aditivo de contrato"
+          defaultValue={interaction?.title ?? ""}
+          className="mt-1 block w-full rounded-lg border border-pccinza/40 px-3 py-2 text-sm shadow-sm focus:border-pclaranja focus:ring-pclaranja"
+        />
+      </div>
+
+      <div>
         <label className="block text-sm font-medium text-pcmarrom">Solicitado por</label>
         <input
           name="requested_by"

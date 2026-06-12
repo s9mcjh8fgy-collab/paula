@@ -114,7 +114,12 @@ export default async function InteractionsPage({
                 <td className="whitespace-nowrap px-4 py-2 text-sm text-pccinza">
                   {CHANNEL_LABELS[i.channel]}
                 </td>
-                <td className="max-w-md px-4 py-2 text-sm text-pcmarrom">{i.summary}</td>
+                <td className="max-w-md px-4 py-2 text-sm">
+                  <Link href={`/interactions/${i.id}/edit`} className="block hover:underline">
+                    {i.title && <p className="font-medium text-pcmarrom">{i.title}</p>}
+                    <p className="line-clamp-3 text-pcmarrom">{i.summary}</p>
+                  </Link>
+                </td>
                 <td className="whitespace-nowrap px-4 py-2 text-sm">
                   <span
                     className={`rounded-full px-2 py-0.5 text-xs font-medium ${

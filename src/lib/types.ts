@@ -40,6 +40,7 @@ export interface Interaction {
   occurred_at: string;
   channel: Channel;
   requested_by: string | null;
+  title: string | null;
   summary: string;
   response: string | null;
   links: string[];

@@ -117,7 +117,7 @@ export default async function ClientDetailPage({
                 <li key={t.id} className="flex items-start justify-between gap-4 px-4 py-3">
                   <div className={t.status === "done" ? "opacity-50" : ""}>
                     <p className="text-sm font-medium text-pcmarrom">{t.title}</p>
-                    {t.description && <p className="text-sm text-pccinza">{t.description}</p>}
+                    {t.description && <p className="line-clamp-3 text-sm text-pccinza">{t.description}</p>}
                     {t.due_date && (
                       <p className="mt-1 text-xs text-pccinza">
                         Prazo: {new Date(t.due_date + "T00:00:00").toLocaleDateString("pt-BR")}
@@ -176,10 +176,10 @@ export default async function ClientDetailPage({
                     Editar
                   </Link>
                 </div>
-                <p className="text-sm font-medium text-pcmarrom">{i.summary}</p>
-                {i.response && (
-                  <p className="mt-1 whitespace-pre-wrap text-sm text-pcmarrom">{i.response}</p>
-                )}
+                <Link href={`/interactions/${i.id}/edit`} className="block hover:underline">
+                  {i.title && <p className="font-medium text-pcmarrom">{i.title}</p>}
+                  <p className="line-clamp-3 text-sm text-pcmarrom">{i.summary}</p>
+                </Link>
                 {i.links.length > 0 && (
                   <ul className="mt-1 space-y-0.5">
                     {i.links.map((link) => (

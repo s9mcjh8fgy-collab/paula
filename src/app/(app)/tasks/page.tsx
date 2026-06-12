@@ -94,7 +94,7 @@ export default async function TasksPage({
             <li key={t.id} className="flex items-start justify-between gap-4 px-4 py-3">
               <div className={t.status === "done" ? "opacity-50" : ""}>
                 <p className="text-sm font-medium text-pcmarrom">{t.title}</p>
-                {t.description && <p className="text-sm text-pccinza">{t.description}</p>}
+                {t.description && <p className="line-clamp-3 text-sm text-pccinza">{t.description}</p>}
                 <p className="mt-1 text-xs text-pccinza">
                   {t.clients?.name && <>{t.clients.name} · </>}
                   {t.due_date
