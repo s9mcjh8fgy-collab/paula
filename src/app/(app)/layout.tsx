@@ -25,11 +25,8 @@ export default async function AppLayout({
   return (
     <div className="flex min-h-screen">
       <aside className="flex w-56 shrink-0 flex-col bg-pcmarrom px-4 py-6 text-white">
-        <Link href="/" className="mb-8 flex items-center gap-2 px-2">
-          <Image src="/logo.png" alt="Paula Corrêa Advocacia" width={40} height={40} />
-          <span className="text-lg font-bold" style={{ fontFamily: "'Playfair Display', serif" }}>
-            Paula Corrêa
-          </span>
+        <Link href="/" className="mb-8 flex px-2">
+          <Image src="/logo-wordmark.png" alt="Paula Corrêa Advocacia" width={180} height={63} />
         </Link>
         <nav className="flex flex-1 flex-col gap-1">
           {links.map((l) => (
