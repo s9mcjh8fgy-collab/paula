@@ -19,9 +19,23 @@ export default async function NewInteractionPage({
 
   const clients = (data ?? []) as Pick<Client, "id" | "name">[];
 
+  const { data: last } = await supabase
+    .from("interactions")
+    .select("number")
+    .order("number", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  const nextNumber = (last?.number ?? 0) + 1;
+
   return (
     <div className="max-w-2xl space-y-6">
-      <h1 className="text-lg font-semibold text-pcmarrom">Novo atendimento</h1>
+      <div className="flex items-baseline justify-between">
+        <h1 className="text-lg font-semibold text-pcmarrom">Novo atendimento</h1>
+        <span className="text-sm text-pccinza">
+          Demanda nº <span className="font-mono font-semibold text-pcmarrom">#{String(nextNumber).padStart(4, "0")}</span>
+        </span>
+      </div>
       <InteractionForm
         action={createInteraction}
         clients={clients}
