@@ -116,8 +116,8 @@ export default async function InteractionsPage({
                 </td>
                 <td className="max-w-md px-4 py-2 text-sm">
                   <Link href={`/interactions/${i.id}/edit`} className="block hover:underline">
-                    {i.title && <p className="font-medium text-pcmarrom">{i.title}</p>}
-                    <p className="line-clamp-3 text-pcmarrom">{i.summary}</p>
+                    {i.title && <p className="text-sm font-medium text-pcmarrom">{i.title}</p>}
+                    <p className="line-clamp-3 text-sm text-pccinza">{i.summary}</p>
                   </Link>
                 </td>
                 <td className="whitespace-nowrap px-4 py-2 text-sm">

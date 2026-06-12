@@ -177,8 +177,8 @@ export default async function ClientDetailPage({
                   </Link>
                 </div>
                 <Link href={`/interactions/${i.id}/edit`} className="block hover:underline">
-                  {i.title && <p className="font-medium text-pcmarrom">{i.title}</p>}
-                  <p className="line-clamp-3 text-sm text-pcmarrom">{i.summary}</p>
+                  {i.title && <p className="text-sm font-medium text-pcmarrom">{i.title}</p>}
+                  <p className="line-clamp-3 text-sm text-pccinza">{i.summary}</p>
                 </Link>
                 {i.links.length > 0 && (
                   <ul className="mt-1 space-y-0.5">
