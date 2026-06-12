@@ -3,9 +3,11 @@ import { LinksInput } from "./links-input";
 import { SummaryField } from "./summary-field";
 import { NewTasksInput } from "./new-tasks-input";
 
+const BRAZIL_OFFSET_MINUTES = 180; // UTC-3, sem horário de verão desde 2019
+
 function toLocalDateTimeInput(iso: string): string {
   const date = new Date(iso);
-  date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+  date.setMinutes(date.getMinutes() - BRAZIL_OFFSET_MINUTES);
   return date.toISOString().slice(0, 16);
 }
 
@@ -22,11 +24,9 @@ export function InteractionForm({
   defaultClientId?: string;
   error?: string;
 }) {
-  const now = new Date();
-  now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-  const defaultDateTime = interaction
-    ? toLocalDateTimeInput(interaction.occurred_at)
-    : now.toISOString().slice(0, 16);
+  const defaultDateTime = toLocalDateTimeInput(
+    interaction?.occurred_at ?? new Date().toISOString()
+  );
 
   return (
     <form action={action} className="space-y-4 rounded-lg border border-pccinza/20 bg-white p-6">
