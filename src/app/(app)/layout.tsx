@@ -26,7 +26,7 @@ export default async function AppLayout({
     <div className="flex min-h-screen">
       <aside className="flex w-56 shrink-0 flex-col bg-pcmarrom px-4 py-6 text-white">
         <Link href="/" className="mb-8 flex px-2">
-          <Image src="/logo-wordmark.png" alt="Paula Corrêa Advocacia" width={180} height={63} />
+          <Image src="/logo-wordmark.png" alt="Paula Corrêa Advocacia" width={180} height={63} priority />
         </Link>
         <nav className="flex flex-1 flex-col gap-1">
           {links.map((l) => (
