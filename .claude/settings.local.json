@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(node -v)",
+      "PowerShell(npm -v)",
+      "PowerShell(Test-Path \"C:\\\\Program Files\\\\nodejs\\\\node.exe\"; Test-Path \"$env:APPDATA\\\\npm\\\\node.exe\"; Test-Path \"$env:LOCALAPPDATA\\\\Programs\\\\nodejs\\\\node.exe\")",
+      "PowerShell($env:Path += \";C:\\\\Program Files\\\\nodejs\"; node -v; npm -v)",
+      "PowerShell($base = \"C:\\\\Users\\\\user\\\\OneDrive - CORREA ADVOGADOS ASSOCIADOS\\\\Documentos - Correa\\\\00_Novo Diretório\\\\8_Claude\"; $temp = \"$base\\\\temp-app\"; Get-ChildItem -Path $temp -Force | ForEach-Object { Move-Item -Path $_.FullName -Destination $base -Force }; Remove-Item $temp -Recurse -Force; Get-ChildItem $base -Force | Select-Object Name)",
+      "Bash(PATH='/c/Program Files/nodejs:__TRACKED_VAR__' npm run build)",
+      "Bash(tasklist)",
+      "Bash(PATH='/c/Program Files/nodejs:__TRACKED_VAR__' npm run dev)",
+      "Bash(kill %1)",
+      "Bash(wait)",
+      "Bash(taskkill //F //IM node.exe)",
+      "Bash(rm -rf .next)",
+      "Bash(PATH='/c/Program Files/nodejs:__TRACKED_VAR__' nohup npm run dev)"
+    ]
+  }
+}
