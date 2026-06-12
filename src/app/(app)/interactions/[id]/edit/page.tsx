@@ -29,10 +29,10 @@ export default async function EditInteractionPage({
   return (
     <div className="max-w-2xl space-y-6">
       <div>
-        <h1 className="text-lg font-semibold text-gray-900">
+        <h1 className="text-lg font-semibold text-pcmarrom">
           Demanda #{String((interaction as Interaction).number).padStart(4, "0")}
         </h1>
-        <p className="text-sm text-gray-500">{(interaction as Interaction).clients?.name}</p>
+        <p className="text-sm text-pccinza">{(interaction as Interaction).clients?.name}</p>
       </div>
       <InteractionForm action={updateAction} interaction={interaction as Interaction} error={error} />
       <InteractionTasks interactionId={id} path={`/interactions/${id}/edit`} />

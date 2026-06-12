@@ -21,7 +21,7 @@ export default async function NewInteractionPage({
 
   return (
     <div className="max-w-2xl space-y-6">
-      <h1 className="text-lg font-semibold text-gray-900">Novo atendimento</h1>
+      <h1 className="text-lg font-semibold text-pcmarrom">Novo atendimento</h1>
       <InteractionForm
         action={createInteraction}
         clients={clients}

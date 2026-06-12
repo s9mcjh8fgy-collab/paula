@@ -27,8 +27,8 @@ export default async function EditClientPage({
 
   return (
     <div className="max-w-2xl space-y-6">
-      <h1 className="text-lg font-semibold text-gray-900">Editar cliente</h1>
-      <div className="rounded-lg border border-gray-200 bg-white p-6">
+      <h1 className="text-lg font-semibold text-pcmarrom">Editar cliente</h1>
+      <div className="rounded-lg border border-pccinza/20 bg-white p-6">
         <ClientForm action={updateAction} client={client as Client} error={error} />
       </div>
     </div>

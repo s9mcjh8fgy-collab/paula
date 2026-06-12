@@ -27,7 +27,7 @@ export default async function EditTaskPage({
 
   return (
     <div className="max-w-2xl space-y-6">
-      <h1 className="text-lg font-semibold text-gray-900">Editar tarefa</h1>
+      <h1 className="text-lg font-semibold text-pcmarrom">Editar tarefa</h1>
       <TaskForm
         action={updateAction}
         task={task as Task}

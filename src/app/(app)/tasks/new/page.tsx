@@ -21,7 +21,7 @@ export default async function NewTaskPage({
 
   return (
     <div className="max-w-2xl space-y-6">
-      <h1 className="text-lg font-semibold text-gray-900">Nova tarefa</h1>
+      <h1 className="text-lg font-semibold text-pcmarrom">Nova tarefa</h1>
       <TaskForm action={createTask} clients={clients} defaultClientId={client_id} redirectTo="/tasks" error={error} />
     </div>
   );

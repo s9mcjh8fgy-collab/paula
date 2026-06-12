@@ -22,21 +22,21 @@ export function ClientForm({
   return (
     <form action={action} className="space-y-6">
       {error && (
-        <div className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-700">{error}</div>
+        <div className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</div>
       )}
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
-          <label className="block text-sm font-medium text-gray-700">Nome / Razão Social *</label>
+          <label className="block text-sm font-medium text-pcmarrom">Nome / Razão Social *</label>
           <input
             name="name"
             required
             defaultValue={client?.name}
-            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-lg border border-pccinza/40 px-3 py-2 text-sm shadow-sm focus:border-pclaranja focus:ring-pclaranja"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">CNPJ / CPF</label>
+          <label className="block text-sm font-medium text-pcmarrom">CNPJ / CPF</label>
           <input
             name="document"
             inputMode="numeric"
@@ -45,29 +45,29 @@ export function ClientForm({
             onChange={(e) => {
               e.target.value = formatDocument(e.target.value);
             }}
-            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-lg border border-pccinza/40 px-3 py-2 text-sm shadow-sm focus:border-pclaranja focus:ring-pclaranja"
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Pasta de documentos (link)</label>
+        <label className="block text-sm font-medium text-pcmarrom">Pasta de documentos (link)</label>
         <input
           name="folder_url"
           type="url"
           placeholder="https://drive.google.com/..."
           defaultValue={client?.folder_url ?? ""}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          className="mt-1 block w-full rounded-lg border border-pccinza/40 px-3 py-2 text-sm shadow-sm focus:border-pclaranja focus:ring-pclaranja"
         />
       </div>
 
       <div>
         <div className="mb-2 flex items-center justify-between">
-          <label className="block text-sm font-medium text-gray-700">Contatos</label>
+          <label className="block text-sm font-medium text-pcmarrom">Contatos</label>
           <button
             type="button"
             onClick={() => setContacts([...contacts, { name: "", phone: "", email: "" }])}
-            className="text-xs font-medium text-blue-600 hover:underline"
+            className="text-xs font-medium text-pclaranja hover:underline"
           >
             + adicionar contato
           </button>
@@ -79,7 +79,7 @@ export function ClientForm({
                 name="contact_name"
                 placeholder="Nome"
                 defaultValue={contact.name}
-                className="rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="rounded-lg border border-pccinza/40 px-3 py-2 text-sm shadow-sm focus:border-pclaranja focus:ring-pclaranja"
               />
               <input
                 name="contact_phone"
@@ -89,13 +89,13 @@ export function ClientForm({
                 onChange={(e) => {
                   e.target.value = formatPhone(e.target.value);
                 }}
-                className="rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="rounded-lg border border-pccinza/40 px-3 py-2 text-sm shadow-sm focus:border-pclaranja focus:ring-pclaranja"
               />
               <input
                 name="contact_email"
                 placeholder="E-mail"
                 defaultValue={contact.email}
-                className="rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="rounded-lg border border-pccinza/40 px-3 py-2 text-sm shadow-sm focus:border-pclaranja focus:ring-pclaranja"
               />
             </div>
           ))}
@@ -103,21 +103,21 @@ export function ClientForm({
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Observações</label>
+        <label className="block text-sm font-medium text-pcmarrom">Observações</label>
         <textarea
           name="notes"
           rows={3}
           defaultValue={client?.notes ?? ""}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          className="mt-1 block w-full rounded-lg border border-pccinza/40 px-3 py-2 text-sm shadow-sm focus:border-pclaranja focus:ring-pclaranja"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Status</label>
+        <label className="block text-sm font-medium text-pcmarrom">Status</label>
         <select
           name="status"
           defaultValue={client?.status ?? "active"}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          className="mt-1 block w-full rounded-lg border border-pccinza/40 px-3 py-2 text-sm shadow-sm focus:border-pclaranja focus:ring-pclaranja"
         >
           <option value="active">Ativo</option>
           <option value="inactive">Inativo</option>
@@ -126,7 +126,7 @@ export function ClientForm({
 
       <button
         type="submit"
-        className="rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
+        className="rounded-lg bg-pclaranja px-4 py-2 text-sm font-semibold text-white hover:bg-pclaranjadark"
       >
         Salvar
       </button>

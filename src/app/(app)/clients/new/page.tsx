@@ -10,8 +10,8 @@ export default async function NewClientPage({
 
   return (
     <div className="max-w-2xl space-y-6">
-      <h1 className="text-lg font-semibold text-gray-900">Novo cliente</h1>
-      <div className="rounded-lg border border-gray-200 bg-white p-6">
+      <h1 className="text-lg font-semibold text-pcmarrom">Novo cliente</h1>
+      <div className="rounded-lg border border-pccinza/20 bg-white p-6">
         <ClientForm action={createClientRecord} error={error} />
       </div>
     </div>

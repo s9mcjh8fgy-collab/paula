@@ -42,7 +42,7 @@ export function SummaryField({
 
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700">Resumo da demanda *</label>
+      <label className="block text-sm font-medium text-pcmarrom">Resumo da demanda *</label>
       <textarea
         name="summary"
         required
@@ -60,9 +60,9 @@ export function SummaryField({
             handleFiles(files);
           }
         }}
-        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
+        className="mt-1 block w-full rounded-lg border border-pccinza/40 px-3 py-2 text-sm shadow-sm focus:border-pclaranja focus:ring-pclaranja"
       />
-      <p className="mt-1 text-xs text-gray-400">
+      <p className="mt-1 text-xs text-pccinza">
         Dica: cole (Ctrl+V) ou arraste uma imagem direto aqui para anexar.
       </p>
 
@@ -75,9 +75,9 @@ export function SummaryField({
             if (e.target.files) handleFiles(Array.from(e.target.files));
             e.target.value = "";
           }}
-          className="block w-full text-sm text-gray-700"
+          className="block w-full text-sm text-pcmarrom"
         />
-        {uploading && <p className="mt-1 text-xs text-gray-500">Enviando imagem...</p>}
+        {uploading && <p className="mt-1 text-xs text-pccinza">Enviando imagem...</p>}
         {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
 
         {images.length > 0 && (
@@ -89,7 +89,7 @@ export function SummaryField({
                   <img
                     src={url}
                     alt=""
-                    className="h-24 w-24 rounded-md border border-gray-200 object-cover"
+                    className="h-24 w-24 rounded-lg border border-pccinza/20 object-cover"
                   />
                 </a>
                 <input type="hidden" name="images" value={url} />

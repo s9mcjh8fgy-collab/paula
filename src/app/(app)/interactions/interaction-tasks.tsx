@@ -16,24 +16,24 @@ export async function InteractionTasks({ interactionId, path }: { interactionId:
   const tasks = (data ?? []) as Task[];
 
   return (
-    <div className="space-y-3 rounded-lg border border-gray-200 bg-white p-6">
-      <h2 className="text-sm font-semibold text-gray-900">Tarefas desta demanda</h2>
+    <div className="space-y-3 rounded-lg border border-pccinza/20 bg-white p-6">
+      <h2 className="text-sm font-semibold text-pcmarrom">Tarefas desta demanda</h2>
 
-      <ul className="divide-y divide-gray-100">
+      <ul className="divide-y divide-pccinza/10">
         {tasks.map((t) => (
           <li key={t.id} className="flex items-start justify-between gap-4 py-2">
             <div className={t.status === "done" ? "opacity-50" : ""}>
-              <p className="text-sm font-medium text-gray-900">{t.title}</p>
-              {t.description && <p className="text-sm text-gray-600">{t.description}</p>}
+              <p className="text-sm font-medium text-pcmarrom">{t.title}</p>
+              {t.description && <p className="text-sm text-pccinza">{t.description}</p>}
               {t.due_date && (
-                <p className="mt-1 text-xs text-gray-500">
+                <p className="mt-1 text-xs text-pccinza">
                   Prazo: {new Date(t.due_date + "T00:00:00").toLocaleDateString("pt-BR")}
                 </p>
               )}
             </div>
             <div className="flex shrink-0 items-center gap-3">
               <ToggleTaskButton taskId={t.id} status={t.status} path={path} />
-              <Link href={`/tasks/${t.id}/edit?redirect_to=${encodeURIComponent(path)}`} className="text-sm text-blue-600 hover:underline">
+              <Link href={`/tasks/${t.id}/edit?redirect_to=${encodeURIComponent(path)}`} className="text-sm text-pclaranja hover:underline">
                 Editar
               </Link>
               <DeleteTaskButton taskId={t.id} path={path} />
@@ -41,7 +41,7 @@ export async function InteractionTasks({ interactionId, path }: { interactionId:
           </li>
         ))}
         {tasks.length === 0 && (
-          <li className="py-2 text-sm text-gray-500">Nenhuma tarefa cadastrada para esta demanda.</li>
+          <li className="py-2 text-sm text-pccinza">Nenhuma tarefa cadastrada para esta demanda.</li>
         )}
       </ul>
 
@@ -52,16 +52,16 @@ export async function InteractionTasks({ interactionId, path }: { interactionId:
           name="title"
           required
           placeholder="Nova tarefa"
-          className="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          className="block w-full rounded-lg border border-pccinza/40 px-3 py-2 text-sm shadow-sm focus:border-pclaranja focus:ring-pclaranja"
         />
         <input
           name="due_date"
           type="date"
-          className="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          className="block w-full rounded-lg border border-pccinza/40 px-3 py-2 text-sm shadow-sm focus:border-pclaranja focus:ring-pclaranja"
         />
         <button
           type="submit"
-          className="rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
+          className="rounded-lg bg-pclaranja px-4 py-2 text-sm font-semibold text-white hover:bg-pclaranjadark"
         >
           + Adicionar
         </button>

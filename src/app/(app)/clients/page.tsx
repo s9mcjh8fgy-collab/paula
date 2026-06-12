@@ -22,10 +22,10 @@ export default async function ClientsPage({
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-lg font-semibold text-gray-900">Clientes</h1>
+        <h1 className="text-lg font-semibold text-pcmarrom">Clientes</h1>
         <Link
           href="/clients/new"
-          className="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700"
+          className="rounded-lg bg-pclaranja px-3 py-2 text-sm font-semibold text-white hover:bg-pclaranjadark"
         >
           + Novo cliente
         </Link>
@@ -36,30 +36,30 @@ export default async function ClientsPage({
           name="q"
           defaultValue={q}
           placeholder="Buscar por nome ou CNPJ/CPF..."
-          className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          className="flex-1 rounded-lg border border-pccinza/40 px-3 py-2 text-sm shadow-sm focus:border-pclaranja focus:ring-pclaranja"
         />
         <button
           type="submit"
-          className="rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
+          className="rounded-lg bg-pclaranja px-4 py-2 text-sm font-semibold text-white hover:bg-pclaranjadark"
         >
           Buscar
         </button>
       </form>
 
-      <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
-        <ul className="divide-y divide-gray-100">
+      <div className="overflow-hidden rounded-lg border border-pccinza/20 bg-white">
+        <ul className="divide-y divide-pccinza/10">
           {clients.map((c) => (
             <li key={c.id}>
               <Link
                 href={`/clients/${c.id}`}
-                className="flex items-center justify-between px-4 py-3 hover:bg-gray-50"
+                className="flex items-center justify-between px-4 py-3 hover:bg-pcbege"
               >
                 <div>
-                  <p className="text-sm font-medium text-gray-900">{c.name}</p>
-                  {c.document && <p className="text-xs text-gray-500">{c.document}</p>}
+                  <p className="text-sm font-medium text-pcmarrom">{c.name}</p>
+                  {c.document && <p className="text-xs text-pccinza">{c.document}</p>}
                 </div>
                 {c.status === "inactive" && (
-                  <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600">
+                  <span className="rounded-full bg-pcbege px-2 py-0.5 text-xs font-medium text-pccinza">
                     Inativo
                   </span>
                 )}
@@ -67,7 +67,7 @@ export default async function ClientsPage({
             </li>
           ))}
           {clients.length === 0 && (
-            <li className="px-4 py-6 text-center text-sm text-gray-500">
+            <li className="px-4 py-6 text-center text-sm text-pccinza">
               {q ? "Nenhum cliente encontrado." : "Nenhum cliente cadastrado ainda."}
             </li>
           )}

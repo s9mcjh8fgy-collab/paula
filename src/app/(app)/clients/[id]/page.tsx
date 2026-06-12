@@ -38,19 +38,19 @@ export default async function ClientDetailPage({
     <div className="space-y-6">
       <div className="flex items-start justify-between">
         <div>
-          <h1 className="text-lg font-semibold text-gray-900">{c.name}</h1>
-          {c.document && <p className="text-sm text-gray-500">{c.document}</p>}
+          <h1 className="text-lg font-semibold text-pcmarrom">{c.name}</h1>
+          {c.document && <p className="text-sm text-pccinza">{c.document}</p>}
         </div>
         <div className="flex gap-2">
           <Link
             href={`/clients/${c.id}/edit`}
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            className="rounded-lg border border-pccinza/40 px-3 py-2 text-sm font-medium text-pcmarrom hover:bg-pcbege"
           >
             Editar
           </Link>
           <Link
             href={`/interactions/new?client_id=${c.id}`}
-            className="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700"
+            className="rounded-lg bg-pclaranja px-3 py-2 text-sm font-semibold text-white hover:bg-pclaranjadark"
           >
             + Novo atendimento
           </Link>
@@ -58,12 +58,12 @@ export default async function ClientDetailPage({
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="rounded-lg border border-gray-200 bg-white p-4">
-          <h2 className="mb-2 text-sm font-semibold text-gray-900">Contatos</h2>
+        <div className="rounded-lg border border-pccinza/20 bg-white p-4">
+          <h2 className="mb-2 text-sm font-semibold text-pcmarrom">Contatos</h2>
           {c.contacts.length === 0 ? (
-            <p className="text-sm text-gray-500">Nenhum contato cadastrado.</p>
+            <p className="text-sm text-pccinza">Nenhum contato cadastrado.</p>
           ) : (
-            <ul className="space-y-1 text-sm text-gray-700">
+            <ul className="space-y-1 text-sm text-pcmarrom">
               {c.contacts.map((contact, idx) => (
                 <li key={idx}>
                   <span className="font-medium">{contact.name}</span>
@@ -75,24 +75,24 @@ export default async function ClientDetailPage({
           )}
         </div>
 
-        <div className="rounded-lg border border-gray-200 bg-white p-4">
-          <h2 className="mb-2 text-sm font-semibold text-gray-900">Documentos</h2>
+        <div className="rounded-lg border border-pccinza/20 bg-white p-4">
+          <h2 className="mb-2 text-sm font-semibold text-pcmarrom">Documentos</h2>
           {c.folder_url ? (
             <a
               href={c.folder_url}
               target="_blank"
               rel="noreferrer"
-              className="text-sm text-blue-600 hover:underline"
+              className="text-sm text-pclaranja hover:underline"
             >
               Abrir pasta de documentos
             </a>
           ) : (
-            <p className="text-sm text-gray-500">Nenhuma pasta vinculada.</p>
+            <p className="text-sm text-pccinza">Nenhuma pasta vinculada.</p>
           )}
           {c.notes && (
             <>
-              <h2 className="mb-1 mt-3 text-sm font-semibold text-gray-900">Observações</h2>
-              <p className="whitespace-pre-wrap text-sm text-gray-700">{c.notes}</p>
+              <h2 className="mb-1 mt-3 text-sm font-semibold text-pcmarrom">Observações</h2>
+              <p className="whitespace-pre-wrap text-sm text-pcmarrom">{c.notes}</p>
             </>
           )}
         </div>
@@ -100,26 +100,26 @@ export default async function ClientDetailPage({
 
       <div>
         <div className="mb-2 flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-gray-900">Tarefas</h2>
+          <h2 className="text-sm font-semibold text-pcmarrom">Tarefas</h2>
           <Link
             href={`/tasks/new?client_id=${c.id}`}
-            className="text-xs font-medium text-blue-600 hover:underline"
+            className="text-xs font-medium text-pclaranja hover:underline"
           >
             + nova tarefa
           </Link>
         </div>
         {tasks.length === 0 ? (
-          <p className="text-sm text-gray-500">Nenhuma tarefa para este cliente.</p>
+          <p className="text-sm text-pccinza">Nenhuma tarefa para este cliente.</p>
         ) : (
-          <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
-            <ul className="divide-y divide-gray-100">
+          <div className="overflow-hidden rounded-lg border border-pccinza/20 bg-white">
+            <ul className="divide-y divide-pccinza/10">
               {tasks.map((t) => (
                 <li key={t.id} className="flex items-start justify-between gap-4 px-4 py-3">
                   <div className={t.status === "done" ? "opacity-50" : ""}>
-                    <p className="text-sm font-medium text-gray-900">{t.title}</p>
-                    {t.description && <p className="text-sm text-gray-600">{t.description}</p>}
+                    <p className="text-sm font-medium text-pcmarrom">{t.title}</p>
+                    {t.description && <p className="text-sm text-pccinza">{t.description}</p>}
                     {t.due_date && (
-                      <p className="mt-1 text-xs text-gray-500">
+                      <p className="mt-1 text-xs text-pccinza">
                         Prazo: {new Date(t.due_date + "T00:00:00").toLocaleDateString("pt-BR")}
                       </p>
                     )}
@@ -128,7 +128,7 @@ export default async function ClientDetailPage({
                     <ToggleTaskButton taskId={t.id} status={t.status} path={`/clients/${c.id}`} />
                     <Link
                       href={`/tasks/${t.id}/edit?redirect_to=${encodeURIComponent(`/clients/${c.id}`)}`}
-                      className="text-sm text-blue-600 hover:underline"
+                      className="text-sm text-pclaranja hover:underline"
                     >
                       Editar
                     </Link>
@@ -142,14 +142,14 @@ export default async function ClientDetailPage({
       </div>
 
       <div>
-        <h2 className="mb-2 text-sm font-semibold text-gray-900">Histórico de atendimentos</h2>
+        <h2 className="mb-2 text-sm font-semibold text-pcmarrom">Histórico de atendimentos</h2>
         {interactions.length === 0 ? (
-          <p className="text-sm text-gray-500">Nenhum atendimento registrado ainda.</p>
+          <p className="text-sm text-pccinza">Nenhum atendimento registrado ainda.</p>
         ) : (
           <ul className="space-y-3">
             {interactions.map((i) => (
-              <li key={i.id} className="rounded-lg border border-gray-200 bg-white p-4">
-                <div className="mb-1 flex flex-wrap items-center gap-2 text-xs text-gray-500">
+              <li key={i.id} className="rounded-lg border border-pccinza/20 bg-white p-4">
+                <div className="mb-1 flex flex-wrap items-center gap-2 text-xs text-pccinza">
                   <span className="font-mono">#{String(i.number).padStart(4, "0")}</span>
                   <span>·</span>
                   <span>{new Date(i.occurred_at).toLocaleString("pt-BR")}</span>
@@ -164,21 +164,21 @@ export default async function ClientDetailPage({
                   <span
                     className={`ml-auto rounded-full px-2 py-0.5 text-xs font-medium ${
                       i.status === "done"
-                        ? "bg-green-100 text-green-800"
+                        ? "bg-pclaranja text-white"
                         : i.status === "in_progress"
-                          ? "bg-blue-100 text-blue-800"
-                          : "bg-amber-100 text-amber-800"
+                          ? "bg-pcmarrom text-white"
+                          : "bg-pccinza text-white"
                     }`}
                   >
                     {STATUS_LABELS[i.status]}
                   </span>
-                  <Link href={`/interactions/${i.id}/edit`} className="text-blue-600 hover:underline">
+                  <Link href={`/interactions/${i.id}/edit`} className="text-pclaranja hover:underline">
                     Editar
                   </Link>
                 </div>
-                <p className="text-sm font-medium text-gray-900">{i.summary}</p>
+                <p className="text-sm font-medium text-pcmarrom">{i.summary}</p>
                 {i.response && (
-                  <p className="mt-1 whitespace-pre-wrap text-sm text-gray-700">{i.response}</p>
+                  <p className="mt-1 whitespace-pre-wrap text-sm text-pcmarrom">{i.response}</p>
                 )}
                 {i.links.length > 0 && (
                   <ul className="mt-1 space-y-0.5">
@@ -188,7 +188,7 @@ export default async function ClientDetailPage({
                           href={link}
                           target="_blank"
                           rel="noreferrer"
-                          className="text-sm text-blue-600 hover:underline"
+                          className="text-sm text-pclaranja hover:underline"
                         >
                           {link}
                         </a>
@@ -204,7 +204,7 @@ export default async function ClientDetailPage({
                         <img
                           src={url}
                           alt=""
-                          className="h-16 w-16 rounded-md border border-gray-200 object-cover"
+                          className="h-16 w-16 rounded-lg border border-pccinza/20 object-cover"
                         />
                       </a>
                     ))}
@@ -215,7 +215,7 @@ export default async function ClientDetailPage({
                     {i.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600"
+                        className="rounded-full bg-pcbege px-2 py-0.5 text-xs text-pccinza"
                       >
                         {tag}
                       </span>

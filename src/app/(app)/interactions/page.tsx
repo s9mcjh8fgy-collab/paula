@@ -32,10 +32,10 @@ export default async function InteractionsPage({
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-lg font-semibold text-gray-900">Demandas</h1>
+        <h1 className="text-lg font-semibold text-pcmarrom">Demandas</h1>
         <Link
           href="/interactions/new"
-          className="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700"
+          className="rounded-lg bg-pclaranja px-3 py-2 text-sm font-semibold text-white hover:bg-pclaranjadark"
         >
           + Novo atendimento
         </Link>
@@ -48,8 +48,8 @@ export default async function InteractionsPage({
             href={f.value ? `/interactions?status=${f.value}` : "/interactions"}
             className={`rounded-full px-3 py-1 text-sm ${
               status === f.value || (!status && !f.value)
-                ? "bg-blue-600 text-white"
-                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                ? "bg-pclaranja text-white"
+                : "bg-pcbege text-pcmarrom hover:bg-pcbege"
             }`}
           >
             {f.label}
@@ -57,52 +57,52 @@ export default async function InteractionsPage({
         ))}
       </div>
 
-      <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+      <div className="overflow-hidden rounded-lg border border-pccinza/20 bg-white">
+        <table className="min-w-full divide-y divide-pccinza/20">
+          <thead className="bg-pcbege">
             <tr>
-              <th className="px-4 py-2 text-left text-xs font-medium uppercase text-gray-500">#</th>
-              <th className="px-4 py-2 text-left text-xs font-medium uppercase text-gray-500">Data</th>
-              <th className="px-4 py-2 text-left text-xs font-medium uppercase text-gray-500">Cliente</th>
-              <th className="px-4 py-2 text-left text-xs font-medium uppercase text-gray-500">Canal</th>
-              <th className="px-4 py-2 text-left text-xs font-medium uppercase text-gray-500">Resumo</th>
-              <th className="px-4 py-2 text-left text-xs font-medium uppercase text-gray-500">Status</th>
+              <th className="px-4 py-2 text-left text-xs font-medium uppercase text-pccinza">#</th>
+              <th className="px-4 py-2 text-left text-xs font-medium uppercase text-pccinza">Data</th>
+              <th className="px-4 py-2 text-left text-xs font-medium uppercase text-pccinza">Cliente</th>
+              <th className="px-4 py-2 text-left text-xs font-medium uppercase text-pccinza">Canal</th>
+              <th className="px-4 py-2 text-left text-xs font-medium uppercase text-pccinza">Resumo</th>
+              <th className="px-4 py-2 text-left text-xs font-medium uppercase text-pccinza">Status</th>
               <th className="px-4 py-2"></th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-pccinza/10">
             {interactions.map((i) => (
               <tr key={i.id}>
-                <td className="whitespace-nowrap px-4 py-2 text-sm text-gray-500">
+                <td className="whitespace-nowrap px-4 py-2 text-sm text-pccinza">
                   #{String(i.number).padStart(4, "0")}
                 </td>
-                <td className="whitespace-nowrap px-4 py-2 text-sm text-gray-500">
+                <td className="whitespace-nowrap px-4 py-2 text-sm text-pccinza">
                   {new Date(i.occurred_at).toLocaleDateString("pt-BR")}
                 </td>
                 <td className="whitespace-nowrap px-4 py-2 text-sm">
-                  <Link href={`/clients/${i.client_id}`} className="text-blue-600 hover:underline">
+                  <Link href={`/clients/${i.client_id}`} className="text-pclaranja hover:underline">
                     {i.clients?.name ?? "—"}
                   </Link>
                 </td>
-                <td className="whitespace-nowrap px-4 py-2 text-sm text-gray-500">
+                <td className="whitespace-nowrap px-4 py-2 text-sm text-pccinza">
                   {CHANNEL_LABELS[i.channel]}
                 </td>
-                <td className="max-w-md px-4 py-2 text-sm text-gray-700">{i.summary}</td>
+                <td className="max-w-md px-4 py-2 text-sm text-pcmarrom">{i.summary}</td>
                 <td className="whitespace-nowrap px-4 py-2 text-sm">
                   <span
                     className={`rounded-full px-2 py-0.5 text-xs font-medium ${
                       i.status === "done"
-                        ? "bg-green-100 text-green-800"
+                        ? "bg-pclaranja text-white"
                         : i.status === "in_progress"
-                          ? "bg-blue-100 text-blue-800"
-                          : "bg-amber-100 text-amber-800"
+                          ? "bg-pcmarrom text-white"
+                          : "bg-pccinza text-white"
                     }`}
                   >
                     {STATUS_LABELS[i.status]}
                   </span>
                 </td>
                 <td className="whitespace-nowrap px-4 py-2 text-sm">
-                  <Link href={`/interactions/${i.id}/edit`} className="text-blue-600 hover:underline">
+                  <Link href={`/interactions/${i.id}/edit`} className="text-pclaranja hover:underline">
                     Editar
                   </Link>
                 </td>
@@ -110,7 +110,7 @@ export default async function InteractionsPage({
             ))}
             {interactions.length === 0 && (
               <tr>
-                <td colSpan={7} className="px-4 py-6 text-center text-sm text-gray-500">
+                <td colSpan={7} className="px-4 py-6 text-center text-sm text-pccinza">
                   Nenhuma demanda encontrada.
                 </td>
               </tr>

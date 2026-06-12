@@ -35,10 +35,10 @@ export default async function TasksPage({
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-lg font-semibold text-gray-900">Tarefas</h1>
+        <h1 className="text-lg font-semibold text-pcmarrom">Tarefas</h1>
         <Link
           href="/tasks/new"
-          className="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700"
+          className="rounded-lg bg-pclaranja px-3 py-2 text-sm font-semibold text-white hover:bg-pclaranjadark"
         >
           + Nova tarefa
         </Link>
@@ -51,8 +51,8 @@ export default async function TasksPage({
             href={f.value ? `/tasks?status=${f.value}` : "/tasks"}
             className={`rounded-full px-3 py-1 text-sm ${
               status === f.value || (!status && !f.value)
-                ? "bg-blue-600 text-white"
-                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                ? "bg-pclaranja text-white"
+                : "bg-pcbege text-pcmarrom hover:bg-pcbege"
             }`}
           >
             {f.label}
@@ -60,16 +60,16 @@ export default async function TasksPage({
         ))}
       </div>
 
-      {error && <div className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-700">{error}</div>}
+      {error && <div className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</div>}
 
-      <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
-        <ul className="divide-y divide-gray-100">
+      <div className="overflow-hidden rounded-lg border border-pccinza/20 bg-white">
+        <ul className="divide-y divide-pccinza/10">
           {tasks.map((t) => (
             <li key={t.id} className="flex items-start justify-between gap-4 px-4 py-3">
               <div className={t.status === "done" ? "opacity-50" : ""}>
-                <p className="text-sm font-medium text-gray-900">{t.title}</p>
-                {t.description && <p className="text-sm text-gray-600">{t.description}</p>}
-                <p className="mt-1 text-xs text-gray-500">
+                <p className="text-sm font-medium text-pcmarrom">{t.title}</p>
+                {t.description && <p className="text-sm text-pccinza">{t.description}</p>}
+                <p className="mt-1 text-xs text-pccinza">
                   {t.clients?.name && <>{t.clients.name} · </>}
                   {t.due_date
                     ? `Prazo: ${new Date(t.due_date + "T00:00:00").toLocaleDateString("pt-BR")}`
@@ -78,7 +78,7 @@ export default async function TasksPage({
               </div>
               <div className="flex shrink-0 items-center gap-3">
                 <ToggleTaskButton taskId={t.id} status={t.status} path="/tasks" />
-                <Link href={`/tasks/${t.id}/edit`} className="text-sm text-blue-600 hover:underline">
+                <Link href={`/tasks/${t.id}/edit`} className="text-sm text-pclaranja hover:underline">
                   Editar
                 </Link>
                 <DeleteTaskButton taskId={t.id} path="/tasks" />
@@ -86,7 +86,7 @@ export default async function TasksPage({
             </li>
           ))}
           {tasks.length === 0 && (
-            <li className="px-4 py-6 text-center text-sm text-gray-500">Nenhuma tarefa cadastrada.</li>
+            <li className="px-4 py-6 text-center text-sm text-pccinza">Nenhuma tarefa cadastrada.</li>
           )}
         </ul>
       </div>

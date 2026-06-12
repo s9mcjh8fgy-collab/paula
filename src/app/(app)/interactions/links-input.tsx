@@ -8,13 +8,13 @@ export function LinksInput({ initialLinks = [] }: { initialLinks?: string[] }) {
   return (
     <div>
       <div className="mb-2 flex items-center justify-between">
-        <label className="block text-sm font-medium text-gray-700">
+        <label className="block text-sm font-medium text-pcmarrom">
           Links (e-mail do Outlook, pasta, documento, etc.)
         </label>
         <button
           type="button"
           onClick={() => setLinks((prev) => [...prev, ""])}
-          className="text-xs font-medium text-blue-600 hover:underline"
+          className="text-xs font-medium text-pclaranja hover:underline"
         >
           + adicionar link
         </button>
@@ -27,13 +27,13 @@ export function LinksInput({ initialLinks = [] }: { initialLinks?: string[] }) {
               type="url"
               placeholder="https://..."
               defaultValue={link}
-              className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="flex-1 rounded-lg border border-pccinza/40 px-3 py-2 text-sm shadow-sm focus:border-pclaranja focus:ring-pclaranja"
             />
             {links.length > 1 && (
               <button
                 type="button"
                 onClick={() => setLinks((prev) => prev.filter((_, i) => i !== idx))}
-                className="rounded-md border border-gray-300 px-2 text-sm text-gray-500 hover:bg-gray-50"
+                className="rounded-lg border border-pccinza/40 px-2 text-sm text-pccinza hover:bg-pcbege"
                 aria-label="Remover link"
               >
                 ×

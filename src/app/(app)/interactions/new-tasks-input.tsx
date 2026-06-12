@@ -8,11 +8,11 @@ export function NewTasksInput() {
   return (
     <div>
       <div className="mb-2 flex items-center justify-between">
-        <label className="block text-sm font-medium text-gray-700">Tarefas para esta demanda</label>
+        <label className="block text-sm font-medium text-pcmarrom">Tarefas para esta demanda</label>
         <button
           type="button"
           onClick={() => setRows((prev) => [...prev, { title: "", due_date: "" }])}
-          className="text-xs font-medium text-blue-600 hover:underline"
+          className="text-xs font-medium text-pclaranja hover:underline"
         >
           + adicionar tarefa
         </button>
@@ -25,18 +25,18 @@ export function NewTasksInput() {
                 name="task_title"
                 placeholder="Título da tarefa"
                 defaultValue={row.title}
-                className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="flex-1 rounded-lg border border-pccinza/40 px-3 py-2 text-sm shadow-sm focus:border-pclaranja focus:ring-pclaranja"
               />
               <input
                 name="task_due_date"
                 type="date"
                 defaultValue={row.due_date}
-                className="rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="rounded-lg border border-pccinza/40 px-3 py-2 text-sm shadow-sm focus:border-pclaranja focus:ring-pclaranja"
               />
               <button
                 type="button"
                 onClick={() => setRows((prev) => prev.filter((_, i) => i !== idx))}
-                className="rounded-md border border-gray-300 px-2 text-sm text-gray-500 hover:bg-gray-50"
+                className="rounded-lg border border-pccinza/40 px-2 text-sm text-pccinza hover:bg-pcbege"
                 aria-label="Remover tarefa"
               >
                 ×
