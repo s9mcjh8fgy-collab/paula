@@ -59,12 +59,20 @@ export default async function DashboardPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-lg font-semibold text-pcmarrom">Painel</h1>
-        <Link
-          href="/interactions/new"
-          className="rounded-lg bg-pclaranja px-3 py-2 text-sm font-semibold text-white hover:bg-pclaranjadark"
-        >
-          + Nova demanda
-        </Link>
+        <div className="flex gap-2">
+          <Link
+            href="/tasks/new"
+            className="rounded-lg border border-pccinza/40 px-3 py-2 text-sm font-semibold text-pcmarrom hover:bg-pcbege"
+          >
+            + Nova tarefa
+          </Link>
+          <Link
+            href="/interactions/new"
+            className="rounded-lg bg-pclaranja px-3 py-2 text-sm font-semibold text-white hover:bg-pclaranjadark"
+          >
+            + Nova demanda
+          </Link>
+        </div>
       </div>
 
       <div>
