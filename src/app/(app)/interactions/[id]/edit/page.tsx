@@ -35,7 +35,7 @@ export default async function EditInteractionPage({
         <p className="text-sm text-pccinza">{(interaction as Interaction).clients?.name}</p>
       </div>
       <InteractionForm action={updateAction} interaction={interaction as Interaction} error={error} />
-      <InteractionTasks interactionId={id} path={`/interactions/${id}/edit`} />
+      <InteractionTasks interactionId={id} clientId={(interaction as Interaction).client_id} path={`/interactions/${id}/edit`} />
     </div>
   );
 }

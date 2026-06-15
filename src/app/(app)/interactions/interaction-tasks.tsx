@@ -4,7 +4,7 @@ import { createTask } from "../tasks/actions";
 import { ToggleTaskButton, DeleteTaskButton } from "../tasks/task-actions";
 import { ASSIGNEES, type Task } from "@/lib/types";
 
-export async function InteractionTasks({ interactionId, path }: { interactionId: string; path: string }) {
+export async function InteractionTasks({ interactionId, clientId, path }: { interactionId: string; clientId: string | null; path: string }) {
   const supabase = await createClient();
   const { data } = await supabase
     .from("tasks")
@@ -49,6 +49,7 @@ export async function InteractionTasks({ interactionId, path }: { interactionId:
 
       <form action={createTask} className="grid grid-cols-1 gap-2 sm:grid-cols-[1fr_140px_140px_auto]">
         <input type="hidden" name="interaction_id" value={interactionId} />
+        <input type="hidden" name="client_id" value={clientId ?? ""} />
         <input type="hidden" name="redirect_to" value={path} />
         <input
           name="title"
