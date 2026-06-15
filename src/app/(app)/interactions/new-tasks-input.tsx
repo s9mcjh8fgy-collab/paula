@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { ASSIGNEES } from "@/lib/types";
 
 export function NewTasksInput() {
-  const [rows, setRows] = useState<{ title: string; due_date: string }[]>([]);
+  const [rows, setRows] = useState<{ title: string; due_date: string; assigned_to: string }[]>([]);
 
   return (
     <div>
@@ -11,7 +12,7 @@ export function NewTasksInput() {
         <label className="block text-sm font-medium text-pcmarrom">Tarefas para esta demanda</label>
         <button
           type="button"
-          onClick={() => setRows((prev) => [...prev, { title: "", due_date: "" }])}
+          onClick={() => setRows((prev) => [...prev, { title: "", due_date: "", assigned_to: "" }])}
           className="text-xs font-medium text-pclaranja hover:underline"
         >
           + adicionar tarefa
@@ -33,6 +34,18 @@ export function NewTasksInput() {
                 defaultValue={row.due_date}
                 className="rounded-lg border border-pccinza/40 px-3 py-2 text-sm shadow-sm focus:border-pclaranja focus:ring-pclaranja"
               />
+              <select
+                name="task_assigned_to"
+                defaultValue={row.assigned_to}
+                className="rounded-lg border border-pccinza/40 px-3 py-2 text-sm shadow-sm focus:border-pclaranja focus:ring-pclaranja"
+              >
+                <option value="">Responsável</option>
+                {ASSIGNEES.map((a) => (
+                  <option key={a} value={a}>
+                    {a}
+                  </option>
+                ))}
+              </select>
               <button
                 type="button"
                 onClick={() => setRows((prev) => prev.filter((_, i) => i !== idx))}

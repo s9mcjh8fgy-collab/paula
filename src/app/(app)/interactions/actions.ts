@@ -44,8 +44,13 @@ export async function createInteraction(formData: FormData) {
 
   const taskTitles = formData.getAll("task_title") as string[];
   const taskDueDates = formData.getAll("task_due_date") as string[];
+  const taskAssignees = formData.getAll("task_assigned_to") as string[];
   const tasks = taskTitles
-    .map((title, idx) => ({ title: title.trim(), due_date: taskDueDates[idx] || null }))
+    .map((title, idx) => ({
+      title: title.trim(),
+      due_date: taskDueDates[idx] || null,
+      assigned_to: taskAssignees[idx] || null,
+    }))
     .filter((t) => t.title);
 
   if (tasks.length > 0) {
@@ -53,6 +58,7 @@ export async function createInteraction(formData: FormData) {
       tasks.map((t) => ({
         title: t.title,
         due_date: t.due_date,
+        assigned_to: t.assigned_to,
         client_id: clientId,
         interaction_id: inserted.id,
         created_by: user?.id ?? null,
