@@ -116,8 +116,6 @@ export function InteractionForm({
 
       <LinksInput initialLinks={interaction?.links} />
 
-      {!interaction && <NewTasksInput />}
-
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <label className="block text-sm font-medium text-pcmarrom">Status</label>
@@ -141,6 +139,12 @@ export function InteractionForm({
           />
         </div>
       </div>
+
+      {!interaction && (
+        <div className="border-t border-pccinza/20 pt-4">
+          <NewTasksInput />
+        </div>
+      )}
 
       <button
         type="submit"
