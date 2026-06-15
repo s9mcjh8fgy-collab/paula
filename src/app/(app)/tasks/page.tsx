@@ -129,6 +129,7 @@ export default async function TasksPage({
               <th className="px-4 py-2 text-left text-xs font-medium uppercase text-pccinza">Responsável</th>
               <th className="px-4 py-2 text-left text-xs font-medium uppercase text-pccinza">Tarefa</th>
               <th className="px-4 py-2 text-left text-xs font-medium uppercase text-pccinza">Descrição</th>
+              <th className="px-4 py-2 text-left text-xs font-medium uppercase text-pccinza">Status</th>
               <th className="px-4 py-2"></th>
             </tr>
           </thead>
