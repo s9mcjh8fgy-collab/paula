@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { ToggleTaskButton, DeleteTaskButton } from "./task-actions";
-import { ASSIGNEES, type Task, type TaskStatus } from "@/lib/types";
+import { ASSIGNEES, TASK_STATUS_LABELS, type Task, type TaskStatus } from "@/lib/types";
 
 export default async function TasksPage({
   searchParams,
@@ -121,33 +121,72 @@ export default async function TasksPage({
       {error && <div className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</div>}
 
       <div className="overflow-hidden rounded-lg border border-pccinza/20 bg-white">
-        <ul className="divide-y divide-pccinza/10">
-          {tasks.map((t) => (
-            <li key={t.id} className="flex items-start justify-between gap-4 px-4 py-3">
-              <div className={t.status === "done" ? "opacity-50" : ""}>
-                <p className="text-sm font-medium text-pcmarrom">{t.title}</p>
-                {t.description && <p className="line-clamp-3 text-sm text-pccinza">{t.description}</p>}
-                <p className="mt-1 text-xs text-pccinza">
-                  {t.clients?.name && <>{t.clients.name} · </>}
-                  {t.due_date
-                    ? `Prazo: ${new Date(t.due_date + "T00:00:00").toLocaleDateString("pt-BR")}`
-                    : "Sem prazo"}
-                  {t.assigned_to && <> · Responsável: {t.assigned_to}</>}
-                </p>
-              </div>
-              <div className="flex shrink-0 items-center gap-3">
-                <ToggleTaskButton taskId={t.id} status={t.status} path="/tasks" />
-                <Link href={`/tasks/${t.id}/edit`} className="text-sm text-pclaranja hover:underline">
-                  Editar
-                </Link>
-                <DeleteTaskButton taskId={t.id} path="/tasks" />
-              </div>
-            </li>
-          ))}
-          {tasks.length === 0 && (
-            <li className="px-4 py-6 text-center text-sm text-pccinza">Nenhuma tarefa cadastrada.</li>
-          )}
-        </ul>
+        <table className="min-w-full divide-y divide-pccinza/20">
+          <thead className="bg-pcbege">
+            <tr>
+              <th className="px-4 py-2 text-left text-xs font-medium uppercase text-pccinza">Prazo</th>
+              <th className="px-4 py-2 text-left text-xs font-medium uppercase text-pccinza">Cliente</th>
+              <th className="px-4 py-2 text-left text-xs font-medium uppercase text-pccinza">Responsável</th>
+              <th className="px-4 py-2 text-left text-xs font-medium uppercase text-pccinza">Tarefa</th>
+              <th className="px-4 py-2 text-left text-xs font-medium uppercase text-pccinza">Status</th>
+              <th className="px-4 py-2"></th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-pccinza/10">
+            {tasks.map((t) => (
+              <tr key={t.id} className={t.status === "done" ? "opacity-50" : ""}>
+                <td className="whitespace-nowrap px-4 py-2 text-sm text-pccinza">
+                  {t.due_date ? new Date(t.due_date + "T00:00:00").toLocaleDateString("pt-BR") : "—"}
+                </td>
+                <td className="whitespace-nowrap px-4 py-2 text-sm">
+                  {t.client_id ? (
+                    <Link href={`/clients/${t.client_id}`} className="text-pclaranja hover:underline">
+                      {t.clients?.name ?? "—"}
+                    </Link>
+                  ) : (
+                    "—"
+                  )}
+                </td>
+                <td className="whitespace-nowrap px-4 py-2 text-sm text-pccinza">{t.assigned_to ?? "—"}</td>
+                <td className="max-w-md px-4 py-2 text-sm">
+                  <Link href={`/tasks/${t.id}/edit`} className="block hover:underline">
+                    <p className="text-sm font-medium text-pcmarrom">{t.title}</p>
+                    {t.description && <p className="line-clamp-3 text-sm text-pccinza">{t.description}</p>}
+                  </Link>
+                </td>
+                <td className="whitespace-nowrap px-4 py-2 text-sm">
+                  <span
+                    className={`rounded-full px-2 py-0.5 text-xs font-medium ${
+                      t.status === "done"
+                        ? "bg-pclaranja text-white"
+                        : t.status === "in_progress"
+                          ? "bg-pcmarrom text-white"
+                          : "bg-pccinza text-white"
+                    }`}
+                  >
+                    {TASK_STATUS_LABELS[t.status]}
+                  </span>
+                </td>
+                <td className="whitespace-nowrap px-4 py-2 text-sm">
+                  <div className="flex items-center gap-3">
+                    <ToggleTaskButton taskId={t.id} status={t.status} path="/tasks" />
+                    <Link href={`/tasks/${t.id}/edit`} className="text-pclaranja hover:underline">
+                      Editar
+                    </Link>
+                    <DeleteTaskButton taskId={t.id} path="/tasks" />
+                  </div>
+                </td>
+              </tr>
+            ))}
+            {tasks.length === 0 && (
+              <tr>
+                <td colSpan={6} className="px-4 py-6 text-center text-sm text-pccinza">
+                  Nenhuma tarefa cadastrada.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );
