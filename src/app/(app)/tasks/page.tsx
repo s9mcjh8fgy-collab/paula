@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { ToggleTaskButton, DeleteTaskButton } from "./task-actions";
-import { ASSIGNEES, TASK_STATUS_LABELS, type Task, type TaskStatus } from "@/lib/types";
+import { ASSIGNEES, type Task, type TaskStatus } from "@/lib/types";
 
 export default async function TasksPage({
   searchParams,
@@ -128,7 +128,7 @@ export default async function TasksPage({
               <th className="px-4 py-2 text-left text-xs font-medium uppercase text-pccinza">Cliente</th>
               <th className="px-4 py-2 text-left text-xs font-medium uppercase text-pccinza">Responsável</th>
               <th className="px-4 py-2 text-left text-xs font-medium uppercase text-pccinza">Tarefa</th>
-              <th className="px-4 py-2 text-left text-xs font-medium uppercase text-pccinza">Status</th>
+              <th className="px-4 py-2 text-left text-xs font-medium uppercase text-pccinza">Descrição</th>
               <th className="px-4 py-2"></th>
             </tr>
           </thead>
@@ -148,24 +148,17 @@ export default async function TasksPage({
                   )}
                 </td>
                 <td className="whitespace-nowrap px-4 py-2 text-sm text-pccinza">{t.assigned_to ?? "—"}</td>
-                <td className="max-w-md px-4 py-2 text-sm">
-                  <Link href={`/tasks/${t.id}/edit`} className="block hover:underline">
-                    <p className="text-sm font-medium text-pcmarrom">{t.title}</p>
-                    {t.description && <p className="line-clamp-3 text-sm text-pccinza">{t.description}</p>}
+                <td className="whitespace-nowrap px-4 py-2 text-sm">
+                  <Link href={`/tasks/${t.id}/edit`} className="font-medium text-pcmarrom hover:underline">
+                    {t.title}
                   </Link>
                 </td>
-                <td className="whitespace-nowrap px-4 py-2 text-sm">
-                  <span
-                    className={`rounded-full px-2 py-0.5 text-xs font-medium ${
-                      t.status === "done"
-                        ? "bg-pclaranja text-white"
-                        : t.status === "in_progress"
-                          ? "bg-pcmarrom text-white"
-                          : "bg-pccinza text-white"
-                    }`}
-                  >
-                    {TASK_STATUS_LABELS[t.status]}
-                  </span>
+                <td className="max-w-md px-4 py-2 text-sm">
+                  {t.description ? (
+                    <p className="line-clamp-3 text-sm text-pccinza">{t.description}</p>
+                  ) : (
+                    <span className="text-sm text-pccinza">—</span>
+                  )}
                 </td>
                 <td className="whitespace-nowrap px-4 py-2 text-sm">
                   <div className="flex items-center gap-3">
