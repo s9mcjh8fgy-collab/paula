@@ -13,7 +13,26 @@
       "Bash(wait)",
       "Bash(taskkill //F //IM node.exe)",
       "Bash(rm -rf .next)",
-      "Bash(PATH='/c/Program Files/nodejs:__TRACKED_VAR__' nohup npm run dev)"
+      "Bash(PATH='/c/Program Files/nodejs:__TRACKED_VAR__' nohup npm run dev)",
+      "Bash(git config *)",
+      "Bash(git commit *)",
+      "Bash(gh auth *)",
+      "Bash(git remote *)",
+      "Bash(git branch *)",
+      "Bash(git push *)",
+      "Bash(find \"C:\\\\Users\\\\user\\\\.claude\" -iname \"*brand*\" 2>/dev/null; find \"C:\\\\Users\\\\user\\\\OneDrive - CORREA ADVOGADOS ASSOCIADOS\\\\Documentos - Correa\\\\00_Novo Diretório\\\\8_Claude\" -iname \"*brand*\" 2>/dev/null)",
+      "Bash(find \"C:\\\\Users\\\\user\" -iname \"*cloud*.md\" 2>/dev/null | head -20; find \"C:\\\\Users\\\\user\" -iname \"*.md\" 2>/dev/null | grep -i brand)",
+      "Bash(xargs -0 sed -i -e s/focus:border-blue-500/focus:border-pclaranja/g -e s/focus:ring-blue-500/focus:ring-pclaranja/g -e s/hover:bg-blue-700/hover:bg-pclaranjadark/g -e s/bg-blue-600/bg-pclaranja/g -e s/hover:text-blue-700/hover:text-pclaranjadark/g -e s/text-blue-600/text-pclaranja/g -e s/bg-blue-100/bg-pcmarrom/g -e s/text-blue-800/text-white/g -e s/bg-green-100/bg-pclaranja/g -e s/text-green-800/text-white/g -e s/bg-amber-100/bg-pccinza/g -e s/text-amber-800/text-white/g -e s/text-gray-900/text-pcmarrom/g -e s/text-gray-700/text-pcmarrom/g -e s/text-gray-600/text-pccinza/g -e s/text-gray-500/text-pccinza/g -e s/text-gray-400/text-pccinza/g -e s/hover:bg-gray-50/hover:bg-pcbege/g -e s/hover:bg-gray-200/hover:bg-pcbege/g -e s/bg-gray-50/bg-pcbege/g -e s/bg-gray-100/bg-pcbege/g -e s/hover:text-gray-900/hover:text-pclaranja/g -e 's/border-gray-200/border-pccinza\\\\/20/g' -e 's/border-gray-300/border-pccinza\\\\/40/g' -e 's/divide-gray-100/divide-pccinza\\\\/10/g' -e 's/divide-gray-200/divide-pccinza\\\\/20/g' -e s/rounded-md/rounded-lg/g)",
+      "Bash(cp \"C:/Users/user/OneDrive - CORREA ADVOGADOS ASSOCIADOS/Documentos - Correa/00_Novo Diretório/1_Gestão/4_Marketing/_ID/_RGB/PNG/L-7-1.png\" \"C:/Users/user/OneDrive - CORREA ADVOGADOS ASSOCIADOS/Documentos - Correa/00_Novo Diretório/8_Claude/public/logo.png\")",
+      "Bash(git add *)",
+      "Bash(curl -s http://localhost:3000/login)",
+      "Bash(curl -s \"http://localhost:3000/_next/static/chunks/src_app_globals_162hn9o.css\")",
+      "Bash(grep -o \"[^,{}]*pcbege[^,{}]*\")",
+      "Bash(python3 -c \"import sys; print\\(sys.stdin.read\\(\\)[:3000]\\)\")",
+      "Bash(curl -s \"http://localhost:3000/_next/static/chunks/src_app_globals_162hn9o.css\" -o /tmp/g.css)",
+      "Read(//tmp/**)",
+      "Bash(grep -o \".\\\\{0,30\\\\}pcbege.\\\\{0,60\\\\}\" /tmp/g.css)",
+      "Bash(npm run *)"
     ]
   }
 }

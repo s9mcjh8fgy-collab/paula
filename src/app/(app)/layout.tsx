@@ -19,6 +19,7 @@ export default async function AppLayout({
     { href: "/interactions", label: "Demandas" },
     { href: "/tasks", label: "Tarefas" },
     { href: "/search", label: "Buscar" },
+    { href: "/manual", label: "Manual" },
   ];
 
   return (
