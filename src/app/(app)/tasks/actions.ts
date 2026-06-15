@@ -19,6 +19,7 @@ export async function createTask(formData: FormData) {
     title: String(formData.get("title") ?? ""),
     description: String(formData.get("description") ?? "") || null,
     due_date: String(formData.get("due_date") ?? "") || null,
+    assigned_to: String(formData.get("assigned_to") ?? "") || null,
     status: String(formData.get("status") ?? "pending"),
     client_id: clientId,
     interaction_id: interactionId,
@@ -46,6 +47,7 @@ export async function updateTask(taskId: string, formData: FormData) {
       title: String(formData.get("title") ?? ""),
       description: String(formData.get("description") ?? "") || null,
       due_date: String(formData.get("due_date") ?? "") || null,
+      assigned_to: String(formData.get("assigned_to") ?? "") || null,
       status: String(formData.get("status") ?? "pending"),
       client_id: clientId,
     })

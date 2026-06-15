@@ -152,6 +152,7 @@ export default async function DashboardPage() {
                       {t.due_date
                         ? `Prazo: ${new Date(t.due_date + "T00:00:00").toLocaleDateString("pt-BR")}`
                         : "Sem prazo"}
+                      {t.assigned_to && <> · Responsável: {t.assigned_to}</>}
                     </p>
                   </div>
                   <div className="flex shrink-0 items-center gap-3">

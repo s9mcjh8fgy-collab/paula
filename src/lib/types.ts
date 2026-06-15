@@ -60,11 +60,14 @@ export const TASK_STATUS_LABELS: Record<TaskStatus, string> = {
   done: "Concluída",
 };
 
+export const ASSIGNEES = ["Paula", "Thaís"] as const;
+
 export interface Task {
   id: string;
   title: string;
   description: string | null;
   due_date: string | null;
+  assigned_to: string | null;
   status: TaskStatus;
   client_id: string | null;
   interaction_id: string | null;

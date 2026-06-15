@@ -118,9 +118,11 @@ export default async function ClientDetailPage({
                   <div className={t.status === "done" ? "opacity-50" : ""}>
                     <p className="text-sm font-medium text-pcmarrom">{t.title}</p>
                     {t.description && <p className="line-clamp-3 text-sm text-pccinza">{t.description}</p>}
-                    {t.due_date && (
+                    {(t.due_date || t.assigned_to) && (
                       <p className="mt-1 text-xs text-pccinza">
-                        Prazo: {new Date(t.due_date + "T00:00:00").toLocaleDateString("pt-BR")}
+                        {t.due_date && `Prazo: ${new Date(t.due_date + "T00:00:00").toLocaleDateString("pt-BR")}`}
+                        {t.due_date && t.assigned_to && " · "}
+                        {t.assigned_to && `Responsável: ${t.assigned_to}`}
                       </p>
                     )}
                   </div>

@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { ToggleTaskButton, DeleteTaskButton } from "./task-actions";
-import type { Task, TaskStatus } from "@/lib/types";
+import { ASSIGNEES, type Task, type TaskStatus } from "@/lib/types";
 
 export default async function TasksPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string; status?: string; q?: string }>;
+  searchParams: Promise<{ error?: string; status?: string; q?: string; assigned_to?: string }>;
 }) {
-  const { error, status, q } = await searchParams;
+  const { error, status, q, assigned_to } = await searchParams;
   const supabase = await createClient();
 
   let query = supabase
@@ -19,6 +19,10 @@ export default async function TasksPage({
 
   if (status) {
     query = query.eq("status", status);
+  }
+
+  if (assigned_to) {
+    query = query.eq("assigned_to", assigned_to);
   }
 
   if (q) {
@@ -36,6 +40,17 @@ export default async function TasksPage({
     { value: "done", label: "Concluídas" },
   ];
 
+  function buildHref(overrides: { status?: string; assigned_to?: string }) {
+    const params = new URLSearchParams();
+    const nextStatus = "status" in overrides ? overrides.status : status;
+    const nextAssignedTo = "assigned_to" in overrides ? overrides.assigned_to : assigned_to;
+    if (nextStatus) params.set("status", nextStatus);
+    if (nextAssignedTo) params.set("assigned_to", nextAssignedTo);
+    if (q) params.set("q", q);
+    const qs = params.toString();
+    return qs ? `/tasks?${qs}` : "/tasks";
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -52,13 +67,7 @@ export default async function TasksPage({
         {statusFilters.map((f) => (
           <Link
             key={f.label}
-            href={
-              f.value
-                ? `/tasks?status=${f.value}${q ? `&q=${encodeURIComponent(q)}` : ""}`
-                : q
-                  ? `/tasks?q=${encodeURIComponent(q)}`
-                  : "/tasks"
-            }
+            href={buildHref({ status: f.value ?? "" })}
             className={`rounded-full px-3 py-1 text-sm ${
               status === f.value || (!status && !f.value)
                 ? "bg-pclaranja text-white"
@@ -70,8 +79,31 @@ export default async function TasksPage({
         ))}
       </div>
 
+      <div className="flex gap-2">
+        <Link
+          href={buildHref({ assigned_to: "" })}
+          className={`rounded-full px-3 py-1 text-sm ${
+            !assigned_to ? "bg-pclaranjadark text-white" : "bg-pcbege text-pcmarrom hover:bg-pcbege"
+          }`}
+        >
+          Todos os responsáveis
+        </Link>
+        {ASSIGNEES.map((a) => (
+          <Link
+            key={a}
+            href={buildHref({ assigned_to: a })}
+            className={`rounded-full px-3 py-1 text-sm ${
+              assigned_to === a ? "bg-pclaranjadark text-white" : "bg-pcbege text-pcmarrom hover:bg-pcbege"
+            }`}
+          >
+            {a}
+          </Link>
+        ))}
+      </div>
+
       <form className="flex gap-2">
         {status && <input type="hidden" name="status" value={status} />}
+        {assigned_to && <input type="hidden" name="assigned_to" value={assigned_to} />}
         <input
           name="q"
           defaultValue={q}
@@ -100,6 +132,7 @@ export default async function TasksPage({
                   {t.due_date
                     ? `Prazo: ${new Date(t.due_date + "T00:00:00").toLocaleDateString("pt-BR")}`
                     : "Sem prazo"}
+                  {t.assigned_to && <> · Responsável: {t.assigned_to}</>}
                 </p>
               </div>
               <div className="flex shrink-0 items-center gap-3">

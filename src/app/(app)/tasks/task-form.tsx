@@ -1,4 +1,4 @@
-import type { Client, Task } from "@/lib/types";
+import { ASSIGNEES, type Client, type Task } from "@/lib/types";
 
 export function TaskForm({
   action,
@@ -64,6 +64,22 @@ export function TaskForm({
             ))}
           </select>
         </div>
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-pcmarrom">Responsável</label>
+        <select
+          name="assigned_to"
+          defaultValue={task?.assigned_to ?? ""}
+          className="mt-1 block w-full rounded-lg border border-pccinza/40 px-3 py-2 text-sm shadow-sm focus:border-pclaranja focus:ring-pclaranja"
+        >
+          <option value="">—</option>
+          {ASSIGNEES.map((a) => (
+            <option key={a} value={a}>
+              {a}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div>
