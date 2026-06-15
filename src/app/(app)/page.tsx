@@ -6,13 +6,23 @@ import { ToggleTaskButton, DeleteTaskButton } from "./tasks/task-actions";
 export default async function DashboardPage() {
   const supabase = await createClient();
 
-  const [{ count: pendingCount }, { count: inProgressCount }, { count: doneCount }, { count: clientCount }] =
-    await Promise.all([
-      supabase.from("interactions").select("*", { count: "exact", head: true }).eq("status", "pending"),
-      supabase.from("interactions").select("*", { count: "exact", head: true }).eq("status", "in_progress"),
-      supabase.from("interactions").select("*", { count: "exact", head: true }).eq("status", "done"),
-      supabase.from("clients").select("*", { count: "exact", head: true }).eq("status", "active"),
-    ]);
+  const [
+    { count: pendingCount },
+    { count: inProgressCount },
+    { count: doneCount },
+    { count: clientCount },
+    { count: taskPendingCount },
+    { count: taskInProgressCount },
+    { count: taskDoneCount },
+  ] = await Promise.all([
+    supabase.from("interactions").select("*", { count: "exact", head: true }).eq("status", "pending"),
+    supabase.from("interactions").select("*", { count: "exact", head: true }).eq("status", "in_progress"),
+    supabase.from("interactions").select("*", { count: "exact", head: true }).eq("status", "done"),
+    supabase.from("clients").select("*", { count: "exact", head: true }).eq("status", "active"),
+    supabase.from("tasks").select("*", { count: "exact", head: true }).eq("status", "pending"),
+    supabase.from("tasks").select("*", { count: "exact", head: true }).eq("status", "in_progress"),
+    supabase.from("tasks").select("*", { count: "exact", head: true }).eq("status", "done"),
+  ]);
 
   const { data: pending } = await supabase
     .from("interactions")
@@ -39,6 +49,12 @@ export default async function DashboardPage() {
     { label: "Clientes ativos", value: clientCount ?? 0, href: "/clients", color: "bg-pcbege text-pcmarrom" },
   ];
 
+  const taskCards = [
+    { label: "Tarefas pendentes", value: taskPendingCount ?? 0, href: "/tasks?status=pending", color: "bg-amber-50 text-amber-700" },
+    { label: "Tarefas em andamento", value: taskInProgressCount ?? 0, href: "/tasks?status=in_progress", color: "bg-blue-50 text-blue-700" },
+    { label: "Tarefas concluídas", value: taskDoneCount ?? 0, href: "/tasks?status=done", color: "bg-green-50 text-green-700" },
+  ];
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -53,6 +69,19 @@ export default async function DashboardPage() {
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
         {cards.map((c) => (
+          <Link
+            key={c.label}
+            href={c.href}
+            className={`rounded-lg border border-pccinza/20 p-4 hover:shadow-sm ${c.color}`}
+          >
+            <p className="text-2xl font-semibold">{c.value}</p>
+            <p className="text-sm">{c.label}</p>
+          </Link>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+        {taskCards.map((c) => (
           <Link
             key={c.label}
             href={c.href}
