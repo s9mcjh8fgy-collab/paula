@@ -67,20 +67,25 @@ export default async function DashboardPage() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        {cards.map((c) => (
-          <Link
-            key={c.label}
-            href={c.href}
-            className={`rounded-lg border border-pccinza/20 p-4 hover:shadow-sm ${c.color}`}
-          >
-            <p className="text-2xl font-semibold">{c.value}</p>
-            <p className="text-sm">{c.label}</p>
-          </Link>
-        ))}
+      <div>
+        <h2 className="mb-2 text-sm font-semibold text-pcmarrom">Demandas</h2>
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {cards.map((c) => (
+            <Link
+              key={c.label}
+              href={c.href}
+              className={`rounded-lg border border-pccinza/20 p-4 hover:shadow-sm ${c.color}`}
+            >
+              <p className="text-2xl font-semibold">{c.value}</p>
+              <p className="text-sm">{c.label}</p>
+            </Link>
+          ))}
+        </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+      <div>
+        <h2 className="mb-2 text-sm font-semibold text-pcmarrom">Tarefas</h2>
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
         {taskCards.map((c) => (
           <Link
             key={c.label}
@@ -91,6 +96,7 @@ export default async function DashboardPage() {
             <p className="text-sm">{c.label}</p>
           </Link>
         ))}
+        </div>
       </div>
 
       <div>
