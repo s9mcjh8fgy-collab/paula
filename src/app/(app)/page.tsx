@@ -63,7 +63,7 @@ export default async function DashboardPage() {
           href="/interactions/new"
           className="rounded-lg bg-pclaranja px-3 py-2 text-sm font-semibold text-white hover:bg-pclaranjadark"
         >
-          + Novo atendimento
+          + Nova demanda
         </Link>
       </div>
 
@@ -101,14 +101,14 @@ export default async function DashboardPage() {
 
       <div>
         <div className="mb-2 flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-pcmarrom">Atendimentos pendentes / em andamento</h2>
+          <h2 className="text-sm font-semibold text-pcmarrom">Demandas pendentes / em andamento</h2>
           <Link href="/interactions" className="text-sm text-pclaranja hover:underline">
             Ver todas as demandas
           </Link>
         </div>
 
         {interactions.length === 0 ? (
-          <p className="text-sm text-pccinza">Nenhum atendimento pendente. 🎉</p>
+          <p className="text-sm text-pccinza">Nenhuma demanda pendente. 🎉</p>
         ) : (
           <div className="overflow-hidden rounded-lg border border-pccinza/20 bg-white">
             <table className="min-w-full divide-y divide-pccinza/20">

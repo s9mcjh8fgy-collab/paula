@@ -31,7 +31,7 @@ export default async function NewInteractionPage({
   return (
     <div className="max-w-2xl space-y-6">
       <div className="flex items-baseline justify-between">
-        <h1 className="text-lg font-semibold text-pcmarrom">Novo atendimento</h1>
+        <h1 className="text-lg font-semibold text-pcmarrom">Nova demanda</h1>
         <span className="text-sm text-pccinza">
           Demanda nº <span className="font-mono font-semibold text-pcmarrom">#{String(nextNumber).padStart(4, "0")}</span>
         </span>

@@ -42,7 +42,7 @@ export default async function InteractionsPage({
           href="/interactions/new"
           className="rounded-lg bg-pclaranja px-3 py-2 text-sm font-semibold text-white hover:bg-pclaranjadark"
         >
-          + Novo atendimento
+          + Nova demanda
         </Link>
       </div>
 

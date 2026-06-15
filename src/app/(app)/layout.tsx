@@ -16,7 +16,6 @@ export default async function AppLayout({
   const links = [
     { href: "/", label: "Painel" },
     { href: "/clients", label: "Clientes" },
-    { href: "/interactions/new", label: "Novo Atendimento" },
     { href: "/interactions", label: "Demandas" },
     { href: "/tasks", label: "Tarefas" },
     { href: "/search", label: "Buscar" },

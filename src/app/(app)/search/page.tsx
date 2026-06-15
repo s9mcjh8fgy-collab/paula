@@ -42,7 +42,7 @@ export default async function SearchPage({
 
   return (
     <div className="space-y-6">
-      <h1 className="text-lg font-semibold text-pcmarrom">Buscar atendimentos</h1>
+      <h1 className="text-lg font-semibold text-pcmarrom">Buscar demandas</h1>
 
       <form className="flex flex-col gap-3 sm:flex-row">
         <input

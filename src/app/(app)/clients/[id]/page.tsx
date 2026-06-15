@@ -52,7 +52,7 @@ export default async function ClientDetailPage({
             href={`/interactions/new?client_id=${c.id}`}
             className="rounded-lg bg-pclaranja px-3 py-2 text-sm font-semibold text-white hover:bg-pclaranjadark"
           >
-            + Novo atendimento
+            + Nova demanda
           </Link>
         </div>
       </div>
@@ -144,9 +144,9 @@ export default async function ClientDetailPage({
       </div>
 
       <div>
-        <h2 className="mb-2 text-sm font-semibold text-pcmarrom">Histórico de atendimentos</h2>
+        <h2 className="mb-2 text-sm font-semibold text-pcmarrom">Histórico de demandas</h2>
         {interactions.length === 0 ? (
-          <p className="text-sm text-pccinza">Nenhum atendimento registrado ainda.</p>
+          <p className="text-sm text-pccinza">Nenhuma demanda registrada ainda.</p>
         ) : (
           <ul className="space-y-3">
             {interactions.map((i) => (
