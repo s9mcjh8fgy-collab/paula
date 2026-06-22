@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { createInteraction } from "../actions";
 import { InteractionForm } from "../interaction-form";
+import { CopyFolderName } from "../copy-folder-name";
 import type { Client } from "@/lib/types";
 
 export default async function NewInteractionPage({
@@ -35,6 +36,10 @@ export default async function NewInteractionPage({
         <span className="text-sm text-pccinza">
           Demanda nº <span className="font-mono font-semibold text-pcmarrom">#{String(nextNumber).padStart(4, "0")}</span>
         </span>
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="text-xs text-pccinza">Pasta sugerida no SharePoint:</span>
+        <CopyFolderName name={`#${String(nextNumber).padStart(4, "0")}`} />
       </div>
       <InteractionForm
         action={createInteraction}

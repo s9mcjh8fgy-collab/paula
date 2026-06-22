@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { updateInteraction } from "../../actions";
 import { InteractionForm } from "../../interaction-form";
 import { InteractionTasks } from "../../interaction-tasks";
+import { CopyFolderName } from "../../copy-folder-name";
 import type { Interaction } from "@/lib/types";
 
 export default async function EditInteractionPage({
@@ -33,6 +34,14 @@ export default async function EditInteractionPage({
           Demanda #{String((interaction as Interaction).number).padStart(4, "0")}
         </h1>
         <p className="text-sm text-pccinza">{(interaction as Interaction).clients?.name}</p>
+        <div className="mt-2 flex items-center gap-2">
+          <span className="text-xs text-pccinza">Pasta sugerida no SharePoint:</span>
+          <CopyFolderName
+            name={`#${String((interaction as Interaction).number).padStart(4, "0")}${
+              (interaction as Interaction).title ? ` - ${(interaction as Interaction).title}` : ""
+            }`}
+          />
+        </div>
       </div>
       <InteractionForm action={updateAction} interaction={interaction as Interaction} error={error} />
       <InteractionTasks interactionId={id} clientId={(interaction as Interaction).client_id} path={`/interactions/${id}/edit`} />
