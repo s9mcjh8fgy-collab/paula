@@ -3,7 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { updateTask } from "../../actions";
 import { TaskForm } from "../../task-form";
 import type { Client, Task } from "@/lib/types";
-import { AuditLog } from "../../../audit-log";
+import Link from "next/link";
 
 export default async function EditTaskPage({
   params,
@@ -36,7 +36,14 @@ export default async function EditTaskPage({
         redirectTo={redirect_to ?? "/tasks"}
         error={error}
       />
-      <AuditLog tableName="tasks" recordId={id} />
+      <div className="flex justify-end">
+        <Link
+          href={`/tasks/${id}/audit${redirect_to ? `?redirect_to=${encodeURIComponent(redirect_to)}` : ""}`}
+          className="text-sm text-pccinza hover:text-pcmarrom hover:underline"
+        >
+          Ver histórico de alterações
+        </Link>
+      </div>
     </div>
   );
 }
