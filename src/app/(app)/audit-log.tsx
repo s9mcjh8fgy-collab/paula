@@ -56,7 +56,7 @@ export async function AuditLog({
 
   const { data } = await supabase
     .from("audit_log")
-    .select("*, changed_by_profile:changed_by(email)")
+    .select("*")
     .eq("table_name", tableName)
     .eq("record_id", recordId)
     .order("changed_at", { ascending: false })
@@ -85,9 +85,6 @@ export async function AuditLog({
               </span>
               <span className="whitespace-nowrap text-xs text-pccinza">
                 {new Date(e.changed_at).toLocaleString("pt-BR")}
-                {e.changed_by_profile?.email && (
-                  <> · {e.changed_by_profile.email.split("@")[0]}</>
-                )}
               </span>
             </div>
             <div className="mt-0.5 flex items-start gap-2 text-xs text-pccinza">
