@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { updateInteraction } from "../../actions";
 import { InteractionForm } from "../../interaction-form";
 import { InteractionTasks } from "../../interaction-tasks";
+import { AuditLog } from "../../../audit-log";
 import type { Interaction } from "@/lib/types";
 
 export default async function EditInteractionPage({
@@ -36,6 +37,7 @@ export default async function EditInteractionPage({
       </div>
       <InteractionForm action={updateAction} interaction={interaction as Interaction} error={error} />
       <InteractionTasks interactionId={id} clientId={(interaction as Interaction).client_id} path={`/interactions/${id}/edit`} />
+      <AuditLog tableName="interactions" recordId={id} />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { updateTask } from "../../actions";
 import { TaskForm } from "../../task-form";
 import type { Client, Task } from "@/lib/types";
+import { AuditLog } from "../../../audit-log";
 
 export default async function EditTaskPage({
   params,
@@ -35,6 +36,7 @@ export default async function EditTaskPage({
         redirectTo={redirect_to ?? "/tasks"}
         error={error}
       />
+      <AuditLog tableName="tasks" recordId={id} />
     </div>
   );
 }
