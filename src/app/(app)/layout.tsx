@@ -41,8 +41,11 @@ export default async function AppLayout({
         </nav>
         <div className="mt-6 border-t border-white/10 pt-4">
           <p className="px-2 text-xs text-pcbege">{user?.email}</p>
+          <Link href="/conta" className="mt-1 block rounded-lg px-2 py-1.5 text-sm text-pcbege hover:text-pclaranja">
+            Alterar senha
+          </Link>
           <form action={logout}>
-            <button className="mt-1 rounded-lg px-2 py-2 text-sm text-pcbege hover:text-pclaranja">
+            <button className="rounded-lg px-2 py-1.5 text-sm text-pcbege hover:text-pclaranja">
               Sair
             </button>
           </form>
