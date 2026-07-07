@@ -91,8 +91,11 @@ export default async function SearchPage({
                       {STATUS_LABELS[i.status]}
                     </span>
                   </div>
-                  <p className="text-sm font-medium text-pcmarrom">{i.summary}</p>
-                  {i.response && <p className="mt-1 text-sm text-pcmarrom">{i.response}</p>}
+                  <Link href={`/interactions/${i.id}/edit`} className="block hover:underline">
+                    <p className="text-sm font-medium text-pcmarrom">{i.title ?? i.summary}</p>
+                    {i.title && <p className="line-clamp-2 text-sm text-pccinza">{i.summary}</p>}
+                  </Link>
+                  {i.response && <p className="mt-1 line-clamp-2 text-sm text-pccinza">{i.response}</p>}
                 </li>
               ))}
             </ul>
