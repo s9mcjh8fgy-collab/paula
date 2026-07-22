@@ -30,12 +30,11 @@ export default async function ClientDetailPage({
 
   const [{ data: interactionsData }, { data: tasksData }] = await Promise.all([
     interactionsQuery,
-    supabase
-      .from("tasks")
-      .select("*")
-      .eq("client_id", id)
-      .order("status", { ascending: true })
-      .order("due_date", { ascending: true, nullsFirst: false }),
+    (() => {
+      let tq = supabase.from("tasks").select("*").eq("client_id", id).order("status", { ascending: true }).order("due_date", { ascending: true, nullsFirst: false });
+      if (q) tq = tq.or(`title.ilike.%${q}%,description.ilike.%${q}%`);
+      return tq;
+    })(),
   ]);
 
   const interactions = (interactionsData ?? []) as Interaction[];
@@ -44,12 +43,28 @@ export default async function ClientDetailPage({
 
   return (
     <div className="space-y-6">
-      <div className="flex items-start justify-between">
+      <div className="flex items-start justify-between gap-4">
         <div>
           <h1 className="text-lg font-semibold text-pcmarrom">{c.name}</h1>
           {c.document && <p className="text-sm text-pccinza">{c.document}</p>}
         </div>
-        <div className="flex gap-2">
+        <div className="flex shrink-0 items-center gap-2">
+          <form className="flex gap-2">
+            <input
+              name="q"
+              defaultValue={q}
+              placeholder="Buscar neste cliente..."
+              className="w-52 rounded-lg border border-pccinza/40 px-3 py-2 text-sm shadow-sm focus:border-pclaranja focus:outline-none"
+            />
+            <button type="submit" className="rounded-lg bg-pcbege px-3 py-2 text-sm font-medium text-pcmarrom hover:bg-pccinza/20">
+              Buscar
+            </button>
+            {q && (
+              <a href={`/clients/${id}`} className="rounded-lg border border-pccinza/40 px-3 py-2 text-sm text-pccinza hover:bg-pcbege">
+                ×
+              </a>
+            )}
+          </form>
           <Link
             href={`/clients/${c.id}/edit`}
             className="rounded-lg border border-pccinza/40 px-3 py-2 text-sm font-medium text-pcmarrom hover:bg-pcbege"
@@ -152,28 +167,7 @@ export default async function ClientDetailPage({
       </div>
 
       <div>
-        <div className="mb-3 flex items-center justify-between gap-4">
-          <h2 className="text-sm font-semibold text-pcmarrom">Histórico de demandas</h2>
-          <form className="flex flex-1 justify-end gap-2">
-            <input
-              name="q"
-              defaultValue={q}
-              placeholder="Buscar neste cliente..."
-              className="w-64 rounded-lg border border-pccinza/40 px-3 py-1.5 text-sm shadow-sm focus:border-pclaranja focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="rounded-lg bg-pclaranja px-3 py-1.5 text-sm font-semibold text-white hover:bg-pclaranjadark"
-            >
-              Buscar
-            </button>
-            {q && (
-              <a href={`/clients/${id}`} className="rounded-lg border border-pccinza/40 px-3 py-1.5 text-sm text-pccinza hover:bg-pcbege">
-                Limpar
-              </a>
-            )}
-          </form>
-        </div>
+        <h2 className="mb-2 text-sm font-semibold text-pcmarrom">Histórico de demandas</h2>
         {interactions.length === 0 ? (
           <p className="text-sm text-pccinza">{q ? `Nenhuma demanda encontrada para "${q}".` : "Nenhuma demanda registrada ainda."}</p>
         ) : (
