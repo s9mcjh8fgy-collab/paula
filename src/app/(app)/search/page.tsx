@@ -25,7 +25,7 @@ export default async function SearchPage({
         .select("id")
         .ilike("name", `%${q}%`);
 
-      const orFilters = [`summary.ilike.%${q}%`, `response.ilike.%${q}%`];
+      const orFilters = [`title.ilike.%${q}%`, `summary.ilike.%${q}%`, `response.ilike.%${q}%`];
       if (matchingClients && matchingClients.length > 0) {
         const ids = matchingClients.map((c) => c.id).join(",");
         orFilters.push(`client_id.in.(${ids})`);
