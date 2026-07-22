@@ -6,10 +6,13 @@ import { ToggleTaskButton, DeleteTaskButton } from "../../tasks/task-actions";
 
 export default async function ClientDetailPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ q?: string }>;
 }) {
   const { id } = await params;
+  const { q } = await searchParams;
   const supabase = await createClient();
 
   const { data: client } = await supabase
@@ -20,8 +23,13 @@ export default async function ClientDetailPage({
 
   if (!client) notFound();
 
+  let interactionsQuery = supabase.from("interactions").select("*").eq("client_id", id).order("occurred_at", { ascending: false });
+  if (q) {
+    interactionsQuery = interactionsQuery.or(`title.ilike.%${q}%,summary.ilike.%${q}%,response.ilike.%${q}%`);
+  }
+
   const [{ data: interactionsData }, { data: tasksData }] = await Promise.all([
-    supabase.from("interactions").select("*").eq("client_id", id).order("occurred_at", { ascending: false }),
+    interactionsQuery,
     supabase
       .from("tasks")
       .select("*")
@@ -144,9 +152,30 @@ export default async function ClientDetailPage({
       </div>
 
       <div>
-        <h2 className="mb-2 text-sm font-semibold text-pcmarrom">Histórico de demandas</h2>
+        <div className="mb-3 flex items-center justify-between gap-4">
+          <h2 className="text-sm font-semibold text-pcmarrom">Histórico de demandas</h2>
+          <form className="flex flex-1 justify-end gap-2">
+            <input
+              name="q"
+              defaultValue={q}
+              placeholder="Buscar neste cliente..."
+              className="w-64 rounded-lg border border-pccinza/40 px-3 py-1.5 text-sm shadow-sm focus:border-pclaranja focus:outline-none"
+            />
+            <button
+              type="submit"
+              className="rounded-lg bg-pclaranja px-3 py-1.5 text-sm font-semibold text-white hover:bg-pclaranjadark"
+            >
+              Buscar
+            </button>
+            {q && (
+              <a href={`/clients/${id}`} className="rounded-lg border border-pccinza/40 px-3 py-1.5 text-sm text-pccinza hover:bg-pcbege">
+                Limpar
+              </a>
+            )}
+          </form>
+        </div>
         {interactions.length === 0 ? (
-          <p className="text-sm text-pccinza">Nenhuma demanda registrada ainda.</p>
+          <p className="text-sm text-pccinza">{q ? `Nenhuma demanda encontrada para "${q}".` : "Nenhuma demanda registrada ainda."}</p>
         ) : (
           <ul className="space-y-3">
             {interactions.map((i) => (
