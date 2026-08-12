@@ -32,7 +32,23 @@
       "Bash(curl -s \"http://localhost:3000/_next/static/chunks/src_app_globals_162hn9o.css\" -o /tmp/g.css)",
       "Read(//tmp/**)",
       "Bash(grep -o \".\\\\{0,30\\\\}pcbege.\\\\{0,60\\\\}\" /tmp/g.css)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(nohup npm run dev)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_resize",
+      "mcp__playwright__browser_evaluate",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_wait_for",
+      "Bash(sleep * && curl *)",
+      "WebSearch",
+      "Bash(python \"/c/Users/user/AppData/Local/Temp/claude/C--Users-user-OneDrive---CORREA-ADVOGADOS-ASSOCIADOS-Documentos---Correa-00-Novo-Diret-rio-8-Claude/b6ef1d08-0f7c-4859-8c92-e04f33bd87b6/scratchpad/build_leads_xlsx.py\")",
+      "Bash(py --version)",
+      "Bash(ls \"/c/Users/user/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin/ccfefe19-9186-4fcc-9841-e42b84a4db6d/d4368f9b-2fc9-4f4c-8921-65d646ba9606/bin\" 2>&1)",
+      "PowerShell(Get-Command python, python3, py -ErrorAction SilentlyContinue)",
+      "PowerShell(powershell -NoProfile -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-user-OneDrive---CORREA-ADVOGADOS-ASSOCIADOS-Documentos---Correa-00-Novo-Diret-rio-8-Claude\\\\b6ef1d08-0f7c-4859-8c92-e04f33bd87b6\\\\scratchpad\\\\build_leads_xlsx.ps1\")",
+      "PowerShell(Get-Process EXCEL -ErrorAction SilentlyContinue)",
+      "PowerShell(Stop-Process -Id 10372 -Force -Confirm:$false)"
     ]
   }
 }
