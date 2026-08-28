@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1920px;
+    background: #F1EBDF;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .content {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    padding: 140px 72px 320px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .tag {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #F26F4D;
+    margin-bottom: 44px;
+  }
+  p {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 600;
+    font-size: 42px;
+    line-height: 1.42;
+    color: #6D413E;
+  }
+  em {
+    font-style: normal;
+    color: #F26F4D;
+  }
+  .progress-track {
+    position: absolute;
+    bottom: 260px; left: 72px; right: 72px;
+    height: 3px;
+    background: rgba(109,65,62,0.15);
+  }
+  .progress-fill {
+    height: 100%;
+    width: 20%;
+    background: #F26F4D;
+  }
+</style>
+</head>
+<body>
+  <div class="content">
+    <div class="tag">O caso</div>
+    <p>Essa semana um cliente me ligou preocupado. A empreiteira dele tava no meio de uma reforma no apartamento, e um vizinho bateu na porta reclamando do barulho. Não parou por aí: o vizinho <em>ameaçou chamar a polícia</em> e disse que ia fazer a obra parar. Antes de entrar em pânico, tem uma pergunta que precisa ser respondida primeiro: o vizinho pode mesmo fazer isso acontecer?</p>
+  </div>
+  <div class="progress-track"><div class="progress-fill"></div></div>
+</body>
+</html>

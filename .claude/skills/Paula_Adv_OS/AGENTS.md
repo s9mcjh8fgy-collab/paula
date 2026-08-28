@@ -7,7 +7,9 @@ Espaço de trabalho da Paula Corrêa Advocacia pra apoiar o dia a dia jurídico:
 - `consultivo/` — pareceres e respostas a dúvidas de clientes (WhatsApp, e-mail, mais simples)
 - `contratos/` — análise de contratos e documentos
 - `processual/` — peças processuais
-- `conteudo/` — redes sociais (posts, roteiros, pauta) — área nova em estruturação
+- `inpi/` — painel central (`controle.md`) de todos os pedidos de marca e desenho industrial no INPI, de qualquer cliente. Os documentos de cada pedido ficam na pasta do cliente em `06_INPI/`, não aqui (ver skill `/inpi`)
+- `conteudo/` — redes sociais e site, organizado por canal: `instagram/`, `tiktok/`, `site/`, `youtube/` (cada um com subpastas por tipo, ex: `carrossel/`, `reels/`, `blog/`), mais `casos/` (fonte de ideias) e `estrategia-retomada/` (plano de retomada das postagens)
+- `propostas/[nome-cliente]/` — propostas comerciais em deck de slides (HTML → PDF), geradas pela skill `/proposta-comercial`
 - `tarefas.md` — lista de pendências
 - `templates/skills/` — templates de skills prontos pra personalizar com /mapear
 - `templates/ferramentas/catalogo.md` — APIs e ferramentas disponíveis pra usar em skills
@@ -22,9 +24,17 @@ Advocacia solo com uma assistente (Thaís, formada em Direito, auxilia em demand
 - Análise de contratos e documentos
 - Peças processuais
 - Conteúdo pra redes sociais (posts, roteiros)
+- Registro de marca e desenho industrial no INPI (ver skill `/inpi`)
 
 ## Clientes e contexto
 Carteira mista de pessoas físicas e jurídicas, atendimento direto (não é agência).
+
+Dois regimes de cliente, com fluxos de registro diferentes:
+- **Assessoria mensal:** cadastrado no sistema próprio de demandas (Supabase). Cada demanda vira
+  uma pasta numerada (`#00NN`) dentro de `03_Demandas` na pasta do cliente em
+  `3_Jurídico/4_Assessorias/` no SharePoint.
+- **Esporádico** (PF ou PJ avulso): registro processual/contratual fica no Legal One, não no
+  sistema Supabase. Pasta local em `3_Jurídico/1_Pessoa Física (PF)/` ou `2_Pessoa Jurídica (PJ)/`.
 
 ## Tom de voz
 Fora de peças processuais: linguagem simples e humana, como a própria Paula conversando com o cliente. Sem travessão.
@@ -33,8 +43,14 @@ Em peças processuais: formal, técnico, terceira pessoa.
 ## Ferramentas conectadas
 - Legal One (Thomson Reuters) — sistema processual oficial
 - WhatsApp Business
-- Microsoft 365 (Outlook e afins) — conectado via MCP
-- Sistema próprio de registro de demandas consultivas: https://paula-blush-rho.vercel.app/
+- Microsoft 365 (Outlook e afins) — conectado via MCP, só leitura no SharePoint (criação de pasta
+  via API dá 403 e não tem permissão de escrita pra conceder). Contorno: o SharePoint das
+  assessorias fica sincronizado localmente via OneDrive em `3_Jurídico/4_Assessorias/`, então
+  pastas são criadas direto nesse caminho local (sem precisar de API)
+- Sistema próprio de registro de demandas consultivas: https://paula-blush-rho.vercel.app/ (Supabase
+  por trás — tabelas `clients`, `interactions`, `tasks`; credenciais em `.env.local` na raiz do
+  workspace, usadas pela skill `/demandas`)
+- Cloudflare Pages — publicação de relatórios estáticos (ex: relatórios de andamento do INPI), token e account ID em `.env`
 
 ---
 

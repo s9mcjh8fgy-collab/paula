@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1920px;
+    background: #F1EBDF;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .content {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    padding: 140px 72px 320px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .tag {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #F26F4D;
+    margin-bottom: 40px;
+  }
+  p {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1.42;
+    color: #6D413E;
+    margin-bottom: 64px;
+  }
+  em { font-style: normal; color: #F26F4D; font-weight: 800; }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .logo {
+    width: 84px; height: 84px;
+    border-radius: 50%;
+    background: #F26F4D;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+  }
+  .brand-text .name {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    color: #6D413E;
+  }
+  .brand-text .handle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    color: #7F7F7F;
+  }
+  .progress-track {
+    position: absolute;
+    bottom: 260px; left: 72px; right: 72px;
+    height: 3px;
+    background: rgba(109,65,62,0.15);
+  }
+  .progress-fill {
+    height: 100%;
+    width: 100%;
+    background: #F26F4D;
+  }
+</style>
+</head>
+<body>
+  <div class="content">
+    <div class="tag">Antes de entrar em pânico</div>
+    <p>Toda reforma tem esse risco. Vale entender o que a lei realmente permite. Se você é arquiteto, engenheiro, empreiteiro ou síndico e já passou por isso, <em>conta sua experiência nos comentários.</em></p>
+    <div class="brand">
+      <div class="logo">PC</div>
+      <div class="brand-text">
+        <div class="name">Paula Corrêa Advocacia</div>
+        <div class="handle">@paulacorrea.adv &middot; OAB/SC 28.118</div>
+      </div>
+    </div>
+  </div>
+  <div class="progress-track"><div class="progress-fill"></div></div>
+</body>
+</html>

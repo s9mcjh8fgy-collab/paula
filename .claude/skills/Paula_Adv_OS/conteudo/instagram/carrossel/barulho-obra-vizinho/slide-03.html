@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1350px;
+    background: #6D413E;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .content {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    padding: 96px 72px 120px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .tag {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #F26F4D;
+    margin-bottom: 44px;
+  }
+  p {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 600;
+    font-size: 42px;
+    line-height: 1.42;
+    color: #F1EBDF;
+  }
+  em {
+    font-style: normal;
+    color: #F26F4D;
+  }
+  .progress-track {
+    position: absolute;
+    bottom: 56px; left: 72px; right: 72px;
+    height: 3px;
+    background: rgba(241,235,223,0.25);
+  }
+  .progress-fill {
+    height: 100%;
+    width: 30%;
+    background: #F1EBDF;
+  }
+</style>
+</head>
+<body>
+  <div class="content">
+    <div class="tag">Como funciona</div>
+    <p>A resposta curta é: depende. Barulho de obra não é proibido por padrão, ele é <em>regulado</em>. E quem regula não é o vizinho incomodado, são três coisas bem específicas: o horário permitido pra fazer obra na cidade, o limite técnico de ruído e o que a lei chama de uso nocivo da propriedade.</p>
+  </div>
+  <div class="progress-track"><div class="progress-fill"></div></div>
+</body>
+</html>

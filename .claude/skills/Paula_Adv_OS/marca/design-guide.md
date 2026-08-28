@@ -73,8 +73,16 @@ Tom visual: técnico, formal, coerente, diplomático, explicativo.
 
 - **Nome:** Paula Corrêa
 - **Handle:** @paulacorrea.adv
-- **Foto:** *(adicionar em marca/ quando disponível)*
+- **Foto:** `marca/fotos/perfil.jpg`
 - **Badge verificado:** não informado
+
+## Fotos disponíveis
+
+Ensaio fotográfico profissional (2025), fundo neutro/ambiente claro, tom consistente com a paleta da marca. Arquivos em `marca/fotos/`:
+- `perfil.jpg` — frontal, olhando pra câmera, boa pra avatar/estilo "tweet" e slides de abertura
+- `ambiente-01.jpg` e `ambiente-02.jpg` — três-quartos, olhar de lado, boas pra fundo de slide, post fixo ou elemento decorativo (não cobrir o rosto com texto)
+
+Mais fotos do mesmo ensaio disponíveis em `Paula - Particular\11 Fotos\Ensaio 2025` — pedir pra Paula selecionar e copiar mais se precisar de variedade.
 
 ---
 
