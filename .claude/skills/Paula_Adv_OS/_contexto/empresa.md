@@ -9,7 +9,7 @@
 **Perfil:** freelancer (advocacia solo com uma assistente)
 **Atende clientes:** sim — carteira mista de PF e PJ. Continua atendendo casos de outras áreas (família, trabalhista, consumidor) que surgem naturalmente, inclusive de clientes do nicho de construção civil (ex: trabalhista de uma construtora).
 **Equipe:** Paula + Thaís (formada em Direito, não advogada, auxilia em demandas de menor complexidade)
-**Ferramentas:** Legal One (Thomson Reuters, sistema processual), WhatsApp Business, Microsoft 365 (Outlook e afins — já conectado via MCP), sistema próprio de registro de demandas consultivas em https://paula-blush-rho.vercel.app/, Cloudflare Pages (publicação de relatórios estáticos, ex: relatórios de andamento do INPI — token e account ID em `.env`)
+**Ferramentas:** Legal One (Thomson Reuters, sistema processual), WhatsApp Business, Microsoft 365 (Outlook e afins — já conectado via MCP), sistema próprio de registro de demandas consultivas em https://paula-blush-rho.vercel.app/, app próprio de controle financeiro (contas a pagar/receber, senha própria) em https://financeiro-paula.paulacorrea-adv.workers.dev — Cloudflare Worker com tabelas dedicadas no mesmo projeto Supabase do sistema de demandas, Cloudflare Pages (publicação de relatórios estáticos, ex: relatórios de andamento do INPI — token e account ID em `.env`)
 **Principais entregas:** pareceres e respostas consultivas, análise de contratos, peças processuais, conteúdo pra redes sociais (área nova, em estruturação), registro de marca e desenho industrial no INPI
 
 ## Estrutura de arquivos de clientes

@@ -52,6 +52,24 @@ Em peças processuais: formal, técnico, terceira pessoa.
   workspace, usadas pela skill `/demandas`)
 - Cloudflare Pages — publicação de relatórios estáticos (ex: relatórios de andamento do INPI), token e account ID em `.env`
 
+## Financeiro
+Controle financeiro do escritório fica em `1_Gestão/2_Financeiro/` (fora do `8_Claude`, caminho
+relativo `../../../../1_Gestão/2_Financeiro/` a partir de `Paula_Adv_OS`). Extratos, notas fiscais
+e faturas de cartão são organizados por mês em subpastas (`01 Janeiro 26`, `02 Fevereiro 26`...) e
+mandados pra contabilidade todo mês (checklist em `05 Checklist malote.xlsx`).
+
+**Uso do dia a dia (contas a pagar/receber, vencimentos):** app próprio
+`financeiro-paula` (Cloudflare Worker + tabelas dedicadas no Supabase do sistema de demandas),
+código em `1_Gestão/2_Financeiro/app-financeiro/`. Substituiu uma tentativa de painel em Excel que
+não pegou bem. Tem dashboard, abas A Pagar/A Receber com navegação por mês, e recorrentes
+(assessoria mensal ou parcelamento) que se geram sozinhos mês a mês. Detalhes completos de
+arquitetura, deploy e regras de negócio na skill `/financeiro`.
+
+**Controle gerencial de lucro** (fechamento mensal, histórico): três planilhas —
+`01 Contas a Receber.xlsx` (receita, já existia), `03 Contas a Pagar.xlsx` (despesas por
+categoria, recriado em 2026-09) e `08 Fechamento Mensal.xlsx` (Receita − Despesas = Lucro por mês,
+novo). Ver skill `/financeiro`.
+
 ---
 
 ## Como este workspace é organizado (Claude Code e Codex)
