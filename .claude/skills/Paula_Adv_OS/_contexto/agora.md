@@ -27,7 +27,7 @@ Financeiro do escritório reconstruído do zero em 01/09/2026: reconciliação d
 - Confirmar com a Anna o reembolso das guias de R$ 85,00 e R$ 175,00 (INPI Leonardo Zanatta).
 - Autorizar os MCP servers da Cloudflare (`cloudflare-api`, `cloudflare-bindings`, `cloudflare-builds`, `cloudflare-observability`) via `/mcp` numa sessão interativa, quando for usar algum projeto Cloudflare que precise deles.
 - Cadastrar no app financeiro (como recorrente) os impostos, o salário da Thaís e as parcelas de empréstimo assim que a Paula tiver valores/prazos confiáveis pra projetar — hoje ficam de fora por variarem demais mês a mês.
-- Commitar as mudanças pendentes no git (AGENTS.md, skill `/financeiro` nova, `app-financeiro/`) — ver se a Paula quer rodar `/syncar`.
+- Proposta comercial pra Adriano Mendonça (arquitetura) pronta em `propostas/adriano-mendonca-arquitetura/`, ainda não commitada.
 
 ## Quente agora
 App financeiro (`financeiro-paula`) recém-criado em 2026-09-01 — Paula está testando no dia a dia (marcar pago, editar, lançar retroativo), ainda ajustando dados de recorrentes conforme usa.
