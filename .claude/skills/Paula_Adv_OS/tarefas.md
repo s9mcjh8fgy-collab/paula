@@ -3,7 +3,7 @@
 ## MCPs pra avaliar depois
 - [ ] WhatsApp Business — sem conector pronto no catálogo (opções: WhatsApp Cloud API oficial ou Z-API de terceiro, ambas exigem conta/token)
 - [ ] Legal One (Thomson Reuters) — sem conector pronto; verificar se a Thomson Reuters oferece API/integração
-- [ ] WordPress.com — conector existe mas precisa ser autorizado em claude.ai → Configurações → Conectores. Paula teve problema de login (usuário não aceito) — tentar recuperar acesso via e-mail cadastrado ou suporte WordPress.com. Quando autorizado, a skill `/blog-post` já está preparada pra publicar direto
+- [ ] Meta/Instagram Graph API — pra dados nativos do Instagram (engajamento, alcance, seguidores) e publicação direta de posts. WordPress + Google Search Console já conectados (2026-09-10); Instagram ainda depende só do Search Console (mostra cliques vindos da busca do Google, não analytics do Instagram em si)
 
 ## Processos pra mapear depois
 - [ ] Fechamento financeiro mensal + emissão de notas

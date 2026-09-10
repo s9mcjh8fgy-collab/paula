@@ -5,7 +5,7 @@
 > Mantenha curto: o que passou de ~30 dias sai daqui (vai pro histórico ou some).
 
 ## Onde paramos
-Conectando WordPress e Google Search Console pra publicação de blog e acompanhamento de SEO — autenticação funcionando nos dois, verificação do domínio concluída (arquivo HTML via cPanel), falta testar publicação de um post real.
+Blog retomado: calendário de 8 semanas (1x/semana) criado, post #1 (contrato de empreitada) publicado. Incidente de segurança do site (backdoor + redirecionamento pra golpe no mobile) totalmente resolvido — falta só seguir o calendário do blog.
 
 ## Decisões recentes
 - 2026-08-12: pastas de trabalho (`consultivo/`, `contratos/`, `processual/`, `conteudo/`) ficam no `8_Claude`; documentos finais de cliente vão pra pasta dele em `3_Jurídico/`.
@@ -19,6 +19,8 @@ Conectando WordPress e Google Search Console pra publicação de blog e acompanh
 - 2026-09-01: skill `/financeiro` criada, com o app `financeiro-paula` (Cloudflare Worker + Supabase) como ferramenta principal de contas a pagar/receber — painel em Excel foi tentado antes e abandonado.
 - 2026-09-01: modelo de recorrentes no app separa "definição" (cliente, valor, dia de vencimento, total de parcelas) de "ocorrência mensal", gerada automaticamente pelo Worker conforme a Paula navega os meses.
 - 2026-09-10: WordPress, cPanel e Google Search Console conectados ao workspace; credenciais sensíveis agora ficam em `.credenciais/` (fora do git) além de `.env.local`.
+- 2026-09-10: site invadido — webshell (`wp-cron-ooyh.php`) achado e neutralizado. Senhas do WordPress e cPanel trocadas, 2FA ativado nos dois. Causa do redirecionamento mobile pra site de golpe foi resolvida pela equipe que desenvolveu o site. Incidente encerrado.
+- 2026-09-10: calendário de retomada do blog definido — 1x/semana por 8 semanas (decisão deliberada de não fazer 2x, pra não repetir o padrão de picos e paradas do Instagram). Publicação direto via API do WordPress. Padrão criado: "Leia também" linkando pro pilar relacionado + CTA de engajamento no fechamento (nunca linguagem de captação direta — ver `feedback_cta_oab_etica`). Widget de compartilhamento (WhatsApp) corrigido no template do site via Elementor.
 
 ## Pendências
 - Avaliar conector de WhatsApp Business e integração com Legal One (sem MCP pronto no catálogo ainda).
@@ -28,10 +30,9 @@ Conectando WordPress e Google Search Console pra publicação de blog e acompanh
 - Confirmar com a Anna o reembolso das guias de R$ 85,00 e R$ 175,00 (INPI Leonardo Zanatta).
 - Autorizar os MCP servers da Cloudflare (`cloudflare-api`, `cloudflare-bindings`, `cloudflare-builds`, `cloudflare-observability`) via `/mcp` numa sessão interativa, quando for usar algum projeto Cloudflare que precise deles.
 - Cadastrar no app financeiro (como recorrente) os impostos, o salário da Thaís e as parcelas de empréstimo assim que a Paula tiver valores/prazos confiáveis pra projetar — hoje ficam de fora por variarem demais mês a mês.
-- Confirmar que o usuário de serviço do Search Console (`claude-search-console@paula-site.iam.gserviceaccount.com`) foi adicionado nos Usuários e Permissões do Search Console.
-- Testar publicação de um post de rascunho no WordPress pra validar o fluxo ponta a ponta.
+- Seguir o calendário do blog: semana 2 é "Atraso de obra: quem responde e como se proteger" (ver `conteudo/estrategia-retomada/calendario-blog.md`).
 
 ## Quente agora
 App financeiro (`financeiro-paula`) recém-criado em 2026-09-01 — Paula está testando no dia a dia (marcar pago, editar, lançar retroativo), ainda ajustando dados de recorrentes conforme usa.
-Estratégia de retomada de postagens definida em 2026-08-13 (ver `conteudo/estrategia-retomada/README.md`): repurposing de Instagram pra TikTok/YouTube Shorts, ritmo progressivo (1x/semana nas 2 primeiras semanas, subindo pra 2x), execução só pela Paula. Falta publicar o post #1.
+Blog do site retomado (2026-09-10): calendário de 8 semanas rodando, 1x/semana, post #1 no ar. Estratégia de redes sociais (Instagram/TikTok/YouTube) definida em 2026-08-13 (ver `conteudo/estrategia-retomada/README.md`) segue parada — post #1 do Instagram ainda não publicado.
 Skill `/inpi` recém-criada (2026-08-20) — validada num cliente real, mas ainda vale revisar o formato do relatório na próxima vez que gerar pra outro cliente, pra confirmar se o padrão ficou bom de forma geral.
