@@ -51,6 +51,14 @@ Em peças processuais: formal, técnico, terceira pessoa.
   por trás — tabelas `clients`, `interactions`, `tasks`; credenciais em `.env.local` na raiz do
   workspace, usadas pela skill `/demandas`)
 - Cloudflare Pages — publicação de relatórios estáticos (ex: relatórios de andamento do INPI), token e account ID em `.env`
+- WordPress (site paulacorrea.adv.br) — publicação de posts via API REST, autenticado com senha de
+  aplicativo (usuário admin). Yoast SEO instalado, dá pra setar meta descrição/título SEO via API.
+  Credenciais em `.env.local` (WORDPRESS_*)
+- cPanel (hospedagem do site) — acesso via token de API (sem prazo de expiração, acesso amplo à
+  conta). Usado pra DNS, upload de arquivos etc. Credenciais em `.env.local` (CPANEL_*)
+- Google Search Console — dados de SEO (cliques, impressões, posição) via service account do
+  Google Cloud. Chave em `.credenciais/google-search-console-service-account.json`
+  (fora do git), referenciada em `.env.local`
 
 ## Financeiro
 Controle financeiro do escritório fica em `1_Gestão/2_Financeiro/` (fora do `8_Claude`, caminho
