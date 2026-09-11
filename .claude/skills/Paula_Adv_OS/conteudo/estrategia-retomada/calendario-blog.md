@@ -37,6 +37,11 @@ editorial "Advocacia através dos meus casos".
   dúvida")
 - O widget de compartilhamento em redes sociais no fim do post é automático (tema), não precisa
   inserir nada manual
+- **Capa do post:** usar uma frase-gancho curta, diferente do título e do resumo (nunca repetir o
+  título na imagem — a página já mostra ele grande em cima, fica redundante). Ex: título "Contrato
+  de empreitada: o que precisa ter..." → capa "O que não tá no contrato, vira discussão na obra."
+- **Resumo (excerpt) e tags:** sempre preencher os dois via API (não ficam automáticos) — resumo
+  curto e diferente do texto de abertura do post; tags reaproveitando as do pilar relacionado
 
 ## Como funciona a rotina
 1. No início de cada semana, revisar se tem caso real da semana anterior que substitui o tema genérico

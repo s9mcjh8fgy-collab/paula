@@ -59,6 +59,10 @@ Em peças processuais: formal, técnico, terceira pessoa.
 - Google Search Console — dados de SEO (cliques, impressões, posição) via service account do
   Google Cloud. Chave em `.credenciais/google-search-console-service-account.json`
   (fora do git), referenciada em `.env.local`
+- Meta Ads (Facebook/Instagram Ads) — skill `/meta-ads-ratos`, gestão de campanhas via SDK oficial
+  `facebook-business`. App "Paula Corrêa Advocacia" (ID 530584914965449) em modo Live, token de
+  system user em `.claude/skills/meta-ads-ratos/.env` (fora do git). Conta de anúncio própria do
+  escritório cadastrada em `contas.yaml` como `paula` (act_450995911083244)
 
 ## Financeiro
 Controle financeiro do escritório fica em `1_Gestão/2_Financeiro/` (fora do `8_Claude`, caminho
