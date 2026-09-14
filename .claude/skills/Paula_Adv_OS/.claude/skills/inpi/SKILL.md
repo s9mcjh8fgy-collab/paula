@@ -55,6 +55,9 @@ aplicável `Vista ampliada`, `Vista explodida`, `Vista em corte`, `Vista planifi
 sinônimos (`Frontal`, `traseira`, `lateral esq` etc.) — sempre a grafia exata do dropdown.
 
 **Requisitos técnicos das figuras no e-DI:**
+- Formato tem que ser `.jpg` — o e-DI rejeita `.png` ("Tipo de arquivo inválido, favor utilizar
+  arquivos .jpg"). Se o cliente mandar em `.png`, converter antes de subir (Pillow: abrir, colar
+  sobre fundo branco se tiver canal alfa, salvar como `.jpg`).
 - Tamanho máximo 2MB por figura. Fotos/renders costumam vir bem acima disso — comprimir com ffmpeg
   (`ffmpeg -y -i entrada.jpg -q:v N saida.jpg`, N de 2 a ~15, quanto maior mais comprime) até ficar
   abaixo do limite, mantendo a resolução original.
@@ -203,10 +206,22 @@ mesmo que a consulta ainda diga "para confecção do folheto" ou algo parecido.
      marco, data em negrito à esquerda (formato `DD/MM/AA`) seguida do evento: `08/07/25 —
      Publicada para oposição`. Se o pedido ainda não chegou numa etapa final (aguardando algo, sem
      data), essa linha final entra sem data, em cinza, abaixo das linhas datadas.
-4. Salvar em `06_INPI/relatorio-andamento-[AAAA-MM-DD].html`, na pasta do cliente. Não publicar
-   online — é informação confidencial do cliente, então o arquivo é local (e autocontido, com as
-   imagens em base64 — não depende de nenhum link externo), pra abrir no navegador e mandar como
-   anexo por e-mail/WhatsApp (ou imprimir em PDF direto do navegador se o cliente preferir PDF).
+4. Salvar em `06_INPI/relatorio-andamento-[AAAA-MM-DD].html`, na pasta do cliente (autocontido, com
+   as imagens em base64 — não depende de nenhum link externo).
+5. Publicar no Cloudflare Pages (token e account ID em `.env`). Não é informação sensível pra
+   deixar fora do ar: o link é privado (subdomínio com sufixo aleatório, tipo
+   `inpi-lz-7805ac58.pages.dev`), então só quem recebe o link do próprio escritório consegue abrir.
+   - Verificar se já existe projeto desse cliente (`wrangler pages project list` ou API
+     `GET /accounts/{account_id}/pages/projects` — nome padrão `inpi-[iniciais-cliente]-[hash]`).
+     Se existir, reaproveitar; se não, criar um novo.
+   - Montar uma pasta de deploy com: o novo `relatorio-andamento-[AAAA-MM-DD].html`, os relatórios
+     anteriores já publicados (baixar do site atual antes de sobrescrever, pra não perder o
+     histórico de links já mandados) e um `index.html` = cópia do relatório mais novo (pra quem já
+     tem o link raiz salvo sempre ver a versão atualizada).
+   - Deploy: `npx wrangler@latest pages deploy [pasta] --project-name=[nome-projeto]
+     --commit-dirty=true` (variáveis `CLOUDFLARE_API_TOKEN` e `CLOUDFLARE_ACCOUNT_ID` do `.env` no
+     ambiente).
+   - Mandar o link raiz do projeto (`https://[projeto].pages.dev`) pro cliente por e-mail/WhatsApp.
 
 ---
 

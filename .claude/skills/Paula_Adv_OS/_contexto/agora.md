@@ -6,6 +6,7 @@
 
 ## Onde paramos
 Blog retomado: calendário de 8 semanas (1x/semana) criado, post #1 (contrato de empreitada) publicado. Incidente de segurança do site (backdoor + redirecionamento pra golpe no mobile) totalmente resolvido — falta só seguir o calendário do blog.
+Novo pedido de desenho industrial do Leonardo Zanatta protocolado (sofá, BR 30 2026 007020-4) e relatório de andamento consolidado atualizado e republicado no Cloudflare Pages.
 
 ## Decisões recentes
 - 2026-08-12: pastas de trabalho (`consultivo/`, `contratos/`, `processual/`, `conteudo/`) ficam no `8_Claude`; documentos finais de cliente vão pra pasta dele em `3_Jurídico/`.
@@ -20,6 +21,7 @@ Blog retomado: calendário de 8 semanas (1x/semana) criado, post #1 (contrato de
 - 2026-09-01: modelo de recorrentes no app separa "definição" (cliente, valor, dia de vencimento, total de parcelas) de "ocorrência mensal", gerada automaticamente pelo Worker conforme a Paula navega os meses.
 - 2026-09-10: WordPress, cPanel e Google Search Console conectados ao workspace; credenciais sensíveis agora ficam em `.credenciais/` (fora do git) além de `.env.local`.
 - 2026-09-10: site invadido — webshell (`wp-cron-ooyh.php`) achado e neutralizado. Senhas do WordPress e cPanel trocadas, 2FA ativado nos dois. Causa do redirecionamento mobile pra site de golpe foi resolvida pela equipe que desenvolveu o site. Incidente encerrado.
+- 2026-09-14: corrigida inconsistência na skill `/inpi` — o `SKILL.md` dizia pra manter o relatório de andamento só local, mas o combinado real (desde 20/08) é publicar no Cloudflare Pages (link privado, com sufixo aleatório, só quem recebe do escritório acessa). Skill ajustada pra refletir isso, incluindo o passo de deploy via wrangler reaproveitando o projeto do cliente.
 - 2026-09-10: calendário de retomada do blog definido — 1x/semana por 8 semanas (decisão deliberada de não fazer 2x, pra não repetir o padrão de picos e paradas do Instagram). Publicação direto via API do WordPress. Padrão criado: "Leia também" linkando pro pilar relacionado + CTA de engajamento no fechamento (nunca linguagem de captação direta — ver `feedback_cta_oab_etica`). Widget de compartilhamento (WhatsApp) corrigido no template do site via Elementor.
 
 ## Pendências
@@ -27,7 +29,8 @@ Blog retomado: calendário de 8 semanas (1x/semana) criado, post #1 (contrato de
 - Publicar o post #1 da retomada (carrossel "barulho de obra e vizinho", já pronto em `conteudo/instagram/carrossel/barulho-obra-vizinho/`).
 - Rodar `/carrossel` pra gerar o tema da semana 2 da retomada (ver `conteudo/estrategia-retomada/README.md`).
 - Leonardo Zanatta: aguardando ele enviar renderizações corrigidas da Mesa de Centro Jacuí (prazo 30/09/2026) e uma foto/render da Luminária de teto BR 30 2025 005775 2.
-- Confirmar com a Anna o reembolso das guias de R$ 85,00 e R$ 175,00 (INPI Leonardo Zanatta).
+- Leonardo Zanatta: informar o nome do modelo/coleção do sofá novo protocolado em 14/09/2026 (BR 30 2026 007020-4), e reembolsar a Paula os R$ 175,00 da guia paga no protocolo.
+- Confirmar com a Anna o reembolso das guias de R$ 85,00 e R$ 175,00 (INPI Leonardo Zanatta) — reembolsos anteriores, internos ao escritório.
 - Autorizar os MCP servers da Cloudflare (`cloudflare-api`, `cloudflare-bindings`, `cloudflare-builds`, `cloudflare-observability`) via `/mcp` numa sessão interativa, quando for usar algum projeto Cloudflare que precise deles.
 - Cadastrar no app financeiro (como recorrente) os impostos, o salário da Thaís e as parcelas de empréstimo assim que a Paula tiver valores/prazos confiáveis pra projetar — hoje ficam de fora por variarem demais mês a mês.
 - Seguir o calendário do blog: semana 2 é "Atraso de obra: quem responde e como se proteger" (ver `conteudo/estrategia-retomada/calendario-blog.md`).
