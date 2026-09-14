@@ -58,7 +58,9 @@ Em peças processuais: formal, técnico, terceira pessoa.
   conta). Usado pra DNS, upload de arquivos etc. Credenciais em `.env.local` (CPANEL_*)
 - Google Search Console — dados de SEO (cliques, impressões, posição) via service account do
   Google Cloud. Chave em `.credenciais/google-search-console-service-account.json`
-  (fora do git), referenciada em `.env.local`
+  (fora do git), referenciada em `.env.local` (propriedade correta é sem "www":
+  `https://paulacorrea.adv.br/` — a versão com "www" existe no GSC mas não recebe dados).
+  Relatório semanal via skill `/search-console` (rodar toda segunda)
 - Meta Ads (Facebook/Instagram Ads) — skill `/meta-ads-ratos`, gestão de campanhas via SDK oficial
   `facebook-business`. App "Paula Corrêa Advocacia" (ID 530584914965449) em modo Live, token de
   system user em `.claude/skills/meta-ads-ratos/.env` (fora do git). Conta de anúncio própria do
