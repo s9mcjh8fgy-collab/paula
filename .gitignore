@@ -42,3 +42,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# saídas geradas por skills (relatórios com vídeos/imagens baixados de terceiros)
+**/espiar-ads-ratos/output/

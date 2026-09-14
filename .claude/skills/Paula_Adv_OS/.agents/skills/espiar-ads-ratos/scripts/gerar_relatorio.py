@@ -17,13 +17,13 @@ def esc(s):
 
 def main():
     out = sys.argv[1]
-    conceitos_data = json.load(open(os.path.join(out, "conceitos.json")))
+    conceitos_data = json.load(open(os.path.join(out, "conceitos.json"), encoding="utf-8"))
     meta = conceitos_data["meta"]
     conceitos = conceitos_data["conceitos"]
     sintese = {}
     sp = os.path.join(out, "sintese.json")
     if os.path.exists(sp):
-        sintese = json.load(open(sp))
+        sintese = json.load(open(sp, encoding="utf-8"))
 
     label = meta.get("label", "Concorrente")
     total = meta.get("total_ativos", 0)
@@ -265,7 +265,7 @@ footer a{{color:var(--ink)}}
 </div></body></html>'''
 
     op = os.path.join(out, "index.html")
-    open(op, "w").write(HTML)
+    open(op, "w", encoding="utf-8").write(HTML)
     print(f"OK -> {op}")
 
 

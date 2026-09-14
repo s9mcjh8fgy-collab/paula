@@ -21,6 +21,10 @@ def slug(s):
     return re.sub(r"[^a-z0-9]+", "-", (s or "concorrente").lower()).strip("-")[:40]
 
 
+def relurl(p, out):
+    return os.path.relpath(p, out).replace(os.sep, "/")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--page-id", required=True)
@@ -54,7 +58,7 @@ def main():
             break
 
     ativos = [x for x in ads if x.get("is_active", True)]
-    json.dump(ativos, open(os.path.join(out, "dados.json"), "w"), ensure_ascii=False)
+    json.dump(ativos, open(os.path.join(out, "dados.json"), "w", encoding="utf-8"), ensure_ascii=False)
 
     # -------- dedupe em conceitos --------
     conceitos = lib.dedupe_conceitos(ativos)
@@ -69,7 +73,7 @@ def main():
         if th:
             p = os.path.join(out, "thumbs", f"c{i}.jpg")
             if lib.download(th, p):
-                thumb_path = os.path.relpath(p, out)
+                thumb_path = relurl(p, out)
         img_path = ""
         if lib.formato(rep) == "IMAGE":
             imgs = lib.snap(rep).get("images") or []
@@ -77,7 +81,7 @@ def main():
             if u:
                 p = os.path.join(out, "imagens", f"c{i}.jpg")
                 if lib.download(u, p):
-                    img_path = os.path.relpath(p, out)
+                    img_path = relurl(p, out)
         vid_path = ""
         is_video = lib.formato(rep) == "VIDEO"
         baixar_este_video = a.baixar_videos or (is_video and len(top3_video) < 3)
@@ -86,7 +90,7 @@ def main():
             if vu:
                 p = os.path.join(out, "videos", f"c{i}.mp4")
                 if lib.download(vu, p):
-                    vid_path = os.path.relpath(p, out)
+                    vid_path = relurl(p, out)
                     if len(top3_video) < 3:
                         top3_video.append({"i": i, "video": vid_path, "dias": c["dias"],
                                            "hook": lib.hook(rep), "copy": lib.copy_text(rep)})
@@ -104,7 +108,7 @@ def main():
         "top3_video": top3_video,
     }
     json.dump({"meta": meta, "conceitos": resumo_conceitos},
-              open(os.path.join(out, "conceitos.json"), "w"), ensure_ascii=False, indent=2)
+              open(os.path.join(out, "conceitos.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=2)
 
     print(json.dumps({
         "out": out, "total_ativos": len(ativos), "conceitos": len(conceitos),

@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contrato na Régua</title>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d223b19d8ed54e8b98411dd2c592134c"}'></script><!-- End Cloudflare Web Analytics -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Source+Serif+4:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EEF2F0;
+  --paper-line:#D7E0DC;
+  --ink:#16231F;
+  --ink-mut:#4B615C;
+  --blue:#1F5C96;
+  --blue-soft:#DCE8F2;
+  --amber:#C97A2E;
+  --card:#FFFFFF;
+  --line:#C9D3CE;
+  --shadow:0 18px 40px -24px rgba(22,35,31,.35);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#101715;
+    --paper-line:#22302C;
+    --ink:#E7EEEB;
+    --ink-mut:#93A6A1;
+    --blue:#6FA8DC;
+    --blue-soft:#1B2C36;
+    --amber:#E0994F;
+    --card:#17211E;
+    --line:#2B3B36;
+    --shadow:0 18px 40px -20px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101715;
+  --paper-line:#22302C;
+  --ink:#E7EEEB;
+  --ink-mut:#93A6A1;
+  --blue:#6FA8DC;
+  --blue-soft:#1B2C36;
+  --amber:#E0994F;
+  --card:#17211E;
+  --line:#2B3B36;
+  --shadow:0 18px 40px -20px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'IBM Plex Mono',ui-monospace,monospace;
+  line-height:1.5;
+}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+.masthead{padding:48px 0 28px;border-bottom:2px solid var(--ink)}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:600}
+h1{
+  font-family:'Big Shoulders Display',sans-serif;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:-.01em;
+  font-size:clamp(38px,7vw,76px);
+  margin:.08em 0 .18em;
+  text-wrap:balance;
+  line-height:.92;
+}
+h1 span{color:var(--blue)}
+.dek{color:var(--ink-mut);max-width:62ch;font-size:15px}
+main.grid{
+  display:grid;
+  grid-template-columns:minmax(320px,420px) 1fr;
+  gap:26px;
+  padding:34px 0 60px;
+  align-items:start;
+}
+@media (max-width:900px){
+  main.grid{grid-template-columns:1fr}
+}
+.sheet{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:6px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.form-sheet{
+  background-image:
+    repeating-linear-gradient(to right, var(--paper-line) 0 1px, transparent 1px 28px),
+    repeating-linear-gradient(to bottom, var(--paper-line) 0 1px, transparent 1px 28px);
+  background-color:var(--card);
+}
+.titleblock{
+  border-bottom:2px solid var(--ink);
+  padding:16px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:10px;
+}
+.titleblock b{font-family:'Big Shoulders Display',sans-serif;font-weight:700;font-size:18px;letter-spacing:.02em;text-transform:uppercase}
+.titleblock span{font-size:11px;color:var(--ink-mut);letter-spacing:.06em}
+form{padding:6px 20px 24px}
+.dim-divider{position:relative;display:flex;align-items:center;gap:6px;margin:26px 0 14px}
+.dim-divider:first-child{margin-top:10px}
+.dim-line{flex:1;height:1px;background:var(--blue)}
+.tick{width:1px;height:9px;background:var(--blue);flex:0 0 auto}
+.dim-label{font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--blue);font-weight:600;white-space:nowrap;padding:0 2px}
+.field{display:flex;flex-direction:column;gap:5px;margin:0 0 14px}
+.field label{font-size:11px;letter-spacing:.04em;color:var(--ink-mut);text-transform:uppercase}
+.field input[type="text"],
+.field input[type="number"],
+.field input[type="date"],
+.field select{
+  font-family:'IBM Plex Mono',ui-monospace,monospace;
+  font-size:14px;
+  padding:9px 10px;
+  border:1px solid var(--line);
+  border-radius:4px;
+  background:var(--paper);
+  color:var(--ink);
+  width:100%;
+}
+.field input:focus-visible,.field select:focus-visible{outline:2px solid var(--blue);outline-offset:1px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.row2{grid-template-columns:1fr}}
+.check-list{display:flex;flex-direction:column;gap:9px;margin:0 0 6px}
+.check-row{display:flex;align-items:center;gap:9px;font-size:13.5px}
+.check-row input{accent-color:var(--blue);width:15px;height:15px;flex:0 0 auto}
+.hint{font-size:11.5px;color:var(--ink-mut);margin-top:-6px}
+
+.doc-sheet{position:sticky;top:20px}
+@media (max-width:900px){.doc-sheet{position:static}}
+.doc-toolbar{
+  border-bottom:2px solid var(--ink);
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.doc-toolbar .name{font-family:'Big Shoulders Display',sans-serif;font-weight:700;font-size:16px;text-transform:uppercase;letter-spacing:.02em}
+#copyBtn{
+  font-family:'IBM Plex Mono',ui-monospace,monospace;
+  font-weight:600;
+  font-size:12.5px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  background:var(--amber);
+  color:#20140A;
+  border:none;
+  border-radius:4px;
+  padding:9px 16px;
+  cursor:pointer;
+}
+#copyBtn:hover{filter:brightness(1.06)}
+#copyBtn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+#copyStatus{font-size:12px;color:var(--ink-mut);margin-left:8px}
+.gate{background:var(--blue-soft);border-bottom:1px solid var(--line);padding:16px 20px}
+.gate-txt{margin:0 0 10px;font-size:12.5px;color:var(--ink);max-width:60ch}
+.gate-form{display:flex;flex-wrap:wrap;gap:8px}
+.gate-form input{
+  font-family:'IBM Plex Mono',ui-monospace,monospace;
+  font-size:13px;
+  padding:8px 10px;
+  border:1px solid var(--line);
+  border-radius:4px;
+  background:var(--card);
+  color:var(--ink);
+  flex:1 1 160px;
+  min-width:0;
+}
+.gate-form input:focus-visible{outline:2px solid var(--blue);outline-offset:1px}
+#gateSubmit{
+  font-family:'IBM Plex Mono',ui-monospace,monospace;
+  font-weight:600;
+  font-size:12.5px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  background:var(--amber);
+  color:#20140A;
+  border:none;
+  border-radius:4px;
+  padding:8px 16px;
+  cursor:pointer;
+  flex:0 0 auto;
+}
+#gateSubmit:disabled{opacity:.6;cursor:wait}
+#gateSubmit:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.gate-err{margin:8px 0 0;font-size:12px;color:var(--amber)}
+.page{
+  padding:34px 32px 28px;
+  font-family:'Source Serif 4',Georgia,serif;
+  font-size:15px;
+  line-height:1.68;
+  max-height:min(72vh,780px);
+  overflow-y:auto;
+}
+.page h2{
+  font-family:'Big Shoulders Display',sans-serif;
+  font-weight:800;
+  text-transform:uppercase;
+  font-size:19px;
+  letter-spacing:.01em;
+  text-align:center;
+  margin:0 0 6px;
+  text-wrap:balance;
+}
+.page .subhead{text-align:center;color:var(--ink-mut);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 28px}
+.clause{margin:0 0 20px}
+.clause h4{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:var(--blue);
+  font-weight:600;
+  margin:0 0 6px;
+}
+.clause h4 span{color:var(--ink)}
+.clause p{margin:0}
+.obj-list{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.obj-list li{
+  padding-left:14px;
+  border-left:2px solid var(--blue-soft);
+  font-size:14px;
+  color:var(--ink);
+}
+.obj-list li b{color:var(--blue);font-weight:600}
+.closing{margin:26px 0 0;color:var(--ink)}
+.sig-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px 20px;margin-top:34px}
+@media (max-width:520px){.sig-grid{grid-template-columns:1fr}}
+.sig{border-top:1px solid var(--ink);padding-top:8px;font-size:13px}
+.sig b{display:block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mut);font-weight:500;margin-top:2px}
+.statusbar{
+  border-top:1px solid var(--line);
+  padding:10px 20px;
+  font-size:11px;
+  letter-spacing:.04em;
+  color:var(--ink-mut);
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  font-variant-numeric:tabular-nums;
+}
+footer{
+  border-top:2px solid var(--ink);
+  padding:26px 0 50px;
+  color:var(--ink-mut);
+  font-size:12.5px;
+  max-width:78ch;
+  line-height:1.7;
+}
+footer a{color:var(--blue)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="eyebrow">Ferramenta · Modelo educativo</div>
+    <h1>Contrato na <span>Régua</span></h1>
+    <p class="dek">Gerador de minuta de contrato de prestação de serviços de arquitetura. Preencha os dados à esquerda e o documento à direita atualiza sozinho, cláusula por cláusula.</p>
+  </header>
+
+  <main class="grid">
+    <section class="sheet form-sheet" aria-label="Dados do contrato">
+      <div class="titleblock"><b>Prancheta de dados</b><span>Preencha e acompanhe ao lado</span></div>
+      <form id="f">
+
+        <div class="dim-divider"><span class="tick"></span><span class="dim-line"></span><span class="dim-label">01 — Contratado(a)</span><span class="dim-line"></span><span class="tick"></span></div>
+        <div class="field">
+          <label for="nomeArquiteto">Nome ou escritório</label>
+          <input type="text" id="nomeArquiteto" value="Estúdio Traço Arquitetura">
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="cau">Registro CAU nº</label>
+            <input type="text" id="cau" value="A123456-7">
+          </div>
+          <div class="field">
+            <label for="docArquiteto">CPF/CNPJ</label>
+            <input type="text" id="docArquiteto" value="12.345.678/0001-90">
+          </div>
+        </div>
+        <div class="field">
+          <label for="endArquiteto">Endereço profissional</label>
+          <input type="text" id="endArquiteto" value="Rua dos Pinheiros, 480, sala 12 — São Paulo/SP">
+        </div>
+
+        <div class="dim-divider"><span class="tick"></span><span class="dim-line"></span><span class="dim-label">02 — Contratante</span><span class="dim-line"></span><span class="tick"></span></div>
+        <div class="field">
+          <label for="nomeCliente">Nome</label>
+          <input type="text" id="nomeCliente" value="Fernanda Ramos Lima">
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="docCliente">CPF/CNPJ</label>
+            <input type="text" id="docCliente" value="123.456.789-00">
+          </div>
+          <div class="field">
+            <label for="endCliente">Endereço</label>
+            <input type="text" id="endCliente" value="Alameda Santos, 1200, apto 91 — São Paulo/SP">
+          </div>
+        </div>
+
+        <div class="dim-divider"><span class="tick"></span><span class="dim-line"></span><span class="dim-label">03 — Objeto</span><span class="dim-line"></span><span class="tick"></span></div>
+        <div class="check-list" id="servicos">
+          <label class="check-row"><input type="checkbox" id="chkEstudo"> Estudo preliminar</label>
+          <label class="check-row"><input type="checkbox" id="chkAnte" checked> Anteprojeto</label>
+          <label class="check-row"><input type="checkbox" id="chkExec" checked> Projeto executivo</label>
+          <label class="check-row"><input type="checkbox" id="chkInteriores"> Projeto de interiores</label>
+          <label class="check-row"><input type="checkbox" id="chkLegal" checked> Projeto legal (aprovação na prefeitura)</label>
+          <label class="check-row"><input type="checkbox" id="chkObra"> Acompanhamento de obra</label>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="endObra">Endereço da obra</label>
+            <input type="text" id="endObra" value="Rua Harmonia, 215, apto 62 — São Paulo/SP">
+          </div>
+          <div class="field">
+            <label for="area">Área aprox. (m²)</label>
+            <input type="number" id="area" value="98" min="0" step="1">
+          </div>
+        </div>
+
+        <div class="dim-divider"><span class="tick"></span><span class="dim-line"></span><span class="dim-label">04 — Prazo</span><span class="dim-line"></span><span class="tick"></span></div>
+        <div class="row2">
+          <div class="field">
+            <label for="prazo">Prazo de entrega (dias corridos)</label>
+            <input type="number" id="prazo" value="60" min="1" step="1">
+          </div>
+          <div class="field">
+            <label for="dataInicio">Início previsto</label>
+            <input type="date" id="dataInicio" value="2026-09-29">
+          </div>
+        </div>
+
+        <div class="dim-divider"><span class="tick"></span><span class="dim-line"></span><span class="dim-label">05 — Valor e pagamento</span><span class="dim-line"></span><span class="tick"></span></div>
+        <div class="row2">
+          <div class="field">
+            <label for="valorTotal">Valor total (R$)</label>
+            <input type="number" id="valorTotal" value="18000" min="0" step="100">
+          </div>
+          <div class="field">
+            <label for="formaPagamento">Forma de pagamento</label>
+            <select id="formaPagamento">
+              <option value="parcelado" selected>Parcelado</option>
+              <option value="avista">À vista</option>
+            </select>
+          </div>
+        </div>
+        <div class="row2" id="parceladoFields">
+          <div class="field">
+            <label for="sinalPct">Sinal (%)</label>
+            <input type="number" id="sinalPct" value="25" min="0" max="100" step="5">
+          </div>
+          <div class="field">
+            <label for="parcelas">Nº de parcelas</label>
+            <input type="number" id="parcelas" value="4" min="1" step="1">
+          </div>
+        </div>
+
+        <div class="dim-divider"><span class="tick"></span><span class="dim-line"></span><span class="dim-label">06 — Cláusulas padrão</span><span class="dim-line"></span><span class="tick"></span></div>
+        <div class="row2">
+          <div class="field">
+            <label for="revisoes">Revisões gratuitas inclusas</label>
+            <input type="number" id="revisoes" value="2" min="0" step="1">
+          </div>
+          <div class="field">
+            <label for="multa">Multa rescisória (%)</label>
+            <input type="number" id="multa" value="10" min="0" step="1">
+          </div>
+        </div>
+        <div class="field">
+          <label for="foro">Foro (comarca)</label>
+          <input type="text" id="foro" value="São Paulo/SP">
+        </div>
+
+        <div class="dim-divider"><span class="tick"></span><span class="dim-line"></span><span class="dim-label">07 — Data do contrato</span><span class="dim-line"></span><span class="tick"></span></div>
+        <div class="field">
+          <label for="dataContrato">Data de assinatura</label>
+          <input type="date" id="dataContrato" value="2026-09-14">
+        </div>
+        <p class="hint">A minuta ao lado é gerada só no seu navegador. Os dados do contrato não saem daqui — só nome e contato são enviados, e apenas se você optar por copiar o contrato pronto.</p>
+      </form>
+    </section>
+
+    <section class="sheet doc-sheet" aria-label="Pré-visualização do contrato">
+      <div class="doc-toolbar">
+        <span class="name">Minuta gerada</span>
+        <div>
+          <button id="copyBtn" type="button">Copiar contrato</button>
+          <span id="copyStatus" aria-live="polite"></span>
+        </div>
+      </div>
+      <div class="gate" id="gate" hidden>
+        <p class="gate-txt">Pra liberar a cópia do contrato, deixa seu nome e um contato — a gente não envia spam, só usa pra saber quem tá usando a ferramenta.</p>
+        <form id="gateForm" class="gate-form">
+          <input type="text" id="gateNome" placeholder="Seu nome completo" required autocomplete="name">
+          <input type="text" id="gateContato" placeholder="E-mail ou WhatsApp com DDD" required autocomplete="email">
+          <button type="submit" id="gateSubmit">Liberar cópia</button>
+        </form>
+        <p class="gate-err" id="gateErr" hidden></p>
+      </div>
+      <div class="page" id="preview"></div>
+      <div class="statusbar" id="statusbar"></div>
+    </section>
+  </main>
+
+  <footer>
+    Este gerador produz uma minuta-base educativa, não um parecer jurídico. Antes de usar em um projeto real, revise as cláusulas com um advogado — principalmente valor, prazo e forma de pagamento, que precisam refletir o combinado com o seu cliente. Modelo produzido por Paula Corrêa Advocacia, focada em Direito da Construção Civil · <a href="https://paulacorrea.adv.br" target="_blank" rel="noopener">paulacorrea.adv.br</a>
+  </footer>
+</div>
+
+<script>
+function esc(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function val(id){ var el=document.getElementById(id); return el ? el.value.trim() : ''; }
+function num(id){ var el=document.getElementById(id); return el ? (parseFloat(el.value)||0) : 0; }
+function checked(id){ var el=document.getElementById(id); return el ? el.checked : false; }
+function fmtBRL(n){ return (isNaN(n)?0:n).toLocaleString('pt-BR',{style:'currency',currency:'BRL'}); }
+function joinPt(arr){
+  if(arr.length===0) return '';
+  if(arr.length===1) return arr[0];
+  return arr.slice(0,-1).join(', ') + ' e ' + arr[arr.length-1];
+}
+function fmtDataExtenso(iso){
+  if(!iso) return '';
+  var meses=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+  var p=iso.split('-').map(Number);
+  return p[2] + ' de ' + meses[p[1]-1] + ' de ' + p[0];
+}
+
+var SERVICOS = [
+  { id:'chkEstudo', label:'Estudo preliminar',
+    def:'representação inicial do projeto, com a definição da volumetria, da implantação e das soluções funcionais e espaciais básicas, suficiente para a aprovação do conceito geral pelo(a) CONTRATANTE.' },
+  { id:'chkAnte', label:'Anteprojeto',
+    def:'desenvolvimento técnico do estudo preliminar, com a definição precisa dos ambientes, materiais e sistemas construtivos previstos, ainda sem o detalhamento necessário para execução da obra.' },
+  { id:'chkExec', label:'Projeto executivo',
+    def:'detalhamento técnico completo do projeto, com plantas, cortes, especificações e demais documentos com precisão suficiente para orientar diretamente a execução da obra.' },
+  { id:'chkInteriores', label:'Projeto de interiores',
+    def:'definição de acabamentos, layout de mobiliário, iluminação e demais elementos de ambientação dos espaços internos do imóvel.' },
+  { id:'chkLegal', label:'Projeto legal (aprovação na prefeitura)',
+    def:'elaboração dos desenhos e documentos técnicos exigidos pela legislação municipal para protocolo e aprovação do projeto junto à Prefeitura.' },
+  { id:'chkObra', label:'Acompanhamento de obra',
+    def:'visitas técnicas periódicas à obra para verificar a compatibilidade da execução com o projeto aprovado, não incluindo a responsabilidade técnica pela execução da obra em si, que compete ao responsável técnico da construção.' }
+];
+
+function buildClauses(ctx){
+  return [
+    { num:'PRIMEIRA', tit:'DAS PARTES',
+      txt: ctx.contratado + ', inscrito(a) no CAU sob o nº ' + ctx.cau + ', CPF/CNPJ nº ' + ctx.cnpjArq + ', com endereço profissional em ' + ctx.endArq + ', doravante denominado(a) CONTRATADO(A); e ' + ctx.contratante + ', CPF/CNPJ nº ' + ctx.cpfCliente + ', residente e domiciliado(a) em ' + ctx.endCliente + ', doravante denominado(a) CONTRATANTE; têm entre si justo e contratado o presente instrumento de prestação de serviços de arquitetura, regido pela Lei nº 12.378/2010 e pelo Código de Ética e Disciplina do CAU/BR, mediante as cláusulas seguintes.' },
+    { num:'SEGUNDA', tit:'DO OBJETO',
+      txt: 'O presente contrato tem por objeto a prestação, pelo(a) CONTRATADO(A), dos seguintes serviços técnicos: ' + ctx.listaServicos + ', relativos ao imóvel situado em ' + ctx.endObra + ', com área aproximada de ' + ctx.area + ' m².' },
+    { num:'TERCEIRA', tit:'DO PRAZO',
+      txt: 'Os serviços contratados serão entregues no prazo de ' + ctx.prazo + ' dias corridos, contados a partir de ' + ctx.dataInicio + ', ressalvadas eventuais prorrogações motivadas por caso fortuito, força maior ou atraso na entrega de informações e documentos pelo(a) CONTRATANTE.' },
+    { num:'QUARTA', tit:'DO VALOR E DA FORMA DE PAGAMENTO',
+      txt: 'Pelos serviços ora contratados, o(a) CONTRATANTE pagará ao(à) CONTRATADO(A) o valor total de ' + ctx.valorFormatado + ', ' + ctx.condPagamento + '.' },
+    { num:'QUINTA', tit:'DAS REVISÕES',
+      txt: 'Estão incluídas no valor contratado até ' + ctx.revisoes + ' rodada(s) de revisão do projeto, a serem solicitadas pelo(a) CONTRATANTE em até 15 (quinze) dias após a entrega de cada etapa. Revisões adicionais ou alterações de escopo após esse prazo serão objeto de aditivo contratual e cobrança à parte.' },
+    { num:'SEXTA', tit:'DA RESPONSABILIDADE TÉCNICA',
+      txt: 'O(A) CONTRATADO(A) obriga-se a providenciar o Registro de Responsabilidade Técnica (RRT) junto ao CAU relativo aos serviços objeto deste contrato, cujas taxas correrão por conta do(a) CONTRATANTE, salvo disposição em contrário acordada entre as partes.' },
+    { num:'SÉTIMA', tit:'DOS DIREITOS AUTORAIS',
+      txt: 'Os direitos autorais sobre o projeto, incluindo desenhos, plantas e demais documentos técnicos, pertencem ao(à) CONTRATADO(A), nos termos da Lei nº 9.610/98, sendo seu uso pelo(a) CONTRATANTE autorizado exclusivamente para a execução da obra descrita na Cláusula Segunda, vedada a reprodução, alteração ou reutilização do projeto em outra obra sem autorização expressa e por escrito do(a) CONTRATADO(A).' },
+    { num:'OITAVA', tit:'DA RESCISÃO',
+      txt: 'O presente contrato poderá ser rescindido por qualquer das partes, mediante notificação por escrito com antecedência mínima de 15 (quinze) dias, hipótese em que serão devidos os valores proporcionais aos serviços já executados até a data da rescisão. Em caso de rescisão imotivada por qualquer das partes, será devida multa de ' + ctx.multa + '% sobre o saldo remanescente do contrato.' },
+    { num:'NONA', tit:'DO FORO',
+      txt: 'Fica eleito o foro da comarca de ' + ctx.foro + ' para dirimir quaisquer controvérsias oriundas do presente contrato, com renúncia a qualquer outro, por mais privilegiado que seja.' }
+  ];
+}
+
+function montarContexto(){
+  var selecionados = SERVICOS.filter(function(s){ return checked(s.id); });
+  var listaServicos = selecionados.length
+    ? joinPt(selecionados.map(function(s){ return s.label.toLowerCase(); }))
+    : '[selecione ao menos um serviço na seção 03]';
+
+  var dataInicio = val('dataInicio') ? fmtDataExtenso(val('dataInicio')) : '[data de início]';
+
+  var valorTotal = num('valorTotal');
+  var forma = document.getElementById('formaPagamento').value;
+  var sinal = num('sinalPct');
+  var parcelas = Math.max(1, Math.round(num('parcelas')) || 1);
+  var condPagamento;
+  if(forma === 'avista'){
+    condPagamento = 'em parcela única de ' + fmtBRL(valorTotal) + ', mediante transferência bancária ou PIX, no ato da assinatura deste contrato';
+  } else {
+    var valorSinal = valorTotal * sinal / 100;
+    var saldo = valorTotal - valorSinal;
+    var valorParcela = saldo / parcelas;
+    condPagamento = 'sendo ' + sinal + '% (' + fmtBRL(valorSinal) + ') a título de sinal no ato da assinatura deste contrato, e o saldo remanescente de ' + fmtBRL(saldo) + ' dividido em ' + parcelas + 'x parcelas iguais de ' + fmtBRL(valorParcela) + ', vencendo a primeira em 30 (trinta) dias após a assinatura e as demais em igual dia dos meses subsequentes';
+  }
+
+  return {
+    contratado: val('nomeArquiteto') || '[nome do(a) arquiteto(a) ou escritório]',
+    cau: val('cau') || '[nº CAU]',
+    cnpjArq: val('docArquiteto') || '[CPF/CNPJ]',
+    endArq: val('endArquiteto') || '[endereço profissional]',
+    contratante: val('nomeCliente') || '[nome do(a) contratante]',
+    cpfCliente: val('docCliente') || '[CPF/CNPJ]',
+    endCliente: val('endCliente') || '[endereço]',
+    listaServicos: listaServicos,
+    endObra: val('endObra') || '[endereço da obra]',
+    area: val('area') || '[--]',
+    prazo: val('prazo') || '[--]',
+    dataInicio: dataInicio,
+    valorFormatado: fmtBRL(valorTotal),
+    condPagamento: condPagamento,
+    revisoes: val('revisoes') || '2',
+    multa: val('multa') || '10',
+    foro: val('foro') || '[comarca]',
+    dataContratoExt: val('dataContrato') ? fmtDataExtenso(val('dataContrato')) : '[data]',
+    itensObjeto: selecionados
+  };
+}
+
+function render(){
+  var forma = document.getElementById('formaPagamento').value;
+  document.getElementById('parceladoFields').style.display = (forma === 'avista') ? 'none' : 'grid';
+
+  var ctx = montarContexto();
+  var clauses = buildClauses(ctx);
+
+  var htmlParts = [
+    '<h2>Contrato de Prestação de Serviços de Arquitetura e Urbanismo</h2>',
+    '<p class="subhead">Minuta gerada automaticamente</p>'
+  ];
+  clauses.forEach(function(c){
+    var extra = '';
+    if(c.num === 'SEGUNDA' && ctx.itensObjeto && ctx.itensObjeto.length){
+      extra = '<ul class="obj-list">' + ctx.itensObjeto.map(function(it){
+        return '<li><b>' + esc(it.label) + '</b> — ' + esc(it.def) + '</li>';
+      }).join('') + '</ul>';
+    }
+    htmlParts.push('<div class="clause"><h4>Cláusula ' + c.num + ' <span>— ' + esc(c.tit) + '</span></h4><p>' + esc(c.txt) + '</p>' + extra + '</div>');
+  });
+  htmlParts.push('<p class="closing">E por estarem justas e contratadas, as partes firmam o presente instrumento em duas vias de igual teor, na presença de duas testemunhas.</p>');
+  htmlParts.push('<p class="closing">' + esc((val('foro')||'[cidade/UF]')) + ', ' + esc(ctx.dataContratoExt) + '.</p>');
+  htmlParts.push(
+    '<div class="sig-grid">' +
+      '<div class="sig">' + esc(ctx.contratado) + '<b>Contratado(a)</b></div>' +
+      '<div class="sig">' + esc(ctx.contratante) + '<b>Contratante</b></div>' +
+      '<div class="sig">&nbsp;<b>Testemunha 1 — CPF</b></div>' +
+      '<div class="sig">&nbsp;<b>Testemunha 2 — CPF</b></div>' +
+    '</div>'
+  );
+  document.getElementById('preview').innerHTML = htmlParts.join('');
+
+  var itensObjetoTexto = (ctx.itensObjeto && ctx.itensObjeto.length)
+    ? '\n' + ctx.itensObjeto.map(function(it,i){ return '2.' + (i+1) + ') ' + it.label + ': ' + it.def; }).join('\n')
+    : '';
+
+  var textoPlano = 'CONTRATO DE PRESTAÇÃO DE SERVIÇOS DE ARQUITETURA E URBANISMO\n\n' +
+    clauses.map(function(c){
+      var extra = (c.num === 'SEGUNDA') ? itensObjetoTexto : '';
+      return 'CLÁUSULA ' + c.num + ' – ' + c.tit + '\n' + c.txt + extra;
+    }).join('\n\n') +
+    '\n\nE por estarem justas e contratadas, as partes firmam o presente instrumento em duas vias de igual teor, na presença de duas testemunhas.\n\n' +
+    (val('foro')||'[cidade/UF]') + ', ' + ctx.dataContratoExt + '.\n\n' +
+    '_______________________________\n' + ctx.contratado + ' — CONTRATADO(A)\n\n' +
+    '_______________________________\n' + ctx.contratante + ' — CONTRATANTE\n\n' +
+    '_______________________________\nTestemunha 1 — CPF\n\n' +
+    '_______________________________\nTestemunha 2 — CPF';
+
+  document.getElementById('preview').dataset.plain = textoPlano;
+
+  var palavras = textoPlano.trim().split(/\s+/).length;
+  document.getElementById('statusbar').innerHTML =
+    '<span>FOLHA 01/01 · REV. 1</span><span>' + clauses.length + ' CLÁUSULAS · ' + palavras + ' PALAVRAS</span>';
+}
+
+function showCopyStatus(msg){
+  var el = document.getElementById('copyStatus');
+  el.textContent = msg;
+  clearTimeout(showCopyStatus._t);
+  showCopyStatus._t = setTimeout(function(){ el.textContent=''; }, 2500);
+}
+
+function collectState(){
+  var state = {};
+  document.querySelectorAll('#f input, #f select').forEach(function(el){
+    state[el.id] = (el.type === 'checkbox') ? el.checked : el.value;
+  });
+  return state;
+}
+function applyState(state){
+  Object.keys(state || {}).forEach(function(id){
+    var el = document.getElementById(id);
+    if(!el) return;
+    if(el.type === 'checkbox') el.checked = state[id]; else el.value = state[id];
+  });
+}
+function snapshot(){
+  if(window.claude && window.claude.hot && window.claude.hot.snapshot){
+    window.claude.hot.snapshot(collectState());
+  }
+}
+
+var SUPABASE_URL = 'https://ynvaqkokeepeozozmsif.supabase.co';
+var SUPABASE_ANON_KEY = 'sb_publishable_mKVc5meu8aD7XJNeXJbYGA__qOzkNk9';
+var LEAD_FLAG = 'regua_lead_ok';
+
+function copiarTexto(){
+  var texto = document.getElementById('preview').dataset.plain || '';
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(texto).then(function(){
+      showCopyStatus('Copiado!');
+    }).catch(function(){
+      showCopyStatus('Não foi possível copiar — selecione o texto manualmente.');
+    });
+  } else {
+    showCopyStatus('Seu navegador não permite copiar automaticamente — selecione o texto manualmente.');
+  }
+}
+
+function leadJaCapturado(){
+  try{ return localStorage.getItem(LEAD_FLAG) === '1'; }catch(e){ return false; }
+}
+function marcarLeadCapturado(){
+  try{ localStorage.setItem(LEAD_FLAG, '1'); }catch(e){}
+}
+
+function enviarLead(nome, contato){
+  var ctx = montarContexto();
+  var payload = {
+    tool: 'contrato-na-regua',
+    nome: nome,
+    contato: contato,
+    payload: {
+      servicos: (ctx.itensObjeto || []).map(function(it){ return it.label; }),
+      area: val('area'),
+      valor_total: num('valorTotal')
+    }
+  };
+  return fetch(SUPABASE_URL + '/rest/v1/tool_leads', {
+    method: 'POST',
+    headers: {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify(payload)
+  });
+}
+
+function start(initial){
+  applyState(initial);
+  render();
+
+  document.getElementById('f').addEventListener('input', function(){ render(); snapshot(); });
+  document.getElementById('f').addEventListener('change', function(){ render(); snapshot(); });
+
+  var gate = document.getElementById('gate');
+  var gateForm = document.getElementById('gateForm');
+  var gateErr = document.getElementById('gateErr');
+  var gateSubmit = document.getElementById('gateSubmit');
+
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    if(leadJaCapturado()){
+      copiarTexto();
+    } else {
+      gate.hidden = false;
+      document.getElementById('gateNome').focus();
+    }
+  });
+
+  function nomeValido(nome){
+    return nome.length >= 3 && /\s/.test(nome) && /[a-zA-ZÀ-ÿ]/.test(nome);
+  }
+  function contatoValido(contato){
+    var email = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+    var digitos = contato.replace(/\D/g, '');
+    return email.test(contato) || digitos.length >= 10;
+  }
+
+  gateForm.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var nome = document.getElementById('gateNome').value.trim();
+    var contato = document.getElementById('gateContato').value.trim();
+
+    if(!nomeValido(nome)){
+      gateErr.textContent = 'Digite seu nome completo (nome e sobrenome).';
+      gateErr.hidden = false;
+      document.getElementById('gateNome').focus();
+      return;
+    }
+    if(!contatoValido(contato)){
+      gateErr.textContent = 'Digite um e-mail válido ou um WhatsApp com DDD (ex: 41999999999).';
+      gateErr.hidden = false;
+      document.getElementById('gateContato').focus();
+      return;
+    }
+
+    gateSubmit.disabled = true;
+    gateSubmit.textContent = 'Enviando…';
+    gateErr.hidden = true;
+
+    enviarLead(nome, contato).then(function(res){
+      if(!res.ok) throw new Error('status ' + res.status);
+      marcarLeadCapturado();
+      gate.hidden = true;
+      copiarTexto();
+    }).catch(function(){
+      marcarLeadCapturado();
+      gate.hidden = true;
+      copiarTexto();
+      console.warn('Não foi possível registrar o lead, mas a cópia foi liberada mesmo assim.');
+    }).finally(function(){
+      gateSubmit.disabled = false;
+      gateSubmit.textContent = 'Liberar cópia';
+    });
+  });
+}
+
+if(window.claude && window.claude.hot && window.claude.hot.ready){
+  window.claude.hot.ready(start);
+} else {
+  start((window.claude && window.claude.hot && window.claude.hot.data) || {});
+}
+</script>
+
+</body>
+</html>
