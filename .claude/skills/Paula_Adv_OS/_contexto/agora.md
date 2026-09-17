@@ -5,7 +5,14 @@
 > Mantenha curto: o que passou de ~30 dias sai daqui (vai pro histórico ou some).
 
 ## Onde paramos
-Blog retomado: calendário de 8 semanas (1x/semana) criado, post #1 (contrato de empreitada) publicado. Incidente de segurança do site (backdoor + redirecionamento pra golpe no mobile) totalmente resolvido — falta só seguir o calendário do blog.
+Instagram e blog retomados de verdade em 2026-09-17. Dois formatos novos criados a partir de análise
+de concorrentes (Carolina Caribé, João Paulo Leite/Empresa Blindada, Leonardo Vilela): "Conto
+Jurídico"/"Série Real" (narrativa "Era uma vez...", casos reais das demandas totalmente
+ficcionalizados, Paula como personagem ativo) e um formato inspirado na trend "Acho chic". Skill
+`/postar-instagram` criada e testada (publica direto via Graph API). Calendário fixo definido: terça
+Instagram, quinta blog + Instagram, a partir de 21/09/2026 (ver
+`conteudo/estrategia-retomada/README.md`). Reels e o lançamento da ferramenta "Contrato na Régua"
+ficam pausados por decisão da Paula, retomar quando ela sinalizar.
 Novo pedido de desenho industrial do Leonardo Zanatta protocolado (sofá, BR 30 2026 007020-4) e relatório de andamento consolidado atualizado e republicado no Cloudflare Pages.
 
 ## Decisões recentes
@@ -25,18 +32,26 @@ Novo pedido de desenho industrial do Leonardo Zanatta protocolado (sofá, BR 30 
 - 2026-09-10: calendário de retomada do blog definido — 1x/semana por 8 semanas (decisão deliberada de não fazer 2x, pra não repetir o padrão de picos e paradas do Instagram). Publicação direto via API do WordPress. Padrão criado: "Leia também" linkando pro pilar relacionado + CTA de engajamento no fechamento (nunca linguagem de captação direta — ver `feedback_cta_oab_etica`). Widget de compartilhamento (WhatsApp) corrigido no template do site via Elementor.
 - 2026-09-14: skill meta-ads-ratos configurada e testada (App Meta em modo Live, conta de anúncio `paula` cadastrada). Análise do histórico mostrou que geo-targeting focado em evento/contexto específico (ex: raio ao redor da feira Casa Cor) rende bem mais barato por lead do que mirar cidades/capitais genéricas.
 - 2026-09-14: skill `/search-console` criada pra relatório semanal de SEO (segundas-feiras). Corrigido `GOOGLE_SEARCH_CONSOLE_SITE_URL` no `.env.local`, que apontava pra versão "www" (sem dados) em vez da propriedade real. Site ainda muito recente no GSC (conectado 10/09) — análise só fica robusta a partir de outubro/2026.
+- 2026-09-17: skill `/postar-instagram` criada — publica direto no feed via Graph API (reaproveita token da `meta-ads-ratos`, já com `instagram_content_publish`), hospedando imagem via Cloudflare Pages (projeto `paula-ig-media`). Fluxo sempre em dois passos (`preparar.js` monta e mostra prévia, `confirmar.js` só publica com aprovação explícita da Paula no chat) + `apagar.js` pra remover post publicado.
+- 2026-09-17: formato "Conto Jurídico"/"Série Real" criado — narrativa "Era uma vez... [situação] que [reviravolta]", inspirada em casos reais das demandas (Supabase) mas totalmente ficcionalizada, com a Paula aparecendo em cena (cliente procura ela, ela aconselha e ajuda a documentar). Cor de capa alterna por conto entre as três cores da marca. Formato "Acho chic" (adaptação da trend viral) também criado, com foto real da Paula na capa/fechamento.
+- 2026-09-17: calendário fixo de postagem definido — terça Instagram, quinta blog + Instagram (mesmo tema), a partir de 21/09/2026. Reels e o lançamento da ferramenta "Contrato na Régua" (gerador de contrato de arquitetura com captura de lead, `ferramentas/contrato-na-regua/`) pausados por decisão da Paula, pra não sobrecarregar a retomada.
+- 2026-09-17: publicado o post #1 da retomada ("Acho chic...") e o artigo semana 2 do blog ("Atraso de obra"). Descoberto que o Wordfence pode travar POST na API do WordPress com fatal error de memória (arquivo `wflogs/rules.php` corrompido) — corrige clicando "atualizar regras manualmente" no painel do Wordfence (ver memória `project_wordfence_bloqueia_post_api`).
 
 ## Pendências
 - Avaliar conector de WhatsApp Business e integração com Legal One (sem MCP pronto no catálogo ainda).
-- Publicar o post #1 da retomada (carrossel "barulho de obra e vizinho", já pronto em `conteudo/instagram/carrossel/barulho-obra-vizinho/`).
-- Rodar `/carrossel` pra gerar o tema da semana 2 da retomada (ver `conteudo/estrategia-retomada/README.md`).
+- Seguir o calendário fixo a partir de 21/09/2026 (terça Instagram, quinta blog + Instagram) — semana 3 do blog é "Distrato de imóvel na planta" (ver `conteudo/estrategia-retomada/calendario-blog.md`).
+- Roteirizar a próxima Série Real (candidatos já levantados nas demandas: eletricista que abandona obra #0104, reforço estrutural não executado #0062, cliente que some e advogado contra-notifica #0063).
+- Retomar reels e avaliar o lançamento da ferramenta "Contrato na Régua" quando a Paula sinalizar.
+- Tem um `dump.txt` solto na raiz do `Paula_Adv_OS` (rascunho de minuta de procuração, de antes dessa sessão) — perguntar à Paula se quer mover ou descartar.
 - Leonardo Zanatta: aguardando ele enviar renderizações corrigidas da Mesa de Centro Jacuí (prazo 30/09/2026) e uma foto/render da Luminária de teto BR 30 2025 005775 2.
 - Leonardo Zanatta: informar o nome do modelo/coleção do sofá novo protocolado em 14/09/2026 (BR 30 2026 007020-4), e reembolsar a Paula os R$ 175,00 da guia paga no protocolo (10/09/2026) — único reembolso ainda em aberto; os de R$ 85,00 e R$ 175,00 (19/08/2026) já foram pagos pela Anna.
 - Autorizar os MCP servers da Cloudflare (`cloudflare-api`, `cloudflare-bindings`, `cloudflare-builds`, `cloudflare-observability`) via `/mcp` numa sessão interativa, quando for usar algum projeto Cloudflare que precise deles.
 - Cadastrar no app financeiro (como recorrente) os impostos, o salário da Thaís e as parcelas de empréstimo assim que a Paula tiver valores/prazos confiáveis pra projetar — hoje ficam de fora por variarem demais mês a mês.
-- Seguir o calendário do blog: semana 2 é "Atraso de obra: quem responde e como se proteger" (ver `conteudo/estrategia-retomada/calendario-blog.md`).
 
 ## Quente agora
+Retomada de Instagram + blog rodando de verdade (2026-09-17): calendário fixo terça/quinta,
+formatos "Conto Jurídico"/"Série Real" e "Acho chic" validados e publicados, skill
+`/postar-instagram` em uso. Próximo passo natural é a primeira Série Real (multi-parte) e manter o
+ritmo 2x/semana sem repetir o padrão de pico-e-parada de antes.
 App financeiro (`financeiro-paula`) recém-criado em 2026-09-01 — Paula está testando no dia a dia (marcar pago, editar, lançar retroativo), ainda ajustando dados de recorrentes conforme usa.
-Blog do site retomado (2026-09-10): calendário de 8 semanas rodando, 1x/semana, post #1 no ar. Estratégia de redes sociais (Instagram/TikTok/YouTube) definida em 2026-08-13 (ver `conteudo/estrategia-retomada/README.md`) segue parada — post #1 do Instagram ainda não publicado.
 Skill `/inpi` recém-criada (2026-08-20) — validada num cliente real, mas ainda vale revisar o formato do relatório na próxima vez que gerar pra outro cliente, pra confirmar se o padrão ficou bom de forma geral.

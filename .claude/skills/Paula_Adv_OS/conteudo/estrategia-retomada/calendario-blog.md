@@ -58,7 +58,7 @@ aprofundamento nesses.
 ## Status
 Calendário definido em 2026-09-10.
 - [x] Semana 1 — publicado em 2026-09-10: https://paulacorrea.adv.br/contrato-de-empreitada-o-que-precisa-ter/
-- [ ] Semana 2
+- [x] Semana 2 — publicado em 2026-09-17: https://paulacorrea.adv.br/atraso-de-obra-de-quem-e-a-responsabilidade-e-como-se-proteger/
 - [ ] Semana 3
 - [ ] Semana 4
 - [ ] Semana 5

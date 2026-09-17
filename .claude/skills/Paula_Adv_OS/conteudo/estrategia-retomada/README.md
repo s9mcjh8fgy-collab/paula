@@ -41,21 +41,120 @@ Pasta pra planejar a volta ao ritmo de postagens (redes sociais + blog do site),
 
 Post fixo (imagem única) entra como formato adicional, mais rápido de produzir que carrossel — bom pra manter frequência sem sobrecarregar. Agora é possível usar fotos reais da Paula nas artes (ensaio profissional 2025 em `marca/fotos/`, ver `marca/design-guide.md`), o que abre formatos tipo "opinião da Paula" ou frase de destaque com foto de fundo.
 
-## Calendário das 4 primeiras semanas (revisado)
+## Calendário fixo (definido em 2026-09-17, a partir de 21/09/26)
 
-| Semana | Instagram | Blog |
+2x/semana no Instagram + 1x/semana blog, sem depender de reel (pausados por enquanto — retomar
+quando a Paula sinalizar, o lançamento da Contrato na Régua também fica pra depois).
+
+| Dia | Canal | O que |
 |---|---|---|
-| 1 | Carrossel "barulho de obra e vizinho" (já pronto) | — |
-| 2 | Post fixo (tema a definir) | — |
-| 3 | Carrossel novo (tema a definir com `/carrossel`) | artigo a partir do post da semana 1 |
-| 4 | Post fixo | — |
+| **Terça** | Instagram | Post autoral — rodízio: semana 1 Conto Jurídico, semana 2 post fixo, semana 3 carrossel informativo (repurpose do blog), semana 4 Conto Jurídico de novo |
+| **Quinta** | Blog | Artigo da semana (calendário em `calendario-blog.md`) |
+| **Quinta** | Instagram | Mesmo tema do blog — carrossel resumindo ou card chamando pro artigo completo |
 
-TikTok, YouTube Shorts e reels voltam a entrar no calendário quando a Paula tiver tempo de gravar de novo — revisar nesse momento.
+A cada 4-6 semanas, a terça vira uma **Série Real** (parte 1 a 5, uma por dia) em vez do conto único.
+
+## Kickoff antes do calendário fixo (17-18/09/26)
+
+- **17/09:** carrossel "Acho chic..." — adaptação da trend "kinda chic"/"acho chic" (viral desde
+  abril/2026) pro universo da advocacia da construção civil, com foto real da Paula na capa e no
+  fechamento (`marca/fotos/perfil.jpg` e `ambiente-01.jpg`). Serve de reapresentação do perfil depois
+  de ~5 meses parado. Salvo em `conteudo/instagram/carrossel/acho-chic-advocacia/`.
+- **18/09:** Conto Jurídico "Era uma vez... um vizinho que jurou chamar a polícia" (post #1 original
+  da retomada, reescrito no novo formato).
 
 ## Próximos passos
-1. Revisar e publicar o carrossel "barulho de obra e vizinho" (post #1)
-2. Rodar `/carrossel` pra gerar o tema da semana 2, ou produzir um post fixo com foto real (checar `conteudo/casos/` por ideias — hoje está vazia, então começar trazendo um caso novo)
-3. Depois de 4 semanas, revisar junto com a Paula se o ritmo está sustentável antes de aumentar frequência ou retomar reels/TikTok/YouTube
+1. Publicar o kickoff (Acho chic dia 17, conto do vizinho dia 18)
+2. A partir de 21/09, seguir o calendário fixo terça/quinta
+3. Depois de 4-6 semanas, revisar junto com a Paula se o ritmo de 2x/semana está sustentável, e se é hora de retomar reels e lançar a Contrato na Régua
+
+## Análise de concorrentes (2026-09-14/17)
+
+Via skill `/espiar-ads-ratos` (Biblioteca de Anúncios Meta) e pesquisa de perfil público:
+
+- **Carolina Caribé** (incorporadora/mentora imobiliária): hook de contraste como abertura de gancho
+  ("Muita gente chama de X. Mas na prática é Y.") — replicável em capa de carrossel/post fixo, sem
+  precisar de vídeo. CTA dela é sempre "seguir o perfil", nunca link direto — mesma lógica ética já
+  usada pela Paula (nunca captação direta, ver `feedback_cta_oab_etica`).
+- **João Paulo Leite (Empresa Blindada)**: formato "gravação de tela mostrando uma ferramenta
+  funcionando ao vivo" (rosto no canto, sem produção) — inspirou a ferramenta **Contrato na Régua**
+  (`ferramentas/contrato-na-regua/`, gerador de contrato de arquitetura com captura de lead via
+  Supabase `tool_leads`) e serve de roteiro pros reels de demo da ferramenta.
+- **Leonardo Vilela Advocacia** (família/sucessões, Brasília): formato de storytelling jurídico
+  serializado que inspirou o formato **Conto Jurídico / Série Real** abaixo.
+
+## Formato: Conto Jurídico / Série Real (definido em 2026-09-17)
+
+Formato novo, complementar ao carrossel informativo — carrossel só de texto (fonte serifada, fundo
+neutro, sem elementos de marca no slide, história carrega sozinha), narrado em primeira pessoa pela
+Paula, inspirado em casos reais das demandas (Supabase, tabela `interactions`) mas **totalmente
+ficcionalizado**: muda profissão, tipo de obra, valores, nomes — tudo, exceto o padrão do conflito
+jurídico e a lição por trás. Não precisa esperar o desfecho real do caso: o final é construído pra
+ilustrar bem a consequência (ex: o que podia ter acontecido se a pessoa não tivesse se protegido
+juridicamente).
+
+**Duas variações:**
+- **Conto Jurídico curto** (3-6 slides, post único): conflito pequeno, uma decisão, uma consequência
+- **Série Real longa** (4-7 partes, uma por dia numa semana/mês): conflito maior, gancho de
+  continuação ao fim de cada parte ("Continua...")
+
+**Título — regra do "Era uma vez...":** todo conto/série abre com **"Era uma vez... [situação] que
+[reviravolta]"**. Parêntese com desfecho é opcional e só entra se for **gancho de tensão**, nunca
+explicação técnica nem revelação do final — ex: "(mas, podia cair!)" funciona, "(mesmo devendo um
+reforço)" não funciona porque é expositivo e mata a curiosidade.
+
+**Fechamento sempre com:** disclaimer de nomes/detalhes fictícios (mesmo modelo do Leonardo Vilela)
++ CTA de engajamento (nunca captação direta).
+
+**Fonte de casos:** demandas reais em `interactions` (Supabase) — priorizar conflitos com tensão
+clara (abandono de obra, prestador sumido, cliente que ignora recomendação técnica), não dúvidas
+administrativas simples. Levantamento inicial (2026-09-17) identificou como melhores candidatos:
+eletricista que abandona obra (demanda #0104), reforço estrutural não executado em prédio alto
+(demanda #0062), cliente que some e advogado da outra parte contra-notifica (demanda #0063), e o
+conto piloto da geladeira sem afastamento (demanda #0065).
+
+**Visual:** fundo neutro sólido (sem card, sem elementos gráficos), fonte serifada (Source Serif 4),
+texto centralizado. Cor de fundo alterna por conto (marrom #6D413E, laranja terracota #F26F4D ou
+bege #F1EBDF — as três da paleta em `marca/design-guide.md`), pra dar variedade no feed sem fugir da
+identidade visual. Cada conto novo usa uma cor de capa diferente do último publicado. Branco puro
+fica fora do rodízio por enquanto (não é uma das cores de fundo definidas no design guide).
+
+**Paula como personagem ativo (ajuste em 2026-09-17):** não basta narrar o desfecho, a Paula precisa
+aparecer em cena — o cliente procurando ela, ela perguntando, aconselhando, redigindo o documento.
+Sem isso o conto vira só "moral da história" resumida, sem mostrar o trabalho acontecendo. Isso
+aumenta o número de slides (de ~8 pra ~10-11 antes de enxugar).
+
+**Enxugar cenas contínuas:** depois de escrever com a Paula em cena, juntar slides que são
+desdobramento imediato da mesma batida (pergunta+resposta, ação+consequência direta) — evita
+alongar demais. Os dois pilotos ficaram em 7-8 slides depois desse ajuste.
+
+**Pilotos prontos:**
+- "Era uma vez... uma geladeira que pifou" (demanda #0065) — 8 slides, marrom, salvo em
+  `conteudo/instagram/carrossel/geladeira-sem-afastamento/`
+- "Era uma vez... um vizinho que jurou chamar a polícia" (reescrita do carrossel informativo
+  original "barulho de obra e vizinho") — 7 slides, laranja, salvo em
+  `conteudo/instagram/carrossel/barulho-obra-vizinho/`
+
+## Publicação direta (skill /postar-instagram, criada em 2026-09-17)
+
+Skill que publica de verdade no Instagram (@paulacorrea.adv) via Graph API, reaproveitando o token
+já configurado em `meta-ads-ratos` (system user, permissões `instagram_basic` +
+`instagram_content_publish` já concedidas, não precisou de nova autorização). Imagens locais são
+hospedadas via Cloudflare Pages (projeto `paula-ig-media`, criado nesse dia) só pra servir de URL
+pública temporária pra Graph API — depois de publicado, não depende mais dela.
+
+Fluxo em três scripts: `preparar.js` (monta e mostra prévia, não publica nada) → `confirmar.js`
+(publica de verdade, **só depois de aprovação explícita da Paula no chat**, mesmo que o conteúdo já
+tenha sido aprovado antes) → `apagar.js` (remove um post publicado, também só com aprovação
+explícita — usado logo de cara pra corrigir o texto pequeno na capa do "Acho chic", ver abaixo).
+Detalhes em `.claude/skills/postar-instagram/SKILL.md`.
+
+**Lição de design (2026-09-17):** em slides de capa com foto (fundo + overlay), o texto precisa ser
+bem maior do que parece necessário na hora de escrever o HTML — 44px ficou minúsculo publicado,
+108px+ bold é o tamanho que funciona pra um "hook" de capa com foto.
 
 ## Status
-Estratégia definida, pronta pra execução. Falta só começar publicando o post #1.
+Estratégia definida, execução em andamento. Kickoff: "Acho chic..." publicado em 17/09/2026
+(https://www.instagram.com/p/DdZYurFDS5o/ — republicado depois de corrigir o tamanho do texto da
+capa), conto do vizinho planejado pra 18/09. Calendário fixo terça/quinta a partir de 21/09. Reels e
+lançamento da Contrato na Régua pausados por enquanto, retomar quando a Paula sinalizar.

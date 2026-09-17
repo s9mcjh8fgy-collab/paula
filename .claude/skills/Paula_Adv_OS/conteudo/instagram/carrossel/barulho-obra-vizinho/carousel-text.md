@@ -1,56 +1,43 @@
-# Carrossel — Barulho de obra e ameaça de vizinho
+# Conto Jurídico — "Era uma vez... um vizinho que jurou chamar a polícia"
 
-**Tema:** reforma em apartamento gerando barulho, vizinho ameaça chamar a polícia e parar a obra
-**Ângulo:** barulho de obra é regulado, não é o vizinho que decide o que é irregular
-**Nicho:** advocacia da construção civil (empreiteiros, arquitetos, engenheiros, síndicos)
+Formato: Conto Jurídico (curto), inspirado no carrossel informativo original "Barulho de obra e
+ameaça de vizinho" (case real do escritório), reescrito como narrativa, totalmente ficcionalizado.
+Paula aparece como personagem ativo. Ver definição do formato em
+`conteudo/estrategia-retomada/README.md`.
 
-## Capa escolhida
-Barulho de obra tem limite, sim.
-Mas não é o vizinho que decide qual.
+Cor de capa: laranja terracota #F26F4D (rodízio de cor por conto — geladeira ficou em marrom).
 
 ## Slides
 
-**Slide 1 (Capa)**
-Barulho de obra tem limite, sim.
-Mas não é o vizinho que decide qual.
+**1.** Era uma vez... um vizinho que jurou chamar a polícia
 
-**Slide 2 (Hook)**
-Essa semana um cliente me ligou preocupado. A empreiteira dele tava no meio de uma reforma no apartamento, e um vizinho bateu na porta reclamando do barulho. Não parou por aí: o vizinho ameaçou chamar a polícia e disse que ia fazer a obra parar. O cliente ficou com medo de ser multado, de ter que suspender o serviço, de virar motivo de intriga no condomínio. Só que antes de entrar em pânico, tem uma pergunta que precisa ser respondida primeiro: o vizinho pode mesmo fazer isso acontecer?
+**2.** Rafael é empreiteiro. No meio de uma reforma, um morador do lado bateu na porta reclamando do barulho. "Vou chamar a polícia e fazer parar essa obra."
 
-**Slide 3 (Mecanismo)**
-A resposta curta é: depende. Barulho de obra não é proibido por padrão, ele é regulado. E quem regula não é o vizinho incomodado, são três coisas bem específicas: o horário permitido pra fazer obra na cidade, o limite técnico de ruído e o que a lei chama de uso nocivo da propriedade.
+**3.** Ele me ligou apavorado: "Paula, será que vou ser multado?" Perguntei três coisas: que horas eram, se o barulho tava acima do normal, e se ele tinha avisado alguém no condomínio. Ele tinha começado às 9h, dia útil, dentro do horário permitido. Mas não tinha avisado ninguém.
 
-**Slide 4**
-O primeiro filtro é o horário. Cada município tem uma lei de posturas que define quando a obra pode fazer barulho, geralmente em dias úteis e sábado até o meio-dia, com um intervalo respeitado entre manhã e fim de tarde. Fora desse horário, a reclamação ganha força. Dentro dele, a obra tá dentro da lei, mesmo que incomode.
+**4.** Expliquei: vizinho não decide se a obra pode continuar, isso depende do horário municipal, do limite técnico de ruído e do artigo do Código Civil sobre uso nocivo da propriedade. Mas avisei que só estar certo não bastava: "vamos documentar agora, antes que isso vire outra coisa."
 
-**Slide 5**
-O segundo filtro é técnico. A NBR 10151 da ABNT estabelece limites de decibéis conforme a zona (residencial, mista, industrial) e o horário do dia. Existe um número que separa barulho tolerável de excesso, não é uma questão de opinião ou de paciência de quem mora do lado.
+**5.** Montei ali mesmo um aviso por escrito pro síndico e pros vizinhos: cronograma da obra, horário de início e fim, meu contato pra qualquer reclamação formal.
 
-**Slide 6**
-O terceiro filtro é o Código Civil. O artigo 1.277 fala em uso nocivo da propriedade: incômodo que prejudique a segurança, o sossego ou a saúde de quem mora perto. É esse artigo que abre espaço pra uma ação judicial, não a reclamação isolada de um vizinho irritado numa tarde de reforma.
+**6.** O vizinho chamou a polícia mesmo assim. Um fiscal apareceu, olhou o relógio, olhou o aviso que Rafael tinha mandado pro condomínio. Não tinha nada de errado. Foi embora, e no dia seguinte a obra seguiu no mesmo horário de sempre.
 
-**Slide 7**
-Isso muda o que a ameaça de chamar a polícia realmente significa. Dentro do horário permitido e do limite técnico de ruído, não existe ordem pra parar a obra só porque alguém ligou reclamando. Quem tem poder de embargar é a prefeitura, por fiscalização, ou uma decisão judicial. Um boletim de ocorrência sozinho não interrompe reforma nenhuma.
-
-**Slide 8 (Virada)**
-O que protege de verdade quem tá com uma obra em andamento não é discutir na porta do apartamento. É documentação. Cronograma por escrito, horário de início e fim registrado, aviso prévio pro síndico e pros vizinhos antes de começar. Se alguém reclamar, responder por escrito, com educação, mostrando que a obra respeita horário e regulamento do condomínio.
-
-**Slide 9**
-E se a obra realmente tá fora do horário ou acima do limite tolerável, o caminho também muda: ajustar o cronograma antes que vire processo é sempre mais barato, mais rápido e menos desgastante do que brigar depois numa ação de vizinhança.
-
-**Slide 10 (CTA)**
-Toda reforma tem esse risco. Antes de entrar em pânico com uma ameaça, vale entender o que a lei realmente permite. Se você é arquiteto, engenheiro, empreiteiro ou síndico e já passou por isso, conta sua experiência nos comentários.
+**7.** Nomes e detalhes trocados pra preservar quem viveu isso de verdade. Mas o que ficou foi isso: a lei já protegia o Rafael antes de mim. O que eu fiz foi só transformar isso em papel, pra ninguém precisar discutir depois.
 
 ## Legenda Instagram
 
-Vizinho ameaçou chamar a polícia por causa do barulho da obra? Antes de parar tudo, entenda o que a lei diz de verdade.
+Era uma vez... um vizinho que jurou chamar a polícia. E até chamou.
 
-Essa semana atendi um cliente com exatamente essa situação: reforma em andamento, vizinho batendo na porta e ameaçando chamar a polícia por causa do barulho.
+Um empreiteiro cliente meu me ligou apavorado no meio de uma reforma: vizinho batendo na porta, ameaçando fazer a obra parar. Antes de entrar em pânico, perguntei três coisas: horário, nível de barulho e se ele tinha avisado o condomínio.
 
-A primeira reação é sempre a mesma: medo de multa, de ter que parar tudo, de virar problema no condomínio. Mas barulho de obra não é proibido por padrão. Ele é regulado por horário municipal, limite técnico de ruído (NBR 10151) e pelo artigo 1.277 do Código Civil.
+Ele tava dentro da lei, mas não tinha avisado ninguém ainda. Resolvemos isso na hora: cronograma por escrito pro síndico e pros vizinhos.
 
-Uma ameaça não é uma decisão jurídica. E documentação bem feita evita que uma reclamação vire um processo.
+Quando o fiscal apareceu (porque o vizinho chamou mesmo assim), não tinha nada pra multar. A obra seguiu no dia seguinte, no mesmo horário de sempre.
 
-Se você trabalha com reforma ou construção, administra condomínio, manda pra alguém que precisa saber disso antes de passar pelo mesmo perrengue.
+Nomes e detalhes trocados pra preservar quem viveu essa história de verdade.
+
+Já passou por isso? Comenta aqui.
 
 #advocaciadaconstrucaocivil #direitodevizinhanca #obra #reforma #construcaocivil #direitoimobiliario #condominio #empreiteira #arquitetura #engenharia
+
+## CTA
+Engajamento (comentário), sem captação direta.

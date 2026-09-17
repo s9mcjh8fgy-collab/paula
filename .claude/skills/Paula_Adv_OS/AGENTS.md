@@ -65,6 +65,10 @@ Em peças processuais: formal, técnico, terceira pessoa.
   `facebook-business`. App "Paula Corrêa Advocacia" (ID 530584914965449) em modo Live, token de
   system user em `.claude/skills/meta-ads-ratos/.env` (fora do git). Conta de anúncio própria do
   escritório cadastrada em `contas.yaml` como `paula` (act_450995911083244)
+- Instagram (publicação direta) — skill `/postar-instagram`, via Graph API do Instagram,
+  reaproveitando o token da `meta-ads-ratos` (já com permissão `instagram_content_publish`).
+  Imagens hospedadas temporariamente via Cloudflare Pages (projeto `paula-ig-media`) só pra servir
+  de URL pública na hora de criar o post
 
 ## Financeiro
 Controle financeiro do escritório fica em `1_Gestão/2_Financeiro/` (fora do `8_Claude`, caminho
