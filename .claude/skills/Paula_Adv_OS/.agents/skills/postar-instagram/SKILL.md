@@ -52,7 +52,24 @@ o "postar agora".
 Se o post já foi publicado antes (checar se `.publish-state.json` tem `publishedAt` preenchido), não
 publicar de novo — avisar a Paula.
 
-## Pré-requisitos da pasta
+## Stories
+
+A API do Instagram **não** reproduz o botão nativo "compartilhar pro story" (aquele card clicável
+que abre o post) — isso só existe dentro do app. O equivalente possível é publicar uma imagem própria
+de story (1080x1920) convidando pra ver o post no feed, reaproveitando a arte da capa do carrossel
+como base visual. Ver `references/design-story-teaser.md` pra regras de layout e safe zone.
+
+Fluxo (mesma lógica de dois passos e mesma regra de aprovação explícita do feed):
+
+```bash
+node .claude/skills/postar-instagram/scripts/preparar-story.js "<caminho-da-imagem.png>" "<pasta-de-estado>"
+node .claude/skills/postar-instagram/scripts/confirmar.js "<pasta-de-estado>"
+```
+
+Stories não têm legenda (é só imagem), então não precisa de `carousel-text.md`. Usar uma pasta de
+estado dedicada, ex: `conteudo/instagram/stories/[tema]/`.
+
+## Pré-requisitos da pasta (posts de feed)
 
 A pasta do post precisa ter:
 - `carousel-text.md` com uma seção `## Legenda Instagram` (o texto exato que vira a legenda do post)

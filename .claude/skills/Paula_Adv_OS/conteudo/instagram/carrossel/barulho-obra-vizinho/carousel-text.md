@@ -19,23 +19,17 @@ Cor de capa: laranja terracota #F26F4D (rodízio de cor por conto — geladeira 
 
 **5.** Montei ali mesmo um aviso por escrito pro síndico e pros vizinhos: cronograma da obra, horário de início e fim, meu contato pra qualquer reclamação formal.
 
-**6.** O vizinho chamou a polícia mesmo assim. Um fiscal apareceu, olhou o relógio, olhou o aviso que Rafael tinha mandado pro condomínio. Não tinha nada de errado. Foi embora, e no dia seguinte a obra seguiu no mesmo horário de sempre.
+**6.** O vizinho chamou a polícia mesmo assim. Um policial apareceu, olhou o relógio, olhou o aviso que Rafael tinha mandado pro condomínio. Não tinha nada de errado. Foi embora, e no dia seguinte a obra seguiu no mesmo horário de sempre.
 
 **7.** Nomes e detalhes trocados pra preservar quem viveu isso de verdade. Mas o que ficou foi isso: a lei já protegia o Rafael antes de mim. O que eu fiz foi só transformar isso em papel, pra ninguém precisar discutir depois.
 
 ## Legenda Instagram
 
-Era uma vez... um vizinho que jurou chamar a polícia. E até chamou.
+Nossa primeira história da série "Era uma vez..."
 
-Um empreiteiro cliente meu me ligou apavorado no meio de uma reforma: vizinho batendo na porta, ameaçando fazer a obra parar. Antes de entrar em pânico, perguntei três coisas: horário, nível de barulho e se ele tinha avisado o condomínio.
+A ideia é trazer, de tempos em tempos, casos reais do escritório transformados em história (nomes e detalhes sempre trocados, claro, pra preservar quem viveu isso de verdade).
 
-Ele tava dentro da lei, mas não tinha avisado ninguém ainda. Resolvemos isso na hora: cronograma por escrito pro síndico e pros vizinhos.
-
-Quando o fiscal apareceu (porque o vizinho chamou mesmo assim), não tinha nada pra multar. A obra seguiu no dia seguinte, no mesmo horário de sempre.
-
-Nomes e detalhes trocados pra preservar quem viveu essa história de verdade.
-
-Já passou por isso? Comenta aqui.
+Acompanhem aqui e contem os "causos" de vocês também.
 
 #advocaciadaconstrucaocivil #direitodevizinhanca #obra #reforma #construcaocivil #direitoimobiliario #condominio #empreiteira #arquitetura #engenharia
 

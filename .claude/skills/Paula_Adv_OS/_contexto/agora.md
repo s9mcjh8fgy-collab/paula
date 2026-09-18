@@ -13,6 +13,10 @@ ficcionalizados, Paula como personagem ativo) e um formato inspirado na trend "A
 Instagram, quinta blog + Instagram, a partir de 21/09/2026 (ver
 `conteudo/estrategia-retomada/README.md`). Reels e o lançamento da ferramenta "Contrato na Régua"
 ficam pausados por decisão da Paula, retomar quando ela sinalizar.
+Segunda história da série publicada (18/09, "vizinho que jurou chamar a polícia"). Skill
+`/postar-instagram` ganhou capacidade de stories (`preparar-story.js`), mas pra compartilhar um post
+que já está no feed a Paula prefere o "compartilhar" nativo do app (card clicável) em vez da arte
+customizada — a arte fica reservada pra quando não tiver post de feed pra puxar.
 Novo pedido de desenho industrial do Leonardo Zanatta protocolado (sofá, BR 30 2026 007020-4) e relatório de andamento consolidado atualizado e republicado no Cloudflare Pages.
 
 ## Decisões recentes
@@ -36,6 +40,7 @@ Novo pedido de desenho industrial do Leonardo Zanatta protocolado (sofá, BR 30 
 - 2026-09-17: formato "Conto Jurídico"/"Série Real" criado — narrativa "Era uma vez... [situação] que [reviravolta]", inspirada em casos reais das demandas (Supabase) mas totalmente ficcionalizada, com a Paula aparecendo em cena (cliente procura ela, ela aconselha e ajuda a documentar). Cor de capa alterna por conto entre as três cores da marca. Formato "Acho chic" (adaptação da trend viral) também criado, com foto real da Paula na capa/fechamento.
 - 2026-09-17: calendário fixo de postagem definido — terça Instagram, quinta blog + Instagram (mesmo tema), a partir de 21/09/2026. Reels e o lançamento da ferramenta "Contrato na Régua" (gerador de contrato de arquitetura com captura de lead, `ferramentas/contrato-na-regua/`) pausados por decisão da Paula, pra não sobrecarregar a retomada.
 - 2026-09-17: publicado o post #1 da retomada ("Acho chic...") e o artigo semana 2 do blog ("Atraso de obra"). Descoberto que o Wordfence pode travar POST na API do WordPress com fatal error de memória (arquivo `wflogs/rules.php` corrompido) — corrige clicando "atualizar regras manualmente" no painel do Wordfence (ver memória `project_wordfence_bloqueia_post_api`).
+- 2026-09-18: legenda do Instagram não deve recontar a história do carrossel (fica redundante) — deve ser mais curta, com gancho/reflexão que não está nos slides. "Fiscal" trocado por "policial" no conto do vizinho (quem aparece quando alguém liga pra polícia é policial, não fiscal). Skill `/postar-instagram` ganhou stories (`preparar-story.js` + `references/design-story-teaser.md`), mas compartilhar post do feed via story nativo (repost pelo app) é preferível à arte customizada quando o post já existe.
 
 ## Pendências
 - Avaliar conector de WhatsApp Business e integração com Legal One (sem MCP pronto no catálogo ainda).

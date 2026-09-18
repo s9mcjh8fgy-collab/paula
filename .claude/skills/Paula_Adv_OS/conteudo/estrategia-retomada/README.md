@@ -154,7 +154,12 @@ bem maior do que parece necessário na hora de escrever o HTML — 44px ficou mi
 108px+ bold é o tamanho que funciona pra um "hook" de capa com foto.
 
 ## Status
-Estratégia definida, execução em andamento. Kickoff: "Acho chic..." publicado em 17/09/2026
-(https://www.instagram.com/p/DdZYurFDS5o/ — republicado depois de corrigir o tamanho do texto da
-capa), conto do vizinho planejado pra 18/09. Calendário fixo terça/quinta a partir de 21/09. Reels e
-lançamento da Contrato na Régua pausados por enquanto, retomar quando a Paula sinalizar.
+Estratégia definida, execução em andamento. Kickoff completo:
+- 17/09/2026 — "Acho chic..." (https://www.instagram.com/p/DdZYurFDS5o/)
+- 18/09/2026 — "Era uma vez... um vizinho que jurou chamar a polícia", primeira história da série
+  (https://www.instagram.com/p/Ddbi2OljuEV/) — legenda ajustada pra anunciar a série ("Acompanhem
+  aqui e contem os causos de vocês também", sem recontar o enredo do carrossel) e corrigido
+  "fiscal" pra "policial" (o vizinho chamou a polícia, não a fiscalização).
+
+Calendário fixo terça/quinta a partir de 21/09. Reels e lançamento da Contrato na Régua pausados por
+enquanto, retomar quando a Paula sinalizar.
