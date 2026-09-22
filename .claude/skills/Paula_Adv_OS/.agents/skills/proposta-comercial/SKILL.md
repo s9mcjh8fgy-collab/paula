@@ -94,7 +94,7 @@ Escrever o texto de cada slide (título + corpo curto, linguagem de apresentaç�
    node ".claude/skills/proposta-comercial/scripts/render-pdf.js" propostas/[nome-cliente]/slide-01.html propostas/[nome-cliente]/slide-02.html ... "propostas/[nome-cliente]/Proposta Comercial - [Cliente].pdf"
    ```
 
-7. Copiar o PDF final pra `03 Vendas/Propostas/Proposta Comercial - [Cliente].pdf` (caminho fixo: `6_Colaboradores/Paula/03 Vendas/Propostas/`, mesma pasta onde as propostas anteriores já ficam guardadas).
+7. Copiar o PDF final pra pasta de propostas em `6_Colaboradores/Paula/`, mesmo lugar onde as propostas anteriores já ficam guardadas. **O número da pasta "Vendas" pode mudar** (já foi renomeada de "03 Vendas" pra "02 Vendas"). Antes de copiar, localizar a pasta certa com `Glob` (padrão `6_Colaboradores/Paula/*Vendas/Propostas`) em vez de assumir o número fixo.
 
 ---
 

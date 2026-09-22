@@ -37,7 +37,8 @@ async function main() {
     { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }
   );
   const baseUrl = 'https://paula-ig-media.pages.dev';
-  const imageUrl = `${baseUrl}/${imgName}`;
+  // Cache-buster: evita que o Instagram sirva uma versao antiga cacheada da mesma URL de arquivo.
+  const imageUrl = `${baseUrl}/${imgName}?v=${Date.now()}`;
   console.log(`Imagem publicada em: ${imageUrl}`);
 
   const result = await graphPost(`${igUserId}/media`, {

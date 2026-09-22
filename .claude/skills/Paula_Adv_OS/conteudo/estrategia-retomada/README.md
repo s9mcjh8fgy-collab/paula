@@ -153,6 +153,20 @@ Detalhes em `.claude/skills/postar-instagram/SKILL.md`.
 bem maior do que parece necessário na hora de escrever o HTML — 44px ficou minúsculo publicado,
 108px+ bold é o tamanho que funciona pra um "hook" de capa com foto.
 
+**Lição técnica (2026-09-22):** o Instagram cacheia a URL da imagem pelo nome do arquivo. Como todo
+carrossel usa `slide-01.png`, `slide-02.png` etc., sem cache-busting a Graph API pode falhar
+("Only photo or video can be accepted as media type") servindo uma versão antiga/travada da mesma
+URL. Corrigido no `preparar.js`/`preparar-story.js` adicionando `?v=<timestamp>` em toda URL de
+imagem antes de criar o container.
+
+**Lição de legenda (2026-09-22):** legenda não pode recontar o enredo do carrossel (mesmo problema
+já visto em 18/09) — vale pra qualquer conto novo, sempre revisar antes de publicar. Padrão que
+funcionou: anunciar que é mais uma da série + uma linha de gancho sem spoiler + CTA de engajamento.
+
+**Lição de cor (2026-09-22):** usar uma terceira cor (laranja) só pra marcar o "twist" no meio de um
+conto que já é marrom/bege quebra a consistência visual — a Paula preferiu manter a cor de fundo do
+conto e usar **negrito** pra destacar a frase decisiva, sem trocar de cor no meio da história.
+
 ## Status
 Estratégia definida, execução em andamento. Kickoff completo:
 - 17/09/2026 — "Acho chic..." (https://www.instagram.com/p/DdZYurFDS5o/)
@@ -160,6 +174,11 @@ Estratégia definida, execução em andamento. Kickoff completo:
   (https://www.instagram.com/p/Ddbi2OljuEV/) — legenda ajustada pra anunciar a série ("Acompanhem
   aqui e contem os causos de vocês também", sem recontar o enredo do carrossel) e corrigido
   "fiscal" pra "policial" (o vizinho chamou a polícia, não a fiscalização).
+
+- 22/09/2026 — "Era uma vez... uma geladeira que pifou" (https://www.instagram.com/p/DdmODRRllo6/),
+  primeiro post do calendário fixo. Ganhou um slide novo (a pedido da Paula): o cliente processou
+  mesmo assim, o processo durou 18 meses e ele perdeu, com a mensagem documentada como prova
+  decisiva — reforça a lição final com uma consequência concreta, não só "resolveu tranquilo".
 
 Calendário fixo terça/quinta a partir de 21/09. Reels e lançamento da Contrato na Régua pausados por
 enquanto, retomar quando a Paula sinalizar.

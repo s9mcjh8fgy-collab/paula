@@ -20,21 +20,19 @@ Cor de capa: marrom #6D413E (rodízio de cor por conto).
 
 **6.** Não levou seis meses. A geladeira parou de gelar direito. O fabricante negou a garantia, exatamente pela instalação fora da recomendação. O cliente, enfurecido, mandou mensagem cobrando satisfação da Marina.
 
-**7.** Ela me mandou o print da conversa antiga, com data, aviso e o "ciente" dele, perguntando se precisava se preocupar. Não precisava. Aquela mensagem sozinha já resolvia qualquer cobrança.
+**7.** Ela me mandou o print da conversa antiga, com data, aviso e o "ciente" dele, perguntando se precisava se preocupar.
 
-**8.** Nomes e detalhes trocados pra preservar quem viveu isso de verdade. Mas a lição fica: cliente pode escolher correr o risco. Você só não pode ser quem paga a conta por uma escolha que não foi sua. Documenta.
+**8.** Não precisava. Ele levou o caso pra Justiça mesmo assim, pedindo indenização pela geladeira e danos morais. O processo durou 18 meses (sim, processos, mesmo simples, demoram!) e ao final ele perdeu. A mensagem com a data e o "ciente" dele foi a prova decisiva.
+
+**9.** Nomes e detalhes trocados pra preservar quem viveu isso de verdade. Mas a lição fica: cliente pode escolher correr o risco. Você só não pode ser quem paga a conta por uma escolha que não foi sua. Documenta.
 
 ## Legenda Instagram
 
-Era uma vez... uma geladeira que pifou. E quase virou dor de cabeça pra quem não tinha culpa.
+Era uma vez... uma geladeira que pifou.
 
-Uma arquiteta cliente minha me mandou mensagem no meio de uma decisão simples: o cliente dela queria instalar a geladeira do jeito errado, mesmo sabendo do risco técnico. Ajudei ela a documentar isso antes de seguir em frente.
+Mais uma da série "Era uma vez..." — casos reais do escritório, sempre com nomes e detalhes trocados pra preservar quem viveu isso de verdade.
 
-Meses depois, quando o aparelho deu defeito e o cliente foi cobrar satisfação dela, a resposta já tava pronta: uma mensagem antiga, com data e "ciente" registrado.
-
-Isso vale pra qualquer decisão que não é sua, mas que pode voltar pro seu colo depois. Arquiteto, engenheiro, construtora: documenta.
-
-Nomes e detalhes trocados pra preservar quem viveu essa história de verdade.
+Essa aqui começa com uma decisão que parece pequena, até não ser mais.
 
 Já passou por isso? Comenta aqui.
 

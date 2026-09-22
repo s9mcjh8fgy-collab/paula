@@ -52,11 +52,15 @@ async function main() {
   const baseUrl = 'https://paula-ig-media.pages.dev';
   console.log(`Imagens publicadas em: ${baseUrl}`);
 
+  // Cache-buster: o Instagram cacheia a URL pelo nome do arquivo, e como slide-01.png etc. se
+  // repetem em todo carrossel, sem isso ele pode servir uma versao antiga/travada da URL.
+  const cacheBust = Date.now();
+
   // 2. Criar um container de midia por imagem
   const isCarousel = images.length > 1;
   const childIds = [];
   for (const img of images) {
-    const imageUrl = `${baseUrl}/${img}`;
+    const imageUrl = `${baseUrl}/${img}?v=${cacheBust}`;
     const params = { image_url: imageUrl };
     if (isCarousel) params.is_carousel_item = 'true';
     const result = await graphPost(`${igUserId}/media`, params, token);
@@ -84,7 +88,7 @@ async function main() {
   } else {
     // imagem unica: recriar o container ja com a legenda (a Graph API nao deixa editar caption
     // depois de criado, entao refaz o container simples com caption incluida)
-    const imageUrl = `${baseUrl}/${images[0]}`;
+    const imageUrl = `${baseUrl}/${images[0]}?v=${cacheBust}`;
     const result = await graphPost(`${igUserId}/media`, { image_url: imageUrl, caption }, token);
     finalContainerId = result.id;
   }
