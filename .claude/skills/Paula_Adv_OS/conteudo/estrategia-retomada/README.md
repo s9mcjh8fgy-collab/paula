@@ -179,6 +179,28 @@ Estratégia definida, execução em andamento. Kickoff completo:
   primeiro post do calendário fixo. Ganhou um slide novo (a pedido da Paula): o cliente processou
   mesmo assim, o processo durou 18 meses e ele perdeu, com a mensagem documentada como prova
   decisiva — reforça a lição final com uma consequência concreta, não só "resolveu tranquilo".
+- 24/09/2026 — blog e Instagram da quinta: artigo "Distrato de imóvel na planta" publicado
+  (https://paulacorrea.adv.br/distrato-de-imovel-na-planta-quanto-voce-recebe-de-volta-e-em-quanto-tempo/),
+  primeiro no novo padrão mais profundo (~1.000 palavras, exemplo numérico + FAQ). No Instagram,
+  em vez do carrossel resumindo o post (que tínhamos pronto em
+  `conteudo/instagram/carrossel/distrato-imovel-planta/`, guardado sem publicar), a Paula preferiu
+  **post fixo com foto real + legenda completa** (link final: https://www.instagram.com/p/DdrJ0wNFmF7/) —
+  decisão de variar o formato do gancho do blog pra não deixar o feed repetitivo só de carrossel de
+  texto. Banco de fotos expandido nesse dia: 10 fotos novas do ensaio 2025 + 2 dos cachorros da
+  Paula, curadas em `marca/fotos/` a partir do banco completo em `Paula - Particular\11 Fotos\`.
+
+  **Dois incidentes nesse post, ambos corrigidos:**
+  1. Foi ao ar por engano o slide 1 do carrossel abandonado (texto "Muita gente acha...") em vez da
+     foto — causa: a skill `/postar-instagram` reusava o mesmo nome de arquivo (`slide-01.png`)
+     entre pastas diferentes, e o Instagram ignora cache-busting por query string, servindo
+     conteúdo antigo do mesmo nome. Corrigido de vez: `preparar.js`/`preparar-story.js` agora dão
+     um prefixo aleatório único ao nome do arquivo em toda publicação, não só na query string.
+  2. Erro de texto na versão seguinte: "Desistir **da** planta" em vez de "Desistir **na** planta"
+     (termo correto). Post apagado e republicado de novo com o texto certo.
+
+**Regra nova (24/09):** o gancho do blog na quinta não precisa ser sempre carrossel — pode ser post
+fixo com foto quando o tema pedir um tom mais pessoal/direto, ou carrossel quando fizer mais sentido
+detalhar em etapas. Variar os dois evita que o feed fique repetitivo.
 
 Calendário fixo terça/quinta a partir de 21/09. Reels e lançamento da Contrato na Régua pausados por
 enquanto, retomar quando a Paula sinalizar.

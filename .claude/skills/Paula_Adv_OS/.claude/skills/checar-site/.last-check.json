@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-24",
+  "allOk": false,
+  "results": [
+    {
+      "label": "Site no ar (homepage)",
+      "ok": true,
+      "detail": "HTTP 200, 2065ms"
+    },
+    {
+      "label": "API REST do WordPress",
+      "ok": true,
+      "detail": "HTTP 200, 1226ms"
+    },
+    {
+      "label": "Login do wp-admin acessivel",
+      "ok": true,
+      "detail": "HTTP 200, 1187ms"
+    },
+    {
+      "label": ".user.ini (memory_limit)",
+      "ok": true,
+      "detail": "presente, memory_limit=512M"
+    },
+    {
+      "label": "Fatal errors no log (hoje)",
+      "ok": false,
+      "detail": "2 erro(s) fatal(is) hoje. Ultimo: [24-Sep-2026 09:39:39 America/Sao_Paulo] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 8388608 bytes) in /home2/correaadvogados/paulacorrea.adv.br/wp-content/wf"
+    }
+  ]
+}

@@ -12,6 +12,7 @@
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
+const crypto = require('crypto');
 const { execSync } = require('child_process');
 const { loadCreds, graphPost, waitUntilFinished, extractCaption, listSlideImages } = require('./lib');
 
@@ -36,9 +37,20 @@ async function main() {
 
   // 1. Hospedar as imagens publicamente via Cloudflare Pages (deploy temporario, so pra a Graph
   //    API conseguir baixar a imagem na hora de criar o container).
+  //
+  //    IMPORTANTE: nome de arquivo tem que ser unico por execucao. O Instagram/Meta cacheia a
+  //    URL da imagem e pode IGNORAR query string de cache-busting (?v=...), servindo o conteudo
+  //    antigo do mesmo nome de arquivo (ex: slide-01.png de um post publicou o slide-01.png de
+  //    OUTRO post, por reuso de nome entre pastas — ja aconteceu, ver memoria
+  //    project_wordfence_bloqueia_post_api / historico do dia 2026-09-24). Por isso o nome do
+  //    arquivo em si leva um prefixo unico, nao so a query string.
+  const runId = crypto.randomBytes(4).toString('hex');
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ig-publish-'));
+  const uploadNames = {};
   for (const img of images) {
-    fs.copyFileSync(path.join(absFolder, img), path.join(tmpDir, img));
+    const uploadName = `${runId}-${img}`;
+    uploadNames[img] = uploadName;
+    fs.copyFileSync(path.join(absFolder, img), path.join(tmpDir, uploadName));
   }
 
   console.log('Publicando imagens no Cloudflare Pages (projeto paula-ig-media)...');
@@ -50,21 +62,17 @@ async function main() {
   // o certificado SSL do subdominio com hash pode demorar a ficar disponivel em projetos/deploys
   // novos, enquanto o dominio de producao ja fica pronto na hora.
   const baseUrl = 'https://paula-ig-media.pages.dev';
-  console.log(`Imagens publicadas em: ${baseUrl}`);
-
-  // Cache-buster: o Instagram cacheia a URL pelo nome do arquivo, e como slide-01.png etc. se
-  // repetem em todo carrossel, sem isso ele pode servir uma versao antiga/travada da URL.
-  const cacheBust = Date.now();
+  console.log(`Imagens publicadas em: ${baseUrl} (prefixo ${runId})`);
 
   // 2. Criar um container de midia por imagem
   const isCarousel = images.length > 1;
   const childIds = [];
   for (const img of images) {
-    const imageUrl = `${baseUrl}/${img}?v=${cacheBust}`;
+    const imageUrl = `${baseUrl}/${uploadNames[img]}`;
     const params = { image_url: imageUrl };
     if (isCarousel) params.is_carousel_item = 'true';
     const result = await graphPost(`${igUserId}/media`, params, token);
-    console.log(`Container criado pra ${img}: ${result.id}`);
+    console.log(`Container criado pra ${img} (${uploadNames[img]}): ${result.id}`);
     childIds.push(result.id);
   }
 
@@ -88,7 +96,7 @@ async function main() {
   } else {
     // imagem unica: recriar o container ja com a legenda (a Graph API nao deixa editar caption
     // depois de criado, entao refaz o container simples com caption incluida)
-    const imageUrl = `${baseUrl}/${images[0]}?v=${cacheBust}`;
+    const imageUrl = `${baseUrl}/${uploadNames[images[0]]}`;
     const result = await graphPost(`${igUserId}/media`, { image_url: imageUrl, caption }, token);
     finalContainerId = result.id;
   }

@@ -59,7 +59,8 @@ aprofundamento nesses.
 Calendário definido em 2026-09-10.
 - [x] Semana 1 — publicado em 2026-09-10: https://paulacorrea.adv.br/contrato-de-empreitada-o-que-precisa-ter/
 - [x] Semana 2 — publicado em 2026-09-17: https://paulacorrea.adv.br/atraso-de-obra-de-quem-e-a-responsabilidade-e-como-se-proteger/
-- [ ] Semana 3
+- [x] Semana 3 — publicado em 2026-09-24: https://paulacorrea.adv.br/distrato-de-imovel-na-planta-quanto-voce-recebe-de-volta-e-em-quanto-tempo/
+  (primeiro post no novo padrão mais profundo: ~1.000 palavras, com exemplo numérico e FAQ)
 - [ ] Semana 4
 - [ ] Semana 5
 - [ ] Semana 6

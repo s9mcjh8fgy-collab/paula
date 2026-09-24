@@ -20,6 +20,8 @@ customizada — a arte fica reservada pra quando não tiver post de feed pra pux
 Primeiro post do calendário fixo publicado (22/09, "geladeira que pifou"), com um slide novo pedido
 pela Paula (cliente processou e perdeu, 18 meses de processo, documentação como prova decisiva).
 Novo pedido de desenho industrial do Leonardo Zanatta protocolado (sofá, BR 30 2026 007020-4) e relatório de andamento consolidado atualizado e republicado no Cloudflare Pages.
+Semana 3 do calendário (24/09): carrossel e post fixo do "Distrato de imóvel na planta" produzidos
+e preparados (prévia gerada), mas ainda NÃO publicados no Instagram. Skill `/checar-site` criada pra checagem diária da saúde do site.
 
 ## Decisões recentes
 - 2026-08-12: pastas de trabalho (`consultivo/`, `contratos/`, `processual/`, `conteudo/`) ficam no `8_Claude`; documentos finais de cliente vão pra pasta dele em `3_Jurídico/`.
@@ -46,6 +48,8 @@ Novo pedido de desenho industrial do Leonardo Zanatta protocolado (sofá, BR 30 
 - 2026-09-22: achado e corrigido bug de cache do Instagram — como todo carrossel reusa nomes tipo `slide-01.png`, a Graph API às vezes servia uma versão antiga da URL e falhava ao criar o container. Corrigido com `?v=<timestamp>` cache-busting em `preparar.js`/`preparar-story.js`. Confirmado de novo: legenda nunca deve recontar o enredo do carrossel (aconteceu de novo nesse post, mesmo padrão do dia 18). Cor de destaque ("twist") no meio de um conto quebra a consistência visual — a Paula prefere negrito na mesma cor de fundo a trocar de cor no meio da história.
 
 ## Pendências
+- Publicar o carrossel e o post fixo do "Distrato de imóvel na planta" (`conteudo/instagram/carrossel/distrato-imovel-planta/` e `post-fixo/distrato-imovel-planta/`), já preparados em 24/09. Confirmar também se o artigo da semana 3 foi pro blog.
+- Canva conectado no claude.ai em 2026-09-24, mas as ferramentas não carregaram na sessão. Testar numa sessão nova com o modelo de documento da marca (canva.com/brand/brand-templates/EAGraYeL7Ng). Quando funcionar, incluir o Canva nas ferramentas do `AGENTS.md` e do `empresa.md`.
 - Avaliar conector de WhatsApp Business e integração com Legal One (sem MCP pronto no catálogo ainda).
 - Seguir o calendário fixo a partir de 21/09/2026 (terça Instagram, quinta blog + Instagram) — semana 3 do blog é "Distrato de imóvel na planta" (ver `conteudo/estrategia-retomada/calendario-blog.md`).
 - Roteirizar a próxima Série Real (candidatos já levantados nas demandas: eletricista que abandona obra #0104, reforço estrutural não executado #0062, cliente que some e advogado contra-notifica #0063).

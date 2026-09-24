@@ -14,7 +14,8 @@ Use essa skill no começo de cada sessão de trabalho.
 3. Verificar se `_contexto/estrategia.md` existe e está configurado
 4. Ler `_contexto/agora.md` (contexto vivo: onde paramos, decisões recentes, pendências) se estiver configurado
 5. Ler AGENTS.md se existir
-6. Apresentar um resumo de contexto e perguntar o que o usuário quer fazer
+6. Checagem diária do site (silenciosa): ver seção "Checagem de saúde do site" abaixo
+7. Apresentar um resumo de contexto e perguntar o que o usuário quer fazer
 
 ## Fluxo
 
@@ -47,6 +48,20 @@ Parece que o sistema ainda não foi configurado.
 Rode /setup pra eu aprender sobre o seu negócio — leva uns 5 minutos.
 Depois de configurado, o /iniciar vai funcionar completo.
 ```
+
+## Checagem de saúde do site
+
+Se a skill `.claude/skills/checar-site/` existir, checar `.claude/skills/checar-site/.last-check.json`:
+
+- Se o arquivo não existir, ou a `date` nele não for a data de hoje: rodar
+  `node .claude/skills/checar-site/scripts/checar.js` **silenciosamente** (não mostrar a saída bruta
+  do comando pro usuário)
+- Se todos os itens vierem OK: não mencionar nada, seguir o resumo normal
+- Se algum item vier `FALHA`: incluir uma linha de alerta no resumo, tipo:
+  `⚠️ Site: [descrição curta do problema]` — logo depois de "Lembretes"
+- Se o arquivo já tiver a data de hoje, não rodar de novo (já foi checado nessa sessão/dia)
+- Se a checagem falhar por erro de rede/timeout, não travar o `/iniciar` por causa disso — seguir o
+  fluxo normal e só reportar se for algo que o usuário precise saber
 
 ## Comportamento
 

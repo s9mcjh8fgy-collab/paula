@@ -10,6 +10,7 @@ Espaço de trabalho da Paula Corrêa Advocacia pra apoiar o dia a dia jurídico:
 - `inpi/` — painel central (`controle.md`) de todos os pedidos de marca e desenho industrial no INPI, de qualquer cliente. Os documentos de cada pedido ficam na pasta do cliente em `06_INPI/`, não aqui (ver skill `/inpi`)
 - `conteudo/` — redes sociais e site, organizado por canal: `instagram/`, `tiktok/`, `site/`, `youtube/` (cada um com subpastas por tipo, ex: `carrossel/`, `reels/`, `blog/`), mais `casos/` (fonte de ideias) e `estrategia-retomada/` (plano de retomada das postagens)
 - `propostas/[nome-cliente]/` — propostas comerciais em deck de slides (HTML → PDF), geradas pela skill `/proposta-comercial`
+- `ferramentas/` — ferramentas próprias publicáveis (ex: `contrato-na-regua/`, gerador de contrato de arquitetura com captura de lead, lançamento pausado)
 - `tarefas.md` — lista de pendências
 - `templates/skills/` — templates de skills prontos pra personalizar com /mapear
 - `templates/ferramentas/catalogo.md` — APIs e ferramentas disponíveis pra usar em skills
@@ -55,7 +56,8 @@ Em peças processuais: formal, técnico, terceira pessoa.
   aplicativo (usuário admin). Yoast SEO instalado, dá pra setar meta descrição/título SEO via API.
   Credenciais em `.env.local` (WORDPRESS_*)
 - cPanel (hospedagem do site) — acesso via token de API (sem prazo de expiração, acesso amplo à
-  conta). Usado pra DNS, upload de arquivos etc. Credenciais em `.env.local` (CPANEL_*)
+  conta). Usado pra DNS, upload de arquivos etc. Credenciais em `.env.local` (CPANEL_*). Saúde do site (no ar, API REST,
+  wp-admin, `.user.ini`, erros de PHP) checada pela skill `/checar-site`
 - Google Search Console — dados de SEO (cliques, impressões, posição) via service account do
   Google Cloud. Chave em `.credenciais/google-search-console-service-account.json`
   (fora do git), referenciada em `.env.local` (propriedade correta é sem "www":

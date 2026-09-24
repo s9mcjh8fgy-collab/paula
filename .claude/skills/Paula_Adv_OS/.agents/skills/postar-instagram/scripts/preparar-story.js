@@ -10,6 +10,7 @@
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
+const crypto = require('crypto');
 const { execSync } = require('child_process');
 const { loadCreds, graphPost, waitUntilFinished } = require('./lib');
 
@@ -27,9 +28,12 @@ async function main() {
   const skillRoot = path.join(__dirname, '..');
   const { token, igUserId } = loadCreds(skillRoot);
 
-  const imgName = path.basename(absImage);
+  // Nome de arquivo unico por execucao — ver preparar.js pra explicacao (o Instagram pode ignorar
+  // query string de cache-busting e servir conteudo antigo do mesmo nome de arquivo).
+  const runId = crypto.randomBytes(4).toString('hex');
+  const uploadName = `${runId}-${path.basename(absImage)}`;
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ig-story-'));
-  fs.copyFileSync(absImage, path.join(tmpDir, imgName));
+  fs.copyFileSync(absImage, path.join(tmpDir, uploadName));
 
   console.log('Publicando imagem no Cloudflare Pages (projeto paula-ig-media)...');
   execSync(
@@ -37,8 +41,7 @@ async function main() {
     { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }
   );
   const baseUrl = 'https://paula-ig-media.pages.dev';
-  // Cache-buster: evita que o Instagram sirva uma versao antiga cacheada da mesma URL de arquivo.
-  const imageUrl = `${baseUrl}/${imgName}?v=${Date.now()}`;
+  const imageUrl = `${baseUrl}/${uploadName}`;
   console.log(`Imagem publicada em: ${imageUrl}`);
 
   const result = await graphPost(`${igUserId}/media`, {
@@ -54,7 +57,7 @@ async function main() {
     igUserId,
     creationId: result.id,
     type: 'story',
-    image: imgName,
+    image: uploadName,
     baseUrl,
     preparedAt: new Date().toISOString(),
   };

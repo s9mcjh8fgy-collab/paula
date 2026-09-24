@@ -81,8 +81,14 @@ Tom visual: técnico, formal, coerente, diplomático, explicativo.
 Ensaio fotográfico profissional (2025), fundo neutro/ambiente claro, tom consistente com a paleta da marca. Arquivos em `marca/fotos/`:
 - `perfil.jpg` — frontal, olhando pra câmera, boa pra avatar/estilo "tweet" e slides de abertura
 - `ambiente-01.jpg` e `ambiente-02.jpg` — três-quartos, olhar de lado, boas pra fundo de slide, post fixo ou elemento decorativo (não cobrir o rosto com texto)
+- `ensaio-2025-01` a `ensaio-2025-10` — seleção maior do mesmo ensaio (2026-09-24), variando cenário
+  (café, fundo branco liso, ambientes internos) e enquadramento. `ensaio-2025-05` tem fundo branco
+  bem limpo, boa pra post fixo com overlay de texto sem disputar atenção com o fundo
+- `cachorrinhos-01` e `cachorrinhos-02` — fotos dos cachorros da Paula (chihuahuas), tom mais
+  pessoal/descontraído. Bom pra conteúdo mais leve ou bastidores, não pra post sério de tema jurídico
 
-Mais fotos do mesmo ensaio disponíveis em `Paula - Particular\11 Fotos\Ensaio 2025` — pedir pra Paula selecionar e copiar mais se precisar de variedade.
+Banco completo do ensaio (45 fotos) em `Paula - Particular\11 Fotos\Ensaio 2025` — pedir pra Paula
+selecionar e copiar mais se precisar de variedade além dessas 10.
 
 ---
 
