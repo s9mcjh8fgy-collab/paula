@@ -106,6 +106,14 @@ python .claude/skills/documento-cliente/scripts/preencher.py "<Modelo>" "<destin
 - Os modelos não têm linha pontilhada nos campos de qualificação (decisão da Paula, 24/09/2026: quase
   nunca preenche à mão). Rótulo e valor alinhados pelo topo.
 - Poderes específicos com no máximo ~4 linhas.
+- **Procuração pro INPI: poderes genéricos, sem citar a marca, o desenho industrial nem a classe**
+  (o cliente pode mudar nome/classe antes do protocolo e a procuração continua valendo). Texto padrão:
+  "Representar a outorgante perante o Instituto Nacional da Propriedade Industrial (INPI), podendo
+  requerer registros de marca, acompanhar os respectivos pedidos, cumprir exigências, apresentar
+  manifestações, petições e recursos, receber intimações e notificações, emitir guias de recolhimento e
+  praticar todos os demais atos necessários até a concessão e a expedição dos certificados de registro."
+  Pra desenho industrial, trocar "registros de marca" por "registros de desenho industrial" (ou
+  "registros de marca e de desenho industrial" quando forem os dois). PF: "o outorgante". (Paula, 24/09/2026.)
 - Contrato INPI só de marca: além de `remover_linhas: ["Desenho industrial:"]`, trocar no objeto
   `"Acompanhamento administrativo de pedido(s) de registro junto"` → `"...do pedido de registro de marca junto"`,
   `"pesquisa prévia de viabilidade ou de anterioridade;"` → `"pesquisa prévia de viabilidade;"` e o item
