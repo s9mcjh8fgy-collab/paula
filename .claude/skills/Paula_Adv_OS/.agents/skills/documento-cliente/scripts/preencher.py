@@ -15,6 +15,12 @@ dados.json (UTF-8):
       -> preenche a linha "Blumenau/SC, ____ de ______________ de 20____."
   "sem_poderes_especificos": true,
       -> remove o título e o quadro de Poderes Específicos (procurações)
+  "expandir_lista": {"[Quantidade e tipo de documento, ex: ...]": ["01 Termo de uso;", "01 Contrato ..."]},
+      -> troca um item de lista (marcador) por vários itens, um por linha, com a mesma formatação
+         (a chave pode ser só o começo do texto do item)
+  "altura_quadro": 2.0,
+      -> altura mínima (cm) das linhas do Quadro Resumo; usar quando o conteúdo preenchido já é
+         grande e as assinaturas da página 1 foram empurradas pra página seguinte
   "remover_linhas": ["Desenho industrial:"]
       -> apaga os parágrafos que começam com esses textos (ex: no Contrato (PJ)_INPI,
          a linha de Marca ou a de Desenho industrial que não for usada)
@@ -49,6 +55,17 @@ def todos_paragrafos(doc):
                 yield from cell.paragraphs
 
 
+def sem_linha(cell):
+    from docx.oxml.ns import qn
+    from docx.oxml import OxmlElement
+    tcPr = cell._element.get_or_add_tcPr()
+    bd = tcPr.find(qn('w:tcBorders'))
+    if bd is not None:
+        for e in bd.findall(qn('w:bottom')):
+            bd.remove(e)
+        nil = OxmlElement('w:bottom'); nil.set(qn('w:val'), 'nil'); bd.append(nil)
+
+
 def preencher_campos(doc, campos):
     usados, faltou = set(), []
     linhas = []
@@ -69,8 +86,15 @@ def preencher_campos(doc, campos):
         usados.add(alvo)
         a, b = linhas[alvo]
         r = b.paragraphs[0].add_run(valor); r.font.size = Pt(8.5)
-        # preenchido: rótulo e valor alinhados pelo topo (endereço longo quebra em 2 linhas)
+        # preenchido: rótulo e valor alinhados pelo topo (endereço longo quebra em 2 linhas) e sem a
+        # linha pontilhada de preenchimento à mão, que só faz sentido no campo vazio
         a.vertical_alignment = b.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.TOP
+        sem_linha(b)
+        # sem espaço de escrita à mão, a linha pode ser mais baixa (cresce sozinha se o texto quebrar)
+        tr = b._tc.getparent()
+        from docx.table import _Row
+        from docx.shared import Cm
+        _Row(tr, None).height = Cm(0.5)
     return faltou
 
 
@@ -102,6 +126,38 @@ def remover_poderes_especificos(doc):
             body.remove(p._p)
             if prox is not None and prox.tag.endswith('}tbl'):
                 body.remove(prox)
+            return True
+    return False
+
+
+def expandir_lista(doc, itens_por_chave):
+    import copy
+    faltou = []
+    for chave, itens in itens_por_chave.items():
+        alvo = next((p for p in todos_paragrafos(doc) if p.text.strip().lstrip('•').strip().startswith(chave)
+                     or chave in p.text), None)
+        if alvo is None:
+            faltou.append(chave); continue
+        anterior = alvo._p
+        for i, item in enumerate(itens):
+            novo = copy.deepcopy(alvo._p) if i else alvo._p
+            if i:
+                anterior.addnext(novo); anterior = novo
+            runs = novo.findall('.//{http://schemas.openxmlformats.org/wordprocessingml/2006/main}r')
+            # run 0 = marcador (•	); o texto vai todo no último run, os demais ficam vazios
+            textos = [r.find('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}t') for r in runs]
+            for t in textos[1:-1]:
+                if t is not None: t.text = ''
+            textos[-1].text = item
+    return faltou
+
+
+def altura_quadro(doc, cm):
+    from docx.shared import Cm
+    for t in doc.tables:
+        if t.rows and t.rows[0].cells[0].text.strip().upper() == 'OBJETO':
+            for row in t.rows:
+                row.height = Cm(cm)
             return True
     return False
 
@@ -149,6 +205,12 @@ def main():
         if not remover_poderes_especificos(doc):
             avisos.append('Quadro de Poderes Específicos não encontrado.')
 
+    if dados.get('expandir_lista'):
+        f = expandir_lista(doc, dados['expandir_lista'])
+        if f: avisos.append('Itens de lista não encontrados: ' + ' | '.join(f))
+    if dados.get('altura_quadro'):
+        if not altura_quadro(doc, dados['altura_quadro']):
+            avisos.append('Quadro Resumo não encontrado pra ajustar altura.')
     if dados.get('remover_linhas'):
         f = remover_linhas(doc, dados['remover_linhas'])
         if f: avisos.append('Linhas a remover não encontradas: ' + ', '.join(f))

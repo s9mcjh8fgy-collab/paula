@@ -23,6 +23,7 @@ Novo pedido de desenho industrial do Leonardo Zanatta protocolado (sofá, BR 30 
 Semana 3 do calendário (24/09): carrossel e post fixo do "Distrato de imóvel na planta" produzidos
 e preparados (prévia gerada), mas ainda NÃO publicados no Instagram. Skill `/checar-site` criada pra checagem diária da saúde do site.
 Modelos do escritório (procurações, declarações, contratos, incluindo o novo contrato de INPI PF/PJ) recriados em Word a partir do Canva, na pasta `5_Acervo/2_Modelos Gerais/Credenciais/` (14 modelos). Skill `/documento-cliente` criada pra preencher cópias e salvar na pasta do cliente.
+Primeiro uso real da `/documento-cliente` (24/09): LRG Romani Ltda (plataforma Psicólogos Online Brasil, cliente Robinson) fechou Elaboração de Documentos (R$ 3.000) e registro de marca no INPI (R$ 1.200), ambos em 6x sem juros a partir de 15/10/2026. Contratos e procuração INPI salvos em PDF em `2_Pessoa Jurídica (PJ)/1_Processos/LRG Romani Ltda/`.
 
 ## Decisões recentes
 - 2026-08-12: pastas de trabalho (`consultivo/`, `contratos/`, `processual/`, `conteudo/`) ficam no `8_Claude`; documentos finais de cliente vão pra pasta dele em `3_Jurídico/`.
@@ -50,8 +51,10 @@ Modelos do escritório (procurações, declarações, contratos, incluindo o nov
 
 - 2026-09-24: Canva conectado e funcionando. Modelos de credenciais (5 procurações, 3 declarações de hipossuficiência, 4 contratos) recriados do Canva em .docx com a identidade da marca, salvos em `5_Acervo/2_Modelos Gerais/Credenciais/`. Padrão: data em cima, assinatura centralizada embaixo. Skill `/documento-cliente` criada: preenche cópia do modelo e salva na pasta do cliente, modelos nunca alterados.
 - 2026-09-24: criado modelo novo `Contrato (PF)_INPI` / `Contrato (PJ)_INPI` (registro de marca e/ou desenho industrial), exclusivamente administrativo: medida judicial, notificações extrajudiciais (durante o pedido ou após a concessão) e recurso contra indeferimento são orçados à parte; manifestação em oposição administrativa está incluída. Nomes dos arquivos da pasta Credenciais definidos pela Paula (ex: `Declaração (PF)`, `Contrato (PJ)_Assessoria Jurídica`).
+- 2026-09-24: em documento de cliente, endereço sempre completo e por extenso em todos os campos (nunca "o mesmo da sede" nem abreviar logradouro). Modelos da Credenciais sem linha pontilhada na qualificação (quase nunca se preenche à mão).
 
 ## Pendências
+- LRG Romani: quando o pedido da marca mista "Psicólogos Online Brasil" (NCL 44) for protocolado, registrar no `inpi/controle.md` via `/inpi` (a GRU já está na pasta do cliente). Prazo contratual de protocolo: 5 dias úteis após assinatura, documentos e pagamento da GRU.
 - Apagar no Canva a pasta "_Temp - conversão Word (pode apagar)" (12 cópias usadas só pra leitura; o conector não apaga).
 - Publicar o carrossel e o post fixo do "Distrato de imóvel na planta" (`conteudo/instagram/carrossel/distrato-imovel-planta/` e `post-fixo/distrato-imovel-planta/`), já preparados em 24/09. Confirmar também se o artigo da semana 3 foi pro blog.
 - Avaliar conector de WhatsApp Business e integração com Legal One (sem MCP pronto no catálogo ainda).

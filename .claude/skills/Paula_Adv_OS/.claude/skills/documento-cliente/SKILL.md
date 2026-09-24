@@ -92,6 +92,27 @@ python .claude/skills/documento-cliente/scripts/preencher.py "<Modelo>" "<destin
 - `remover_linhas`: lista de inícios de parágrafo a apagar (ex: `["Desenho industrial:"]` num contrato
   de INPI só de marca).
 
+- `expandir_lista`: troca um item de lista por vários (ex: os documentos do objeto no contrato de
+  Elaboração de Documentos). Chave = começo do texto do item, ex: `"[Quantidade e tipo de documento"`.
+- `altura_quadro`: altura mínima (cm) das linhas do Quadro Resumo. Os modelos têm linhas altas pra
+  página não ficar vazia; quando o conteúdo preenchido é grande (ex: objeto com vários itens) e as
+  assinaturas da página 1 vão pra página 2, usar algo como `1.6`.
+
+**Dicas que evitam estourar a página** (aprendidas no 1º uso, LRG Romani, 24/09/2026):
+- **Endereço sempre completo e por extenso**, em todos os campos, inclusive quando o endereço do
+  representante é igual ao da sede (repetir o endereço inteiro). Nunca "o mesmo da sede", nunca
+  abreviar logradouro ("Av. Cel."). Documento oficial precisa trazer o endereço. (Correção da Paula,
+  24/09/2026.)
+- Os modelos não têm linha pontilhada nos campos de qualificação (decisão da Paula, 24/09/2026: quase
+  nunca preenche à mão). Rótulo e valor alinhados pelo topo.
+- Poderes específicos com no máximo ~4 linhas.
+- Contrato INPI só de marca: além de `remover_linhas: ["Desenho industrial:"]`, trocar no objeto
+  `"Acompanhamento administrativo de pedido(s) de registro junto"` → `"...do pedido de registro de marca junto"`,
+  `"pesquisa prévia de viabilidade ou de anterioridade;"` → `"pesquisa prévia de viabilidade;"` e o item
+  `"preparo e protocolo do pedido, incluindo, no desenho industrial, ..."` → `"preparo e protocolo do pedido de registro;"`.
+- Parcelas: `"[nº] parcela(s) de R$ [valor] ([valor por extenso]) cada, via boleto."` e
+  `"R$ [valor] ([valor por extenso])."` são substituídos como frase inteira (o `[valor]` aparece duas vezes).
+
 O script avisa rótulos/textos não encontrados e lista placeholders `[...]` que sobraram. Resolver todos
 (ou confirmar com a Paula que ficam em branco) antes de entregar.
 
@@ -104,6 +125,10 @@ python .claude/skills/documento-cliente/scripts/preview.py "<destino.docx>"
 Gera PDF e PNG das páginas em `%TEMP%\preview-docs\` (fora da pasta do cliente). Olhar os PNGs:
 nada cortado, número de páginas igual ao do modelo (procuração/declaração 1, Contrato PF/PJ 2,
 Honorários 3, Assessoria 4). Se o texto preenchido for longo e empurrar pra outra página, avisar.
+
+**Só PDF:** se a Paula pedir só a versão final em PDF, gerar o .docx numa pasta temporária
+(`%TEMP%\<cliente>`), conferir, exportar o PDF pelo Word (`ExportAsFixedFormat`, formato 17) direto
+na pasta do cliente com o mesmo nome e apagar o .docx temporário. Nunca sobrescrever PDF existente.
 
 Informar à Paula o caminho do arquivo salvo. Se for de assessoria ligado a demanda, seguir o
 restante do fluxo da `/demandas` (registro no sistema, link do SharePoint).

@@ -254,12 +254,13 @@ def quadro_partes(d, rot_esq, campos, rot_dir='OUTORGADA · ADVOGADA', valores=N
         row = sub.rows[r]; row_height(row, alt)
         a, b = row.cells
         a.width = Cm(sub_w[0]); b.width = Cm(sub_w[1])
-        a.vertical_alignment = b.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.BOTTOM
+        a.vertical_alignment = b.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.TOP
         first_para(a, [(campo, {'size': 8.5, 'bold': True, 'color': MARROM})])
         vp = first_para(b, [(valores.get(campo, ''), {'size': 8.5})])
         vp._p.get_or_add_pPr().append(el('w:suppressAutoHyphens'))
-        cell_borders(b, bottom=(4, LINHA, 'dotted'))
-        cell_margins(a, left=0, right=0.1, bottom=0.03); cell_margins(b, left=0.1, right=0, bottom=0.03)
+        pass  # sem linha de preenchimento (Paula, 24/09/2026: quase nunca preenche à mão)
+        tp = 0.12 if r == 0 else None  # respiro só na 1ª linha, colada no filete laranja
+        cell_margins(a, left=0, right=0.1, top=tp, bottom=0.03); cell_margins(b, left=0.1, right=0, top=tp, bottom=0.03)
     esq.add_paragraph()  # Word exige parágrafo depois de tabela aninhada
     fmt(esq.paragraphs[-1], after=0).paragraph_format.line_spacing = Pt(2)
     # escritório
@@ -469,11 +470,12 @@ def declaracao(nome_arq, campos, blocos_ass):
     for r, campo in enumerate(campos):
         row = t.rows[r]; row_height(row, 0.85 if len(campos) <= 5 else 0.68)
         a, b = row.cells
-        a.vertical_alignment = b.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.BOTTOM
+        a.vertical_alignment = b.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.TOP
         first_para(a, [(campo, {'size': 8.5, 'bold': True, 'color': MARROM})])
         first_para(b, '')
-        cell_borders(b, bottom=(4, LINHA, 'dotted'))
-        cell_margins(a, left=0, bottom=0.03); cell_margins(b, left=0.1, right=0, bottom=0.03)
+        pass  # sem linha de preenchimento (Paula, 24/09/2026: quase nunca preenche à mão)
+        tp = 0.15 if r == 0 else None  # respiro só na 1ª linha, colada no filete laranja
+        cell_margins(a, left=0, top=tp, bottom=0.03); cell_margins(b, left=0.1, right=0, top=tp, bottom=0.03)
     apertado = len(campos) > 5
     lh = 1.38 if apertado else 1.5
     titulo_secao(d, 'Declaração', before=18 if apertado else 22, after=8)
