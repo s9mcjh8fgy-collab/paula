@@ -17,6 +17,8 @@ Espaço de trabalho da Paula Corrêa Advocacia pra apoiar o dia a dia jurídico:
 
 **Regra de arquivamento de documentos de cliente:** as pastas acima (exceto `conteudo/`) são espaço de rascunho e organização. Quando um documento for de um cliente específico e precisar ser arquivado definitivamente, salvar direto na pasta do cliente em `../3_Jurídico/1_Pessoa Física (PF)/` ou `../3_Jurídico/2_Pessoa Jurídica (PJ)/` (perguntar o nome do cliente se a pasta não for óbvia). O Legal One continua sendo o sistema oficial de registro processual — essas pastas complementam, não substituem.
 
+**Modelos padrão do escritório (Credenciais):** procurações, declarações de hipossuficiência e contratos de honorários/assessoria/INPI ficam em `5_Acervo/2_Modelos Gerais/Credenciais/` (.docx com a identidade visual da marca, recriados a partir do Canva em 2026-09-24). Esses modelos **nunca são editados nem sobrescritos**: todo documento de cliente é uma cópia preenchida, salva na pasta do cliente/serviço/assessoria (ex: `4_Assessorias/[cliente]/01_Credenciais_Societário/`), via skill `/documento-cliente`. Alterar um modelo só quando a Paula pedir explicitamente, pelo gerador da própria skill.
+
 ## Sobre o negócio
 Advocacia solo com uma assistente (Thaís, formada em Direito, auxilia em demandas de menor complexidade). Carteira mista de clientes PF e PJ. Atuação em consultivo, análise de contratos e peças processuais, com foco atual em crescer a carteira e estruturar redes sociais como canal de captação.
 
@@ -67,6 +69,7 @@ Em peças processuais: formal, técnico, terceira pessoa.
   `facebook-business`. App "Paula Corrêa Advocacia" (ID 530584914965449) em modo Live, token de
   system user em `.claude/skills/meta-ads-ratos/.env` (fora do git). Conta de anúncio própria do
   escritório cadastrada em `contas.yaml` como `paula` (act_450995911083244)
+- Canva — conector do claude.ai (conectado em 2026-09-24). Pasta "Advocacia - Modelos da Marca" com os modelos da marca (brand templates); pra ler um brand template é preciso criar um design a partir dele (a API não lê o template direto)
 - Instagram (publicação direta) — skill `/postar-instagram`, via Graph API do Instagram,
   reaproveitando o token da `meta-ads-ratos` (já com permissão `instagram_content_publish`).
   Imagens hospedadas temporariamente via Cloudflare Pages (projeto `paula-ig-media`) só pra servir

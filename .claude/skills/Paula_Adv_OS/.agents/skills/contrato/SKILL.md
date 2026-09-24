@@ -19,6 +19,10 @@ description: >
   `3_Jurídico/4_Assessorias/[cliente]/05_Modelos/`, e modelos gerais em
   `3_Jurídico/4_Assessorias/00.1 Modelos_pastas/05_Modelos/`
 - **Tom:** formal, técnico (mesmo padrão de peças processuais)
+- **Contratos do próprio escritório com o cliente** (honorários PF/PJ, elaboração de documentos,
+  assessoria jurídica): não usar este fluxo; usar a skill `/documento-cliente`, que preenche os
+  modelos padrão da pasta `5_Acervo/2_Modelos Gerais/Credenciais/` e salva na pasta do cliente,
+  sem nunca alterar os modelos. Esta skill `/contrato` é pra contratos entre o cliente e terceiros.
 
 ## Passo 1 — Identificar o tipo de pedido
 

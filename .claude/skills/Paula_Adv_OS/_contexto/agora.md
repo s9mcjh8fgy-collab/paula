@@ -22,6 +22,7 @@ pela Paula (cliente processou e perdeu, 18 meses de processo, documentação com
 Novo pedido de desenho industrial do Leonardo Zanatta protocolado (sofá, BR 30 2026 007020-4) e relatório de andamento consolidado atualizado e republicado no Cloudflare Pages.
 Semana 3 do calendário (24/09): carrossel e post fixo do "Distrato de imóvel na planta" produzidos
 e preparados (prévia gerada), mas ainda NÃO publicados no Instagram. Skill `/checar-site` criada pra checagem diária da saúde do site.
+Modelos do escritório (procurações, declarações, contratos, incluindo o novo contrato de INPI PF/PJ) recriados em Word a partir do Canva, na pasta `5_Acervo/2_Modelos Gerais/Credenciais/` (14 modelos). Skill `/documento-cliente` criada pra preencher cópias e salvar na pasta do cliente.
 
 ## Decisões recentes
 - 2026-08-12: pastas de trabalho (`consultivo/`, `contratos/`, `processual/`, `conteudo/`) ficam no `8_Claude`; documentos finais de cliente vão pra pasta dele em `3_Jurídico/`.
@@ -47,9 +48,12 @@ e preparados (prévia gerada), mas ainda NÃO publicados no Instagram. Skill `/c
 - 2026-09-18: legenda do Instagram não deve recontar a história do carrossel (fica redundante) — deve ser mais curta, com gancho/reflexão que não está nos slides. "Fiscal" trocado por "policial" no conto do vizinho (quem aparece quando alguém liga pra polícia é policial, não fiscal). Skill `/postar-instagram` ganhou stories (`preparar-story.js` + `references/design-story-teaser.md`), mas compartilhar post do feed via story nativo (repost pelo app) é preferível à arte customizada quando o post já existe.
 - 2026-09-22: achado e corrigido bug de cache do Instagram — como todo carrossel reusa nomes tipo `slide-01.png`, a Graph API às vezes servia uma versão antiga da URL e falhava ao criar o container. Corrigido com `?v=<timestamp>` cache-busting em `preparar.js`/`preparar-story.js`. Confirmado de novo: legenda nunca deve recontar o enredo do carrossel (aconteceu de novo nesse post, mesmo padrão do dia 18). Cor de destaque ("twist") no meio de um conto quebra a consistência visual — a Paula prefere negrito na mesma cor de fundo a trocar de cor no meio da história.
 
+- 2026-09-24: Canva conectado e funcionando. Modelos de credenciais (5 procurações, 3 declarações de hipossuficiência, 4 contratos) recriados do Canva em .docx com a identidade da marca, salvos em `5_Acervo/2_Modelos Gerais/Credenciais/`. Padrão: data em cima, assinatura centralizada embaixo. Skill `/documento-cliente` criada: preenche cópia do modelo e salva na pasta do cliente, modelos nunca alterados.
+- 2026-09-24: criado modelo novo `Contrato (PF)_INPI` / `Contrato (PJ)_INPI` (registro de marca e/ou desenho industrial), exclusivamente administrativo: medida judicial, notificações extrajudiciais (durante o pedido ou após a concessão) e recurso contra indeferimento são orçados à parte; manifestação em oposição administrativa está incluída. Nomes dos arquivos da pasta Credenciais definidos pela Paula (ex: `Declaração (PF)`, `Contrato (PJ)_Assessoria Jurídica`).
+
 ## Pendências
+- Apagar no Canva a pasta "_Temp - conversão Word (pode apagar)" (12 cópias usadas só pra leitura; o conector não apaga).
 - Publicar o carrossel e o post fixo do "Distrato de imóvel na planta" (`conteudo/instagram/carrossel/distrato-imovel-planta/` e `post-fixo/distrato-imovel-planta/`), já preparados em 24/09. Confirmar também se o artigo da semana 3 foi pro blog.
-- Canva conectado no claude.ai em 2026-09-24, mas as ferramentas não carregaram na sessão. Testar numa sessão nova com o modelo de documento da marca (canva.com/brand/brand-templates/EAGraYeL7Ng). Quando funcionar, incluir o Canva nas ferramentas do `AGENTS.md` e do `empresa.md`.
 - Avaliar conector de WhatsApp Business e integração com Legal One (sem MCP pronto no catálogo ainda).
 - Seguir o calendário fixo a partir de 21/09/2026 (terça Instagram, quinta blog + Instagram) — semana 3 do blog é "Distrato de imóvel na planta" (ver `conteudo/estrategia-retomada/calendario-blog.md`).
 - Roteirizar a próxima Série Real (candidatos já levantados nas demandas: eletricista que abandona obra #0104, reforço estrutural não executado #0062, cliente que some e advogado contra-notifica #0063).
