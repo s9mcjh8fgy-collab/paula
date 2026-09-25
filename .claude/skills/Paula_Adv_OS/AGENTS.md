@@ -58,8 +58,15 @@ Em peças processuais: formal, técnico, terceira pessoa.
   aplicativo (usuário admin). Yoast SEO instalado, dá pra setar meta descrição/título SEO via API.
   Credenciais em `.env.local` (WORDPRESS_*)
 - cPanel (hospedagem do site) — acesso via token de API (sem prazo de expiração, acesso amplo à
-  conta). Usado pra DNS, upload de arquivos etc. Credenciais em `.env.local` (CPANEL_*). Saúde do site (no ar, API REST,
-  wp-admin, `.user.ini`, erros de PHP) checada pela skill `/checar-site`
+  conta). Usado pra upload de arquivos etc. Credenciais em `.env.local` (CPANEL_*). **DNS público de
+  paulacorrea.adv.br NÃO fica aqui** — é gerenciado no Registro.br (painel.registro.br); a zona do
+  cPanel existe mas não é autoritativa (descoberto em 2026-09-25 ao configurar o Resend). Saúde do
+  site (no ar, API REST, wp-admin, `.user.ini`, erros de PHP) checada pela skill `/checar-site`
+  (rodando dentro de uma sessão) e também sozinha 2x/dia (10h/15h) pelo Cloudflare Worker
+  `alerta-site-paula`, que manda e-mail via Resend só quando algo falha
+- Resend — envio de e-mail transacional, domínio `paulacorrea.adv.br` verificado em 2026-09-25.
+  Usado hoje pro alerta de saúde do site (`alerta-site-paula`); chave de API fica como secret do
+  Worker, não no `.env.local` do workspace
 - Google Search Console — dados de SEO (cliques, impressões, posição) via service account do
   Google Cloud. Chave em `.credenciais/google-search-console-service-account.json`
   (fora do git), referenciada em `.env.local` (propriedade correta é sem "www":

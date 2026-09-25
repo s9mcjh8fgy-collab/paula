@@ -1,31 +1,31 @@
 {
-  "date": "2026-09-24",
+  "date": "2026-09-25",
   "allOk": false,
   "results": [
     {
       "label": "Site no ar (homepage)",
       "ok": true,
-      "detail": "HTTP 200, 2065ms"
+      "detail": "HTTP 200, 2010ms"
     },
     {
       "label": "API REST do WordPress",
       "ok": true,
-      "detail": "HTTP 200, 1226ms"
+      "detail": "HTTP 200, 1133ms"
     },
     {
       "label": "Login do wp-admin acessivel",
       "ok": true,
-      "detail": "HTTP 200, 1187ms"
+      "detail": "HTTP 200, 1120ms"
     },
     {
       "label": ".user.ini (memory_limit)",
-      "ok": true,
-      "detail": "presente, memory_limit=512M"
+      "ok": false,
+      "detail": "ausente ou alterado: {\"metadata\":{},\"status\":1,\"messages\":null,\"warnings\":null,\"data\":{\"dir\":\"/home2/correaadvogados/paulacorrea.adv.br\",\"to_charset\":\"utf-8\",\"filename\":\".user.ini\",\"content\":\"memory_limit = 1024M\\n\",\"path"
     },
     {
       "label": "Fatal errors no log (hoje)",
       "ok": false,
-      "detail": "2 erro(s) fatal(is) hoje. Ultimo: [24-Sep-2026 09:39:39 America/Sao_Paulo] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 8388608 bytes) in /home2/correaadvogados/paulacorrea.adv.br/wp-content/wf"
+      "detail": "1 erro(s) fatal(is) hoje. Ultimo: [25-Sep-2026 12:02:40 America/Sao_Paulo] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 8388608 bytes) in /home2/correaadvogados/paulacorrea.adv.br/wp-content/wf"
     }
   ]
 }

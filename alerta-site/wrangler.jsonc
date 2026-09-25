@@ -1,0 +1,18 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "alerta-site-paula",
+  "main": "src/index.js",
+  "compatibility_date": "2026-08-01",
+  "triggers": {
+    // 10h e 15h no horário de Brasília (UTC-3, sem horário de verão) = 13h e 18h UTC
+    "crons": ["0 13 * * *", "0 18 * * *"]
+  },
+  "vars": {
+    "SITE_URL": "https://paulacorrea.adv.br",
+    "ALERT_EMAIL_FROM": "alerta@paulacorrea.adv.br",
+    "ALERT_EMAIL_TO": "paula@paulacorrea.adv.br"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

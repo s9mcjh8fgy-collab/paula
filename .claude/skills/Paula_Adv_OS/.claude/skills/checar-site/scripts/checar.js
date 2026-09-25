@@ -37,7 +37,13 @@ const results = [];
 async function checkUrl(label, url, expectContains) {
   try {
     const start = Date.now();
-    const res = await fetch(url, { redirect: 'follow' });
+    const res = await fetch(url, {
+      redirect: 'follow',
+      headers: {
+        'User-Agent':
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36',
+      },
+    });
     const ms = Date.now() - start;
     const text = await res.text();
     const ok = res.status >= 200 && res.status < 400 && (!expectContains || text.includes(expectContains));
@@ -51,11 +57,13 @@ async function checkUserIni() {
   try {
     const j = await cpanelCall('Fileman', 'get_file_content', { dir: SITE_DIR, file: '.user.ini' });
     const content = j && j.data && j.data.content;
-    const ok = !!content && /memory_limit\s*=\s*512M/i.test(content);
+    const match = content && content.match(/memory_limit\s*=\s*(\d+)M/i);
+    const value = match ? parseInt(match[1], 10) : 0;
+    const ok = value >= 512;
     results.push({
       label: '.user.ini (memory_limit)',
       ok,
-      detail: ok ? 'presente, memory_limit=512M' : `ausente ou alterado: ${JSON.stringify(j).slice(0, 200)}`,
+      detail: ok ? `presente, memory_limit=${value}M` : `ausente ou abaixo de 512M: ${JSON.stringify(j).slice(0, 200)}`,
     });
   } catch (e) {
     results.push({ label: '.user.ini (memory_limit)', ok: false, detail: `Falhou ao checar: ${e.message}` });
