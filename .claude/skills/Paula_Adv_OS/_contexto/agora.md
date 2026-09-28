@@ -25,6 +25,8 @@ e preparados (prévia gerada), mas ainda NÃO publicados no Instagram. Skill `/c
 Modelos do escritório (procurações, declarações, contratos, incluindo o novo contrato de INPI PF/PJ) recriados em Word a partir do Canva, na pasta `5_Acervo/2_Modelos Gerais/Credenciais/` (14 modelos). Skill `/documento-cliente` criada pra preencher cópias e salvar na pasta do cliente.
 Primeiro uso real da `/documento-cliente` (24/09): LRG Romani Ltda (plataforma Psicólogos Online Brasil, cliente Robinson) fechou Elaboração de Documentos (R$ 3.000) e registro de marca no INPI (R$ 1.200), ambos em 6x sem juros a partir de 15/10/2026. Contratos e procuração INPI salvos em PDF em `2_Pessoa Jurídica (PJ)/1_Processos/LRG Romani Ltda/`.
 Demanda #0117 da Ágile (25/09): análise da convenção do Edifício California confirmou que uma vaga de estacionamento vendida em escritura separada é unidade autônoma do condomínio, apta a CND; orientado deslocar a fração dela pro cadastro do apartamento do comprador. Na mesma sessão, criado alerta automático de saúde do site (Cloudflare Worker `alerta-site-paula`, 2x/dia, e-mail via Resend) e identificada a causa raiz do erro recorrente do Wordfence: `DISABLE_WP_CRON` estava true sem nenhum cron real substituto, então as tarefas agendadas do WordPress nunca rodavam. Criado cron de sistema (a cada 15 min) chamando `wp-cron.php`.
+Reels retomado (28/09), puxado por um gancho de atualidade (temporada CASA COR): post de blog + Reels em vídeo sobre direito autoral de projeto exposto em mostra. Reels editado localmente com ffmpeg (fotos do banco + slideshow, sem gravação real da Paula na primeira tentativa — depois trocado por foto real dela na abertura/fechamento). Skill `/postar-instagram` ganhou capacidade de publicar vídeo/Reels (`preparar-reels.js`, novo, mesma lógica de dois passos). Primeiro Reels publicado: https://www.instagram.com/reel/Dd2AaL8gOw5/
+28/09 (continuação): causa raiz real do erro do Wordfence encontrada — não era falta de memória nem falta de cron, era o modo "Proteção Estendida" do firewall rodando antes até do `wp-config.php` carregar (via `auto_prepend_file`), então nenhum ajuste de memória chegava a valer. Removida a Proteção Estendida no wp-admin. Testado com 5 requisições seguidas no endpoint que sempre travava — todas OK. Publicado também o post do Instagram do "Distrato de imóvel na planta" (post fixo com foto), que ficou pendente do dia 24.
 
 ## Decisões recentes
 - 2026-08-12: pastas de trabalho (`consultivo/`, `contratos/`, `processual/`, `conteudo/`) ficam no `8_Claude`; documentos finais de cliente vão pra pasta dele em `3_Jurídico/`.
@@ -56,26 +58,52 @@ Demanda #0117 da Ágile (25/09): análise da convenção do Edifício California
 - 2026-09-25: descoberto que o DNS público de `paulacorrea.adv.br` fica no Registro.br (painel.registro.br), não no cPanel — a zona do cPanel existe mas não é autoritativa. Confirmar sempre no Registro.br quando precisar mexer em DNS desse domínio.
 - 2026-09-25: criado alerta automático de saúde do site — Cloudflare Worker `alerta-site-paula` (código em `8_Claude/alerta-site/`), roda 2x/dia (10h e 15h) e manda e-mail via Resend só quando algo falha. Corrigidos dois falsos positivos na lógica de checagem (`.user.ini` aceitando >=512M em vez de exatamente 512M; header de User-Agent no wp-login pra não ser bloqueado como bot pelo Wordfence) — aplicado tanto no Worker quanto na skill `/checar-site` local.
 - 2026-09-25: causa raiz do erro recorrente do Wordfence (fatal error de memória em `wflogs/rules.php`) identificada — `DISABLE_WP_CRON` estava `true` no wp-config.php e não existia nenhum cron job real no cPanel pra substituir, então nenhuma tarefa agendada do WordPress rodava. Criado cron de sistema (a cada 15 min, `wget` em `wp-cron.php`) via API do cPanel.
+- 2026-09-28: fonte editorial padrão pra capas/cards de texto sobre foto fixada como **Borna Bold**
+  (fonte oficial da marca, Manual de Marca 2023 — arquivo completo em
+  `1_Gestão/4_Marketing/05 TIPOGRAFIA/borna-complete-desktop.zip`, cópia em `marca/fonts/`). Antes
+  dessa decisão foram testadas (e descartadas) Poppins e Playfair Display — não usar nenhuma das
+  duas em peça nova. Padrão de composição pra texto sobre foto também fixado: sem caixa cinza,
+  gradiente escuro (marrom da marca, não preto) só na base da imagem, texto centralizado por linha
+  (drawtext do ffmpeg não centraliza multi-linha automaticamente, precisa uma chamada por linha),
+  cor alternando entre laranja `#F26F4D` (frase de efeito/gancho) e off-white `#F1EBDF` (texto de
+  explicação), seguindo o mesmo padrão já usado no carrossel "Acho chic".
+- 2026-09-28: causa raiz definitiva do erro recorrente do Wordfence identificada — modo "Proteção
+  Estendida" do firewall (usa `auto_prepend_file` apontando pro `wordfence-waf.php`, rodando antes
+  do `wp-config.php`). Removida via wp-admin → Wordfence → Firewall → Gerenciar WAF → Remover
+  Proteção Estendida. A causa anterior (falta de cron, 25/09) não era a raiz real, só um fator
+  secundário. Ver memória `project_wordfence_bloqueia_post_api`.
+- 2026-09-28: **não temos visibilidade do que já foi postado no Instagram** — antes de escolher foto
+  do banco pra uma peça nova, perguntar pra Paula se já foi usada (ela lembra, o histórico de posts
+  não é acessível). Lista de fotos já usadas registrada em `marca/design-guide.md`.
+- 2026-09-28: publicar Reels via API exige vídeo com `moov atom` no início do arquivo
+  (`-movflags +faststart` no ffmpeg) e ao menos uma trilha de áudio (mesmo que silenciosa) — sem
+  isso a Graph API recusa com "media upload failed" (erro 2207052/2207076). Cuidado extra: um remux
+  posterior (ex: adicionar a trilha de áudio depois de já ter aplicado faststart) pode derrubar o
+  faststart de novo — sempre aplicar `-movflags +faststart` como o último passo antes de publicar,
+  nunca no meio do pipeline. Vídeo final também precisa de `pix_fmt yuv420p` com `color_range tv`
+  (não `yuvj420p`/full range, que o libx264 gera por padrão a partir de imagens JPEG).
 
 ## Pendências
 - LRG Romani: quando o pedido da marca mista "Psicólogos Online Brasil" (NCL 44) for protocolado, registrar no `inpi/controle.md` via `/inpi` (a GRU já está na pasta do cliente). Prazo contratual de protocolo: 5 dias úteis após assinatura, documentos e pagamento da GRU.
 - Apagar no Canva a pasta "_Temp - conversão Word (pode apagar)" (12 cópias usadas só pra leitura; o conector não apaga).
-- Publicar o carrossel e o post fixo do "Distrato de imóvel na planta" (`conteudo/instagram/carrossel/distrato-imovel-planta/` e `post-fixo/distrato-imovel-planta/`), já preparados em 24/09. Confirmar também se o artigo da semana 3 foi pro blog.
 - Avaliar conector de WhatsApp Business e integração com Legal One (sem MCP pronto no catálogo ainda).
 - Seguir o calendário fixo a partir de 21/09/2026 (terça Instagram, quinta blog + Instagram) — semana 3 do blog é "Distrato de imóvel na planta" (ver `conteudo/estrategia-retomada/calendario-blog.md`).
 - Roteirizar a próxima Série Real (candidatos já levantados nas demandas: eletricista que abandona obra #0104, reforço estrutural não executado #0062, cliente que some e advogado contra-notifica #0063).
-- Retomar reels e avaliar o lançamento da ferramenta "Contrato na Régua" quando a Paula sinalizar.
+- Avaliar o lançamento da ferramenta "Contrato na Régua" quando a Paula sinalizar (Reels já foi retomado em 28/09).
 - Tem um `dump.txt` solto na raiz do `Paula_Adv_OS` (rascunho de minuta de procuração, de antes dessa sessão) — perguntar à Paula se quer mover ou descartar.
 - Leonardo Zanatta: aguardando ele enviar renderizações corrigidas da Mesa de Centro Jacuí (prazo 30/09/2026) e uma foto/render da Luminária de teto BR 30 2025 005775 2.
 - Leonardo Zanatta: informar o nome do modelo/coleção do sofá novo protocolado em 14/09/2026 (BR 30 2026 007020-4), e reembolsar a Paula os R$ 175,00 da guia paga no protocolo (10/09/2026) — único reembolso ainda em aberto; os de R$ 85,00 e R$ 175,00 (19/08/2026) já foram pagos pela Anna.
 - Autorizar os MCP servers da Cloudflare (`cloudflare-api`, `cloudflare-bindings`, `cloudflare-builds`, `cloudflare-observability`) via `/mcp` numa sessão interativa, quando for usar algum projeto Cloudflare que precise deles.
 - Cadastrar no app financeiro (como recorrente) os impostos, o salário da Thaís e as parcelas de empréstimo assim que a Paula tiver valores/prazos confiáveis pra projetar — hoje ficam de fora por variarem demais mês a mês.
-- Acompanhar os próximos dias se o erro do Wordfence (memória exhausted em `wflogs/rules.php`) realmente parou de se repetir depois do cron de wp-cron criado em 25/09. Se voltar mesmo com o cron rodando, investigar se algum processo específico não está respeitando o `.user.ini` (possível limite fixo no pool do PHP-FPM, exigiria chamado com o suporte da hospedagem).
+- Confirmar nas próximas semanas que o erro do Wordfence não volta mais depois da remoção da Proteção Estendida (28/09) — se voltar, não é mais o mesmo problema, investigar do zero.
 
 ## Quente agora
 Retomada de Instagram + blog rodando de verdade (2026-09-17): calendário fixo terça/quinta,
 formatos "Conto Jurídico"/"Série Real" e "Acho chic" validados e publicados, skill
-`/postar-instagram` em uso. Próximo passo natural é a primeira Série Real (multi-parte) e manter o
-ritmo 2x/semana sem repetir o padrão de pico-e-parada de antes.
+`/postar-instagram` em uso. Reels retomado em 28/09 (primeiro publicado, gancho CASA COR) — skill
+`/postar-instagram` agora publica vídeo também. Fonte editorial padrão (Borna Bold) e padrão de
+composição de texto sobre foto fixados nessa mesma sessão, valem pra toda peça nova desse tipo.
+Próximo passo natural é a primeira Série Real (multi-parte) e manter o ritmo sem repetir o padrão de
+pico-e-parada de antes.
 App financeiro (`financeiro-paula`) recém-criado em 2026-09-01 — Paula está testando no dia a dia (marcar pago, editar, lançar retroativo), ainda ajustando dados de recorrentes conforme usa.
 Skill `/inpi` recém-criada (2026-08-20) — validada num cliente real, mas ainda vale revisar o formato do relatório na próxima vez que gerar pra outro cliente, pra confirmar se o padrão ficou bom de forma geral.

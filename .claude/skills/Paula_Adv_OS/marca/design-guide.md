@@ -31,6 +31,18 @@ Branco (#FFFFFF) só como texto sobre laranja ou fundos muito escuros.
 - **Corpo, subtítulos e botões:** Família Inter
 - **Peso do título:** forte/bold, coerente com o tom "combatente" da marca
 
+### Fonte editorial (capas de Reels, cards de texto sobre foto)
+
+Padrão oficial fixado em 2026-09-28: **Borna** (fonte de título da marca, Manual de Marca 2023),
+peso **Bold**. Arquivo em `marca/fonts/Borna-Bold.otf` (todas as variações — Regular, Medium,
+SemiBold, Bold, e itálicas de cada uma — copiadas em `marca/fonts/Borna-*.otf`, fonte completa
+original em `1_Gestão/4_Marketing/05 TIPOGRAFIA/borna-complete-desktop.zip`).
+
+Testamos antes Playfair Display Black Italic (serif editorial) e não ficou consistente com a
+identidade da marca — a Borna é a fonte oficial e é o padrão definitivo pra esse tipo de peça, sem
+mais trocar. Não usar outra fonte serif editorial pra isso (ex: o carrossel "Acho chic", anterior a
+essa decisão, usa Source Serif 4 — não seguir esse padrão antigo em peças novas).
+
 ---
 
 ## Estilo geral
@@ -84,11 +96,35 @@ Ensaio fotográfico profissional (2025), fundo neutro/ambiente claro, tom consis
 - `ensaio-2025-01` a `ensaio-2025-10` — seleção maior do mesmo ensaio (2026-09-24), variando cenário
   (café, fundo branco liso, ambientes internos) e enquadramento. `ensaio-2025-05` tem fundo branco
   bem limpo, boa pra post fixo com overlay de texto sem disputar atenção com o fundo
-- `cachorrinhos-01` e `cachorrinhos-02` — fotos dos cachorros da Paula (chihuahuas), tom mais
-  pessoal/descontraído. Bom pra conteúdo mais leve ou bastidores, não pra post sério de tema jurídico
+- `cachorrinhos-01` e `cachorrinhos-02` — fotos do Fred e da Wilma, os chihuahuas "estAUgiários" da
+  Paula, tom mais pessoal/descontraído. Bom pra conteúdo mais leve ou bastidores, não pra post sério
+  de tema jurídico
 
-Banco completo do ensaio (45 fotos) em `Paula - Particular\11 Fotos\Ensaio 2025` — pedir pra Paula
-selecionar e copiar mais se precisar de variedade além dessas 10.
+### Banco completo de fotos (fora do git, no OneDrive pessoal)
+
+`marca/fotos/` só tem uma seleção. O banco completo, pra buscar mais variedade quando precisar,
+fica em `Paula - Particular\11 Fotos\`, com 4 subpastas:
+- `Cachorrinhos` — Fred e Wilma
+- `Ensaio 2025` — banco completo do ensaio mais recente (45 fotos, 10 já copiadas em `marca/fotos/`)
+- `Ensaio 2023`
+- `Ensaio 2022`
+
+Caminho completo: `C:\Users\user\OneDrive - CORREA ADVOGADOS ASSOCIADOS\Paula - Particular\11 Fotos\`.
+Pra usar uma foto de lá que ainda não tem cópia em `marca/fotos/`, copiar a foto selecionada pra
+`marca/fotos/` antes de usar (mantém a pasta local como a seleção "pronta pra uso").
+
+**Não tenho visibilidade do que já foi postado no Instagram** — antes de escolher foto pra uma peça
+nova, perguntar pra Paula se a foto já foi usada em algum post, em vez de assumir.
+
+### Fotos já usadas em conteúdo (evitar repetir)
+
+- `perfil.jpg` — capa do carrossel "Acho chic" (`conteudo/instagram/carrossel/acho-chic-advocacia/`)
+- `Paula, sonhadores (39).jpg` (Ensaio 2025) — abertura do Reels CASA COR (2026-09-28)
+- `Paula Borba (24).jpg` (Ensaio 2022) — fechamento do Reels CASA COR (2026-09-28)
+
+Confirmado com a Paula em 2026-09-28 como ainda não usadas até aquela data: Ensaio 2025 `(70)`,
+`(74)`, `(76)`, `(79)`, `(81)`, `(83)` e todo o Ensaio 2022 e 2023 (exceto a `(24)` de 2022, já usada
+acima). Ela prefere o estilo do Ensaio 2022 ao do Ensaio 2023.
 
 ---
 

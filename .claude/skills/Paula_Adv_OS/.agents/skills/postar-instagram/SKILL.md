@@ -1,6 +1,6 @@
 ---
 name: postar-instagram
-description: Publica de verdade no Instagram (@paulacorrea.adv) um carrossel, post fixo (imagem única) ou conto já produzido pela skill /carrossel. Usa a API oficial do Instagram (Graph API), reaproveitando o token já configurado na skill meta-ads-ratos. Use quando a Paula pedir "posta isso", "publica no Instagram", "sobe esse carrossel", ou depois de aprovar um carrossel/post fixo e perguntar se pode ir ao ar. Também dispara com /postar-instagram.
+description: Publica de verdade no Instagram (@paulacorrea.adv) um carrossel, post fixo (imagem única), conto já produzido pela skill /carrossel, ou um Reels (vídeo) com capa customizada. Usa a API oficial do Instagram (Graph API), reaproveitando o token já configurado na skill meta-ads-ratos. Use quando a Paula pedir "posta isso", "publica no Instagram", "sobe esse carrossel", "posta esse reels", ou depois de aprovar um carrossel/post fixo/vídeo e perguntar se pode ir ao ar. Também dispara com /postar-instagram.
 ---
 
 # /postar-instagram — Publicação direta no Instagram
@@ -68,6 +68,33 @@ node .claude/skills/postar-instagram/scripts/confirmar.js "<pasta-de-estado>"
 
 Stories não têm legenda (é só imagem), então não precisa de `carousel-text.md`. Usar uma pasta de
 estado dedicada, ex: `conteudo/instagram/stories/[tema]/`.
+
+## Reels (vídeo)
+
+Publica um vídeo já pronto (Reels) direto no feed, com capa customizada. Mesma lógica de dois
+passos e mesma regra de aprovação explícita.
+
+```bash
+node .claude/skills/postar-instagram/scripts/preparar-reels.js "<video.mp4>" "<capa.png>" "<pasta-de-estado>"
+node .claude/skills/postar-instagram/scripts/confirmar.js "<pasta-de-estado>"
+```
+
+A pasta de estado precisa ter um `legenda.md` com o texto puro da legenda (sem cabeçalho, diferente
+do `carousel-text.md` dos posts de imagem). `preparar-reels.js` hospeda vídeo e capa no mesmo projeto
+Cloudflare Pages, cria o container `REELS` na Graph API (`media_type=REELS`, `video_url`, `cover_url`,
+`share_to_feed=true`) e espera o processamento (pode levar 1-2 minutos, bem mais lento que imagem).
+
+**Requisitos técnicos do vídeo (aprendido com tentativa e erro em 2026-09-28), senão a Graph API
+recusa com "media upload failed", erro 2207052 ou 2207076:**
+- `-movflags +faststart` (moov atom no início do arquivo) como **último passo** do pipeline ffmpeg —
+  um remux posterior (ex: adicionar áudio depois) derruba o faststart de novo, então reaplicar por
+  último, sempre
+- Precisa de pelo menos uma trilha de áudio, mesmo que silenciosa (`-f lavfi -i
+  anullsrc=channel_layout=stereo:sample_rate=44100 -shortest -c:a aac`)
+- `pix_fmt yuv420p` com `color_range tv` (não `yuvj420p`/full range — é o que o libx264 gera por
+  padrão ao partir de imagens JPEG; forçar com `-vf
+  "scale=in_range=full:out_range=limited,format=yuv420p" -color_range tv`)
+- 1080x1920 (9:16), H.264, 23-60fps
 
 ## Pré-requisitos da pasta (posts de feed)
 
