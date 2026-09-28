@@ -25,7 +25,7 @@ e preparados (prévia gerada), mas ainda NÃO publicados no Instagram. Skill `/c
 Modelos do escritório (procurações, declarações, contratos, incluindo o novo contrato de INPI PF/PJ) recriados em Word a partir do Canva, na pasta `5_Acervo/2_Modelos Gerais/Credenciais/` (14 modelos). Skill `/documento-cliente` criada pra preencher cópias e salvar na pasta do cliente.
 Primeiro uso real da `/documento-cliente` (24/09): LRG Romani Ltda (plataforma Psicólogos Online Brasil, cliente Robinson) fechou Elaboração de Documentos (R$ 3.000) e registro de marca no INPI (R$ 1.200), ambos em 6x sem juros a partir de 15/10/2026. Contratos e procuração INPI salvos em PDF em `2_Pessoa Jurídica (PJ)/1_Processos/LRG Romani Ltda/`.
 Demanda #0117 da Ágile (25/09): análise da convenção do Edifício California confirmou que uma vaga de estacionamento vendida em escritura separada é unidade autônoma do condomínio, apta a CND; orientado deslocar a fração dela pro cadastro do apartamento do comprador. Na mesma sessão, criado alerta automático de saúde do site (Cloudflare Worker `alerta-site-paula`, 2x/dia, e-mail via Resend) e identificada a causa raiz do erro recorrente do Wordfence: `DISABLE_WP_CRON` estava true sem nenhum cron real substituto, então as tarefas agendadas do WordPress nunca rodavam. Criado cron de sistema (a cada 15 min) chamando `wp-cron.php`.
-Reels retomado (28/09), puxado por um gancho de atualidade (temporada CASA COR): post de blog + Reels em vídeo sobre direito autoral de projeto exposto em mostra. Reels editado localmente com ffmpeg (fotos do banco + slideshow, sem gravação real da Paula na primeira tentativa — depois trocado por foto real dela na abertura/fechamento). Skill `/postar-instagram` ganhou capacidade de publicar vídeo/Reels (`preparar-reels.js`, novo, mesma lógica de dois passos). Primeiro Reels publicado: https://www.instagram.com/reel/Dd2AaL8gOw5/
+Reels retomado (28/09), puxado por um gancho de atualidade (temporada CASA COR): post de blog + Reels em vídeo sobre direito autoral de projeto exposto em mostra. Reels editado localmente com ffmpeg (fotos do banco + slideshow, sem gravação real da Paula na primeira tentativa — depois trocado por foto real dela na abertura/fechamento). Skill `/postar-instagram` ganhou capacidade de publicar vídeo/Reels (`preparar-reels.js`, novo, mesma lógica de dois passos). Publicado duas vezes: a primeira versão tinha o texto grudado na base do vídeo (coberto pela UI do Reels — nome, legenda, ícones — quando aberto no app), corrigido subindo o texto pra ~72% da altura; o post antigo foi apagado (`apagar.js`) e republicado. Versão final: https://www.instagram.com/reel/Dd2DH97GFFN/
 28/09 (continuação): causa raiz real do erro do Wordfence encontrada — não era falta de memória nem falta de cron, era o modo "Proteção Estendida" do firewall rodando antes até do `wp-config.php` carregar (via `auto_prepend_file`), então nenhum ajuste de memória chegava a valer. Removida a Proteção Estendida no wp-admin. Testado com 5 requisições seguidas no endpoint que sempre travava — todas OK. Publicado também o post do Instagram do "Distrato de imóvel na planta" (post fixo com foto), que ficou pendente do dia 24.
 
 ## Decisões recentes
@@ -81,7 +81,14 @@ Reels retomado (28/09), puxado por um gancho de atualidade (temporada CASA COR):
   posterior (ex: adicionar a trilha de áudio depois de já ter aplicado faststart) pode derrubar o
   faststart de novo — sempre aplicar `-movflags +faststart` como o último passo antes de publicar,
   nunca no meio do pipeline. Vídeo final também precisa de `pix_fmt yuv420p` com `color_range tv`
-  (não `yuvj420p`/full range, que o libx264 gera por padrão a partir de imagens JPEG).
+  (não `yuvj420p`/full range, que o libx264 gera por padrão a partir de imagens JPEG). Outro motivo
+  do mesmo erro: vídeo montado a partir de fotos JPEG pode sair com `color_space=bt470bg` (padrão de
+  TV antiga/SD), incompatível com um vídeo 1080x1920 — forçar `-colorspace bt709 -color_primaries
+  bt709 -color_trc bt709` no encode final resolve.
+- 2026-09-28: texto sobreposto em vídeo de Reels não pode ficar colado na base — a UI do Instagram
+  (nome do perfil, legenda, ícones de curtir/comentar/compartilhar) cobre uma faixa grande na parte
+  de baixo quando o Reels é aberto no app (diferente de um post de imagem estática, onde isso não
+  existe). Manter o texto por volta de 70-74% da altura do quadro, não mais embaixo que isso.
 
 ## Pendências
 - LRG Romani: quando o pedido da marca mista "Psicólogos Online Brasil" (NCL 44) for protocolado, registrar no `inpi/controle.md` via `/inpi` (a GRU já está na pasta do cliente). Prazo contratual de protocolo: 5 dias úteis após assinatura, documentos e pagamento da GRU.

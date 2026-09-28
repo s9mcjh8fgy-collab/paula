@@ -94,7 +94,15 @@ recusa com "media upload failed", erro 2207052 ou 2207076:**
 - `pix_fmt yuv420p` com `color_range tv` (não `yuvj420p`/full range — é o que o libx264 gera por
   padrão ao partir de imagens JPEG; forçar com `-vf
   "scale=in_range=full:out_range=limited,format=yuv420p" -color_range tv`)
+- `colorspace bt709` explícito (`-colorspace bt709 -color_primaries bt709 -color_trc bt709`) — vídeo
+  montado a partir de fotos JPEG pode sair marcado como `bt470bg` (SD antigo), incompatível com
+  1080x1920 e também rejeitado com o mesmo erro
 - 1080x1920 (9:16), H.264, 23-60fps
+
+**Texto sobre o vídeo (cards, legenda embutida na imagem):** nunca colar o texto na base do quadro.
+A UI do Instagram (nome do perfil, legenda, ícones de ação) cobre uma faixa grande embaixo quando o
+Reels é aberto no app — isso não existe num post de imagem estática. Manter o texto por volta de
+70-74% da altura do quadro (não mais embaixo que isso).
 
 ## Pré-requisitos da pasta (posts de feed)
 
