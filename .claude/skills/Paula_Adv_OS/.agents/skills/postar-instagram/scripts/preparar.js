@@ -64,6 +64,33 @@ async function main() {
   const baseUrl = 'https://paula-ig-media.pages.dev';
   console.log(`Imagens publicadas em: ${baseUrl} (prefixo ${runId})`);
 
+  // O deploy termina antes de a borda do Cloudflare servir os arquivos novos. Se a Graph API tentar
+  // baixar nesse intervalo, falha com erro 2207052 ("Only photo or video..."). Espera cada URL
+  // responder 200 e da uma folga extra antes de criar os containers (visto em 2026-09-30).
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  for (const img of images) {
+    const url = `${baseUrl}/${uploadNames[img]}`;
+    for (let i = 0; i < 30; i++) {
+      const res = await fetch(url, { method: 'HEAD' }).catch(() => null);
+      if (res && res.ok) break;
+      await sleep(2000);
+    }
+  }
+  await sleep(15000);
+
+  // Mesmo com a URL respondendo, a Meta as vezes ainda falha no primeiro download: tenta de novo.
+  const createContainer = async (params) => {
+    for (let attempt = 1; ; attempt++) {
+      try {
+        return await graphPost(`${igUserId}/media`, params, token);
+      } catch (err) {
+        if (attempt >= 4 || !String(err.message).includes('2207052')) throw err;
+        console.log(`Meta ainda nao conseguiu baixar a imagem, tentando de novo (${attempt}/3)...`);
+        await sleep(20000);
+      }
+    }
+  };
+
   // 2. Criar um container de midia por imagem
   const isCarousel = images.length > 1;
   const childIds = [];
@@ -71,7 +98,7 @@ async function main() {
     const imageUrl = `${baseUrl}/${uploadNames[img]}`;
     const params = { image_url: imageUrl };
     if (isCarousel) params.is_carousel_item = 'true';
-    const result = await graphPost(`${igUserId}/media`, params, token);
+    const result = await createContainer(params);
     console.log(`Container criado pra ${img} (${uploadNames[img]}): ${result.id}`);
     childIds.push(result.id);
   }
@@ -97,7 +124,7 @@ async function main() {
     // imagem unica: recriar o container ja com a legenda (a Graph API nao deixa editar caption
     // depois de criado, entao refaz o container simples com caption incluida)
     const imageUrl = `${baseUrl}/${uploadNames[images[0]]}`;
-    const result = await graphPost(`${igUserId}/media`, { image_url: imageUrl, caption }, token);
+    const result = await createContainer({ image_url: imageUrl, caption });
     finalContainerId = result.id;
   }
 

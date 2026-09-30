@@ -5,7 +5,9 @@ description: >
   visual da Paula Corrêa Advocacia. Parte de um briefing (de call, WhatsApp ou e-mail) com
   cliente, dor, escopo, valor e prazo. Use quando o usuário pedir "faz uma proposta comercial",
   "monta uma proposta pro cliente X", "proposta pra [nome]", ou colar anotações de uma call/troca
-  de mensagem com um lead pra virar proposta.
+  de mensagem com um lead pra virar proposta. Também gera a Proposta Simples (1 página A4, modelo
+  do Canva) pra casos pontuais, principalmente pessoa física: "proposta simples", "proposta
+  pontual", "proposta pra PF", "proposta rápida pra mandar pro cliente".
 ---
 
 # /proposta-comercial — Criação de Proposta Comercial
@@ -31,6 +33,18 @@ Se faltar algum, instalar na raiz do workspace (`8_Claude/`):
 npm install playwright pdf-lib
 npx playwright install chromium
 ```
+
+---
+
+## Qual modelo usar
+
+| Modelo | Quando | Formato |
+|---|---|---|
+| **Deck completo** (Fases 1 a 3 abaixo) | Empresas (construção civil ou outro ramo), assessoria mensal, escopo amplo | Slides 1920x1080 → PDF |
+| **Proposta Simples** (seção no fim) | Caso pontual, principalmente pessoa física: uma ação, uma notificação, uma análise | 1 página A4 → PDF |
+
+Se o pedido não deixar claro, perguntar qual dos dois. Na dúvida: cliente PF com uma demanda só
+vai pra Proposta Simples.
 
 ---
 
@@ -106,3 +120,58 @@ Escrever o texto de cada slide (título + corpo curto, linguagem de apresentaç�
 - Sem travessão no texto, seguindo `_contexto/preferencias.md`
 - Nunca usar CTA de captação direta ("me procure", "me chama") — não é regra necessária aqui porque é uma proposta já endereçada a um lead identificado, não conteúdo público, mas o tom segue profissional e direto mesmo assim
 - Nome do arquivo final sempre no padrão `Proposta Comercial - [Cliente].pdf`, coerente com o histórico já salvo na pasta de Vendas
+
+---
+
+## Proposta Simples (1 página, casos pontuais / PF)
+
+Reprodução em HTML do brand template do Canva "Proposta Simples"
+(https://www.canva.com/brand/brand-templates/EAHGdQlE9-g), recriada em 2026-09-29.
+
+- **Template:** `templates/proposta-simples.html` (placeholders `{{...}}`, não editar à mão pra
+  cada cliente)
+- **Script:** `scripts/gerar-proposta-simples.js` (preenche o template a partir de um JSON e gera o
+  PDF A4, opcionalmente um PNG de preview)
+- **Imagens da marca:** `assets/` (logo, assinatura, monograma PC, ícone ✳ dos títulos, ícones de
+  site/e-mail), recortadas do export do Canva
+
+### Estrutura fixa da página
+
+Cabeçalho (logo + "Proposta" + destinatário) → **Descrição do Serviço** (1 parágrafo) →
+**Providências** (lista) → **Honorários** (lista + Observação opcional) → data e validade +
+assinatura → rodapé com site, e-mail e telefone.
+
+### Workflow
+
+1. **Briefing:** extrair do que a Paula colar: destinatário (nome e, se tiver, empresa ou
+   referência na 2ª linha), o que será feito, as providências, os honorários (entrada, parcelas,
+   êxito), a validade (padrão 05 dias) e a data (padrão hoje). Nunca inventar valor. Se não foi
+   informado, perguntar.
+2. **Texto:** escrever os blocos no tom do modelo original (formal-claro, frases completas, itens da
+   lista terminando em `;` e o último em `.`, valores sempre por extenso entre parênteses). A
+   observação padrão sobre custas pode ser usada quando houver processo judicial:
+   > Custas processuais, despesas judiciais, taxas, diligências e demais despesas externas
+   > eventualmente necessárias não estão incluídas nos honorários acima e serão de
+   > responsabilidade do(a) contratante.
+
+   Mostrar o texto no chat. **CHECKPOINT:** esperar aprovação.
+3. **Gerar:** salvar o JSON em `propostas/[nome-cliente]/dados.json` e rodar (cwd = `Paula_Adv_OS`):
+   ```bash
+   node .claude/skills/proposta-comercial/scripts/gerar-proposta-simples.js "propostas/[nome-cliente]/dados.json" "propostas/[nome-cliente]/Proposta - [Cliente].pdf" --png "propostas/[nome-cliente]/preview.png"
+   ```
+   Formato do JSON (trechos entre `**` viram negrito):
+   ```json
+   {
+     "destinatario": ["À Gisele", "Kipbabykids"],
+     "descricao": "Atuação jurídica em face de ...",
+     "providencias": ["Análise da documentação ...;", "Ajuizamento da ação ...;", "Acompanhamento ...."],
+     "honorarios": ["R$ 600,00 (seiscentos reais) de entrada;", "20% (vinte por cento) sobre ..."],
+     "observacao": "Custas processuais ... (omitir o campo pra não exibir)",
+     "data": "29/09/2026",
+     "validade": "05 dias"
+   }
+   ```
+4. Mostrar o `preview.png`. Se o script avisar que o texto invadiu a área da assinatura, enxugar o
+   texto (a proposta simples é sempre 1 página, nunca quebrar em duas).
+5. Copiar o PDF pra `6_Colaboradores/Paula/*Vendas/Propostas/` (localizar com Glob), com o nome
+   `Proposta - [Cliente].pdf`, padrão das propostas simples já salvas lá.

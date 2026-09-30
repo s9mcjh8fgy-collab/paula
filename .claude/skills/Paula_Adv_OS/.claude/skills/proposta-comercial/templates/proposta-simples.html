@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family: 'Borna'; src: url('{{FONTS}}/Borna-Bold.otf'); font-weight: 700; }
+  @font-face { font-family: 'Borna'; src: url('{{FONTS}}/Borna-SemiBold.otf'); font-weight: 600; }
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 210mm; }
+  body { font-family: 'Inter', Arial, sans-serif; color: #1a1a1a; font-size: 10.6pt; line-height: 1.5; }
+  .page { position: relative; width: 210mm; height: 297mm; padding: 19mm 21mm 0 21mm; background: #fff; overflow: hidden; }
+
+  header { display: flex; justify-content: space-between; align-items: flex-start; height: 44mm; }
+  header .logo { width: 44mm; margin-top: 2mm; }
+  header .dest { width: 70mm; margin-top: 9mm; }
+  header .dest h1 { font-family: 'Borna', 'Inter', sans-serif; font-weight: 700; color: #F26F4D; font-size: 31pt; line-height: 1; margin-bottom: 2mm; }
+  header .dest p { font-size: 10.6pt; line-height: 1.35; }
+
+  section { margin-top: 5mm; }
+  h2 { font-family: 'Borna', 'Inter', sans-serif; font-weight: 700; color: #6D413E; font-size: 14.5pt; display: flex; align-items: center; gap: 2.2mm; margin-bottom: 3.5mm; }
+  h2 img { width: 5.6mm; }
+  p.corpo { text-align: left; }
+  ul { padding-left: 6mm; }
+  li { margin-bottom: 0; }
+  .obs { margin-top: 4mm; }
+  .obs b { font-weight: 700; }
+
+  .rodape-assinatura { position: absolute; left: 24mm; right: 21mm; top: 240mm; display: flex; justify-content: space-between; align-items: flex-end; }
+  .rodape-assinatura .datas { font-size: 11.2pt; line-height: 1.35; padding-bottom: 5mm; }
+  .assin { width: 71mm; text-align: center; }
+  .assin img { width: 50mm; display: block; margin: 0 auto -1mm auto; }
+  .assin .linha { border-top: 0.35mm solid #1a1a1a; padding-top: 1mm; font-size: 8.2pt; line-height: 1.4; }
+
+  .divisor { position: absolute; left: 24mm; right: 24mm; top: 265mm; border-top: 0.25mm solid #e7e0d2; }
+  footer { position: absolute; left: 23mm; right: 30mm; top: 267.5mm; display: flex; align-items: center; }
+  footer .mono { width: 13.5mm; }
+  footer .contatos { margin-left: 23mm; color: #6D413E; font-size: 11pt; line-height: 1.45; }
+  footer .contatos div { display: flex; align-items: center; gap: 1.8mm; }
+  footer .contatos img { width: 3.8mm; }
+  footer .tel { margin-left: auto; color: #6D413E; font-size: 11pt; }
+  footer .tel small { font-size: 8.5pt; margin-right: 1mm; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <img class="logo" src="{{ASSETS}}/logo.png">
+    <div class="dest">
+      <h1>Proposta</h1>
+      {{DESTINATARIO}}
+    </div>
+  </header>
+
+  <section>
+    <h2><img src="{{ASSETS}}/icone-titulo.png">Descrição do Serviço</h2>
+    <p class="corpo">{{DESCRICAO}}</p>
+  </section>
+
+  <section>
+    <h2><img src="{{ASSETS}}/icone-titulo.png">Providências</h2>
+    <ul>{{PROVIDENCIAS}}</ul>
+  </section>
+
+  <section>
+    <h2><img src="{{ASSETS}}/icone-titulo.png">Honorários</h2>
+    <ul>{{HONORARIOS}}</ul>
+    {{OBSERVACAO}}
+  </section>
+
+  <div class="rodape-assinatura">
+    <div class="datas">{{DATA}}<br>Proposta válida por {{VALIDADE}}.</div>
+    <div class="assin">
+      <img src="{{ASSETS}}/assinatura.png">
+      <div class="linha">PAULA CORRÊA<br>OAB/SC 28.118</div>
+    </div>
+  </div>
+
+  <div class="divisor"></div>
+  <footer>
+    <img class="mono" src="{{ASSETS}}/monograma.png">
+    <div class="contatos">
+      <div><img src="{{ASSETS}}/icone-site.png">paulacorrea.adv.br</div>
+      <div><img src="{{ASSETS}}/icone-email.png">contato@paulacorrea.adv.br</div>
+    </div>
+    <div class="tel"><small>47</small>99787 5279</div>
+  </footer>
+</div>
+</body>
+</html>

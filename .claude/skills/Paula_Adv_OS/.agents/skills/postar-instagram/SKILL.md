@@ -119,6 +119,9 @@ Isso é exatamente o que a skill `/carrossel` já gera, então o fluxo normal é
 - **Token expirado ou sem permissão:** o token é de system user e não expira, mas se a Meta revogar
   ou o app sair do modo Live, a chamada falha com erro da Graph API — mostrar o erro pra Paula, não
   tentar contornar sozinho.
+- **Erro 2207052 "Only photo or video can be accepted" na criação do container:** a Meta tentou
+  baixar a imagem antes de o Cloudflare Pages servir o deploy novo. Desde 2026-09-30 o `preparar.js`
+  espera as URLs responderem e tenta de novo sozinho (até 3x); se ainda falhar, rodar de novo.
 - **Imagem não processa (status ERROR):** geralmente a URL do Cloudflare Pages não ficou acessível a
   tempo (propagação) ou a imagem é grande demais/formato errado. Tentar rodar `preparar.js` de novo.
 - **Legenda não encontrada:** o `carousel-text.md` precisa ter a seção `## Legenda Instagram`

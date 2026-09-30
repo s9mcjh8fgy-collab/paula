@@ -27,15 +27,12 @@ Primeiro uso real da `/documento-cliente` (24/09): LRG Romani Ltda (plataforma P
 Demanda #0117 da Ágile (25/09): análise da convenção do Edifício California confirmou que uma vaga de estacionamento vendida em escritura separada é unidade autônoma do condomínio, apta a CND; orientado deslocar a fração dela pro cadastro do apartamento do comprador. Na mesma sessão, criado alerta automático de saúde do site (Cloudflare Worker `alerta-site-paula`, 2x/dia, e-mail via Resend) e identificada a causa raiz do erro recorrente do Wordfence: `DISABLE_WP_CRON` estava true sem nenhum cron real substituto, então as tarefas agendadas do WordPress nunca rodavam. Criado cron de sistema (a cada 15 min) chamando `wp-cron.php`.
 Reels retomado (28/09), puxado por um gancho de atualidade (temporada CASA COR): post de blog + Reels em vídeo sobre direito autoral de projeto exposto em mostra. Reels editado localmente com ffmpeg (fotos do banco + slideshow, sem gravação real da Paula na primeira tentativa — depois trocado por foto real dela na abertura/fechamento). Skill `/postar-instagram` ganhou capacidade de publicar vídeo/Reels (`preparar-reels.js`, novo, mesma lógica de dois passos). Publicado duas vezes: a primeira versão tinha o texto grudado na base do vídeo (coberto pela UI do Reels — nome, legenda, ícones — quando aberto no app), corrigido subindo o texto pra ~72% da altura; o post antigo foi apagado (`apagar.js`) e republicado. Versão final: https://www.instagram.com/reel/Dd2DH97GFFN/
 28/09 (continuação): causa raiz real do erro do Wordfence encontrada — não era falta de memória nem falta de cron, era o modo "Proteção Estendida" do firewall rodando antes até do `wp-config.php` carregar (via `auto_prepend_file`), então nenhum ajuste de memória chegava a valer. Removida a Proteção Estendida no wp-admin. Testado com 5 requisições seguidas no endpoint que sempre travava — todas OK. Publicado também o post do Instagram do "Distrato de imóvel na planta" (post fixo com foto), que ficou pendente do dia 24.
+30/09: primeira História em Série publicada, parte 1 de 3 ("Era uma vez... um prédio que não parou de subir (mas não podia!)", demanda #0062 ficcionalizada, fundo bege): https://www.instagram.com/p/Dd6mnILEWGy/. Partes 2 (qui 01/10) e 3 (sex 02/10) com texto aprovado e HTML pronto em `conteudo/instagram/carrossel/serie-predio-subindo-parte-2/` e `-parte-3/`, faltando renderizar os PNGs e publicar. A parte 2 ocupa o Instagram de quinta no lugar do card do blog; a parte 3 chama pro artigo do blog da semana 4 (responsabilidade civil do arquiteto/engenheiro por erro de projeto), que precisa estar publicado na quinta. Desfecho da parte 3 definido pela Paula: comunicação ao CREA e à Defesa Civil, sem retorno da construtora, obra parada por um tempo, referência ao Palace II. Relatório Único de Consultoria do Sebrae da LRG Romani (SC0920260324, 2h) preenchido em 29/09, faltando CNPJ e e-mail do cliente.
+30/09 (continuação): demanda Ágile #0121 registrada (filmagem de multa no Bérgamo: pode enviar se só aparece a condômina; se aparecer terceiro, convidar pra assistir no escritório, por LGPD). Demanda #0062 (Excel/Sunset Marine): denúncia ao CREA-SC montada na subpasta `Denúncia CREA-SC` da demanda (minuta, protocolo preenchido, procuração e Docs 01 a 11). Skill `/transcrever-audio` migrada pro faster-whisper.
+30/09 (cont.): demanda #0116 do Grupo Ao Cubo. Os dois modelos de contrato com prestador (versão Grupo Ao Cubo e versão Cliente) foram analisados contra os casos Menegildo (#0061) e HB Portas (#0111), e as versões `_v2.docx` foram salvas na pasta da demanda, com as mudanças em amarelo e os originais intactos. Entraram: prazo essencial, multa por atraso de 0,5% ao dia (teto de 10%), fim do teto de R$ 5 mil na multa compensatória, contratação de outra equipe às custas do prestador com compensação, proibição de o prestador desistir sem aviso de 15 dias, proibição de duplicata/protesto de parcela em discussão, devolução do adiantamento em 5 dias úteis, garantia mínima de 12 meses e valor por etapa no Quadro-Resumo.
+30/09 (cont.): demanda #0061 (Grupo Ao Cubo x Menegildo, obra Blutech). A Menegildo mandou em 28/09 uma nova proposta de R$ 37.047,00, praticamente igual à anterior, e a negociação pelo Ao Cubo se esgotou. Em 30/09, com o Ângelo validando, foi enviado e-mail à Blutech (R&J) com o histórico e três opções para ela decidir: (1) aceitar a proposta e contratar outra empresa para a porta; (2) pagar o valor cheio, com ACM (cerca de R$ 46.924,00), e cobrar R$ 19.250,00 na Justiça; (3) assumir a negociação diretamente. O texto deixa claro que o Ao Cubo agiu como gestor, no interesse da Blutech. Demanda #0122 do Leonardo Zanatta (declaração de palestra na Bienal de Arquitetura Brasileira, Lei Rouanet) registrada: foi liberada para assinar. O cadastro duplicado "Estúdio Leonardo Zanatta" foi apagado.
 
 ## Decisões recentes
-- 2026-08-12: pastas de trabalho (`consultivo/`, `contratos/`, `processual/`, `conteudo/`) ficam no `8_Claude`; documentos finais de cliente vão pra pasta dele em `3_Jurídico/`.
-- 2026-08-13: `conteudo/` reorganizado por canal — `instagram/`, `tiktok/`, `site/`, `youtube/`, cada um com subpastas por tipo (`carrossel/`, `reels/`, `blog/`); `casos/` continua como fonte de ideias; nova pasta `estrategia-retomada/` pra planejar a volta ao ritmo de postagens.
-- 2026-08-17: skill consultivo dividida em `/consultivo` (esporádico, Legal One) e `/demandas` (assessoria mensal, Supabase).
-- 2026-08-20: skill `/inpi` criada — painel central `inpi/controle.md` (todos os clientes), documentos continuam em `06_INPI/` na pasta de cada cliente. Relatório de andamento pro cliente vira HTML com imagem de cada pedido, layout de duas colunas (acompanhamento x providência), e é publicado no Cloudflare Pages (token e account ID em `.env`, projeto criado por cliente, ex: `inpi-lz-7805ac58`).
-- 2026-08-20: Cloudflare configurado no workspace (conta, API token, skills/MCP oficiais instalados) — disponível pra qualquer projeto futuro, não só INPI.
-- 2026-08-24: cliente Consisa cadastrado no sistema de assessorias (CNPJ 07.784.629/0001-19, demandas #0075-#0077).
-- 2026-08-24: conferidas as 19 pastas de assessoria no SharePoint, com 6 clientes cadastrados no sistema próprio de demandas.
 - 2026-09-01: receita oficial do Fechamento Mensal passou a vir do e-mail mensal da contabilidade (Hcont), não mais da planilha `01 Contas a Receber` (que inflava o total).
 - 2026-09-01: skill `/financeiro` criada, com o app `financeiro-paula` (Cloudflare Worker + Supabase) como ferramenta principal de contas a pagar/receber — painel em Excel foi tentado antes e abandonado.
 - 2026-09-01: modelo de recorrentes no app separa "definição" (cliente, valor, dia de vencimento, total de parcelas) de "ocorrência mensal", gerada automaticamente pelo Worker conforme a Paula navega os meses.
@@ -89,13 +86,39 @@ Reels retomado (28/09), puxado por um gancho de atualidade (temporada CASA COR):
   (nome do perfil, legenda, ícones de curtir/comentar/compartilhar) cobre uma faixa grande na parte
   de baixo quando o Reels é aberto no app (diferente de um post de imagem estática, onde isso não
   existe). Manter o texto por volta de 70-74% da altura do quadro, não mais embaixo que isso.
+- 2026-09-30: nome público do formato multi-parte é **"História em Série"**, nunca "Série Real" nas
+  legendas/slides ("real" dá a entender que os outros contos "Era uma vez..." não eram). "Série Real"
+  fica só como nome interno nos arquivos antigos.
+- 2026-09-30: `preparar.js` da `/postar-instagram` falhava com erro 2207052 porque criava os
+  containers antes de o Cloudflare Pages servir as imagens recém-publicadas. Corrigido: agora espera
+  cada URL responder 200 + 15s de folga, e tenta de novo até 3 vezes se a Meta ainda não baixar.
+- 2026-09-30: denúncia ao CREA-SC da #0062 na hipótese 2 (infração ao Código de Ética, Res.
+  1002/2002, rito da Res. 1004/2003) contra o RT da execução, Eng. José Marcos Braga Guimarães
+  (CREA-SC 177828-0, ART 9034658-2), com pedido de fiscalização prioritária. Sem citar áudios, sem
+  testemunhas e sem relatório técnico novo. Argumento central: a construtora sabia que a
+  continuidade da obra dependia dos reforços feitos em paralelo (e-mail de 25/02/2025). Não há
+  documento escrito que limite a obra a certo número de pavimentos.
+- 2026-09-30: na Excel Engenharia só o Fred assina pela empresa (6ª alteração contratual:
+  administração exclusiva dele). Paula assina o protocolo do CREA como procuradora; a denúncia leva
+  as assinaturas do Fred e da Paula.
+- 2026-09-30: skill `/transcrever-audio` (global) trocada do openai-whisper pro faster-whisper:
+  modelo int8, 2 núcleos por padrão, prioridade baixa, pra não travar o computador. Exige `av`
+  abaixo da versão 15 (a 15+ quebra o faster-whisper).
+- 2026-09-30: no modelo de contrato de prestador em que o contratante é o cliente final do Grupo Ao Cubo, o Ao Cubo assina como **procurador do cliente**, com procuração anexa. Ele não entra como "sub-rogado" (termo tecnicamente errado) nem como interveniente. O contrato tem só duas partes, obriga apenas o cliente, e o limite de aprovação do Ao Cubo fica definido na procuração.
+- 2026-09-30: a #0061 foi escalonada à Blutech como contratante, porque o contrato e as duplicatas estão em nome da R&J e a Menegildo exige a R&J em qualquer acordo. Custos com terceiros: R$ 12.400,00 já pagos pela Blutech (equipe e munck) e R$ 2.900,00 ainda pendentes de repasse pelo Ao Cubo (frete, eletricista, fonte). O Ao Cubo se dispôs a acompanhar a execução da porta da área técnica.
 
 ## Pendências
 - LRG Romani: quando o pedido da marca mista "Psicólogos Online Brasil" (NCL 44) for protocolado, registrar no `inpi/controle.md` via `/inpi` (a GRU já está na pasta do cliente). Prazo contratual de protocolo: 5 dias úteis após assinatura, documentos e pagamento da GRU.
 - Apagar no Canva a pasta "_Temp - conversão Word (pode apagar)" (12 cópias usadas só pra leitura; o conector não apaga).
 - Avaliar conector de WhatsApp Business e integração com Legal One (sem MCP pronto no catálogo ainda).
 - Seguir o calendário fixo a partir de 21/09/2026 (terça Instagram, quinta blog + Instagram) — semana 3 do blog é "Distrato de imóvel na planta" (ver `conteudo/estrategia-retomada/calendario-blog.md`).
-- Roteirizar a próxima Série Real (candidatos já levantados nas demandas: eletricista que abandona obra #0104, reforço estrutural não executado #0062, cliente que some e advogado contra-notifica #0063).
+- Publicar partes 2 (01/10) e 3 (02/10) da História em Série do prédio (renderizar PNGs, `/postar-instagram`) e o artigo do blog da semana 4 antes da parte 3. Próximas candidatas a História em Série: eletricista que abandona obra #0104, cliente que some e advogado contra-notifica #0063.
+- #0062 Excel/Sunset Marine, pra protocolar a denúncia no CREA-SC: colher a assinatura do Fred na
+  denúncia e na procuração, e preencher a data; juntar o projeto de reforço dos pilares (pedir ao
+  Rafael), os comprovantes de envio da notificação e os prints do WhatsApp de setembro com o Carlos
+  e o Marciel; levar os originais pra autenticação no CREA. Também avisar a Excel dos dois riscos
+  dela: a ART do projeto (9711619-6) aparecia com taxa "A PAGAR", e o reforço dos pilares não tem
+  ART própria.
 - Avaliar o lançamento da ferramenta "Contrato na Régua" quando a Paula sinalizar (Reels já foi retomado em 28/09).
 - Tem um `dump.txt` solto na raiz do `Paula_Adv_OS` (rascunho de minuta de procuração, de antes dessa sessão) — perguntar à Paula se quer mover ou descartar.
 - Leonardo Zanatta: aguardando ele enviar renderizações corrigidas da Mesa de Centro Jacuí (prazo 30/09/2026) e uma foto/render da Luminária de teto BR 30 2025 005775 2.
@@ -103,6 +126,9 @@ Reels retomado (28/09), puxado por um gancho de atualidade (temporada CASA COR):
 - Autorizar os MCP servers da Cloudflare (`cloudflare-api`, `cloudflare-bindings`, `cloudflare-builds`, `cloudflare-observability`) via `/mcp` numa sessão interativa, quando for usar algum projeto Cloudflare que precise deles.
 - Cadastrar no app financeiro (como recorrente) os impostos, o salário da Thaís e as parcelas de empréstimo assim que a Paula tiver valores/prazos confiáveis pra projetar — hoje ficam de fora por variarem demais mês a mês.
 - Confirmar nas próximas semanas que o erro do Wordfence não volta mais depois da remoção da Proteção Estendida (28/09) — se voltar, não é mais o mesmo problema, investigar do zero.
+- Demanda #0116 (Grupo Ao Cubo): Paula revisar as versões `_v2` (conferir os números definidos: 15 dias, 48h, 5 dias úteis, 12 meses, 0,5%/10%), aprovar e tirar o destaque amarelo; atualizar a demanda no sistema.
+- #0061: cobrar a decisão da Blutech na segunda, 05/10 (o prazo pedido foi 02/10; já existe tarefa no sistema). Conforme a decisão, dar retorno ao Leonardo Menegildo sobre a reunião. A parcela 004 vence em 13/10.
+- Fazer o modelo de procuração do cliente para o Grupo Ao Cubo (sem ela o modelo Cliente não vincula o cliente), se a Paula confirmar.
 
 ## Quente agora
 Retomada de Instagram + blog rodando de verdade (2026-09-17): calendário fixo terça/quinta,
@@ -110,7 +136,6 @@ formatos "Conto Jurídico"/"Série Real" e "Acho chic" validados e publicados, s
 `/postar-instagram` em uso. Reels retomado em 28/09 (primeiro publicado, gancho CASA COR) — skill
 `/postar-instagram` agora publica vídeo também. Fonte editorial padrão (Borna Bold) e padrão de
 composição de texto sobre foto fixados nessa mesma sessão, valem pra toda peça nova desse tipo.
-Próximo passo natural é a primeira Série Real (multi-parte) e manter o ritmo sem repetir o padrão de
-pico-e-parada de antes.
+Primeira História em Série (multi-parte) em andamento de 30/09 a 02/10; manter o ritmo sem repetir o
+padrão de pico-e-parada de antes.
 App financeiro (`financeiro-paula`) recém-criado em 2026-09-01 — Paula está testando no dia a dia (marcar pago, editar, lançar retroativo), ainda ajustando dados de recorrentes conforme usa.
-Skill `/inpi` recém-criada (2026-08-20) — validada num cliente real, mas ainda vale revisar o formato do relatório na próxima vez que gerar pra outro cliente, pra confirmar se o padrão ficou bom de forma geral.

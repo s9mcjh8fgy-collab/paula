@@ -93,6 +93,10 @@ jurídico e a lição por trás. Não precisa esperar o desfecho real do caso: o
 ilustrar bem a consequência (ex: o que podia ter acontecido se a pessoa não tivesse se protegido
 juridicamente).
 
+**Nome público (2026-09-30):** nas legendas e slides, o formato multi-parte se chama **"História em
+Série"**, nunca "Série Real" ("real" dá a entender que os contos avulsos não eram). "Série Real"
+ficou só como nome interno.
+
 **Duas variações:**
 - **Conto Jurídico curto** (3-6 slides, post único): conflito pequeno, uma decisão, uma consequência
 - **Série Real longa** (4-7 partes, uma por dia numa semana/mês): conflito maior, gancho de
