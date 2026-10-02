@@ -109,6 +109,9 @@ Confirmar o que foi feito:
 
 ## Regras
 
+- O campo `cliente` do script busca pelo nome cadastrado, e acento conta. Ex: "Agile" não acha
+  nada, porque o cadastro é "Ágile Administradora de Condomínios". Se a busca falhar com um cliente
+  que já tem demandas, conferir o nome exato em `clients` antes de concluir que ele é esporádico
 - Sempre incluir no título ou no resumo da demanda todos os nomes que alguém possa usar pra buscar
   depois: prestador/terceiro envolvido, e também o nome da obra/unidade/marca do cliente quando for
   diferente da razão social cadastrada (ex: cliente "Grupo Ao Cubo" mas a obra/operação é da

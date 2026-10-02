@@ -119,6 +119,12 @@ Apresentar a avaliação e o caminho sugerido antes de executar:
 > "Analisei o contrato. Encontrei [resumo dos principais problemas]. Pela gravidade, sugiro
 > [caminho]. Concorda, ou prefere outro caminho?"
 
+**Exceção: contratos de fornecedor dos condomínios administrados pela Ágile** (assessoria
+mensal, quem pede é o Felipe). Não passar pelos três caminhos acima. Fazer sempre a análise
+simplificada: apontar só risco muito alto, não editar o contrato e entregar os tópicos em texto
+curto pro WhatsApp (cláusula + problema em linguagem simples + ajuste a pedir). O Felipe repassa à
+empresa contratada, que faz os ajustes. Registrar via `/demandas` (exemplos: #0057, #0123).
+
 ### 4. Executar
 
 Seguir o caminho aprovado. Mostrar o resultado antes de salvar.

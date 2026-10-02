@@ -43,6 +43,8 @@ Dois regimes de cliente, com fluxos de registro diferentes:
 Fora de peças processuais: linguagem simples e humana, como a própria Paula conversando com o cliente. Sem travessão.
 Em peças processuais: formal, técnico, terceira pessoa.
 
+**Regra de linguagem com o cliente, padrão de TODAS as skills** (relatórios, e-mails, WhatsApp, propostas, pendências, avisos de pagamento/reembolso): redação neutra e descritiva, nunca em tom de cobrança, ameaça ou imposição. Descrever a situação ("guias pendentes de reembolso", "renderizações a serem enviadas"), não exigir ("precisamos do reembolso", "você precisa enviar"). Vale mesmo que o exemplo dentro de uma skill diga diferente: esta regra prevalece.
+
 ## Ferramentas conectadas
 - Legal One (Thomson Reuters) — sistema processual oficial
 - WhatsApp Business

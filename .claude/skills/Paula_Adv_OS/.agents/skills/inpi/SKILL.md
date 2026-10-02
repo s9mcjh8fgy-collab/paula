@@ -3,9 +3,8 @@ name: inpi
 description: >
   Gerencia pedidos de registro de marca e desenho industrial no INPI: cria a pasta do pedido no
   padrão já usado pelo escritório, ajuda a redigir a especificação de produtos/serviços (marca) ou
-  o relatório descritivo (desenho industrial) pros formulários, atualiza o controle de andamento a
-  partir de consulta manual (o INPI não tem API pública, então é sempre a Paula/Thaís que consulta
-  e cola o resultado), e gera relatório de andamento em HTML pra mandar ao cliente. Use quando o
+  o relatório descritivo (desenho industrial) pros formulários, atualiza o controle de andamento
+  consultando direto o pePI (busca pública do INPI, acesso anônimo via curl), e gera relatório de andamento em HTML pra mandar ao cliente. Use quando o
   usuário pedir "novo pedido de marca", "novo desenho industrial", "registro no INPI", "atualiza o
   andamento do INPI", "escreve a descrição pro INPI", "relatório de andamento pro cliente [INPI]".
 ---
@@ -137,12 +136,32 @@ arquivo já usado no padrão (`Relatório Descritivo - [nome].docx` ou
 
 ## Uso 3 — Atualizar andamento
 
-O INPI não tem API pública pra consulta automatizada — esse passo é sempre semi-manual: a Paula ou
-a Thaís consulta no portal (busca.inpi.gov.br ou sistema e-Marcas/e-DI) e cola aqui o que viu.
+O INPI não tem API oficial, mas o pePI (busca.inpi.gov.br) aceita consulta anônima por requisição
+direta — testado em 2026-10-02. Consultar sozinho, sem pedir pra Paula colar nada:
 
-1. Perguntar o número do processo (ou pedir a lista se for atualização de vários pedidos de uma vez).
-2. Pedir a situação atual (texto colado, ou descrita) e, se tiver, o PDF/print da consulta.
-3. Se tiver o arquivo, salvar na pasta do pedido seguindo a numeração sequencial já usada
+```bash
+J=$(mktemp)
+curl -s -c $J -b $J -o /dev/null "https://busca.inpi.gov.br/pePI/servlet/LoginController?action=login"
+# Desenho industrial: NumPedido sem espaços e sem o dígito final (ex: BR302026003170)
+COD=$(curl -s -c $J -b $J "https://busca.inpi.gov.br/pePI/servlet/DesenhoServletController" \
+  --data "Action=SearchBasico&NumPedido=BR302026003170&RegisterPerPage=20" | grep -o 'CodPedido=[0-9]*' | head -1 | cut -d= -f2)
+curl -s -c $J -b $J "https://busca.inpi.gov.br/pePI/servlet/DesenhoServletController?Action=detail&CodPedido=$COD" | iconv -f latin1 -t utf-8
+# Marca: abrir antes /pePI/jsp/marcas/Pesquisa_num_processo.jsp e usar MarcasServletController com
+#   Action=searchMarca&tipoPesquisa=BY_NUM_PROC&NumPedido=939480514&buscaExata=sim&registerPerPage=20
+```
+
+Na página de detalhe, ler a seção **Petições** (serviço 100 = depósito, 105 = cumprimento de
+exigência, 156 = procurador) e **Publicações** (RPI, data, despacho e "Detalhes do despacho"). O
+rodapé diz até qual RPI os dados vão. Pedido protocolado há poucas semanas ainda não aparece (normal).
+A busca por número de GRU não é confiável (devolve resultado sem relação), não usar.
+
+**Cruzar sempre com a pasta**: se a Paula registrou uma petição (ex: cumprimento de exigência) e
+ela não aparece na lista de Petições do pePI, avisar a Paula internamente, mas não mudar nada no
+relatório do cliente sem ela decidir.
+
+1. Consultar todos os pedidos do cliente (ou só o pedido pedido) no pePI.
+2. Comparar com `inpi/controle.md` e com o último relatório; listar pra Paula o que mudou.
+3. Se a Paula tiver um PDF/print da consulta, salvar na pasta do pedido seguindo a numeração sequencial já usada
    (`01 Consulta_DD-MM.pdf`, `02 Consulta_DD-MM.pdf`, ...) — checar quantos "Consulta_" já existem
    na pasta pra saber o próximo número.
 4. Atualizar a linha do pedido em `inpi/controle.md`: status atual, data da consulta, e próximo
@@ -184,7 +203,16 @@ mesmo que a consulta ainda diga "para confecção do folheto" ou algo parecido.
      não aparece pro cliente.
    - **A pendência deve dizer claramente o que a Paula precisa que o cliente faça** — não só
      descrever o problema técnico. Ex: não "inconsistência entre as vistas", e sim "o INPI apontou
-     problema X nas imagens; precisamos que você envie novas renderizações corrigindo isso".
+     problema X nas imagens; novas renderizações corrigindo isso, a serem enviadas pelo cliente").
+     Redação sempre neutra e descritiva, nunca em tom de cobrança (ver regra de linguagem com o
+     cliente no `AGENTS.md`). Ex. de reembolso: "Guias recolhidas pelo escritório no ato de cada
+     protocolo, pendentes de reembolso", nunca "Precisamos do reembolso".
+   - **Nome dos itens padronizado**, igual no título do card, nas listas (ex: reembolso) e no
+     `inpi/controle.md`: `[tipo no singular] [modelo]`, sem parênteses. Ex: "Mesa de centro
+     Jacuí", "Carrinho de chá Carteiro", "Sofá Encantaria", "Marca mista Leonardo Zanatta". Sem
+     nome de modelo, usar o título do pedido no INPI ("Balcões", "Luminárias de chão"). Nº de
+     variações, se for mencionar, vai na linha do tempo ("Depósito do pedido (4 variações)"), não
+     no nome.
 3. Gerar um HTML estilizado (usar `marca/design-guide.md` pra cores e tipografia — fundo
    bege/marrom, destaque laranja terracota #F26F4D, fonte Inter pro corpo) em **duas colunas**:
    à esquerda **"Só acompanhamento"** (pedidos sem pendência do cliente), à direita **"Aguarda
