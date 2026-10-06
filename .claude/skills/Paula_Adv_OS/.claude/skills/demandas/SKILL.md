@@ -120,5 +120,9 @@ Confirmar o que foi feito:
 - Nunca inventar o `client_id` ou forçar um cliente que não bateu na busca — se a busca por nome
   encontrar mais de um resultado ou nenhum, parar e perguntar
 - `criadoPor` é sempre perguntado caso a caso (não presumir que é sempre a Paula)
+- Seguimento de demanda com tarefa: antes de criar, listar as tarefas da interação
+  (`tasks?interaction_id=eq.<id>`). Se já tem tarefa pendente com o mesmo tema (ex: cobrar a mesma
+  pessoa sobre o mesmo assunto), fazer PATCH nela (nova `due_date` + andamento na `description`),
+  nunca duplicar. Criar tarefa nova só quando o tema muda
 - Sem travessão, tom de conversa real (exceto se a resposta virar algo formal tipo parecer robusto,
   que ainda assim não é peça processual)

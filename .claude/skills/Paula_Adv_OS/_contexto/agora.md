@@ -45,6 +45,8 @@ Reels retomado (28/09), puxado por um gancho de atualidade (temporada CASA COR):
 
 06/10: #0110 (Excel Engenharia, questão societária Excel x Exxell x Ekcel). Analisada a transcrição da reunião de 29/09. Feito o esqueleto da reorganização societária em Word timbrado (pasta da demanda), que a Paula ajustou e enviou no grupo de WhatsApp com Denis e Rafael. Proposta: a Exxell fica como única empresa, a Excel é encerrada de forma organizada, o Fred passa para conselheiro e o histórico das permutas e da reforma fica registrado. Formato: primeiro o memorando de entendimentos, depois o acordo de sócios e a alteração contratual. No sistema, a demanda foi atualizada (pendente, sem tarefa nova) e a tarefa da reunião foi concluída.
 
+06/10: #0061 (Menegildo x Blutech). A Blutech não respondeu até o prazo de 02/10. Em 30/09 o João Paulo tinha encaminhado o assunto ao jurídico da Blutech (juridico@rsabr.adv.br). A Paula mandou e-mail a todos perguntando se já avaliaram as alternativas e se colocou à disposição pra conversar. Demanda atualizada e a tarefa aberta passou pra 09/10.
+
 ## Decisões recentes
 - 2026-09-10: WordPress, cPanel e Google Search Console conectados ao workspace; credenciais sensíveis agora ficam em `.credenciais/` (fora do git) além de `.env.local`.
 - 2026-09-10: site invadido — webshell (`wp-cron-ooyh.php`) achado e neutralizado. Senhas do WordPress e cPanel trocadas, 2FA ativado nos dois. Causa do redirecionamento mobile pra site de golpe foi resolvida pela equipe que desenvolveu o site. Incidente encerrado.
@@ -127,6 +129,7 @@ Reels retomado (28/09), puxado por um gancho de atualidade (temporada CASA COR):
 - 2026-10-06: texto com várias linhas por tela vai em carrossel, não em Reels de slides, porque no vídeo não dá tempo de ler. Música em alta só entra quando a Paula publica pelo app (a API não coloca música, nem em carrossel nem em Reels), então post com música sai por ela, e eu entrego as imagens no chat e a legenda pronta. A API do Instagram não tem rascunho: o container não publicado não aparece no app e expira em 24 horas.
 - 2026-10-05: na declaração para a Icatu, não entrou a informação de que o Wilian não é filho biológico. Ele é herdeiro registral, e mencionar isso só complicaria a análise.
 - 2026-10-06: o acordo de sócios vigente da Exxell é a 1ª alteração (v27-02-2026), sem via assinada no arquivo. As regras de desligamento (cl. 8) valem para todos os sócios, inclusive os de capital, mas não preveem o valor das cotas. Os erros de redação e a cl. 10.1(b), que encerra o acordo quando entra um sócio novo, ficam para a próxima versão (lista na memória `project_exxell_acordo_socios_correcoes`). A cl. 8.3.1 (desligamento por "reorganização estratégica") ficou fora do esqueleto porque é juridicamente frágil.
+- 2026-10-06: no seguimento de uma demanda, se a tarefa aberta tem o mesmo tema, ela é atualizada (nova data e andamento). Só se cria tarefa nova quando o tema muda.
 
 ## Pendências
 - Ed / Icatu: o Edilson precisa assinar a declaração pelo gov.br ou com firma reconhecida. Falta montar o PDF de anexo com os documentos dos outros herdeiros, separando as páginas da íntegra do inventário (eventos 1, 5, 6, 22, 32 e 33). Depois é enviar tudo à Icatu e reenviar a declaração de herdeiros, que chegou com a assinatura digital corrompida. A proposta nº 060013891190 normalmente vai da cooperativa direto para a Icatu, então vale confirmar com a Sicredi.
@@ -148,7 +151,7 @@ Reels retomado (28/09), puxado por um gancho de atualidade (temporada CASA COR):
 - Cadastrar no app financeiro (como recorrente) os impostos, o salário da Thaís e as parcelas de empréstimo assim que a Paula tiver valores/prazos confiáveis pra projetar — hoje ficam de fora por variarem demais mês a mês.
 - Confirmar nas próximas semanas que o erro do Wordfence não volta mais depois da remoção da Proteção Estendida (28/09) — se voltar, não é mais o mesmo problema, investigar do zero.
 - Demanda #0116 (Grupo Ao Cubo): Paula revisar as versões `_v2` (conferir os números definidos: 15 dias, 48h, 5 dias úteis, 12 meses, 0,5%/10%), aprovar e tirar o destaque amarelo; atualizar a demanda no sistema.
-- #0061: cobrar a decisão da Blutech na segunda, 05/10 (o prazo pedido foi 02/10; já existe tarefa no sistema). Conforme a decisão, dar retorno ao Leonardo Menegildo sobre a reunião. A parcela 004 vence em 13/10.
+- #0061: cobrar o retorno da Blutech e do jurídico deles na sexta, 09/10 (a tarefa já está no sistema). Conforme a decisão, dar retorno ao Leonardo Menegildo sobre a reunião. A parcela 004 vence em 13/10.
 - #0048: cobrar o retorno da Santer sobre o aditivo em 07/10 (a tarefa já está no sistema). A parcela 01 vence em 20/10, e a nota fiscal com o boleto precisa sair até 10/10.
 - #0110: aguardar o retorno de Denis e Rafael sobre o item 4 do esqueleto (saída total ou percentual reduzido do Fred, faixa de valores, registros das permutas e da reforma, balanço e via assinada do acordo vigente) para redigir o memorando de entendimentos.
 - Fazer o modelo de procuração do cliente para o Grupo Ao Cubo (sem ela o modelo Cliente não vincula o cliente), se a Paula confirmar.
