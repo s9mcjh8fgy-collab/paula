@@ -20,9 +20,13 @@ python3 .claude/skills/search-console/scripts/relatorio.py resumo     # cliques/
 python3 .claude/skills/search-console/scripts/relatorio.py paginas    # top 25 páginas (últimos 28 dias)
 python3 .claude/skills/search-console/scripts/relatorio.py buscas     # top 25 termos de busca (últimos 28 dias)
 python3 .claude/skills/search-console/scripts/relatorio.py tendencia  # série diária (últimos 90 dias)
+python3 .claude/skills/search-console/scripts/relatorio.py indexacao URL [URL...]  # status de indexação de cada URL
+python3 .claude/skills/search-console/scripts/relatorio.py posts-recentes [DIAS]   # indexação dos posts publicados nos últimos DIAS (padrão 45)
 ```
 
-Rodar sempre pelo menos `resumo` + `paginas` + `buscas` pra dar um relatório completo. `tendencia` é opcional, útil pra ver se tem queda/alta ao longo do tempo.
+`indexacao` usa a API de Inspeção de URL (só consulta, não consegue pedir indexação). Pedir indexação é manual no painel: barra "Inspecionar URL", **uma URL por vez**, depois "Solicitar indexação". O painel é acessado pela conta pessoal do Google da Paula. A conta de marca "Paula Corrêa Advocacia" dá erro 403, porque o Search Console não aceita contas de marca. O arquivo HTML de verificação do Google fica na raiz do site e não pode ser removido. Status possíveis: "Submitted and indexed" = ok; "Crawled - currently not indexed" = o Google leu a página e decidiu não indexar ainda; "Discovered - currently not indexed" = o Google sabe que a página existe mas ainda não a leu.
+
+Rodar sempre pelo menos `resumo` + `paginas` + `buscas` + `posts-recentes` pra dar um relatório completo. `tendencia` é opcional, útil pra ver se tem queda/alta ao longo do tempo.
 
 ## Credenciais
 
@@ -47,7 +51,9 @@ pip install google-api-python-client google-auth
 
 5. **Buscas:** ver quais termos trazem mais impressões/cliques. Útil pra saber se as pessoas estão achando o site pelos termos certos (ex: "advogado construção civil", nome de cidade, etc.) e pra dar ideia de pauta pro blog.
 
-6. **Tom do relatório:** linguagem simples e direta, como a própria Paula explicando pra ela mesma o que os números significam — nada de jargão técnico de SEO sem explicar. Focar no que é acionável (ex: "esse post não tá aparecendo, vale revisar o título" em vez de só listar números).
+6. **Indexação dos posts recentes (`posts-recentes`):** a lista de posts vem da API pública do WordPress. A Paula não pede indexação manual de rotina: só avisar quando um post estiver travado, ou seja, ainda não indexado mais de 7 dias depois de publicado. Nesse caso, passar a URL pra ela pedir indexação no painel. Post com menos de 7 dias ainda sem indexação é normal, não precisa alertar. Se todos estiverem indexados, uma linha basta.
+
+7. **Tom do relatório:** linguagem simples e direta, como a própria Paula explicando pra ela mesma o que os números significam — nada de jargão técnico de SEO sem explicar. Focar no que é acionável (ex: "esse post não tá aparecendo, vale revisar o título" em vez de só listar números).
 
 ## Regras
 

@@ -8,6 +8,8 @@ Uso:
   python3 relatorio.py paginas     # paginas com mais impressoes (ultimos 28 dias)
   python3 relatorio.py buscas      # termos de busca com mais impressoes (ultimos 28 dias)
   python3 relatorio.py tendencia   # serie diaria (ultimos 90 dias)
+  python3 relatorio.py indexacao URL [URL...]  # status de indexacao de cada URL (Inspecao de URL)
+  python3 relatorio.py posts-recentes [DIAS]   # status de indexacao dos posts publicados nos ultimos DIAS (padrao 45)
 """
 
 import sys
@@ -139,11 +141,54 @@ def cmd_tendencia(service, site_url):
     _print_json(r.get("rows", []))
 
 
+def _inspecionar(service, site_url, urls):
+    out = []
+    for url in urls:
+        r = service.urlInspection().index().inspect(
+            body={"inspectionUrl": url, "siteUrl": site_url}
+        ).execute()
+        idx = r.get("inspectionResult", {}).get("indexStatusResult", {})
+        out.append({
+            "url": url,
+            "veredito": idx.get("verdict"),
+            "status": idx.get("coverageState"),
+            "ultimo_rastreamento": idx.get("lastCrawlTime"),
+            "sitemaps": idx.get("sitemap"),
+        })
+    return out
+
+
+def cmd_indexacao(service, site_url):
+    urls = sys.argv[2:]
+    if not urls:
+        print("Uso: relatorio.py indexacao URL [URL...]", file=sys.stderr)
+        sys.exit(1)
+    _print_json(_inspecionar(service, site_url, urls))
+
+
+def cmd_posts_recentes(service, site_url):
+    """Lista os posts publicados nos ultimos N dias (API publica do WordPress) e inspeciona cada um."""
+    import urllib.request
+    dias = int(sys.argv[2]) if len(sys.argv) > 2 else 45
+    desde = (datetime.date.today() - datetime.timedelta(days=dias)).isoformat() + "T00:00:00"
+    api = site_url.rstrip("/") + f"/wp-json/wp/v2/posts?per_page=50&after={desde}&_fields=link,date,title"
+    req = urllib.request.Request(api, headers={"User-Agent": "paula-search-console/1.0"})
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        posts = json.loads(resp.read().decode("utf-8"))
+    status = _inspecionar(service, site_url, [p["link"] for p in posts])
+    for p, st in zip(posts, status):
+        st["publicado_em"] = p["date"][:10]
+        st["titulo"] = p["title"]["rendered"]
+    _print_json(status)
+
+
 COMMANDS = {
     "resumo": cmd_resumo,
     "paginas": cmd_paginas,
     "buscas": cmd_buscas,
     "tendencia": cmd_tendencia,
+    "indexacao": cmd_indexacao,
+    "posts-recentes": cmd_posts_recentes,
 }
 
 
