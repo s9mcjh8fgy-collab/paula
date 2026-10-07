@@ -47,6 +47,8 @@ Reels retomado (28/09), puxado por um gancho de atualidade (temporada CASA COR):
 
 06/10: #0061 (Menegildo x Blutech). A Blutech não respondeu até o prazo de 02/10. Em 30/09 o João Paulo tinha encaminhado o assunto ao jurídico da Blutech (juridico@rsabr.adv.br). A Paula mandou e-mail a todos perguntando se já avaliaram as alternativas e se colocou à disposição pra conversar. Demanda atualizada e a tarefa aberta passou pra 09/10.
 
+06/10: LRG Romani (Psicólogos Online Brasil, Opção 1, R$ 3.000). As 4 minutas preliminares foram feitas a partir do texto do Robinson, da proposta e da transcrição da reunião de 21/09: Termo de Uso do Paciente (com anexos de consentimento para dados de saúde e para gravação), Contrato do Profissional Psicólogo, Revisão de Termos e Políticas e Cessão de Direitos sobre Software. Estão em .docx em `2_Pessoa Jurídica (PJ)/LRG Romani Ltda/` (rascunhos .md em `contratos/lrg-romani-*`) e foram enviadas por WhatsApp em 06/10. Aguardando retorno, sem tarefa de cobrança, por decisão da Paula. A marca já tinha sido protocolada em 28/09 (processo 945370571) e foi registrada no `inpi/controle.md`.
+
 ## Decisões recentes
 - 2026-09-10: WordPress, cPanel e Google Search Console conectados ao workspace; credenciais sensíveis agora ficam em `.credenciais/` (fora do git) além de `.env.local`.
 - 2026-09-10: site invadido — webshell (`wp-cron-ooyh.php`) achado e neutralizado. Senhas do WordPress e cPanel trocadas, 2FA ativado nos dois. Causa do redirecionamento mobile pra site de golpe foi resolvida pela equipe que desenvolveu o site. Incidente encerrado.
@@ -130,10 +132,14 @@ Reels retomado (28/09), puxado por um gancho de atualidade (temporada CASA COR):
 - 2026-10-05: na declaração para a Icatu, não entrou a informação de que o Wilian não é filho biológico. Ele é herdeiro registral, e mencionar isso só complicaria a análise.
 - 2026-10-06: o acordo de sócios vigente da Exxell é a 1ª alteração (v27-02-2026), sem via assinada no arquivo. As regras de desligamento (cl. 8) valem para todos os sócios, inclusive os de capital, mas não preveem o valor das cotas. Os erros de redação e a cl. 10.1(b), que encerra o acordo quando entra um sócio novo, ficam para a próxima versão (lista na memória `project_exxell_acordo_socios_correcoes`). A cl. 8.3.1 (desligamento por "reorganização estratégica") ficou fora do esqueleto porque é juridicamente frágil.
 - 2026-10-06: no seguimento de uma demanda, se a tarefa aberta tem o mesmo tema, ela é atualizada (nova data e andamento). Só se cria tarefa nova quando o tema muda.
+- 2026-10-06: a LRG Romani tem duas pastas, de propósito. `2_Pessoa Jurídica (PJ)/1_Processos/Proc 4927 - LRG Romani Ltda/` é só do registro no INPI (cadastrado no Legal One), e `2_Pessoa Jurídica (PJ)/LRG Romani Ltda/` é só da parte de contratos.
+- 2026-10-06: gravação e transcrição de sessões na LRG modeladas pela Res. CFP 13/2022, art. 11. A ferramenta é opcional, ativada pelo psicólogo e travada até o paciente aceitar o termo específico. O psicólogo é controlador do conteúdo e a plataforma é operadora, sem acesso e sem uso para treinar IA. Contrato do psicólogo no modelo de intermediação: o psicólogo contrata a plataforma e paga comissão.
+- 2026-10-06: cessão de software cobre só o programa (sem marca nem logo) e identifica o código-fonte pelo hash SHA-512 da versão de referência. O hash também serve para o registro no INPI.
+- 2026-10-06: minuta enviada a cliente para validação leva no topo "Minuta preliminar para validação", lacunas em amarelo e notas em quadro bege com borda laranja (#F1EBDF/#F26F4D). Assim o envio não conta como a entrega formal do contrato de elaboração de documentos.
 
 ## Pendências
 - Ed / Icatu: o Edilson precisa assinar a declaração pelo gov.br ou com firma reconhecida. Falta montar o PDF de anexo com os documentos dos outros herdeiros, separando as páginas da íntegra do inventário (eventos 1, 5, 6, 22, 32 e 33). Depois é enviar tudo à Icatu e reenviar a declaração de herdeiros, que chegou com a assinatura digital corrompida. A proposta nº 060013891190 normalmente vai da cooperativa direto para a Icatu, então vale confirmar com a Sicredi.
-- LRG Romani: quando o pedido da marca mista "Psicólogos Online Brasil" (NCL 44) for protocolado, registrar no `inpi/controle.md` via `/inpi` (a GRU já está na pasta do cliente). Prazo contratual de protocolo: 5 dias úteis após assinatura, documentos e pagamento da GRU.
+- Corrigir nos modelos de contrato do escritório (Ao Cubo e outros) a citação "MP nº 2.220-2/2001" para 2.200-2/2001.
 - Apagar no Canva a pasta "_Temp - conversão Word (pode apagar)" (12 cópias usadas só pra leitura; o conector não apaga).
 - Avaliar conector de WhatsApp Business e integração com Legal One (sem MCP pronto no catálogo ainda).
 - Seguir o calendário fixo a partir de 21/09/2026 (terça Instagram, quinta blog + Instagram) — próximo do blog: semana 5 (ver `conteudo/estrategia-retomada/calendario-blog.md`).
