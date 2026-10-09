@@ -117,4 +117,4 @@ A história do Otávio terminou sem que ele soubesse se o reforço foi feito. Ma
 
 Quem projeta não controla o que acontece no canteiro. Mas controla o que deixa registrado.
 
-E você, já passou por uma situação em que a obra seguiu diferente do que foi projetado? Como resolveu? Conta aqui nos comentários.
+Se você conhece algum arquiteto ou engenheiro que assina projetos, compartilha este texto com essa pessoa.

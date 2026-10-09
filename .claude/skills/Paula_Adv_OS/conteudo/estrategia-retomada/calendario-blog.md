@@ -33,8 +33,10 @@ editorial "Advocacia através dos meus casos".
   (mesmo formato visual dos posts antigos do site: `<h5><strong>Leia também:</strong> <a>...</a></h5>`)
 - **Nunca usar o CTA "Fale agora com nossos especialistas"** (link direto de WhatsApp) que os posts
   antigos do site têm — contraria a regra de não usar captação direta de cliente (ver
-  `_contexto/preferencias.md`). Usar CTA de engajamento no fechamento (ex: "comenta aqui se tiver
-  dúvida")
+  `_contexto/preferencias.md`). Usar CTA de engajamento no fechamento: convite pra compartilhar
+  o texto (ex: "se você conhece alguém que..., compartilha este texto com essa pessoa"). O blog
+  não tem seção de comentários, então nunca usar "comenta aqui" (corrigido nos 5 posts da
+  retomada em 08/10/2026)
 - O widget de compartilhamento em redes sociais no fim do post é automático (tema), não precisa
   inserir nada manual
 - **Capa do post:** usar uma frase-gancho curta, diferente do título e do resumo (nunca repetir o
@@ -63,7 +65,7 @@ Calendário definido em 2026-09-10.
   (primeiro post no novo padrão mais profundo: ~1.000 palavras, com exemplo numérico e FAQ)
 - [x] Extra (fora do calendário, gancho de atualidade) — publicado em 2026-09-28: "Expôs seu projeto na CASA COR? Os riscos jurídicos que todo arquiteto deveria conhecer" — https://paulacorrea.adv.br/expos-seu-projeto-na-casa-cor-os-riscos-juridicos-que-todo-arquiteto-deveria-conhecer/
 - [x] Semana 4 — publicado em 2026-10-01: https://paulacorrea.adv.br/responsabilidade-civil-arquiteto-engenheiro-erro-de-projeto/ (gancho: História em Série do prédio)
-- [ ] Semana 5
+- [x] Semana 5 — publicado em 2026-10-08 (post 6517): https://paulacorrea.adv.br/o-prestador-nao-terminou-o-servico-e-a-obra-tinha-data-marcada-o-que-o-contrato-precisava-dizer/ (tema trocado pelo caso real Menegildo, #0061/#0116: cláusulas do contrato com prestador na obra)
 - [ ] Semana 6
 - [ ] Semana 7
 - [ ] Semana 8

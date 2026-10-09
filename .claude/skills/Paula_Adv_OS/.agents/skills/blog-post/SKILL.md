@@ -84,8 +84,9 @@ Estrutura do artigo:
    `conteudo/estrategia-retomada/calendario-blog.md` pra saber qual pilar), no formato:
    `<h5><strong>Leia também:</strong> <a href="[url]">[título do pilar]</a></h5>`
 8. **CTA final de engajamento** — nunca captação direta ("fale com nossos especialistas", "me
-   procure", "manda mensagem"). Sempre convite pra comentar/compartilhar a experiência (ver
-   `feedback_cta_oab_etica`)
+   procure", "manda mensagem"). Sempre convite pra compartilhar o texto com quem está passando
+   pela situação (ver `feedback_cta_oab_etica`). **O blog não tem seção de comentários:** nunca
+   usar "comenta aqui" / "conta nos comentários"
 
 **Regras de escrita:**
 - Tom simples e humano, como a própria Paula explicando pro cliente — não parecer texto genérico de IA
