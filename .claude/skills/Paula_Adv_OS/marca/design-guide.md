@@ -66,6 +66,7 @@ Tom visual: técnico, formal, coerente, diplomático, explicativo.
 - Nunca rotacionar, inclinar ou achatar o logo
 - Marca aplicada monocromática (1 cor), exceto o logo reduzido (monograma PC)
 - Não usar cores de baixo contraste (ex: bege em cima de branco)
+- Não usar fundo laranja (#F26F4D) em slide ou card com bastante texto ou informação importante, porque prejudica a leitura. Laranja de fundo só em peça com pouquíssimo texto.
 - Não sobrepor o logo em fotos com muita informação
 
 ---

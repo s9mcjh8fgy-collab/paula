@@ -91,7 +91,7 @@ Escrever o texto de cada slide (título + corpo curto, linguagem de apresentaç�
 1. Ler `marca/design-guide.md` pra cores, fontes e logo
 2. Criar uma pasta de trabalho: `propostas/[nome-cliente]/`
 3. Criar um HTML por slide, 1920x1080 (`width:1920px; height:1080px`), aplicando:
-   - Alternância de fundo escuro (#6D413E) / claro (#F1EBDF) conforme a paleta do design-guide, pra dar ritmo visual entre slides
+   - Alternância de fundo escuro (#6D413E) / claro (#F1EBDF) conforme a paleta do design-guide, pra dar ritmo visual entre slides. Sem fundo laranja em slide de conteúdo (opção, escopo, investimento): fica difícil de ler (ver design-guide). Os decks antigos têm a Opção 2 em laranja, não copiar isso
    - Acento em laranja terracota (#F26F4D) pra destaque (título, valor do investimento, CTA)
    - Tipografia: títulos em Borna (fallback: uma serif/display forte), corpo em Inter (fallback: sans-serif limpa)
    - Logo/monograma no canto se o design-guide tiver o arquivo definido

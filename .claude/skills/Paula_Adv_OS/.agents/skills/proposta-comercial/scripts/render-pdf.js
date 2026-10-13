@@ -19,7 +19,9 @@ async function main() {
   const pdfPaths = [];
   for (let i = 0; i < slidePaths.length; i++) {
     const slidePath = slidePaths[i];
-    await page.goto(`file:///${slidePath.replace(/\\/g, '/')}`);
+    await page.goto(`file:///${slidePath.replace(/\\/g, '/')}`, { waitUntil: 'networkidle' });
+    // Sem isso o Inter (Google Fonts) às vezes não carrega a tempo e o PDF sai em Arial
+    await page.evaluate(() => document.fonts.ready);
     const tmpPath = `${outputPath}.part${i}.pdf`;
     await page.pdf({
       path: tmpPath,
