@@ -6,7 +6,9 @@ Status: publicado em 01/10/2026 (post 6514): https://paulacorrea.adv.br/responsa
 
 **Título:** Erro de projeto ou erro de obra? Até onde vai a responsabilidade do arquiteto e do engenheiro
 
-**Meta descrição (147 caracteres):** Quem projeta responde pelo projeto, não pelo que a obra faz diferente. Veja o que diz a lei, os prazos e como o profissional pode se proteger.
+**Título SEO:** Erro de projeto ou erro de obra: quem paga a conta?
+
+**Meta descrição:** A obra deu problema e todo mundo aponta pro projeto? Veja quando o arquiteto ou o engenheiro responde, por quanto tempo, e como se proteger.
 
 **Resumo (excerpt):** O que a lei diz sobre a responsabilidade de quem projeta, quando ela termina e o que fazer quando a obra não segue o projeto.
 
