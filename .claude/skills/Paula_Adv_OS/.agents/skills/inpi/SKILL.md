@@ -174,6 +174,16 @@ concessão/certificado", checar se já existe um arquivo `Certificado de registr
 `Despacho concedendo o registro.pdf` na pasta do pedido — se existir, o registro já foi concedido
 mesmo que a consulta ainda diga "para confecção do folheto" ou algo parecido.
 
+**Marca não tem mais taxa de concessão.** Pela tabela nova de retribuições (Portaria GM/MDIC
+nº 110/2025 e Portaria INPI/PR nº 10/2025), todo o valor do registro de marca é pago no
+protocolo; pedidos deferidos depois de 22/06/2025 têm o certificado emitido automaticamente, sem
+taxa adicional (no pePI aparece uma petição de ofício em nome de "DIRMA/GABINETE"). Nunca colocar
+"pagar taxa de concessão" como próximo passo de marca nem dizer isso ao cliente: após o
+deferimento, o próximo passo é só aguardar a publicação da concessão. Caso real: marca Estrutura
+Legal da Paula (proc. 938276549), depósito 07/03/2025, deferimento 25/08/2026, concessão
+15/09/2026 sem nenhum pagamento além do protocolo (cerca de 18 meses sem nenhuma intercorrência,
+boa referência de prazo pra dar ao cliente).
+
 ## Uso 4 — Relatório de andamento pro cliente
 
 1. Ler `inpi/controle.md` e filtrar as linhas do cliente pedido.
