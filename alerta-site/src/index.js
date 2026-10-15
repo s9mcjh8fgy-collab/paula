@@ -15,6 +15,9 @@ async function cpanelCall(env, module, func, params = {}) {
   return res.json();
 }
 
+// Desde 14/10/2026 a hospedagem responde 403 (página padrão do LiteSpeed) e loop de
+// redirecionamento no wp-login pros pedidos que saem da Cloudflare, mesmo com o site no ar
+// pros visitantes. `blocked` marca esse caso, pra runCheck decidir se é alarme falso.
 async function checkUrl(results, label, url, expectContains) {
   try {
     const start = Date.now();
@@ -27,10 +30,23 @@ async function checkUrl(results, label, url, expectContains) {
     });
     const ms = Date.now() - start;
     const text = await res.text();
-    const ok = res.status >= 200 && res.status < 400 && (!expectContains || text.includes(expectContains));
-    results.push({ label, ok, detail: `HTTP ${res.status}, ${ms}ms${ok ? '' : ' — conteúdo inesperado ou erro'}` });
+    const hasContent = !expectContains || text.includes(expectContains);
+    const ok = res.status >= 200 && res.status < 400 && hasContent;
+    // Em falha, mostra quem respondeu (header server) e o título da página, pra saber se foi
+    // Wordfence, ModSecurity da hospedagem ou o próprio WordPress
+    const title = (text.match(/<title[^>]*>([^<]*)<\/title>/i) || [])[1];
+    const extra = ok ? '' : ` — conteúdo inesperado ou erro (server: ${res.headers.get('server') || '?'}${title ? `, título: "${title.trim().slice(0, 120)}"` : `, corpo: "${text.replace(/\s+/g, ' ').slice(0, 160)}"`})`;
+    results.push({
+      label,
+      ok,
+      blocked: res.status === 403,
+      // 403 mas com o conteúdo esperado (ex: API devolvendo os posts) = WordPress funcionando
+      aliveDespite403: res.status === 403 && !!expectContains && hasContent,
+      detail: `HTTP ${res.status}, ${ms}ms${extra}`,
+    });
   } catch (e) {
-    results.push({ label, ok: false, detail: `Falhou: ${e.message}` });
+    const loop = /redirect/i.test(e.message);
+    results.push({ label, ok: false, blocked: loop, detail: loop ? 'loop de redirecionamento' : `Falhou: ${e.message}` });
   }
 }
 
@@ -120,6 +136,18 @@ async function runCheck(env) {
   await checkUrl(results, 'Login do wp-admin acessível', `${siteUrl}/wp-login.php`, 'wp-login');
   await checkUserIni(results, env);
   await checkErrorLog(results, env);
+
+  // Se a API devolveu os posts (mesmo com 403), o WordPress está vivo: os 403/loops das
+  // checagens HTTP são bloqueio da hospedagem ao robô, não site fora do ar
+  const wpAlive = results.some((r) => r.ok && r.label === 'API REST do WordPress') || results.some((r) => r.aliveDespite403);
+  if (wpAlive) {
+    for (const r of results) {
+      if (!r.ok && r.blocked) {
+        r.ok = true;
+        r.detail += ' (bloqueio da hospedagem ao robô; API do WordPress respondeu com conteúdo, site vivo)';
+      }
+    }
+  }
 
   const allOk = results.every((r) => r.ok);
 
