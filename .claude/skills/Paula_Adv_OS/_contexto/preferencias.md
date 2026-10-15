@@ -10,6 +10,8 @@ Exceção: peças processuais e documentos formais seguem o formalismo jurídico
 - "pra" em comunicação mais formal (petições, notificações, e-mails a clientes/terceiros): usar sempre "para" quando possível. "pra" só em WhatsApp, conteúdo e conversa informal
 - Frases que soem como cobrança, ameaça ou imposição ao cliente/terceiro (ex: "mas vão chegar e são por conta de vocês"). Informal sim, mas sempre com redação neutra e descritiva (ex: "custos pendentes de repasse pelo Grupo Ao Cubo à Blutech"; "ainda pendentes" em vez de "que ainda vão chegar")
 - CTA que soe captação direta de cliente ("me procure", "manda mensagem", "me chama") — o Código de Ética da OAB restringe publicidade/captação de clientela. Preferir CTA de engajamento: "compartilha com quem tá passando por isso". No blog do site não existe seção de comentários, então lá nunca usar "comenta aqui" (no Instagram, convite pra comentar continua ok)
+- Frases curtas de conteúdo (trends, cards, carrossel) que dependam de contexto pra fazer sentido (ex: "descontar o item", "prêmio de loja"). Cada frase precisa se explicar sozinha pra qualquer leigo: quem, o quê e qual a consequência (2026-10-15)
+- Saudação fixa em e-mail/mensagem pra enviar: usar bom dia, boa tarde ou boa noite conforme o horário do pedido, porque a Paula envia na hora (2026-10-15)
 
 ## Estilo geral
 - Fora de peças processuais: informal-profissional, direto, como uma conversa real

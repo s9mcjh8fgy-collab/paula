@@ -9,7 +9,7 @@ Crescimento — expandindo a carteira de clientes e estruturando um novo canal (
 3. Estruturar um trabalho ativo de conteúdo em redes sociais e blog do site, com pauta voltada pro nicho de construção civil (não conteúdo jurídico genérico)
 
 ## O que pode esperar
-Nada foi explicitamente adiado ainda — revisar conforme o uso avançar.
+Lançamento da ferramenta "Contrato na Régua": pausado por decisão da Paula, retomar quando ela sinalizar.
 
 ## Contexto com prazo
 Nenhum prazo específico registrado até o momento.

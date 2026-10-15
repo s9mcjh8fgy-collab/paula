@@ -101,6 +101,13 @@ Ensaio fotográfico profissional (2025), fundo neutro/ambiente claro, tom consis
   Paula, tom mais pessoal/descontraído. Bom pra conteúdo mais leve ou bastidores, não pra post sério
   de tema jurídico
 
+### Banco de imagens (fotos sem a Paula)
+
+Pexels é o banco padrão (usado no Reels CASA COR e no carrossel "posso pesar o clima?"). Busca pelo
+WebSearch com `allowed_domains: pexels.com` pra achar o ID da foto, e download direto, sem chave de
+API: `https://images.pexels.com/photos/<ID>/pexels-photo-<ID>.jpeg?auto=compress&cs=tinysrgb&w=1600`
+(o site em si bloqueia acesso automatizado). Registrar os IDs usados em `imagens/fontes.txt` da pasta da peça.
+
 ### Banco completo de fotos (fora do git, no OneDrive pessoal)
 
 `marca/fotos/` só tem uma seleção. O banco completo, pra buscar mais variedade quando precisar,
@@ -123,6 +130,7 @@ nova, perguntar pra Paula se a foto já foi usada em algum post, em vez de assum
 - `Paula, sonhadores (39).jpg` (Ensaio 2025) — abertura do Reels CASA COR (2026-09-28)
 - `Paula Borba (24).jpg` (Ensaio 2022) — fechamento do Reels CASA COR (2026-09-28)
 - `Paula Borba (106).jpg` (Ensaio 2022, cópia `ensaio-2022-106.jpg`) — capa do carrossel "Como agradar sua advogada" (2026-10-06)
+- `Paula Borba (56).jpg` e `Paula Borba (137).jpg` (Ensaio 2022, cópias `ensaio-2022-056.jpg` e `-137.jpg`) — abertura e fechamento do carrossel "posso pesar o clima?" (previsto 2026-10-20)
 
 Confirmado com a Paula em 2026-09-28 como ainda não usadas até aquela data: Ensaio 2025 `(70)`,
 `(74)`, `(76)`, `(79)`, `(81)`, `(83)` e todo o Ensaio 2022 e 2023 (exceto a `(24)` de 2022, já usada
