@@ -69,6 +69,13 @@ node .claude/skills/postar-instagram/scripts/confirmar.js "<pasta-de-estado>"
 Stories não têm legenda (é só imagem), então não precisa de `carousel-text.md`. Usar uma pasta de
 estado dedicada, ex: `conteudo/instagram/stories/[tema]/`.
 
+**Interações (stickers):** sempre que for montar stories, sugerir uma interação tirada de
+`conteudo/instagram/stories/banco-interacoes.md` (caixinha, enquete, quiz, escala de emoji) e deixar
+espaço livre na arte pro sticker, que a Paula coloca pelo app (a API não adiciona sticker). Depois de
+usada, marcar [x] com a data no banco. Pra responder perguntas que chegarem pela caixinha, partir de
+`conteudo/instagram/stories/perguntas-e-respostas.md` (respostas curtas, gerais, sem entrar no caso
+concreto) e acrescentar lá as perguntas novas que aparecerem.
+
 ## Reels (vídeo)
 
 Publica um vídeo já pronto (Reels) direto no feed, com capa customizada. Mesma lógica de dois

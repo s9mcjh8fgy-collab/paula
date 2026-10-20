@@ -31,3 +31,8 @@ Qual delas você queria ter ouvido antes? Comenta aqui.
 
 ## CTA
 Engajamento (comentário) na legenda e "siga" no último slide, sem captação direta.
+
+## Stories (20/10/2026)
+8 stories em `stories/` (1080x1920, `gerar-stories.js`), sem o slide 7 (imóvel na planta), que a Paula
+tirou por não "pesar o clima". Último story com "o carrossel completo tá no feed" e caixinha de
+perguntas colocada no app: "e você já passou por alguma situação 'pesada'?".

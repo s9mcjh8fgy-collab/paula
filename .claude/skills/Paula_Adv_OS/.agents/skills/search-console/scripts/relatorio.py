@@ -4,12 +4,12 @@ Search Console — Relatorio semanal
 Consulta a API do Google Search Console (site paulacorrea.adv.br) via service account.
 
 Uso:
-  python3 relatorio.py resumo      # cliques/impressoes/ctr/posicao: semana atual vs anterior
-  python3 relatorio.py paginas     # paginas com mais impressoes (ultimos 28 dias)
-  python3 relatorio.py buscas      # termos de busca com mais impressoes (ultimos 28 dias)
-  python3 relatorio.py tendencia   # serie diaria (ultimos 90 dias)
-  python3 relatorio.py indexacao URL [URL...]  # status de indexacao de cada URL (Inspecao de URL)
-  python3 relatorio.py posts-recentes [DIAS]   # status de indexacao dos posts publicados nos ultimos DIAS (padrao 45)
+  py relatorio.py resumo      # cliques/impressoes/ctr/posicao: semana atual vs anterior
+  py relatorio.py paginas     # paginas com mais impressoes (ultimos 28 dias)
+  py relatorio.py buscas      # termos de busca com mais impressoes (ultimos 28 dias)
+  py relatorio.py tendencia   # serie diaria (ultimos 90 dias)
+  py relatorio.py indexacao URL [URL...]  # status de indexacao de cada URL (Inspecao de URL)
+  py relatorio.py posts-recentes [DIAS]   # status de indexacao dos posts publicados nos ultimos DIAS (padrao 45)
 """
 
 import sys
@@ -194,7 +194,7 @@ COMMANDS = {
 
 def main():
     if len(sys.argv) < 2 or sys.argv[1] not in COMMANDS:
-        print(f"Uso: python3 {sys.argv[0]} [{'|'.join(COMMANDS)}]", file=sys.stderr)
+        print(f"Uso: py {sys.argv[0]} [{'|'.join(COMMANDS)}]", file=sys.stderr)
         sys.exit(1)
     service, site_url = _init_service()
     COMMANDS[sys.argv[1]](service, site_url)

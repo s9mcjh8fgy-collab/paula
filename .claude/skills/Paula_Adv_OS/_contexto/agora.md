@@ -164,7 +164,7 @@ Reels retomado (28/09), puxado por um gancho de atualidade (temporada CASA COR):
 - Apagar no Canva a pasta "_Temp - conversão Word (pode apagar)" (12 cópias usadas só pra leitura; o conector não apaga).
 - Avaliar conector de WhatsApp Business e integração com Legal One (sem MCP pronto no catálogo ainda).
 - Seguir o calendário fixo a partir de 21/09/2026 (terça Instagram, quinta blog + Instagram) — próximo do blog: semana 7, multa por atraso em obra (ver `conteudo/estrategia-retomada/calendario-blog.md`).
-- Ter 20/10: carrossel "posso pesar o clima?" (trend, 9 slides) pronto em `conteudo/instagram/carrossel/posso-pesar-o-clima/`; a Paula publica pelo app com música em alta.
+- Qua 21/10: story com as perguntas (desdobramento do carrossel "posso pesar o clima?", publicado em 20/10), material em `conteudo/instagram/carrossel/posso-pesar-o-clima/stories/` e `conteudo/instagram/stories/`.
 - Confirmar com qual conta do Google a Paula acessa o painel do Search Console e registrar na skill.
 - Próximas candidatas a História em Série: eletricista que abandona obra #0104, cliente que some e advogado contra-notifica #0063.
 - #0062: consultar o andamento do protocolo 52601432511 no CREA-SC em 16/10 (tarefa já criada no sistema).

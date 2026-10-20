@@ -12,6 +12,7 @@ Exceção: peças processuais e documentos formais seguem o formalismo jurídico
 - CTA que soe captação direta de cliente ("me procure", "manda mensagem", "me chama") — o Código de Ética da OAB restringe publicidade/captação de clientela. Preferir CTA de engajamento: "compartilha com quem tá passando por isso". No blog do site não existe seção de comentários, então lá nunca usar "comenta aqui" (no Instagram, convite pra comentar continua ok)
 - Frases curtas de conteúdo (trends, cards, carrossel) que dependam de contexto pra fazer sentido (ex: "descontar o item", "prêmio de loja"). Cada frase precisa se explicar sozinha pra qualquer leigo: quem, o quê e qual a consequência (2026-10-15)
 - Saudação fixa em e-mail/mensagem pra enviar: usar bom dia, boa tarde ou boa noite conforme o horário do pedido, porque a Paula envia na hora (2026-10-15)
+- Azul em títulos, subtítulos e cabeçalhos de tabela de documentos (.docx, relatórios, rascunhos para clientes), porque "parece coisa do ChatGPT". Usar grafite/preto ou a paleta da marca quando o documento for do escritório (2026-10-19)
 
 ## Estilo geral
 - Fora de peças processuais: informal-profissional, direto, como uma conversa real

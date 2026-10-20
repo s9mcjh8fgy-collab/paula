@@ -16,13 +16,17 @@ Consulta os dados de busca orgânica do site (paulacorrea.adv.br) via API do Goo
 ## Como rodar
 
 ```bash
-python3 .claude/skills/search-console/scripts/relatorio.py resumo     # cliques/impressões/CTR/posição — semana atual vs anterior
-python3 .claude/skills/search-console/scripts/relatorio.py paginas    # top 25 páginas (últimos 28 dias)
-python3 .claude/skills/search-console/scripts/relatorio.py buscas     # top 25 termos de busca (últimos 28 dias)
-python3 .claude/skills/search-console/scripts/relatorio.py tendencia  # série diária (últimos 90 dias)
-python3 .claude/skills/search-console/scripts/relatorio.py indexacao URL [URL...]  # status de indexação de cada URL
-python3 .claude/skills/search-console/scripts/relatorio.py posts-recentes [DIAS]   # indexação dos posts publicados nos últimos DIAS (padrão 45)
+PYTHONIOENCODING=utf-8 py .claude/skills/search-console/scripts/relatorio.py resumo     # cliques/impressões/CTR/posição — semana atual vs anterior
+PYTHONIOENCODING=utf-8 py .claude/skills/search-console/scripts/relatorio.py paginas    # top 25 páginas (últimos 28 dias)
+PYTHONIOENCODING=utf-8 py .claude/skills/search-console/scripts/relatorio.py buscas     # top 25 termos de busca (últimos 28 dias)
+PYTHONIOENCODING=utf-8 py .claude/skills/search-console/scripts/relatorio.py tendencia  # série diária (últimos 90 dias)
+PYTHONIOENCODING=utf-8 py .claude/skills/search-console/scripts/relatorio.py indexacao URL [URL...]  # status de indexação de cada URL
+PYTHONIOENCODING=utf-8 py .claude/skills/search-console/scripts/relatorio.py posts-recentes [DIAS]   # indexação dos posts publicados nos últimos DIAS (padrão 45)
 ```
+
+No Windows desta máquina não existe `python3` (o atalho abre a Microsoft Store e devolve erro 49). Use o lançador `py`. O `PYTHONIOENCODING=utf-8` evita problema com acento na saída.
+
+No resultado de `indexacao`/`posts-recentes`, `"sitemaps": null` **não** quer dizer que o post ficou fora do sitemap. Só quer dizer que o Google ainda não ligou aquela URL a um sitemap. Antes de culpar o Yoast, confira direto em `https://paulacorrea.adv.br/post-sitemap.xml`.
 
 `indexacao` usa a API de Inspeção de URL (só consulta, não consegue pedir indexação). Pedir indexação é manual no painel: barra "Inspecionar URL", **uma URL por vez**, depois "Solicitar indexação". O painel é acessado pela conta pessoal do Google da Paula. A conta de marca "Paula Corrêa Advocacia" dá erro 403, porque o Search Console não aceita contas de marca. O arquivo HTML de verificação do Google fica na raiz do site e não pode ser removido. Status possíveis: "Submitted and indexed" = ok; "Crawled - currently not indexed" = o Google leu a página e decidiu não indexar ainda; "Discovered - currently not indexed" = o Google sabe que a página existe mas ainda não a leu.
 
