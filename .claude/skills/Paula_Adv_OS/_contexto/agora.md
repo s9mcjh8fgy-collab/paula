@@ -165,6 +165,7 @@ Reels retomado (28/09), puxado por um gancho de atualidade (temporada CASA COR):
 - Avaliar conector de WhatsApp Business e integração com Legal One (sem MCP pronto no catálogo ainda).
 - Seguir o calendário fixo a partir de 21/09/2026 (terça Instagram, quinta blog + Instagram) — próximo do blog: semana 7, multa por atraso em obra (ver `conteudo/estrategia-retomada/calendario-blog.md`).
 - Qua 21/10: story com as perguntas (desdobramento do carrossel "posso pesar o clima?", publicado em 20/10), material em `conteudo/instagram/carrossel/posso-pesar-o-clima/stories/` e `conteudo/instagram/stories/`.
+- Ter 27/10: carrossel sobre Airbnb em condomínio residencial (caso #0132 anonimizado, STJ REsp 2.121.055 e Tema 1.443), material em `conteudo/casos/caso-airbnb-condominio-residencial.md`. Conferir o andamento do Tema 1.443 antes de publicar. Pode puxar o blog da semana 8 (condomínio).
 - Confirmar com qual conta do Google a Paula acessa o painel do Search Console e registrar na skill.
 - Próximas candidatas a História em Série: eletricista que abandona obra #0104, cliente que some e advogado contra-notifica #0063.
 - #0062: consultar o andamento do protocolo 52601432511 no CREA-SC em 16/10 (tarefa já criada no sistema).
