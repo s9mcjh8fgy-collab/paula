@@ -13,6 +13,7 @@ Exceção: peças processuais e documentos formais seguem o formalismo jurídico
 - Frases curtas de conteúdo (trends, cards, carrossel) que dependam de contexto pra fazer sentido (ex: "descontar o item", "prêmio de loja"). Cada frase precisa se explicar sozinha pra qualquer leigo: quem, o quê e qual a consequência (2026-10-15)
 - Saudação fixa em e-mail/mensagem pra enviar: usar bom dia, boa tarde ou boa noite conforme o horário do pedido, porque a Paula envia na hora (2026-10-15)
 - Azul em títulos, subtítulos e cabeçalhos de tabela de documentos (.docx, relatórios, rascunhos para clientes), porque "parece coisa do ChatGPT". Usar grafite/preto ou a paleta da marca quando o documento for do escritório (2026-10-19)
+- Artigo de blog que mistura ângulos diferentes do mesmo tema (ex: o profissional que usa IA e o cliente que usa o projeto numa IA). Um recorte só por texto, senão fica completo demais e confuso (2026-10-22)
 
 ## Estilo geral
 - Fora de peças processuais: informal-profissional, direto, como uma conversa real

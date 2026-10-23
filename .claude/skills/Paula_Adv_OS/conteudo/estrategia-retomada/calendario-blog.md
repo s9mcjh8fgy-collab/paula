@@ -25,9 +25,10 @@ editorial "Advocacia através dos meus casos".
 | 4 | Responsabilidade civil do arquiteto e do engenheiro por erro de projeto | assessoria-juridica-para-arquitetos | responsabilidade civil arquiteto erro de projeto |
 | 5 | Cláusulas que não podem faltar no contrato de prestação de serviço de engenharia/arquitetura | assessoria-juridica-para-arquitetos / contrato-de-prestacao-de-servicos | contrato serviço engenharia cláusulas |
 | 6 | Reserva técnica: o que o arquiteto pode receber de lojas e por que os prêmios entraram na mira do CAU (trocado pelo caso real #0107) | assessoria-juridica-para-arquitetos | reserva técnica arquiteto |
-| 7 | Multa por atraso em obra: como calcular e como cobrar (ou se defender) | advogado-na-construcao-civil | multa atraso obra |
-| 8 | Advogado para condomínio em Blumenau: quando vale a pena ter assessoria fixa | advogado-em-blumenau / lgpd-para-condominios | advogado condomínio Blumenau |
-| 9 | Como registrar um projeto arquitetônico: direito autoral do arquiteto na prática | assessoria-juridica-para-arquitetos / registro-de-marca | registro projeto arquitetônico direito autoral |
+| 7 | Cliente colocou seu projeto numa IA? O que a lei diz e o que o contrato precisa prever (trocado: gancho da conversa de prospecção com arquiteta em 22/10) | assessoria-juridica-para-arquitetos | cliente usou meu projeto na IA / direito autoral projeto IA |
+| 8 | Multa por atraso em obra: como calcular e como cobrar (ou se defender) | advogado-na-construcao-civil | multa atraso obra |
+| 9 | Advogado para condomínio em Blumenau: quando vale a pena ter assessoria fixa | advogado-em-blumenau / lgpd-para-condominios | advogado condomínio Blumenau |
+| 10 | Como registrar um projeto arquitetônico: direito autoral do arquiteto na prática | assessoria-juridica-para-arquitetos / registro-de-marca | registro projeto arquitetônico direito autoral |
 
 ## Padrão de estrutura (definido na semana 1, 2026-09-10)
 - Sempre incluir um bloco **"Leia também: [link]"** no meio do post, apontando pro pilar relacionado
@@ -69,6 +70,7 @@ Calendário definido em 2026-09-10.
 - [x] Semana 5 — publicado em 2026-10-08 (post 6517): https://paulacorrea.adv.br/o-prestador-nao-terminou-o-servico-e-a-obra-tinha-data-marcada-o-que-o-contrato-precisava-dizer/ (tema trocado pelo caso real Menegildo, #0061/#0116: cláusulas do contrato com prestador na obra)
 - [x] Semana 6 — publicado em 2026-10-15 (post 6525): https://paulacorrea.adv.br/reserva-tecnica-arquiteto-premios-lojas-cau/ (tema trocado pelo caso real #0107, gancho da História em Série do prêmio da arquiteta; multa por atraso passou pra semana 7)
 - [x] Extra (fora do calendário, tema que ficou de fora na semana 5, com cláusula de uso de IA) — publicado em 2026-10-15 (post 6529): https://paulacorrea.adv.br/contrato-prestacao-servicos-arquitetura-engenharia/ (feito também pra servir de link nas abordagens a arquitetos/engenheiros indicados)
-- [ ] Semana 7
+- [x] Semana 7 — publicado em 2026-10-22 (post 6532, capa = mídia 6535): https://paulacorrea.adv.br/cliente-colocou-projeto-na-ia-direito-autoral-contrato/ (recorte só do uso indevido do projeto pelo cliente em IA, arquitetos e engenheiros; multa por atraso passou pra semana 8)
 - [ ] Semana 8
 - [ ] Semana 9
+- [ ] Semana 10
