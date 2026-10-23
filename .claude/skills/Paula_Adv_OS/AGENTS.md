@@ -10,7 +10,7 @@ Espaço de trabalho da Paula Corrêa Advocacia pra apoiar o dia a dia jurídico:
 - `inpi/` — painel central (`controle.md`) de todos os pedidos de marca e desenho industrial no INPI, de qualquer cliente. Os documentos de cada pedido ficam na pasta do cliente em `06_INPI/`, não aqui (ver skill `/inpi`)
 - `conteudo/` — redes sociais e site, organizado por canal: `instagram/`, `tiktok/`, `site/`, `youtube/` (cada um com subpastas por tipo, ex: `carrossel/`, `reels/`, `blog/`), mais `casos/` (fonte de ideias) e `estrategia-retomada/` (plano de retomada das postagens)
 - `propostas/[nome-cliente]/` — propostas geradas pela skill `/proposta-comercial`, em dois modelos: deck de slides completo (HTML → PDF, pra empresas/assessoria) ou Proposta Simples de 1 página A4 (recriada do brand template do Canva em 2026-09-29, pra casos pontuais/PF). PDF final vai pra `6_Colaboradores/Paula/02 Vendas/Propostas/`
-- `ferramentas/` — ferramentas próprias publicáveis (ex: `contrato-na-regua/`, gerador de contrato de arquitetura com captura de lead, lançamento pausado)
+- `ferramentas/` — ferramentas próprias publicáveis (ex: `contrato-na-regua/`, gerador de contrato de arquitetura com captura de lead, retomado em 2026-10-23 como produto pago (R$ 67), porta de entrada do Estrutura Legal na parceria com o Desvendarq)
 - `tarefas.md` — lista de pendências
 - `templates/skills/` — templates de skills prontos pra personalizar com /mapear
 - `templates/ferramentas/catalogo.md` — APIs e ferramentas disponíveis pra usar em skills
