@@ -54,8 +54,9 @@ pra Fase 4 abaixo depois de aprovado.
 
 ### Fase 4 — Registrar a demanda
 
-1. Confirmar com a Paula quem deve constar como `criadoPor` (ela ou a Thaís) e o `status`
-   (`done` se a resposta já foi enviada, `pending` se ainda depende de algo)
+1. `criadoPor` é sempre `paula` (e tarefa com `assigned_to: "Paula"`), sem perguntar. Só usar a
+   Thaís quando a Paula avisar. Confirmar só o `status` (`done` se a resposta já foi enviada,
+   `pending` se ainda depende de algo)
 2. Rodar o script (cwd = raiz do workspace `8_Claude`, ajustar `--env-file` conforme a distância
    até `.env.local`):
 
@@ -119,7 +120,8 @@ Confirmar o que foi feito:
 - Nunca escrever no Supabase antes do checkpoint de aprovação da resposta
 - Nunca inventar o `client_id` ou forçar um cliente que não bateu na busca — se a busca por nome
   encontrar mais de um resultado ou nenhum, parar e perguntar
-- `criadoPor` é sempre perguntado caso a caso (não presumir que é sempre a Paula)
+- Demanda (`criadoPor`) e tarefa (`assigned_to`) são sempre da Paula por padrão, sem perguntar.
+  Só ficam com a Thaís quando a Paula disser
 - Seguimento de demanda com tarefa: antes de criar, listar as tarefas da interação
   (`tasks?interaction_id=eq.<id>`). Se já tem tarefa pendente com o mesmo tema (ex: cobrar a mesma
   pessoa sobre o mesmo assunto), fazer PATCH nela (nova `due_date` + andamento na `description`),

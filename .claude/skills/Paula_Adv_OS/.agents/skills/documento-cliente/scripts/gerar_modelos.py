@@ -517,8 +517,9 @@ def quadro_resumo(d, linhas, alt=1.3, fs=9, fs_rot=8.5):
     return t
 
 
-def contrato(nome_arq, campos, linhas_quadro, clausulas, rotulo_cli='CONTRATANTE · CLIENTE', ass_pag1=True, folgado=False, quadro_folgado=None):
-    """folgado=True: contratos curtos (PF/PJ) com mais espaço pra preencher o quadro e letra maior nas cláusulas."""
+def contrato(nome_arq, campos, linhas_quadro, clausulas, rotulo_cli='CONTRATANTE · CLIENTE', ass_pag1=True, folgado=False, quadro_folgado=None, cond=None):
+    """folgado=True: contratos curtos (PF/PJ) com mais espaço pra preencher o quadro e letra maior nas cláusulas.
+    cond: ajuste fino de size/line/after das cláusulas, pra caber o fecho na última página."""
     d = novo_doc(); s = d.sections[0]
     montar_cabecalho(s, 'Contrato'); montar_rodape(s)
     # quadro_folgado: altura das linhas do Quadro Resumo (página 1 cheia) sem mexer nas Condições Gerais
@@ -538,11 +539,13 @@ def contrato(nome_arq, campos, linhas_quadro, clausulas, rotulo_cli='CONTRATANTE
     set_cols(s2, 2)
     montar_cabecalho(s2, 'Condições Gerais')
     s2.footer.is_linked_to_previous = True
+    fmt = {'size': 9.4, 'line': 1.19, 'after': 5} if folgado else {}
+    fmt.update(cond or {})
     for c in clausulas:
         if isinstance(c, tuple) and c[0] == 'li':
-            item_lista(d, c[1], **({'size': 9.4, 'line': 1.19} if folgado else {}))
+            item_lista(d, c[1], **{k: v for k, v in fmt.items() if k != 'after'})
         else:
-            clausula(d, c, **({'size': 9.4, 'line': 1.19, 'after': 5} if folgado else {}))
+            clausula(d, c, **fmt)
     # fecho em coluna única
     s3 = d.add_section(WD_SECTION.CONTINUOUS)
     set_cols(s3, 1)
@@ -565,7 +568,8 @@ COND_SIMPLES = [
     'i) É permitido ao CONTRATANTE que contate o advogado CONTRATADO por todos os meios disponíveis (pessoalmente, por telefone, e-mail e/ou aplicativos de mensagens eletrônicas), entretanto o advogado CONTRATADO somente se obriga a atender e/ou responder dentro do horário comercial, aqui estabelecido de segunda a sexta-feira, das 09h00min às 17h00min;',
     'j) O advogado, a seu critério, poderá deixar de recorrer de decisão que entenda inviável de ser modificada por procedimento recursal;',
     'k) O presente contrato não importa na promessa de êxito da demanda, frente ao critério subjetivo de interpretação das normas jurídicas, e o CONTRATANTE reconhece ter sido alertado de que a presente ação é de risco;',
-    'l) As Partes reconhecem a veracidade, autenticidade, integridade, validade e eficácia deste instrumento, conforme o disposto no artigo 219 do Código Civil, em formato eletrônico e/ou assinado pelas Partes por meio de certificados eletrônicos, ainda que sejam certificados eletrônicos não emitidos pela ICP-Brasil. Em caso de assinatura deste instrumento em formato físico, será digitalizado pelo CONTRATADO e arquivado apenas em formato digital, equiparando-se a documento físico para todos os efeitos legais.',
+    'l) O CONTRATANTE declara ciência de que o CONTRATADO não realiza cobranças, envio de boletos ou solicitações de pagamento por canais não oficiais, sendo considerados válidos exclusivamente os contatos informados no rodapé deste contrato, incluindo e-mail, telefone e WhatsApp; o CONTRATADO não se responsabiliza por prejuízos decorrentes de fraudes, golpes ou contatos realizados por terceiros que se passem por representantes do escritório, devendo o CONTRATANTE, em caso de dúvida, confirmar a veracidade das comunicações diretamente pelos canais oficiais;',
+    'm) As Partes reconhecem a veracidade, autenticidade, integridade, validade e eficácia deste instrumento, conforme o disposto no artigo 219 do Código Civil, em formato eletrônico e/ou assinado pelas Partes por meio de certificados eletrônicos, ainda que sejam certificados eletrônicos não emitidos pela ICP-Brasil. Em caso de assinatura deste instrumento em formato físico, será digitalizado pelo CONTRATADO e arquivado apenas em formato digital, equiparando-se a documento físico para todos os efeitos legais.',
 ]
 
 QUADRO_SIMPLES = [
@@ -615,8 +619,9 @@ COND_ELABORACAO = [
     'XIV) Nos termos da Lei Geral de Proteção de Dados, a CONTRATADA está autorizada a realizar o tratamento de dados pessoais do CONTRATANTE e ostenta legítimo interesse em armazenar, acessar, avaliar, modificar, transferir e comunicar, sob qualquer forma e por tempo determinado em sua política de privacidade, todos e quaisquer documentos, contratos, e-mails, cartas e demais documentações relativas ao objeto desta contratação. Tal operação de dados é e sempre será realizada unicamente em apoio e promoção às atividades técnicas e intelectuais desenvolvidas internamente pela CONTRATADA;',
     'XV) O CONTRATANTE autoriza a CONTRATADA a utilizar sua marca, logotipo e nome comercial exclusivamente para fins de divulgação institucional da CONTRATADA, incluindo portfólios, materiais publicitários, apresentações comerciais e o site da CONTRATADA. A utilização da marca deverá observar as diretrizes de identidade visual fornecidas pelo CONTRATANTE, garantindo a manutenção de sua integridade e reputação;',
     'XVI) O documento elaborado pela CONTRATADA constitui obra intelectual protegida, sendo vedado ao CONTRATANTE, salvo autorização prévia e expressa da CONTRATADA, compartilhar, ceder, disponibilizar ou distribuir o documento, total ou parcialmente, a terceiros.',
-    'XVI.1) A utilização do documento é estritamente limitada ao uso próprio do CONTRATANTE, para a finalidade específica para a qual foi contratado.',
-    'XVI.2) O descumprimento desta cláusula sujeitará o CONTRATANTE ao pagamento de multa não compensatória equivalente a 10 (dez) vezes o valor do presente contrato, sem prejuízo de indenização por perdas e danos;',
+    'XVI.1) A utilização do documento é estritamente limitada ao uso próprio do CONTRATANTE, para a finalidade específica para a qual foi contratado, ressalvado o disposto no item XVI.2.',
+    'XVI.2) Não se aplica a vedação prevista no caput ao compartilhamento do documento com as demais partes do negócio jurídico a que ele se refere, bem como com pessoas físicas ou jurídicas cuja participação seja necessária à sua negociação, formalização, registro ou execução, tais como contadores, investidores, assessores, cartórios e órgãos públicos, desde que restrito à finalidade para a qual o documento foi contratado, sendo dispensada, nesses casos, a autorização prévia da CONTRATADA.',
+    'XVI.3) O descumprimento desta cláusula sujeitará o CONTRATANTE ao pagamento de multa não compensatória equivalente a 10 (dez) vezes o valor do presente contrato, sem prejuízo de indenização por perdas e danos;',
     'XVII) O CONTRATANTE declara ciência de que a CONTRATADA não realiza cobranças, envio de boletos ou solicitações de pagamento por canais não oficiais, sendo considerados válidos exclusivamente os contatos informados no rodapé deste contrato, incluindo e-mail, telefone e WhatsApp; a CONTRATADA não se responsabiliza por prejuízos decorrentes de fraudes, golpes ou contatos realizados por terceiros que se passem por representantes do escritório, devendo o CONTRATANTE, em caso de dúvida, confirmar a veracidade das comunicações diretamente pelos canais oficiais;',
     'XVIII) Qualquer divergência entre as partes quanto à interpretação ou ao cumprimento de quaisquer das cláusulas do presente contrato será primeiramente resolvida amigavelmente por meio de negociação e, a não ser que seja alcançada uma solução conciliatória entre as partes no prazo de até 30 (trinta) dias do momento em que surgiu tal divergência, esta será resolvida no foro da Comarca de Blumenau/SC, por mais privilegiado que outro seja ou venha a ser;',
     'XIX) As Partes reconhecem a veracidade, autenticidade, integridade, validade e eficácia deste instrumento, conforme o disposto no artigo 219 do Código Civil, em formato eletrônico e/ou assinado pelas Partes por meio de certificados eletrônicos, ainda que sejam certificados eletrônicos não emitidos pela ICP-Brasil. Em caso de assinatura deste instrumento em formato físico, será digitalizado pela CONTRATADA e arquivado apenas em formato digital, equiparando-se a documento físico para todos os efeitos legais.',
@@ -659,8 +664,9 @@ COND_ASSESSORIA = [
     'XXIII) Em caso de demandas judiciais, a CONTRATADA, a seu critério, poderá deixar de recorrer de decisão que entenda inviável de ser modificada por procedimento recursal;',
     'XXIV) É permitido à CONTRATANTE que contate a CONTRATADA por todos os meios disponíveis (pessoalmente, por telefone, e-mail e/ou aplicativos de mensagens eletrônicas), entretanto a CONTRATADA reserva-se o direito de atender e/ou responder apenas dentro do horário comercial, aqui estabelecido como sendo de segunda a sexta-feira, das 09h00min às 17h00min;',
     'XXV) A CONTRATANTE autoriza a CONTRATADA a utilizar sua marca, logotipo e nome comercial exclusivamente para fins de divulgação institucional da CONTRATADA, incluindo portfólios, materiais publicitários, apresentações comerciais e o site da CONTRATADA. A utilização da marca deverá observar as diretrizes de identidade visual fornecidas pela CONTRATANTE, garantindo a manutenção de sua integridade e reputação;',
-    'XXVI) Qualquer divergência entre as partes quanto à interpretação ou ao cumprimento de quaisquer das cláusulas do presente contrato será primeiramente resolvida amigavelmente por meio de negociação e, a não ser que seja alcançada uma solução conciliatória entre as partes no prazo de até 30 (trinta) dias do momento em que surgiu tal divergência, esta será resolvida no foro da Comarca de Blumenau/SC, por mais privilegiado que outro seja ou venha a ser;',
-    'XXVII) As Partes reconhecem a veracidade, autenticidade, integridade, validade e eficácia deste instrumento, conforme o disposto no artigo 219 do Código Civil, em formato eletrônico e/ou assinado pelas Partes por meio de certificados eletrônicos, ainda que sejam certificados eletrônicos não emitidos pela ICP-Brasil. Em caso de assinatura deste instrumento em formato físico, será digitalizado pela CONTRATADA e arquivado apenas em formato digital, equiparando-se a documento físico para todos os efeitos legais.',
+    'XXVI) A CONTRATANTE declara ciência de que a CONTRATADA não realiza cobranças, envio de boletos ou solicitações de pagamento por canais não oficiais, sendo considerados válidos exclusivamente os contatos informados no rodapé deste contrato, incluindo e-mail, telefone e WhatsApp; a CONTRATADA não se responsabiliza por prejuízos decorrentes de fraudes, golpes ou contatos realizados por terceiros que se passem por representantes do escritório, devendo a CONTRATANTE, em caso de dúvida, confirmar a veracidade das comunicações diretamente pelos canais oficiais;',
+    'XXVII) Qualquer divergência entre as partes quanto à interpretação ou ao cumprimento de quaisquer das cláusulas do presente contrato será primeiramente resolvida amigavelmente por meio de negociação e, a não ser que seja alcançada uma solução conciliatória entre as partes no prazo de até 30 (trinta) dias do momento em que surgiu tal divergência, esta será resolvida no foro da Comarca de Blumenau/SC, por mais privilegiado que outro seja ou venha a ser;',
+    'XXVIII) As Partes reconhecem a veracidade, autenticidade, integridade, validade e eficácia deste instrumento, conforme o disposto no artigo 219 do Código Civil, em formato eletrônico e/ou assinado pelas Partes por meio de certificados eletrônicos, ainda que sejam certificados eletrônicos não emitidos pela ICP-Brasil. Em caso de assinatura deste instrumento em formato físico, será digitalizado pela CONTRATADA e arquivado apenas em formato digital, equiparando-se a documento físico para todos os efeitos legais.',
 ]
 
 
@@ -709,7 +715,8 @@ COND_INPI = [
     'VIII) O prazo de protocolo terá início apenas após o cumprimento integral das condições previstas no Quadro Resumo. Em caso de inércia do CONTRATANTE no fornecimento das informações e documentos necessários por período superior a 30 dias, a contar da assinatura deste instrumento, o contrato será automaticamente rescindido, sendo devida multa equivalente a 30% do valor total do contrato, a título de compensação pelas horas já dedicadas à análise do caso; na hipótese de já ter ocorrido pagamento parcial ou integral, o valor da multa será abatido, com devolução do eventual saldo remanescente ao CONTRATANTE;',
     'IX) Este contrato se encerra, em relação a cada pedido, com a expedição do certificado de registro ou com a decisão definitiva do INPI que encerre o pedido, o que ocorrer primeiro;',
     'X) O contrato poderá ser rescindido por qualquer das partes mediante comunicação escrita. Em caso de rescisão, não haverá devolução de valores referentes a serviços já iniciados ou concluídos, bem como será devido o valor proporcional ao trabalho executado. Com a rescisão, a CONTRATADA deixará de acompanhar o pedido, cabendo ao CONTRATANTE constituir novo procurador perante o INPI;',
-    'XI) O CONTRATANTE declara ciência de que é comum o envio de boletos, cobranças e comunicados falsos em nome do INPI ou de empresas que oferecem supostos serviços de publicação ou registro de marcas e desenhos industriais. Somente devem ser pagas as guias enviadas pela CONTRATADA pelos canais oficiais informados no rodapé deste contrato, e a CONTRATADA não se responsabiliza por pagamentos feitos a terceiros. Em caso de dúvida, o CONTRATANTE deve confirmar a veracidade da cobrança diretamente com a CONTRATADA;',
+    'XI) O CONTRATANTE declara ciência de que a CONTRATADA não realiza cobranças, envio de boletos ou solicitações de pagamento por canais não oficiais, sendo considerados válidos exclusivamente os contatos informados no rodapé deste contrato, incluindo e-mail, telefone e WhatsApp; a CONTRATADA não se responsabiliza por prejuízos decorrentes de fraudes, golpes ou contatos realizados por terceiros que se passem por representantes do escritório, devendo o CONTRATANTE, em caso de dúvida, confirmar a veracidade das comunicações diretamente pelos canais oficiais;',
+    'XI.1) Em especial, o CONTRATANTE declara ciência de que é comum o envio de boletos, cobranças e comunicados falsos em nome do INPI ou de empresas que oferecem supostos serviços de publicação ou registro de marcas e desenhos industriais. Somente devem ser pagas as guias enviadas pela CONTRATADA pelos canais oficiais informados no rodapé deste contrato, e a CONTRATADA não se responsabiliza por pagamentos feitos a terceiros. Em caso de dúvida, o CONTRATANTE deve confirmar a veracidade da cobrança diretamente com a CONTRATADA;',
     'XII) As disposições deste contrato substituem e cancelam todas e quaisquer outras avenças ou acordos que as partes tenham eventualmente mantido antes de sua assinatura, quer escritas ou verbais, prevalecendo tão só o que neste instrumento ora se ajusta;',
     'XIII) É permitido ao CONTRATANTE que contate a CONTRATADA por todos os meios disponíveis (pessoalmente, por telefone, e-mail e/ou aplicativos de mensagens eletrônicas), entretanto a CONTRATADA reserva-se o direito de atender e/ou responder apenas dentro do horário comercial, aqui estabelecido como sendo de segunda a sexta-feira, das 09h00min às 17h00min;',
     'XIV) Nos termos da Lei Geral de Proteção de Dados, a CONTRATADA está autorizada a realizar o tratamento de dados pessoais do CONTRATANTE e ostenta legítimo interesse em armazenar, acessar, avaliar, modificar, transferir e comunicar, sob qualquer forma e por tempo determinado em sua política de privacidade, todos e quaisquer documentos, contratos, e-mails, cartas e demais documentações relativas ao objeto desta contratação. Tal operação de dados é e sempre será realizada unicamente em apoio e promoção às atividades técnicas e intelectuais desenvolvidas internamente pela CONTRATADA;',
@@ -740,10 +747,10 @@ if __name__ == '__main__':
                [('NOME DO CLIENTE', 'Declarante (relativamente incapaz)'), ('NOME DO REPRESENTANTE LEGAL', 'Assistente / representante legal')])
     declaracao('Declaração (Absolutamente Incapaz).docx', CAMPOS_INCAPAZ,
                [('NOME DO REPRESENTANTE LEGAL', 'Representante legal de [nome do cliente]')])
-    contrato('Contrato (PF).docx', CAMPOS_PF, QUADRO_SIMPLES, COND_SIMPLES, folgado=True)
-    contrato('Contrato (PJ).docx', CAMPOS_PJ, QUADRO_SIMPLES, COND_SIMPLES, folgado=True)
+    contrato('Contrato (PF).docx', CAMPOS_PF, QUADRO_SIMPLES, COND_SIMPLES, folgado=True, cond={'line': 1.12, 'after': 4})
+    contrato('Contrato (PJ).docx', CAMPOS_PJ, QUADRO_SIMPLES, COND_SIMPLES, folgado=True, cond={'line': 1.12, 'after': 4})
     contrato('Contrato (PJ)_Elaboração de Documentos.docx', CAMPOS_PJ[:5], QUADRO_ELABORACAO, COND_ELABORACAO, quadro_folgado=3.5)
     contrato('Contrato (PJ)_Assessoria Jurídica.docx', CAMPOS_PJ[:5], QUADRO_ASSESSORIA, COND_ASSESSORIA)
-    contrato('Contrato (PJ)_INPI.docx', CAMPOS_PJ[:5], QUADRO_INPI, COND_INPI)
-    contrato('Contrato (PF)_INPI.docx', CAMPOS_PF, QUADRO_INPI, COND_INPI)
+    contrato('Contrato (PJ)_INPI.docx', CAMPOS_PJ[:5], QUADRO_INPI, COND_INPI, cond={'line': 1.08, 'after': 4})
+    contrato('Contrato (PF)_INPI.docx', CAMPOS_PF, QUADRO_INPI, COND_INPI, cond={'line': 1.08, 'after': 4})
     print('ok', OUT)

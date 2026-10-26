@@ -151,6 +151,9 @@ Os modelos são gerados pelo script `scripts/gerar_modelos.py` (conteúdo das cl
    a rodar sem pasta de saída).
 3. Conferir com `python scripts/preview.py "%TEMP%\cred"` (todos os modelos, contagem de páginas).
 4. Mostrar o resultado e, com aprovação, copiar só os arquivos alterados pra Credenciais.
+5. Conferir a contagem de páginas antes e depois. Se só o fecho foi para uma página nova, usar
+   `cond={'line': ..., 'after': ...}` na chamada do `contrato()` daquele modelo. Depois de copiar
+   para a Credenciais, conferir o texto do arquivo copiado.
 
 Atenção no Windows: caminhos com mais de 260 caracteres falham ao salvar; usar `%TEMP%` curto.
 Fontes Borna e Inter estão instaladas no computador da Paula; em outra máquina o Word substitui.
