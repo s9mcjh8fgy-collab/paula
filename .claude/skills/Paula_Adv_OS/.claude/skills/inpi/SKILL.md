@@ -79,6 +79,12 @@ im.save("arquivo.jpg", quality=90, dpi=(300, 300))
 Isso já resolve os 2MB (redimensionar reduz o peso bastante) e o DPI numa passada só — só usar o
 ffmpeg à parte se mesmo assim ainda passar de 2MB.
 
+**Leonardo Zanatta:** às vezes manda as figuras como `FIG-1-N.jpg`, na ordem: 1 perspectiva,
+2 frontal (`Vista anterior`), 3 posterior, 4 lateral direita, 5 lateral esquerda, 6 superior,
+7 inferior, e depois perspectivas extras (`Perspectiva 2`, `Perspectiva 3`). Os renders dele vêm com
+2363px a 300 DPI (20cm), acima do limite de 16cm: sempre redimensionar. Guardar os originais em
+`_originais/` dentro da pasta do pedido.
+
 Número de processo de **marca** não segue o formato "BR 30 ...": é um número de 9 dígitos (ex:
 `939480514`). O resto do padrão de pasta é o mesmo.
 

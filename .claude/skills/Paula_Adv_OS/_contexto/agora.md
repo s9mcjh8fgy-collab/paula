@@ -5,11 +5,14 @@
 > Mantenha curto: o que passou de ~30 dias sai daqui (vai pro histórico ou some).
 
 ## Onde paramos
+INPI Leonardo Zanatta (26/10): protocolada a Poltrona Encantaria (BR 30 2026 008361-6, petição 870260110156, Locarno 06-01). Andamento consultado no pePI (dados até a RPI 2911, de 20/10). O relatório foi atualizado e publicado (https://inpi-lz-7805ac58.pages.dev), e e-mail e WhatsApp foram enviados. A Anna fez o PIX de R$ 785,00: reembolso das guias quitado.
+
 #0139 (Grupo Ao Cubo x Chokolaten): contrato da reforma da loja de Pomerode ajustado (v2) e enviado em 26/10 ao Ângelo, com cópia para a Rhamony. Ajustes: multa diária, multa automática, valor com tributos incluídos e atraso de terceiros. O Ao Cubo cancela o envio antigo na Clicksign e reenvia. Continua de pé a parceria Desvendarq (Contrato na Régua como produto pago, materiais em `6_Colaboradores/Paula/04 Estrutura Legal/Desvendarq/`).
 
 Na mesma data, em outra frente: contrato de honorários da Tersaúde ajustado depois do retorno da Monique (compartilhamento expresso, prazo de ajustes de 15 dias úteis, multa mantida). A resposta para ela foi redigida e falta gerar o PDF novo e enviar. Notificação da Iara à inquilina pronta, faltando o preço e os dados da matrícula. Modelos de contrato da pasta Credenciais revisados.
 
 ## Decisões recentes
+- 2026-10-26: quando o reembolso das guias do INPI é quitado, o card de reembolso sai do relatório do cliente (o link raiz sempre mostra só o que está pendente).
 - 2026-10-26: os modelos `Procuração (PF)` e `Contrato (PF)` em Credenciais tinham sido salvos por cima com os dados da Luriane (14/10, editados direto no Word). Foram gerados de novo limpos pelo `gerar_modelos.py`. O documento de cliente nunca é editado a partir do arquivo da Credenciais: é preciso salvar uma cópia antes, ou usar a `/documento-cliente`.
 - 2026-10-26: demanda (`criadoPor`) e tarefa (`assigned_to`) são sempre da Paula por padrão. Só ficam com a Thaís quando a Paula avisar.
 - 2026-10-26: no contrato de obra do Ao Cubo com a Chokolaten (#0139): multa por atraso diária de 0,1% do valor total, limitada a 10%, incidindo sozinha no dia seguinte ao fim do prazo, sem notificação. Atraso de fornecedor não contratado pelo Ao Cubo (gesso, marcenaria, marmoraria, esquadrias e portas) estende o prazo automaticamente. Valor com tributos já incluídos. O modelo padrão do Ao Cubo (cl. 4.7.1) ainda diz que os tributos são "acrescidos ao valor".
@@ -125,8 +128,7 @@ Na mesma data, em outra frente: contrato de honorários da Tersaúde ajustado de
 - Contrato na Régua: reformular como produto pago (R$ 67) antes da aula de novembro. Itens: tipos de serviço, cláusulas de responsabilidade explicadas, anexo de escopo, saída em Word com logo, guia de apresentação ao cliente e bônus de termo de aceite de etapa. Entrega via Hotmart.
 - Desvendarq: enviar a proposta e o "Conheça" à Miriam, definir a data da aula e montar o roteiro da aula de responsabilidade civil.
 - Leonardo Zanatta: falta uma foto ou render da Luminária de teto BR 30 2025 005775 2.
-- Leonardo Zanatta: reembolso de R$ 610,00 das guias do INPI (exigência do Jacuí de 28/09 e depósitos de 02/10 do Calisto, América e Carteiro). E-mail pra Ana redigido, a Paula envia com os 4 comprovantes.
-- Leonardo Zanatta, Sofás BR 30 2025 005807 4: acompanhar as próximas revistas do INPI. A resposta à exigência foi enviada em 13/07, mas o comprovante não foi salvo e, até 02/10, o pePI não lista a petição.
+- Leonardo Zanatta, Sofás BR 30 2025 005807 4: acompanhar as próximas revistas do INPI. A resposta à exigência foi enviada em 13/07, mas o comprovante não foi salvo e, até 26/10 (RPI 2911), o pePI não lista a petição. Localizar o comprovante ou o nº da petição do envio de 13/07; se sair arquivamento, avaliar com base nos registros do envio.
 - Confirmar a classe Locarno dos três pedidos de 02/10 (BR 30 2026 007637-7, 007638-5 e 007639-3).
 - Autorizar os MCP servers da Cloudflare (`cloudflare-api`, `cloudflare-bindings`, `cloudflare-builds`, `cloudflare-observability`) via `/mcp` numa sessão interativa, quando for usar algum projeto Cloudflare que precise deles.
 - Cadastrar no app financeiro (como recorrente) os impostos, o salário da Thaís e as parcelas de empréstimo assim que a Paula tiver valores/prazos confiáveis pra projetar — hoje ficam de fora por variarem demais mês a mês.
