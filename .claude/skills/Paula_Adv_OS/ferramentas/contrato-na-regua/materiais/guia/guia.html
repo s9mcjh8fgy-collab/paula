@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Contrato na Régua · Guia rápido</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+@font-face{font-family:'Borna';src:url('../../../../marca/fonts/Borna-Bold.otf');font-weight:700}
+@font-face{font-family:'Borna';src:url('../../../../marca/fonts/Borna-SemiBold.otf');font-weight:600}
+@page{size:A4;margin:0}
+:root{--brown:#6D413E;--beige:#F1EBDF;--orange:#F26F4D;--ink:#3E2624;--soft:#7A5E58;--line:#E2D6C6;--paper:#FFFDF9}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;color:var(--ink);font-size:10.5pt;line-height:1.55;background:#fff}
+.page{width:210mm;height:297mm;padding:22mm 20mm 18mm;position:relative;overflow:hidden;page-break-after:always;background:var(--paper)}
+.page:last-child{page-break-after:auto}
+.foot{position:absolute;left:20mm;right:20mm;bottom:10mm;display:flex;justify-content:space-between;font-size:8pt;color:var(--soft);border-top:1px solid var(--line);padding-top:3mm}
+.kick{font-size:8.5pt;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);font-weight:700;margin-bottom:3mm}
+h1{font-family:'Borna',serif;font-weight:700;font-size:26pt;line-height:1.08;color:var(--brown);margin-bottom:5mm}
+h2{font-family:'Borna',serif;font-weight:700;font-size:13pt;color:var(--brown);margin:6mm 0 2mm}
+p{margin-bottom:3mm;max-width:165mm}
+.lead{font-size:12pt;color:var(--soft);margin-bottom:7mm;max-width:150mm}
+b{font-weight:600}
+ul{margin:0 0 3mm 5mm}
+li{margin-bottom:1.5mm}
+
+/* capa */
+.cover{background:var(--brown);color:var(--beige);display:flex;flex-direction:column;justify-content:space-between;padding:26mm 22mm}
+.cover .brand{font-size:9pt;letter-spacing:.24em;text-transform:uppercase;color:var(--orange);font-weight:700}
+.cover h1{color:var(--beige);font-size:46pt;line-height:1;margin:0 0 6mm}
+.cover h1 span{color:var(--orange)}
+.cover .sub{font-family:'Borna',serif;font-weight:600;font-size:16pt;line-height:1.3;max-width:130mm;opacity:.95}
+.ruler{display:flex;align-items:flex-end;gap:0;height:16mm;margin:14mm 0 0;border-bottom:1.5px solid var(--beige);opacity:.7}
+.ruler i{flex:1;border-left:1px solid var(--beige);height:4mm}
+.ruler i:nth-child(5n+1){height:9mm}
+.ruler i:nth-child(10n+1){height:14mm}
+.cover .who{font-size:9.5pt;line-height:1.6;opacity:.85}
+.cover .who b{color:var(--beige);font-weight:600}
+
+/* fluxo */
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:3mm;margin:4mm 0 7mm}
+.flow div{background:var(--beige);border-radius:3mm;padding:4mm 3.5mm;position:relative}
+.flow em{font-style:normal;font-family:'Borna',serif;font-size:20pt;color:var(--orange);display:block;line-height:1}
+.flow b{display:block;color:var(--brown);margin:2mm 0 1mm;font-size:10pt}
+.flow span{font-size:8.6pt;color:var(--soft);line-height:1.4;display:block}
+.shot{width:100%;border:1px solid var(--line);border-radius:2mm;display:block;margin:3mm 0 2mm}
+.cap{font-size:8.5pt;color:var(--soft);margin-bottom:5mm}
+
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:4mm 7mm;margin-top:3mm}
+.steps div{border-top:2px solid var(--brown);padding-top:2.5mm}
+.steps b{color:var(--brown);font-size:10.5pt;display:block;margin-bottom:1mm}
+.steps b span{color:var(--orange);margin-right:1.5mm}
+.steps p{font-size:9.5pt;margin:0}
+
+.cmp{width:100%;border-collapse:collapse;margin:3mm 0 5mm;font-size:9.5pt}
+.cmp th,.cmp td{border-bottom:1px solid var(--line);padding:2.4mm 3mm;text-align:left;vertical-align:top}
+.cmp thead th{background:var(--beige);color:var(--brown);font-weight:600}
+.cmp td:first-child{width:38%}
+.no{color:#A6401F}.ok{color:#2F6B4C}
+.note{background:var(--beige);border-radius:3mm;padding:4mm 5mm;font-size:9.5pt;margin:4mm 0}
+.note b{color:var(--brown)}
+
+.opts td:first-child{font-weight:600;color:var(--brown);width:34%}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+.box{border:1px solid var(--line);border-radius:3mm;padding:4mm 5mm}
+.box h2{margin-top:0}
+.faq h2{font-family:'Inter',sans-serif;font-size:10.5pt;font-weight:700;margin:4.5mm 0 1mm}
+.faq p{font-size:9.8pt}
+</style>
+</head>
+<body>
+
+<section class="page cover">
+  <div class="brand">Estrutura Legal</div>
+  <div>
+    <h1>Contrato<br>na <span>Régua</span></h1>
+    <p class="sub">Guia rápido: da proposta aprovada ao contrato assinado, sem deixar brecha no escopo.</p>
+    <div class="ruler"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+  <div class="who"><b>Modelos elaborados por Paula Corrêa</b>, advogada (OAB/SC 28.118), a partir de contratos usados no dia a dia de escritórios de arquitetura.<br>Versão 1.0 · 2026</div>
+</section>
+
+<section class="page">
+  <div class="kick">Antes de começar</div>
+  <h1>O que o Contrato na Régua faz por você</h1>
+  <p class="lead">Ele transforma o que você já combinou na proposta em um contrato de projeto completo, em Word, com a logo do seu escritório. Cada cláusula vem com a explicação de por que está ali.</p>
+
+  <img class="shot" src="img/app-visao.png" alt="Tela do Contrato na Régua com o formulário à esquerda e o contrato à direita">
+  <p class="cap">À esquerda você preenche; à direita o contrato se monta na hora, com as explicações em destaque.</p>
+
+  <div class="two">
+    <div>
+      <h2>O que você recebe</h2>
+      <ul>
+        <li>Contrato com 15 cláusulas, que se ajustam às etapas que você marcar</li>
+        <li>Anexo I com o que está e o que não está incluído em cada etapa</li>
+        <li>Download em Word, editável, com a sua logo</li>
+        <li>Termo de Aceite de Etapa, para encerrar cada fase por escrito</li>
+        <li>Acesso por 1 ano, com as atualizações dos modelos</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Bom saber</h2>
+      <ul>
+        <li><b>Seus dados ficam no seu navegador.</b> O documento é montado no seu computador e os dados do cliente não vão para nenhum servidor.</li>
+        <li>Por isso, o rascunho fica salvo no computador e navegador onde você preencheu. Os dados do escritório e a logo também.</li>
+        <li>O Word é editável: dá para ajustar qualquer detalhe depois de baixar.</li>
+        <li>O contrato é um modelo para a contratação típica de projeto. Situações fora do padrão pedem orientação jurídica específica.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>Contrato na Régua · Guia rápido</span><span>2</span></div>
+</section>
+
+<section class="page">
+  <div class="kick">O fluxo</div>
+  <h1>Cinco passos, do orçamento à entrega</h1>
+  <p class="lead">O contrato protege de verdade quando conversa com a proposta e quando cada etapa é aprovada por escrito. O fluxo abaixo amarra as duas pontas.</p>
+  <div class="flow">
+    <div><em>1</em><b>Proposta aprovada</b><span>Escopo, etapas, revisões, prazo e valor combinados com o cliente.</span></div>
+    <div><em>2</em><b>Contrato no app</b><span>Com a proposta aberta ao lado, preencha os seis passos.</span></div>
+    <div><em>3</em><b>Conferência do Anexo I</b><span>Mostre ao cliente o que está e o que não está incluído antes de assinar.</span></div>
+    <div><em>4</em><b>Assinatura</b><span>Por plataforma eletrônica (gov.br, Clicksign, D4Sign) ou impressa.</span></div>
+    <div><em>5</em><b>Aceite por etapa</b><span>Ao fim de cada fase, um Termo de Aceite ou o “de acordo” no canal oficial.</span></div>
+  </div>
+
+  <h2>Os seis passos dentro do app</h2>
+  <div class="steps">
+    <div><b><span>1</span>Você</b><p>Dados do escritório, registro no CAU e a logo. Ficam salvos para os próximos contratos.</p></div>
+    <div><b><span>2</span>Cliente</b><p>Pessoa física ou empresa. Para empresa, informe também quem assina por ela.</p></div>
+    <div><b><span>3</span>Projeto</b><p>Objeto, endereço e as etapas contratadas: arquitetura, interiores e obra. O contrato muda conforme a seleção.</p></div>
+    <div><b><span>4</span>Escopo</b><p>O Anexo I. Desmarque, edite e acrescente itens até a lista ficar igual à proposta.</p></div>
+    <div><b><span>5</span>Prazos e valores</b><p>Prazo de cada etapa, devolutiva do cliente, número de revisões e a forma de pagamento.</p></div>
+    <div><b><span>6</span>Cláusulas</b><p>Opções que você liga e desliga, os valores de multa e garantia, o foro e a data.</p></div>
+  </div>
+  <div class="note"><b>Os campos destacados em amarelo</b> no contrato ainda estão sem preenchimento. Antes de baixar, confira se não sobrou nenhum.</div>
+  <div class="foot"><span>Contrato na Régua · Guia rápido</span><span>3</span></div>
+</section>
+
+<section class="page">
+  <div class="kick">Onde mora a proteção</div>
+  <h1>O Anexo I, item por item</h1>
+  <p class="lead">A maior parte dos desentendimentos em projeto nasce da mesma frase: “achei que estava incluído”. O Anexo I responde a essa frase antes que ela apareça.</p>
+
+  <img class="shot" src="img/app-escopo.png" alt="Passo Escopo do app, com itens marcados e campo para acrescentar item">
+  <p class="cap">No passo Escopo, cada item pode ser desmarcado, editado ou acrescentado.</p>
+
+  <h2>Escreva itens que dão para conferir</h2>
+  <table class="cmp">
+    <thead><tr><th>Vago</th><th>Conferível</th></tr></thead>
+    <tbody>
+      <tr><td class="no">Opções de layout</td><td class="ok">Até 2 (duas) opções de layout para análise</td></tr>
+      <tr><td class="no">Imagens 3D</td><td class="ok">Até 6 imagens renderizadas dos ambientes social e suíte</td></tr>
+      <tr><td class="no">Acompanhamento da obra</td><td class="ok">Visitas técnicas agendadas, em média 2 (duas) por mês, por até 4 meses</td></tr>
+      <tr><td class="no">Projeto de marcenaria</td><td class="ok">Projeto de marcenaria da cozinha, dos dormitórios e do home office</td></tr>
+    </tbody>
+  </table>
+
+  <h2>A coluna “não está incluído” vale tanto quanto a outra</h2>
+  <p>Ela já vem preenchida com o que costuma gerar cobrança indevida em cada etapa: projetos de engenharia, protocolo na prefeitura, imagens para venda, compra de produtos. Mantenha o que se aplica e acrescente o que você sabe que o cliente costuma pedir “de brinde”.</p>
+  <div class="note"><b>Dica prática:</b> copie as entregas da sua proposta para o Anexo I, na mesma ordem. Se a proposta e o contrato disserem coisas diferentes, o contrato prevalece, e é melhor que essa diferença não exista.</div>
+  <div class="foot"><span>Contrato na Régua · Guia rápido</span><span>4</span></div>
+</section>
+
+<section class="page">
+  <div class="kick">Suas escolhas</div>
+  <h1>As opções que mudam o contrato</h1>
+  <p class="lead">No passo Cláusulas você ajusta o contrato ao perfil de cada cliente. Estas são as decisões que mais pesam.</p>
+  <table class="cmp opts">
+    <tbody>
+      <tr><td>Silêncio do cliente vira aprovação</td><td>Desligada, o silêncio só suspende o seu prazo. Ligada, a etapa é aprovada depois de um lembrete com mais 5 dias úteis. Ligue se você costuma ficar parado esperando retorno, e guarde o lembrete enviado.</td></tr>
+      <tr><td>Aprovação por mensagem curta ou emoji</td><td>Deixa claro que “pode seguir” ou 👍 no canal oficial valem como aprovação. Recomendado deixar ligada.</td></tr>
+      <tr><td>Multa se o cliente desistir sem motivo</td><td>Multa sobre o que faltava pagar, além do que já foi feito. Desligue em contratos pequenos ou quando a negociação pedir.</td></tr>
+      <tr><td>Proibir uso em inteligência artificial</td><td>Impede que o cliente coloque o seu projeto numa ferramenta para gerar variações ou replicar em outro imóvel.</td></tr>
+      <tr><td>Uso no portfólio</td><td>Permite mostrar o projeto e fotos da obra pronta, sem dados do cliente. Desligue para clientes que pedem sigilo.</td></tr>
+      <tr><td>Cliente não pode contratar sua equipe</td><td>Útil para quem trabalha com colaboradores fixos e atende construtoras e incorporadoras.</td></tr>
+      <tr><td>Horário de atendimento</td><td>Limita a obrigação de responder a dias úteis e horário comercial.</td></tr>
+      <tr><td>Taxa do RRT paga pelo cliente</td><td>Quando desligada, o contrato só diz que você emite o RRT, sem definir quem paga a taxa.</td></tr>
+    </tbody>
+  </table>
+  <div class="note"><b>Foro:</b> escolha a comarca do seu escritório. Se o cliente for pessoa física contratando para uso próprio, a Justiça pode admitir que ele processe na comarca dele, por ser relação de consumo.</div>
+  <div class="foot"><span>Contrato na Régua · Guia rápido</span><span>5</span></div>
+</section>
+
+<section class="page">
+  <div class="kick">Na vida real</div>
+  <h1>Negociação e aceite das etapas</h1>
+  <div class="two">
+    <div class="box">
+      <h2>Quando o cliente pede mudança</h2>
+      <p>Pedir ajuste é normal e não precisa travar o fechamento. Uma referência:</p>
+      <p><b>Costuma ser negociável:</b> prazos, número de revisões, percentual de multa, dias de garantia, forma de pagamento, horário de atendimento.</p>
+      <p><b>Vale manter:</b> a separação entre projeto e execução, a aprovação das etapas por escrito, a lista do que não está incluído e os direitos autorais sobre o projeto.</p>
+      <p>Faça o ajuste no app e baixe de novo, assim o Word fica coerente do começo ao fim.</p>
+    </div>
+    <div class="box">
+      <h2>Termo de Aceite de Etapa</h2>
+      <p>Na aba <b>Termo de aceite</b>, escolha a etapa, a data de entrega e liste os materiais entregues. Se houver ajustes já combinados, registre no campo próprio.</p>
+      <p>Com o termo assinado, a etapa fica encerrada: o que foi aprovado vira base da próxima, e mudanças depois disso são serviço adicional, com orçamento próprio.</p>
+      <p>Se o cliente preferir aprovar pelo WhatsApp, envie o termo em PDF e peça o “de acordo” no canal oficial informado no contrato.</p>
+    </div>
+  </div>
+  <img class="shot" src="img/app-termo.png" alt="Aba Termo de aceite do app" style="margin-top:6mm">
+  <p class="cap">O termo aproveita os dados do contrato: partes, objeto e itens da etapa.</p>
+  <div class="foot"><span>Contrato na Régua · Guia rápido</span><span>6</span></div>
+</section>
+
+<section class="page faq">
+  <div class="kick">Dúvidas frequentes</div>
+  <h1>Perguntas que sempre aparecem</h1>
+  <h2>Serve para projeto de interiores?</h2>
+  <p>Sim. No passo Projeto há um grupo só de Interiores (pré-projeto, layout, 3D e executivo de interiores), que pode ser combinado com etapas de arquitetura e de obra.</p>
+  <h2>E quando o cliente é uma empresa?</h2>
+  <p>Escolha “Empresa (CNPJ)” no passo Cliente e informe o representante legal. O Quadro-Resumo passa a mostrar quem assina pela empresa.</p>
+  <h2>Assinatura pelo gov.br vale?</h2>
+  <p>Vale. O contrato já traz a cláusula que reconhece a assinatura eletrônica, inclusive por plataformas que não usam certificado ICP-Brasil, como gov.br, Clicksign e D4Sign.</p>
+  <h2>Preciso de testemunhas?</h2>
+  <p>O contrato tem espaço para duas. Elas não são obrigatórias para o contrato valer, mas facilitam a cobrança judicial se um dia ela for necessária.</p>
+  <h2>Posso editar o Word depois de baixar?</h2>
+  <p>Pode. Para mudanças de estrutura, como trocar etapas ou opções, prefira ajustar no app e baixar de novo, porque a numeração e as referências entre cláusulas são refeitas automaticamente.</p>
+  <h2>Troquei de computador e o rascunho sumiu. E agora?</h2>
+  <p>Como os dados ficam no navegador onde você preencheu, em outro computador o app começa do zero. Guarde sempre o Word baixado de cada contrato.</p>
+  <h2>Os modelos são atualizados?</h2>
+  <p>Sim, durante o seu ano de acesso. Quando houver atualização relevante, você recebe um aviso no e-mail da compra.</p>
+  <div class="foot"><span>Contrato na Régua · Guia rápido</span><span>7</span></div>
+</section>
+
+</body>
+</html>

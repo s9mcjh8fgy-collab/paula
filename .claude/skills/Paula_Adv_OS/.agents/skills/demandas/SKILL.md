@@ -98,6 +98,11 @@ node --env-file=../../../.env.local .claude/skills/demandas/scripts/registrar-de
      a Paula que o link vai ser adicionado assim que sincronizar, e voltar a tentar depois (seja
      mais tarde na mesma sessão, seja no início da próxima interação sobre essa demanda) até
      conseguir gravar o `webUrl`.
+   - Para pasta nova, a `sharepoint_folder_search` costuma devolver só os arquivos de dentro da
+     pasta, e não a pasta. Nesse caso, confirmar a pasta com `read_resource` no caminho
+     `file:///b!fkAaKmQP30GU2Y7UDNwLrJ7lxvfIH5lKhG6mhESAOpTAZwmF99FRQ47zIJ_WiFoQ/00_Novo Diretório/3_Jurídico/4_Assessorias/<cliente>/03_Demandas`
+     e montar o link no padrão
+     `https://correaadv.sharepoint.com/sites/Correa/Documentos Compartilhados/00_Novo Diretório/3_Jurídico/4_Assessorias/<cliente>/03_Demandas/<pasta>`.
    - Se a demanda **não** gerar nenhum documento (ex: resposta é só um texto de WhatsApp pra
      colar e mandar, sem anexo), pular esse passo inteiro — não criar pasta vazia.
 

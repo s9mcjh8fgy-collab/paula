@@ -1,0 +1,17 @@
+{
+  "voz": "pt-BR-FranciscaNeural",
+  "velocidade": "+4%",
+  "cenas": [
+    { "id": "abertura", "texto": "Este é o Contrato na Régua, do Estrutura Legal. Ele transforma a sua proposta aprovada em um contrato de projeto de arquitetura completo, pronto em Word, com a logo do seu escritório. Vamos ver como funciona." },
+    { "id": "voce", "texto": "No primeiro passo, você coloca os dados do seu escritório e envia a sua logo. Ela vai no cabeçalho de todas as páginas, e esses dados ficam guardados para os próximos contratos." },
+    { "id": "cliente", "texto": "Depois, os dados do cliente. Pode ser pessoa física ou empresa. Se for empresa, o app pede também quem assina por ela." },
+    { "id": "projeto", "texto": "No passo Projeto, você marca as etapas que estão na sua proposta. Repare que o contrato, ao lado, muda na hora. Quando eu marco o acompanhamento de obra, entra uma cláusula deixando claro que acompanhar a obra não é executar a obra." },
+    { "id": "escopo", "texto": "O passo mais importante é o Escopo. Aqui fica o Anexo Um, com o que está e o que não está incluído em cada etapa. Você desmarca o que não vale para este projeto, edita o texto, e acrescenta o que for específico. É essa lista que evita o famoso: achei que estava incluído." },
+    { "id": "valores", "texto": "Em Prazos e valores, você define o prazo de cada etapa, o tempo que o cliente tem para dar retorno, quantas revisões estão incluídas e a forma de pagamento. O valor já aparece por extenso no contrato." },
+    { "id": "clausulas", "texto": "Em Cláusulas, você liga e desliga opções. Por exemplo: a multa se o cliente desistir sem motivo, a proibição de usar o projeto em inteligência artificial, ou o uso do projeto no seu portfólio." },
+    { "id": "explicacoes", "texto": "E ao longo de todo o contrato você encontra estas caixas, com a explicação de por que cada cláusula está ali, em linguagem simples. Elas aparecem só aqui na tela. Não vão para o documento do seu cliente." },
+    { "id": "baixar", "texto": "Com tudo conferido, é só clicar em Baixar contrato em Word. O documento é montado no seu próprio navegador, e os dados do seu cliente não passam por nenhum servidor." },
+    { "id": "termo", "texto": "E, a cada etapa entregue, use o Termo de Aceite. Ele aproveita os dados do contrato, lista os materiais entregues e registra a aprovação do cliente por escrito." },
+    { "id": "fecho", "texto": "Contrato na Régua. Do orçamento aprovado ao contrato assinado, sem deixar brecha no escopo." }
+  ]
+}

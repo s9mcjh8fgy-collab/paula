@@ -1,0 +1,584 @@
+{
+  "versao": "1.0-rascunho",
+  "atualizado": "2026-10-27",
+  "fontes": "Combinação dos modelos vigentes Zanatta (v20-05-26), Nordyk (v21-05-26) e Ao Cubo (Projeto+Acompanhamento), generalizados para qualquer escritório de arquitetura.",
+  "sintaxe": {
+    "{{var}}": "valor do formulário, como digitado",
+    "{{ext:var}}": "número com extenso, ex.: 10 (dez)",
+    "{{extf:var}}": "número com extenso no feminino, ex.: 2 (duas)",
+    "{{?cond: texto}}": "trecho que só entra quando a condição é verdadeira",
+    "quando": "expressão com ids de etapas e opções, aceita !, && e ||"
+  },
+  "padroes": {
+    "prazoDevolutiva": 10,
+    "revisoes": 2,
+    "prazoRevisao": 10,
+    "prazoInercia": 15,
+    "prazoExigencia": 7,
+    "garantiaDias": 30,
+    "multa": 10,
+    "avisoRescisao": 10,
+    "aliciamentoMulta": 20,
+    "aliciamentoAnos": 2,
+    "honorariosCobranca": 20,
+    "horario": "de segunda a sexta-feira, das 9h às 18h"
+  },
+  "opcoes": [
+    { "id": "proposta", "rotulo": "A proposta comercial vai anexa ao contrato", "padrao": true },
+    { "id": "cronograma", "rotulo": "Vai ter cronograma anexo", "padrao": false },
+    { "id": "aprovacaoEmoji", "rotulo": "Aceitar aprovação por mensagem curta ou emoji (“ok”, ✅, 👍)", "padrao": true },
+    { "id": "aprovacaoTacita", "rotulo": "Silêncio do cliente vira aprovação, depois de um lembrete", "padrao": false },
+    { "id": "multaImotivada", "rotulo": "Multa se o cliente desistir sem motivo", "padrao": true },
+    { "id": "ia", "rotulo": "Proibir o uso do projeto em ferramentas de inteligência artificial", "padrao": true },
+    { "id": "portfolio", "rotulo": "Poder usar o projeto e fotos da obra no portfólio e redes", "padrao": true },
+    { "id": "aliciamento", "rotulo": "Cliente não pode contratar sua equipe diretamente", "padrao": false },
+    { "id": "horarioAtendimento", "rotulo": "Definir horário de atendimento", "padrao": true },
+    { "id": "rrtCliente", "rotulo": "A taxa do RRT é paga pelo cliente", "padrao": true },
+    { "id": "acompPercentual", "rotulo": "Acompanhamento ou compras cobrados em percentual sobre as compras", "padrao": false }
+  ],
+
+  "termoAceite": {
+    "titulo": "TERMO DE ACEITE DE ETAPA",
+    "explicacao": "Use ao fim de cada etapa. Com ele assinado, a etapa fica encerrada por escrito: o que foi aprovado vira base da próxima, e mudança depois disso é serviço adicional. Se o cliente preferir aprovar pelo WhatsApp, mande este termo em PDF e peça o “de acordo” no canal oficial.",
+    "abertura": "Referente ao Contrato de Prestação de Serviços Profissionais de Arquitetura celebrado entre {{contratada}} (CONTRATADA) e {{contratante}} (CONTRATANTE), relativo a {{objeto}}, em {{local}}.",
+    "materiais": "Materiais entregues:",
+    "aceite": "A CONTRATANTE declara que recebeu e analisou os materiais da etapa acima e os APROVA, autorizando a CONTRATADA a dar início à etapa seguinte, nos termos do contrato.",
+    "ajustes": "A aprovação é feita com os seguintes ajustes, já combinados entre as partes, que serão incorporados na etapa seguinte sem custo adicional:",
+    "efeitos": "A CONTRATANTE declara ciência de que, a partir deste aceite, a etapa é considerada definitiva, e de que novas alterações no que foi aprovado serão tratadas como alteração de escopo, com orçamento e prazo próprios, conforme a cláusula de Alterações no Projeto e Serviços Adicionais do contrato."
+  },
+
+  "etapas": [
+    {
+      "id": "viabilidade", "grupo": "Arquitetura", "nome": "Estudo de Viabilidade",
+      "definicao": "O estudo de viabilidade consiste na análise técnica preliminar do empreendimento, considerando as características do terreno, a legislação urbanística aplicável, o potencial construtivo, as restrições aparentes e as demais informações relevantes à avaliação inicial da possibilidade de desenvolvimento do projeto.",
+      "ressalvas": [
+        "O estudo será desenvolvido com base nas informações fornecidas pela CONTRATANTE, proprietários, corretores, documentos do imóvel, consultas municipais e demais materiais disponibilizados à CONTRATADA.",
+        "O estudo de viabilidade possui caráter preliminar e consultivo, não representando garantia de aprovação do empreendimento perante órgãos públicos, nem garantia de viabilidade econômica, comercial, financeira ou construtiva do projeto. A decisão de desenvolver o empreendimento é de responsabilidade exclusiva da CONTRATANTE.",
+        "As análises serão realizadas com base na legislação urbanística, ambiental e municipal vigente na data de sua elaboração, podendo sofrer alterações em razão de mudanças legislativas, normativas, interpretações administrativas ou exigências supervenientes dos órgãos competentes.",
+        "Estimativas, projeções, índices construtivos, potencial de aproveitamento, taxas de ocupação, coeficientes e possibilidades de desmembramento, remembramento ou aproveitamento econômico possuem caráter estimativo e poderão sofrer alterações após levantamentos técnicos complementares e análises específicas dos órgãos competentes."
+      ],
+      "inclui": [
+        "Análise urbanística e dos parâmetros construtivos aplicáveis ao imóvel",
+        "Avaliação preliminar de índices urbanísticos e restrições legais",
+        "Análise de implantação e ocupação do terreno",
+        "Estudos iniciais de volumetria e potencial construtivo",
+        "Quadros preliminares de áreas e estimativas iniciais de aproveitamento",
+        "Material técnico digital com as análises, implantação inicial, estudos volumétricos e imagens ilustrativas"
+      ],
+      "nao_inclui": [
+        "Levantamento topográfico, sondagem ou outros levantamentos técnicos de campo",
+        "Consultas formais, protocolos ou pedidos de certidão perante órgãos públicos",
+        "Análise de viabilidade econômica, financeira ou comercial do empreendimento"
+      ]
+    },
+    {
+      "id": "estudoPreliminar", "grupo": "Arquitetura", "nome": "Estudo Preliminar",
+      "definicao": "O estudo preliminar consiste na configuração inicial da solução arquitetônica, contemplando as principais exigências do programa de necessidades e as condicionantes técnicas e legais conhecidas até o momento de seu desenvolvimento, e servirá de base técnica e conceitual para as etapas seguintes.",
+      "ressalvas": [],
+      "inclui": [
+        "Reunião de alinhamento de diretrizes e do programa de necessidades",
+        "Visita ao local e levantamento de medidas, se necessário",
+        "Estudos iniciais de implantação e volumetria",
+        "Organização preliminar dos ambientes e fluxos",
+        "Análises preliminares de ventilação, insolação e circulação",
+        "Plantas esquemáticas e estudos iniciais de layout",
+        "Até 2 (duas) opções de layout para análise da CONTRATANTE",
+        "Indicação preliminar de materiais e do conceito geral do projeto",
+        "Imagens ilustrativas e perspectivas conceituais compatíveis com a etapa"
+      ],
+      "nao_inclui": [
+        "Imagens renderizadas fotorrealistas",
+        "Levantamento topográfico ou cadastral feito por empresa especializada",
+        "Detalhamentos técnicos e especificações definitivas"
+      ]
+    },
+    {
+      "id": "anteprojeto", "grupo": "Arquitetura", "nome": "Anteprojeto",
+      "definicao": "O anteprojeto consiste no desenvolvimento e na consolidação da solução arquitetônica aprovada no estudo preliminar, com o aprofundamento técnico e formal da proposta, adequada às diretrizes técnicas, urbanísticas e legais aplicáveis.",
+      "ressalvas": [
+        "As imagens e representações tridimensionais possuem natureza ilustrativa e conceitual, podendo sofrer ajustes técnicos ao longo do desenvolvimento do projeto.",
+        "A sugestão de fornecedores pela CONTRATADA, quando houver, é eventual e não vinculante.",
+        "A CONTRATADA não desenvolve serviços de identidade visual, criação de marca, grafismo, logotipos, naming ou materiais publicitários relacionados ao empreendimento, salvo contratação específica."
+      ],
+      "inclui": [
+        "Modelagem tridimensional do projeto",
+        "Imagens 3D renderizadas para aprovação da CONTRATANTE, sem finalidade comercial",
+        "Plantas humanizadas",
+        "Proposta de materiais e acabamentos, indicados no 3D e em memorial preliminar",
+        "Conceito com indicação preliminar de paisagismo e integração volumétrica",
+        "Desenhos necessários para a compreensão geral do projeto e a interface com projetistas complementares"
+      ],
+      "nao_inclui": [
+        "Imagens para fins comerciais ou publicitários, como lançamento imobiliário",
+        "Animações, vídeos ou tour virtual",
+        "Projeto de paisagismo completo"
+      ]
+    },
+    {
+      "id": "basico", "grupo": "Arquitetura", "nome": "Projeto Básico",
+      "definicao": "O projeto básico consiste no desenvolvimento técnico intermediário do projeto, contendo as peças gráficas e informações necessárias para a compreensão técnica da solução arquitetônica e sua integração com os projetos complementares.",
+      "ressalvas": [],
+      "inclui": [
+        "Plantas de implantação, layout, cobertura, paredes, pisos e forros",
+        "Cortes, fachadas e desenhos técnicos complementares",
+        "Definições dimensionais e construtivas",
+        "Plantas técnicas com indicações de infraestrutura para integração com os projetos complementares",
+        "Indicações preliminares de acabamentos e esquemas construtivos"
+      ],
+      "nao_inclui": [
+        "Detalhamentos executivos e paginações",
+        "Projetos complementares de engenharia"
+      ]
+    },
+    {
+      "id": "legal", "grupo": "Arquitetura", "nome": "Projeto Legal",
+      "definicao": "O projeto legal consiste na adequação técnica e documental do projeto arquitetônico necessária à sua apresentação perante a prefeitura, o condomínio, as concessionárias ou os demais órgãos competentes, observadas as exigências urbanísticas e legais aplicáveis.",
+      "ressalvas": [
+        "A CONTRATADA não garante a aprovação do projeto, que depende da análise dos órgãos competentes, comprometendo-se a elaborar a documentação em conformidade com a legislação vigente e a realizar os ajustes técnicos pertinentes ao projeto arquitetônico.",
+        "Os prazos de análise e aprovação perante os órgãos públicos dependem exclusivamente dos respectivos entes administrativos, podendo sofrer alterações, suspensões ou prorrogações sem responsabilidade da CONTRATADA."
+      ],
+      "inclui": [
+        "Desenhos, plantas, quadros de áreas e documentos técnicos arquitetônicos necessários ao protocolo",
+        "Ajustes no projeto arquitetônico decorrentes de exigências técnicas dos órgãos competentes"
+      ],
+      "nao_inclui": [
+        "Protocolo físico ou eletrônico perante órgãos públicos",
+        "Acompanhamento de processos administrativos e comparecimento em repartições públicas",
+        "Defesas, recursos ou manifestações administrativas que não se limitem a ajustes técnicos no projeto",
+        "Estudos complementares exigidos pelos órgãos (por exemplo, EIV, RIV ou EIPGV) e licenças ambientais",
+        "Obtenção de alvarás, certidões, licenças ou documentos emitidos por terceiros",
+        "Regularização imobiliária, incorporação, averbações e registros em cartório",
+        "Pagamento de taxas, tributos e emolumentos"
+      ]
+    },
+    {
+      "id": "executivo", "grupo": "Arquitetura", "nome": "Projeto Executivo",
+      "definicao": "O projeto executivo consiste na elaboração do conjunto técnico definitivo da solução arquitetônica aprovada, com os detalhamentos necessários à execução da obra e a compatibilização com os projetos complementares fornecidos à CONTRATADA.",
+      "ressalvas": [
+        "O projeto executivo somente será iniciado após a aprovação formal das etapas anteriores e a disponibilização dos projetos complementares necessários à compatibilização.",
+        "O projeto executivo será elaborado com base nas informações e projetos complementares disponibilizados à CONTRATADA até o momento de desenvolvimento desta etapa."
+      ],
+      "inclui": [
+        "Plantas de implantação, layout, cobertura, paredes, pisos e forros com as informações necessárias à execução",
+        "Plantas técnicas com o posicionamento dos elementos arquitetônicos e da infraestrutura para integração com os complementares",
+        "Plantas de paginação de revestimentos",
+        "Detalhamentos construtivos, arquitetônicos e de acabamentos",
+        "Especificações técnicas e memoriais descritivos de materiais e acabamentos",
+        "Listagens quantitativas preliminares dos acabamentos especificados",
+        "Compatibilização da arquitetura com os projetos complementares disponibilizados à CONTRATADA",
+        "Reunião de entrega e apresentação final do projeto",
+        "Entrega final em arquivos digitais (PDF e DWG)"
+      ],
+      "nao_inclui": [
+        "Projetos complementares de engenharia (estrutural, fundações, hidrossanitário, elétrico, preventivo, climatização e outros)",
+        "Orçamento detalhado da obra",
+        "Compatibilização de projetos complementares entregues depois da conclusão desta etapa"
+      ]
+    },
+    {
+      "id": "intBriefing", "grupo": "Interiores", "nome": "Pré-projeto",
+      "definicao": "O pré-projeto consiste no levantamento das informações, necessidades e expectativas da CONTRATANTE e das condições do imóvel, que servirão de base para o projeto de interiores.",
+      "ressalvas": [],
+      "inclui": [
+        "Reunião de briefing",
+        "Levantamento de medidas do imóvel",
+        "Coleta de referências de estilo e conceito"
+      ],
+      "nao_inclui": [
+        "Levantamento cadastral completo ou as built por empresa especializada"
+      ]
+    },
+    {
+      "id": "intLayout", "grupo": "Interiores", "nome": "Layout",
+      "definicao": "A etapa de layout consiste na apresentação das propostas de distribuição dos ambientes e de disposição do mobiliário, acompanhadas do conceito visual do projeto.",
+      "ressalvas": [],
+      "inclui": [
+        "Sugestões de layout dos ambientes e disposição de objetos",
+        "Moodboard",
+        "Reunião de apresentação"
+      ],
+      "nao_inclui": []
+    },
+    {
+      "id": "int3d", "grupo": "Interiores", "nome": "Projeto 3D",
+      "definicao": "O projeto 3D consiste no desenvolvimento de maquete eletrônica com imagens, a partir do layout aprovado.",
+      "ressalvas": [
+        "As imagens possuem natureza ilustrativa, podendo haver variações de cor, textura, iluminação e acabamento em relação aos materiais efetivamente executados."
+      ],
+      "inclui": [
+        "Maquete eletrônica dos ambientes contratados",
+        "Imagens renderizadas para aprovação"
+      ],
+      "nao_inclui": [
+        "Animações, vídeos ou tour virtual",
+        "Imagens para fins comerciais ou publicitários"
+      ]
+    },
+    {
+      "id": "intExecutivo", "grupo": "Interiores", "nome": "Projeto Executivo de Interiores",
+      "definicao": "O projeto executivo de interiores consiste no detalhamento técnico necessário à execução dos ambientes aprovados, com as especificações de mobiliário, acabamentos e instalações aparentes.",
+      "ressalvas": [
+        "As indicações de pontos elétricos, de iluminação e de demais instalações referem-se ao posicionamento e à especificação arquitetônica, não substituindo os projetos de engenharia elétrica, hidráulica ou estrutural, quando exigidos."
+      ],
+      "inclui": [
+        "Layout de disposição dos móveis e objetos decorativos",
+        "Projeto de reforma, com paginação de pisos e revestimentos",
+        "Indicação de pontos elétricos (tomadas, interruptores, iluminação, TV e dados)",
+        "Projeto luminotécnico, com especificação de luminárias",
+        "Projeto de marcenaria",
+        "Projeto de marmoraria",
+        "Projeto de vidraçaria",
+        "Projeto de cortinas e persianas",
+        "Projeto de forro de gesso",
+        "Memorial descritivo com especificação de mobiliário, cores e acabamentos"
+      ],
+      "nao_inclui": [
+        "Projetos de engenharia (dimensionamento elétrico e de quadros, hidráulico, estrutural)",
+        "Aprovação do projeto no condomínio, salvo contratação específica",
+        "Compra de produtos e contratação de fornecedores"
+      ]
+    },
+    {
+      "id": "acompanhamento", "grupo": "Obra", "nome": "Acompanhamento Técnico de Obra",
+      "definicao": "O acompanhamento técnico de obra consiste no suporte técnico consultivo durante a execução, por meio de visitas e orientações remotas, para auxiliar na interpretação do projeto e na compatibilização entre o projeto e a execução.",
+      "ressalvas": [
+        "O acompanhamento possui natureza exclusivamente consultiva e orientativa, não compreendendo gerenciamento da obra, administração de equipe, fiscalização permanente, administração financeira, contratação de fornecedores ou recebimento de materiais.",
+        "Havendo necessidade de visitas extraordinárias, deslocamentos adicionais ou aumento significativo da demanda técnica prevista, as partes poderão ajustar honorários complementares.",
+        "A CONTRATANTE deverá permitir o acesso ao local da obra e garantir as condições mínimas de segurança e organização necessárias às visitas."
+      ],
+      "inclui": [
+        "Visitas técnicas previamente agendadas, em média 2 (duas) por mês",
+        "Esclarecimento de dúvidas de fornecedores e prestadores de serviço em horário comercial",
+        "Orientação remota por mensagens, videochamadas e análise de fotos e documentos"
+      ],
+      "nao_inclui": [
+        "Gerenciamento ou administração da obra e da equipe",
+        "Responsabilidade técnica pela execução da obra",
+        "Fiscalização permanente ou diária",
+        "Contratação de terceiros, recebimento e conferência de materiais"
+      ]
+    },
+    {
+      "id": "compras", "grupo": "Obra", "nome": "Administração de Compras",
+      "definicao": "A administração de compras consiste no apoio à CONTRATANTE na cotação e na aquisição dos itens especificados no projeto.",
+      "ressalvas": [
+        "A escolha final, a contratação e o pagamento dos fornecedores cabem exclusivamente à CONTRATANTE, que contrata diretamente com eles. A CONTRATADA não responde por prazos de entrega, defeitos de produtos ou inadimplemento dos fornecedores.",
+        "A CONTRATADA declara que não recebe comissões, bonificações ou quaisquer vantagens de fornecedores cotados ou indicados, nos termos do Código de Ética e Disciplina do CAU/BR."
+      ],
+      "inclui": [
+        "Cotação em até 2 (dois) fornecedores por item",
+        "Acompanhamento presencial ou remoto das compras, em horário comercial e mediante agendamento"
+      ],
+      "nao_inclui": [
+        "Pagamento a fornecedores",
+        "Recebimento, conferência, montagem ou instalação de produtos",
+        "Garantia dos produtos adquiridos"
+      ]
+    }
+  ],
+
+  "clausulas": [
+    {
+      "id": "abertura",
+      "titulo": null,
+      "explicacao": "Logo depois do Quadro-Resumo, estes parágrafos dizem que o quadro e os anexos fazem parte do contrato. É isso que permite deixar as cláusulas gerais e colocar os dados de cada projeto só no quadro.",
+      "itens": [
+        { "txt": "Pelo presente instrumento particular, as partes qualificadas no Quadro-Resumo, doravante denominadas CONTRATADA e CONTRATANTE, celebram o presente Contrato de Prestação de Serviços Profissionais de Arquitetura, que será regido pelo Código Civil, pela Lei nº 12.378/2010, pelas normas do Conselho de Arquitetura e Urbanismo (CAU) e pelas cláusulas a seguir." },
+        { "txt": "O Quadro-Resumo e os anexos deste contrato são partes integrantes e indissociáveis deste instrumento e vinculam plenamente CONTRATANTE e CONTRATADA quanto ao escopo, prazos, valores e demais condições neles previstas." },
+        { "txt": "As partes declaram que leram, compreenderam e concordam com todos os termos deste contrato e de seus anexos, reconhecendo sua validade e eficácia jurídica." }
+      ]
+    },
+    {
+      "id": "objeto",
+      "titulo": "DO OBJETO",
+      "explicacao": "Define o que você vai fazer e, tão importante quanto, o que você não vai fazer. A lista do que não está incluído é a principal defesa contra o “achei que estava no preço”. Ela muda sozinha conforme as etapas marcadas: se você contratou projeto legal, por exemplo, a aprovação deixa de aparecer como excluída.",
+      "destaque": "escopo",
+      "itens": [
+        { "txt": "O presente contrato tem por objeto a prestação de serviços técnicos profissionais de arquitetura pela CONTRATADA, consistentes nos serviços selecionados no Quadro-Resumo e detalhados no Anexo I (Escopo dos Serviços){{?proposta:, conforme a proposta comercial anexa}}." },
+        { "txt": "Os serviços possuem natureza exclusivamente intelectual e técnica, sendo executados de forma personalizada conforme as características do projeto, as necessidades da CONTRATANTE e os parâmetros técnicos aplicáveis." },
+        { "txt": "O escopo, as entregas, as etapas e as condições de execução observarão o Quadro-Resumo, o Anexo I e as demais cláusulas deste instrumento.{{?proposta: Havendo divergência entre a proposta comercial e este contrato, prevalecem este contrato e seus anexos.}}",
+          "explicacao": "A regra de prevalência evita que um detalhe solto na proposta (feita antes, às vezes às pressas) seja usado contra o contrato." },
+        { "txt": "Este contrato não abrange, salvo previsão expressa em sentido contrário:",
+          "lista": [
+            { "txt": "execução da obra;" },
+            { "txt": "gerenciamento ou administração da obra;" },
+            { "txt": "contratação de fornecedores, empreiteiros ou prestadores de serviços;" },
+            { "txt": "projetos complementares de engenharia (estrutural, fundações, hidrossanitário, elétrico, preventivo contra incêndio, climatização e demais disciplinas), ressalvadas as indicações de pontos e layouts previstas no Anexo I;" },
+            { "txt": "aprovação de projetos perante órgãos públicos, concessionárias ou condomínio;", "quando": "!legal" },
+            { "txt": "protocolo, acompanhamento e obtenção de aprovações perante órgãos públicos, concessionárias ou condomínio, ressalvada a elaboração da documentação técnica prevista para o Projeto Legal;", "quando": "legal" },
+            { "txt": "compatibilização de projetos elaborados por terceiros;", "quando": "!executivo" },
+            { "txt": "acompanhamento técnico da execução da obra;", "quando": "!acompanhamento" },
+            { "txt": "quaisquer serviços não expressamente previstos no Quadro-Resumo ou no Anexo I." }
+          ] },
+        { "txt": "Alterações de escopo, inclusão de novos serviços, modificações relevantes no projeto ou solicitações não previstas inicialmente poderão ensejar revisão de prazos, honorários e condições contratuais, na forma da Cláusula de Alterações e Serviços Adicionais." }
+      ]
+    },
+    {
+      "id": "servicos",
+      "titulo": "DA DESCRIÇÃO DOS SERVIÇOS",
+      "gerada": "etapas",
+      "explicacao": "Descreve cada etapa marcada e traz as ressalvas próprias dela (por exemplo: o 3D é ilustrativo, o projeto legal não garante aprovação). A lista detalhada do que está e do que não está incluído fica no Anexo I, onde você pode marcar, desmarcar e acrescentar itens.",
+      "destaque": "escopo",
+      "itens": [
+        { "txt": "Os serviços contratados serão desenvolvidos conforme as etapas abaixo, cujas entregas, bem como o que nelas não está incluído, estão detalhadas no Anexo I." }
+      ]
+    },
+    {
+      "id": "prazos",
+      "titulo": "DOS PRAZOS, DO FLUXO E DAS APROVAÇÕES",
+      "explicacao": "É a cláusula que mais evita briga no dia a dia. Seu prazo só corre quando o cliente faz a parte dele (assina, paga a entrada, manda as informações), o tempo que o material fica com ele não conta, e cada etapa só começa depois que a anterior foi aprovada por escrito. Também diz quem pode aprovar e por qual canal.",
+      "destaque": "aprovacao",
+      "itens": [
+        { "txt": "Os serviços serão desenvolvidos de forma sucessiva, por etapas, e cada etapa somente terá início após:",
+          "lista": [
+            { "txt": "a conclusão da etapa anterior;" },
+            { "txt": "a aprovação da etapa anterior pela CONTRATANTE; e" },
+            { "txt": "a entrega, pela CONTRATANTE, das informações, documentos e definições necessárias à continuidade dos serviços." }
+          ] },
+        { "txt": "Os prazos da CONTRATADA passarão a ser contados somente após:",
+          "lista": [
+            { "txt": "a assinatura do contrato;" },
+            { "txt": "o pagamento da entrada, quando houver; e" },
+            { "txt": "a entrega de todos os documentos, arquivos, levantamentos, diretrizes e informações técnicas necessários à respectiva etapa." }
+          ] },
+        { "txt": "Os prazos de cada etapa são os indicados no Quadro-Resumo e serão contados em dias úteis." },
+        { "txt": "O cronograma anexo possui caráter estimativo e organizacional, podendo sofrer ajustes em razão de alterações de escopo, exigências técnicas, revisões solicitadas pela CONTRATANTE, atrasos atribuíveis a terceiros ou a órgãos públicos e demais fatores inerentes ao desenvolvimento do projeto.", "quando": "cronograma" },
+        { "txt": "Não serão computados nos prazos da CONTRATADA os períodos em que os materiais permanecerem com a CONTRATANTE para análise, aprovação ou envio de devolutivas." },
+        { "txt": "Após o envio de cada etapa, a CONTRATANTE apresentará sua devolutiva no prazo de até {{ext:prazoDevolutiva}} dias úteis, aprovando a etapa ou apresentando, de forma consolidada, as solicitações de ajuste." },
+        { "txt": "As aprovações, devolutivas e solicitações de revisão serão válidas quando feitas pelos canais oficiais e pelas pessoas indicadas no Quadro-Resumo como responsáveis pelas aprovações.{{?aprovacaoEmoji: Serão considerados válidos os registros escritos, inclusive em meio digital, que contenham termos como “aprovado”, “de acordo”, “pode seguir”, emojis afirmativos (✅, 👍) ou outra manifestação inequívoca de aceite.}}",
+          "explicacao": "Aprovação de etapa quase sempre acontece no WhatsApp, com um “pode seguir” ou um 👍. Deixar isso escrito evita que o cliente diga depois que nunca aprovou." },
+        { "txt": "Não serão aceitas aprovações verbais, por telefone ou por canais não indicados no Quadro-Resumo, salvo se confirmadas posteriormente por escrito." },
+        { "txt": "Cada etapa poderá ter até {{extf:revisoes}} rodada(s) de revisão, desde que relacionadas ao escopo contratado e apresentadas de forma consolidada pela CONTRATANTE, dentro do prazo de devolutiva.",
+          "explicacao": "Limitar as revisões e exigir que venham juntas (consolidadas) é o que impede a refação sem fim, um pedido por dia." },
+        { "txt": "Havendo solicitação de revisão, a CONTRATADA terá prazo adicional de até {{ext:prazoRevisao}} dias úteis para reapresentar a etapa ajustada, contado do recebimento das solicitações." },
+        { "txt": "As aprovações têm efeito vinculante. Solicitações de alteração posteriores à aprovação da etapa, bem como modificações substanciais de layout, conceito, fachada, volumetria, programa de necessidades, área ou padrão construtivo, caracterizam alteração de escopo." },
+        { "txt": "A ausência de manifestação da CONTRATANTE no prazo de devolutiva não será interpretada como aprovação tácita, mas suspende os prazos da CONTRATADA. Persistindo a ausência de manifestação por mais de {{ext:prazoInercia}} dias corridos, a CONTRATADA poderá suspender os serviços ou notificar a CONTRATANTE para retomada, sob pena de rescisão por descumprimento.", "quando": "!aprovacaoTacita",
+          "explicacao": "Versão mais conservadora: o silêncio não aprova, mas trava o seu prazo e, se durar muito, abre caminho pra encerrar o contrato." },
+        { "txt": "Decorrido o prazo de devolutiva sem manifestação, a CONTRATADA enviará lembrete pelos canais oficiais concedendo prazo adicional de 5 (cinco) dias úteis. Persistindo a ausência de manifestação, a etapa será considerada aprovada para todos os fins, autorizando o início da etapa seguinte.", "quando": "aprovacaoTacita",
+          "explicacao": "Versão que faz o projeto andar: depois de um lembrete, o silêncio vira aprovação. É mais forte, mas o lembrete precisa ser enviado e guardado, senão a cláusula perde a força." },
+        { "txt": "Caso os órgãos públicos formulem exigências técnicas relacionadas ao projeto arquitetônico, a CONTRATADA realizará os ajustes necessários no prazo de até {{ext:prazoExigencia}} dias úteis contado da ciência formal da exigência, salvo quando a complexidade da adequação exigir prazo diverso.", "quando": "legal" },
+        { "txt": "A suspensão dos serviços por pendências atribuíveis à CONTRATANTE implicará a suspensão automática dos prazos da CONTRATADA, podendo o cronograma ser readequado conforme a disponibilidade da equipe no momento da retomada." },
+        { "txt": "A CONTRATADA não será responsabilizada por atrasos decorrentes:",
+          "lista": [
+            { "txt": "da ausência de documentos ou informações necessárias;" },
+            { "txt": "da demora da CONTRATANTE nas aprovações e devolutivas;" },
+            { "txt": "de alterações solicitadas pela CONTRATANTE;" },
+            { "txt": "de atrasos de terceiros, projetistas complementares, fornecedores ou órgãos públicos;" },
+            { "txt": "de caso fortuito ou força maior." }
+          ] },
+        { "txt": "Alterações de prazo ou cronograma poderão ser formalizadas entre as partes por e-mail, WhatsApp ou outro meio escrito." }
+      ]
+    },
+    {
+      "id": "honorarios",
+      "titulo": "DOS HONORÁRIOS E DAS CONDIÇÕES DE PAGAMENTO",
+      "explicacao": "Os valores ficam no Quadro-Resumo. Aqui estão as consequências do atraso: multa e juros, o direito de pausar o projeto depois de 15 dias e de encerrar depois de 30, e a regra de que o cliente só pode usar o projeto depois de pagar.",
+      "itens": [
+        { "txt": "Pela execução dos serviços, a CONTRATANTE pagará à CONTRATADA os valores previstos no Quadro-Resumo, nas condições ali estabelecidas." },
+        { "txt": "Os pagamentos poderão ser feitos por PIX, transferência bancária, boleto ou outro meio previamente definido entre as partes, sendo válidos apenas os pagamentos feitos aos dados indicados pela CONTRATADA pelos canais oficiais." },
+        { "txt": "A CONTRATADA emitirá a nota fiscal ou o recibo correspondente aos valores recebidos, observada a legislação tributária aplicável." },
+        { "txt": "O atraso no pagamento de qualquer parcela acarretará a incidência de multa moratória de 2% (dois por cento), juros de mora de 1% (um por cento) ao mês, calculados pro rata die, e correção monetária pelo IPCA ou pelo índice que vier a substituí-lo." },
+        { "txt": "O atraso superior a 15 (quinze) dias autoriza a suspensão dos serviços, mediante aviso pelos canais oficiais, com a consequente readequação dos prazos." },
+        { "txt": "Permanecendo a inadimplência por mais de 30 (trinta) dias, a CONTRATADA poderá rescindir o contrato, sem prejuízo da cobrança dos valores devidos e da aplicação da cláusula penal." },
+        { "txt": "A retomada dos serviços após período de suspensão por inadimplência dependerá da disponibilidade de agenda da CONTRATADA." },
+        { "txt": "São devidos os valores correspondentes às etapas já desenvolvidas, ainda que não integralmente concluídas até a data da suspensão ou da rescisão." },
+        { "txt": "Despesas específicas relacionadas ao projeto, como taxas, deslocamentos para fora do município da CONTRATADA, impressões, levantamentos técnicos ou demandas extraordinárias, serão cobradas separadamente, mediante prévio alinhamento com a CONTRATANTE." },
+        { "txt": "A remuneração calculada em percentual, conforme o Quadro-Resumo, incide sobre o valor das compras de mobiliário, marcenaria, marmoraria, vidraçaria, iluminação, cortinas, persianas, adornos e acabamentos, não incidindo sobre mão de obra e materiais brutos, e será paga até o 10º (décimo) dia do mês subsequente às compras, mediante apresentação do respectivo relatório.", "quando": "acompPercentual" },
+        { "txt": "Enquanto houver pendências financeiras relacionadas a este contrato, não será autorizada a utilização, reprodução, execução ou continuidade do uso das soluções arquitetônicas desenvolvidas pela CONTRATADA.",
+          "explicacao": "Liga o pagamento à licença de uso do projeto (Cláusula de Direitos Autorais). Na prática, é o argumento mais forte pra receber de quem quer começar a obra sem quitar." }
+      ]
+    },
+    {
+      "id": "alteracoes",
+      "titulo": "DAS ALTERAÇÕES NO PROJETO E DOS SERVIÇOS ADICIONAIS",
+      "explicacao": "Trata das alterações feitas pelo cliente. Separa o ajuste pequeno, que está no preço, da mudança de rumo, que vira serviço adicional com orçamento aprovado antes. E deixa claro que, se o cliente ou outro profissional mexer no projeto sem você, a responsabilidade por aquela parte deixa de ser sua.",
+      "destaque": "responsabilidade",
+      "itens": [
+        { "txt": "Após a aprovação de cada etapa, as alterações solicitadas pela CONTRATANTE que impliquem retrabalho, mudança de conceito, substituição de soluções técnicas ou alteração da estrutura aprovada serão consideradas serviços adicionais e deverão ser solicitadas por escrito." },
+        { "txt": "Consideram-se serviços adicionais, entre outros:",
+          "lista": [
+            { "txt": "alterações no layout geral ou no conceito previamente aprovado;" },
+            { "txt": "inclusão ou exclusão de ambientes não previstos no escopo original;" },
+            { "txt": "substituição de materiais, acabamentos, sistemas construtivos ou soluções técnicas que impactem a estrutura do projeto;" },
+            { "txt": "adaptação do projeto a normas ou exigências legais não previstas inicialmente ou surgidas após o início dos serviços;" },
+            { "txt": "novas apresentações, formatos ou detalhamentos não contratados." }
+          ] },
+        { "txt": "Para os serviços adicionais, a CONTRATADA apresentará orçamento complementar, com valor e prazo, e sua execução dependerá da aprovação escrita da CONTRATANTE." },
+        { "txt": "Ajustes pontuais e correções técnicas dentro da etapa em andamento, compatíveis com o escopo contratado e solicitados no prazo, serão atendidos sem custo adicional, desde que não impliquem alteração substancial do projeto ou retrabalho de etapas concluídas." },
+        { "txt": "A CONTRATADA poderá recusar modificações que contrariem normas técnicas, comprometam a segurança do projeto ou representem risco jurídico ou ético ao exercício profissional." },
+        { "txt": "A CONTRATANTE não executará nem permitirá que terceiros executem alterações no projeto sem prévia análise e anuência escrita da CONTRATADA, nos termos do art. 16 da Lei nº 12.378/2010. Alterações feitas sem essa anuência afastam a responsabilidade da CONTRATADA sobre a parte alterada e suas consequências.",
+          "explicacao": "A Lei do CAU exige o consentimento do autor para alterar o projeto. Aqui isso vira obrigação do cliente e, de quebra, protege você quando a obra muda o projeto por conta própria." }
+      ]
+    },
+    {
+      "id": "obrigContratante",
+      "titulo": "DAS OBRIGAÇÕES DA CONTRATANTE",
+      "explicacao": "Lista o que é responsabilidade do cliente. Os pontos que mais importam: contratar e pagar os projetos complementares e quem vai executar a obra (com responsável técnico registrado), pagar taxas e alvarás, e responder pelas informações que fornece.",
+      "destaque": "responsabilidade",
+      "itens": [
+        { "txt": "São obrigações da CONTRATANTE:",
+          "lista": [
+            { "txt": "disponibilizar as informações, documentos, levantamentos, referências, diretrizes e definições necessárias ao desenvolvimento do projeto;" },
+            { "txt": "fornecer informações corretas, atualizadas e compatíveis com a realidade do imóvel, respondendo por inconsistências, omissões ou incorreções nas informações fornecidas por ela ou por terceiros por ela contratados;" },
+            { "txt": "realizar alinhamentos, aprovações e devolutivas nos prazos deste contrato;" },
+            { "txt": "cumprir as condições comerciais e financeiras estabelecidas;" },
+            { "txt": "permitir o acesso da CONTRATADA ao imóvel, quando necessário a levantamentos e visitas técnicas;" },
+            { "txt": "contratar, às suas expensas, os projetos complementares necessários, incluindo, entre outros, estrutural, elétrico, hidrossanitário, preventivo contra incêndio, fundações e climatização;" },
+            { "txt": "contratar profissional legalmente habilitado para a execução da obra, não iniciando qualquer execução sem a responsabilidade técnica devidamente registrada perante o conselho profissional competente;" },
+            { "txt": "pagar taxas, tributos, emolumentos, alvarás, licenças, registros, protocolos e demais custos exigidos por órgãos públicos, concessionárias ou condomínio;" },
+            { "txt": "comunicar previamente quaisquer alterações, restrições, condicionantes técnicas ou decisões que possam impactar o projeto, como regras de condomínio ou exigências de órgãos públicos;" },
+            { "txt": "observar as normas legais e técnicas aplicáveis à execução da obra, inclusive quanto a mão de obra, segurança do trabalho e obrigações trabalhistas, previdenciárias e ambientais;" },
+            { "txt": "responder integralmente pelos profissionais, fornecedores, empreiteiros e terceiros por ela contratados;" },
+            { "txt": "manter atualizados seus dados de contato para fins de comunicações contratuais." }
+          ] }
+      ]
+    },
+    {
+      "id": "obrigContratada",
+      "titulo": "DAS OBRIGAÇÕES DA CONTRATADA",
+      "explicacao": "O lado do arquiteto: fazer com diligência e dentro das normas, entregar o que foi contratado, manter sigilo e responder pela própria equipe. A última alínea permite trabalhar com colaboradores e parceiros sem que isso seja visto como repassar o contrato.",
+      "itens": [
+        { "txt": "São obrigações da CONTRATADA:",
+          "lista": [
+            { "txt": "desenvolver os serviços com diligência técnica, observando as normas da ABNT, a legislação urbanística e as normas do CAU;" },
+            { "txt": "entregar os materiais e documentos compatíveis com as etapas contratadas, nos formatos definidos;" },
+            { "txt": "conduzir os alinhamentos técnicos e manter a CONTRATANTE informada sobre definições e ajustes necessários ao cronograma;" },
+            { "txt": "corrigir, sem custo adicional, inconsistências técnicas decorrentes do próprio desenvolvimento do projeto;" },
+            { "txt": "manter confidencialidade sobre as informações recebidas, ressalvadas as hipóteses legais ou autorização da CONTRATANTE;" },
+            { "txt": "responder pelos tributos e encargos fiscais, previdenciários e trabalhistas incidentes sobre sua atividade e sobre sua equipe;" },
+            { "txt": "manter equipe técnica compatível com a complexidade do projeto;" },
+            { "txt": "observar as normas técnicas e urbanísticas vigentes na data de elaboração do projeto." }
+          ] },
+        { "txt": "A CONTRATADA poderá utilizar empregados, colaboradores, prestadores de serviços, consultores, parceiros ou profissionais autônomos, sob sua coordenação e responsabilidade técnica, sem que isso caracterize cessão do contrato, permanecendo integralmente responsável perante a CONTRATANTE pelos serviços contratados." }
+      ]
+    },
+    {
+      "id": "responsabilidade",
+      "titulo": "DA RESPONSABILIDADE TÉCNICA E DOS LIMITES ENTRE PROJETO E EXECUÇÃO",
+      "explicacao": "O coração da proteção. Você responde pelo projeto, não pela obra. Falha de execução, erro de empreiteiro, incompatibilidade com projeto de outro profissional e variação natural de material em relação ao render não são responsabilidade sua. Se tiver acompanhamento de obra, fica claro que acompanhar não é executar nem ser o responsável técnico da execução.",
+      "destaque": "responsabilidade",
+      "itens": [
+        { "txt": "A CONTRATADA emitirá o Registro de Responsabilidade Técnica (RRT) referente aos serviços contratados{{?rrtCliente:, cuja taxa será paga pela CONTRATANTE}}." },
+        { "txt": "A responsabilidade técnica da CONTRATADA limita-se aos serviços efetivamente contratados e desenvolvidos, não se estendendo à execução da obra, a falhas construtivas ou executivas, à fiscalização, ao gerenciamento de equipes, a incompatibilidades decorrentes de projetos de terceiros não disponibilizados à CONTRATADA, nem a serviços, fornecedores ou profissionais contratados diretamente pela CONTRATANTE." },
+        { "txt": "Os profissionais responsáveis pelas demais disciplinas técnicas e pela execução da obra responderão individualmente pelos serviços sob sua responsabilidade.",
+          "explicacao": "É o ponto da obra executada por terceiros: cada profissional responde pelo que fez." },
+        { "txt": "O resultado final depende da adequada execução da obra e da atuação dos demais profissionais envolvidos, não sendo possível à CONTRATADA garantir absoluta correspondência entre as representações gráficas e o resultado executado." },
+        { "txt": "Acabamentos, iluminação, tonalidades, comportamento de materiais, marcenaria, paisagismo, mobiliário e demais elementos sujeitos à execução prática poderão apresentar variações naturais em relação às imagens e representações desenvolvidas.",
+          "explicacao": "Protege contra a reclamação mais comum depois da obra pronta: “não ficou igual ao 3D”." },
+        { "txt": "Alterações legislativas, exigências supervenientes de órgãos públicos ou mudanças técnicas surgidas após a conclusão das etapas poderão demandar adequações posteriores, a serem tratadas como serviço adicional." },
+        { "txt": "O acompanhamento técnico de obra, quando contratado, não transfere à CONTRATADA a responsabilidade pela execução, pelos prazos ou pela qualidade dos serviços de terceiros, nem a torna responsável técnica pela execução da obra. A CONTRATADA não responde por falhas decorrentes do descumprimento das orientações repassadas.", "quando": "acompanhamento || compras" }
+      ]
+    },
+    {
+      "id": "garantia",
+      "titulo": "DA GARANTIA DO PROJETO",
+      "explicacao": "Mostra ao cliente que você se compromete a corrigir erro técnico do projeto, sem custo, por um período depois da entrega. Isso passa segurança e, ao mesmo tempo, delimita: mudança de gosto não é erro, e problema de execução não é do projeto. O último item mantém a cláusula válida perante o Código de Defesa do Consumidor, que não admite afastar responsabilidades previstas em lei.",
+      "destaque": "aprovacao",
+      "itens": [
+        { "txt": "A CONTRATADA garante que o projeto será elaborado com base nas informações fornecidas pela CONTRATANTE e com observância das normas técnicas e da legislação vigentes na data de sua elaboração." },
+        { "txt": "A CONTRATADA corrigirá, sem ônus, erros técnicos de projeto devidamente comprovados e apontados até {{ext:garantiaDias}} dias após a entrega final. Estão excluídas dessa obrigação as alterações estéticas, funcionais ou de conceito previamente aprovado." },
+        { "txt": "A garantia não abrange:",
+          "lista": [
+            { "txt": "modificações, adaptações ou execuções do projeto realizadas por terceiros sem a validação técnica da CONTRATADA;" },
+            { "txt": "inexecução, execução parcial ou incorreta da obra, inclusive por falha de mão de obra, de materiais, má interpretação do projeto ou ausência de acompanhamento técnico qualificado;" },
+            { "txt": "danos decorrentes de falta de manutenção, vícios construtivos ou intervenções posteriores à entrega;" },
+            { "txt": "exigências de órgãos públicos ou concessionárias surgidas após a conclusão do projeto;" },
+            { "txt": "aplicação do projeto em local ou finalidade diversa da contratada." }
+          ] },
+        { "txt": "A garantia prevista nesta cláusula é contratual e não afasta as hipóteses de responsabilidade previstas em lei." }
+      ]
+    },
+    {
+      "id": "autorais",
+      "titulo": "DOS DIREITOS AUTORAIS E DO USO DE IMAGEM",
+      "explicacao": "O projeto é obra sua, protegida pela Lei de Direitos Autorais. O cliente recebe uma licença pra usar naquele imóvel, depois de pagar, e não pode repetir em outro lugar, repassar ou jogar numa ferramenta de inteligência artificial pra gerar variações. Você pode mostrar o trabalho no portfólio sem expor dados do cliente.",
+      "itens": [
+        { "txt": "Os estudos, soluções arquitetônicas, desenhos, imagens e projetos desenvolvidos pela CONTRATADA constituem obra intelectual protegida pela Lei nº 9.610/1998, sendo a CONTRATADA titular dos direitos autorais morais e patrimoniais sobre a criação." },
+        { "txt": "Este contrato não transfere à CONTRATANTE a titularidade dos direitos autorais, concedendo-lhe apenas licença de uso do projeto, restrita ao imóvel e à finalidade descritos no Quadro-Resumo e condicionada ao cumprimento integral das obrigações contratuais, especialmente o pagamento." },
+        { "txt": "É vedado à CONTRATANTE:",
+          "lista": [
+            { "txt": "reproduzir, modificar, adaptar, comercializar, ceder, sublicenciar ou utilizar o projeto fora do escopo contratado sem autorização expressa e escrita da CONTRATADA;" },
+            { "txt": "utilizar o projeto em local diverso do indicado no Quadro-Resumo ou em empreendimento distinto;" },
+            { "txt": "permitir que terceiros utilizem, copiem ou executem o projeto em desacordo com a lei ou com este contrato;" },
+            { "txt": "utilizar, inserir ou disponibilizar o projeto, total ou parcialmente, em ferramentas de inteligência artificial, plataformas automatizadas ou bancos de dados capazes de gerar, modificar ou reproduzir conteúdo, para criar, adaptar ou replicar o projeto ou desenvolver obras derivadas, sem autorização expressa e escrita da CONTRATADA.", "quando": "ia" }
+          ] },
+        { "txt": "A CONTRATADA poderá utilizar imagens do projeto e de suas etapas, como croquis, maquetes eletrônicas, pranchas e renders, bem como fotografias do imóvel após a execução, para fins de portfólio, divulgação profissional, publicações, premiações e redes sociais, desde que não sejam expostos dados pessoais ou informações sigilosas da CONTRATANTE.", "quando": "portfolio" },
+        { "txt": "A CONTRATANTE respeitará os direitos autorais da CONTRATADA mesmo após o término do contrato, respondendo civilmente por perdas e danos decorrentes do uso indevido do projeto." }
+      ]
+    },
+    {
+      "id": "sigilo",
+      "titulo": "DA CONFIDENCIALIDADE E DA PROTEÇÃO DE DADOS",
+      "explicacao": "Sigilo pros dois lados, por 5 anos depois do fim do contrato, e o compromisso de seguir a LGPD com os dados pessoais trocados no projeto (plantas de casa, rotina da família, documentos).",
+      "itens": [
+        { "txt": "As partes manterão sigilo sobre as informações, documentos e dados técnicos, comerciais ou de qualquer natureza a que tiverem acesso em razão deste contrato, não os divulgando nem os utilizando para fins diversos da execução do objeto, ressalvado o uso de imagens previsto na Cláusula de Direitos Autorais." },
+        { "txt": "A obrigação de confidencialidade subsistirá por 5 (cinco) anos após o término do contrato, salvo quando a divulgação for exigida por lei, ordem judicial ou autoridade competente." },
+        { "txt": "As partes cumprirão a Lei Geral de Proteção de Dados (Lei nº 13.709/2018), responsabilizando-se pelo adequado tratamento, guarda e proteção dos dados pessoais compartilhados em razão deste contrato." }
+      ]
+    },
+    {
+      "id": "aliciamento",
+      "titulo": "DO NÃO ALICIAMENTO",
+      "quando": "aliciamento",
+      "explicacao": "Útil pra escritório com equipe ou parceiros fixos, principalmente quando o cliente é construtora ou incorporadora: impede que ele contrate direto o seu projetista ou colaborador depois de conhecê-lo no seu projeto.",
+      "itens": [
+        { "txt": "A CONTRATANTE não contratará, aliciará ou manterá vínculo profissional direto, por si ou por interposta pessoa, com empregados, colaboradores, prestadores de serviços, parceiros, arquitetos, projetistas ou consultores envolvidos pela CONTRATADA na execução deste contrato." },
+        { "txt": "A restrição vale durante a vigência do contrato e por {{ext:aliciamentoAnos}} ano(s) após sua conclusão ou rescisão, por qualquer motivo." },
+        { "txt": "O descumprimento sujeitará a CONTRATANTE ao pagamento de multa compensatória de {{aliciamentoMulta}}% do valor total do contrato, sem prejuízo de perdas e danos adicionais comprovados." },
+        { "txt": "Esta cláusula não alcança relações profissionais comprovadamente existentes antes da celebração deste contrato." }
+      ]
+    },
+    {
+      "id": "rescisao",
+      "titulo": "DA RESCISÃO E DA CLÁUSULA PENAL",
+      "explicacao": "Como sair do contrato. Por acordo, vira distrato. Se o cliente desistir sem motivo, paga o que já foi feito e, se você marcar a opção, uma multa sobre o que faltava. Se alguém descumprir, a outra parte notifica e, sem solução em 10 dias úteis, encerra com multa. Etapa entregue e aprovada não é devolvida.",
+      "itens": [
+        { "txt": "O contrato poderá ser rescindido a qualquer tempo por acordo entre as partes, mediante distrato que defina os acertos financeiros e a entrega dos materiais." },
+        { "txt": "A CONTRATANTE poderá rescindir o contrato sem justificativa, mediante aviso escrito com antecedência de {{ext:avisoRescisao}} dias, ficando obrigada ao pagamento:",
+          "lista": [
+            { "txt": "das etapas já executadas e entregues até a data do aviso;" },
+            { "txt": "da etapa em andamento, proporcionalmente ao trabalho comprovadamente realizado;" },
+            { "txt": "de multa de {{multa}}% (por cento) sobre o saldo remanescente do contrato.", "quando": "multaImotivada" }
+          ] },
+        { "txt": "O descumprimento de qualquer obrigação deste contrato autoriza a parte prejudicada a rescindi-lo, após notificação concedendo prazo de 10 (dez) dias úteis para a regularização." },
+        { "txt": "Na rescisão por descumprimento, a parte que lhe der causa ficará obrigada, cumulativamente:",
+          "lista": [
+            { "txt": "se a CONTRATANTE, ao pagamento integral das etapas executadas, entregues ou em desenvolvimento até a data da rescisão;" },
+            { "txt": "se a CONTRATADA, à entrega das etapas concluídas e quitadas até a data da rescisão;" },
+            { "txt": "ao pagamento de multa compensatória de {{multa}}% (por cento) sobre o valor total do contrato;" },
+            { "txt": "à reparação de perdas e danos adicionais comprovados." }
+          ] },
+        { "txt": "Também constituem causa de rescisão pela CONTRATADA o uso indevido do projeto ou a violação de direitos autorais, bem como condutas que comprometam a ética profissional ou a viabilidade técnica do projeto." },
+        { "txt": "Os valores correspondentes a etapas entregues e aprovadas não serão devolvidos, ainda que o contrato seja rescindido posteriormente." },
+        { "txt": "A parte inadimplente responderá pelas despesas de cobrança judicial ou extrajudicial, incluindo custas e honorários advocatícios de {{honorariosCobranca}}% (por cento) sobre o valor devido, sem prejuízo dos honorários de sucumbência." },
+        { "txt": "A rescisão, por qualquer motivo, não afasta a exigibilidade dos valores vencidos, das obrigações já constituídas e das penalidades incidentes até o encerramento do contrato." }
+      ]
+    },
+    {
+      "id": "gerais",
+      "titulo": "DA COMUNICAÇÃO E DAS DISPOSIÇÕES GERAIS",
+      "explicacao": "Regras de convivência: quais canais valem, horário de atendimento, aviso sobre golpes de cobrança falsa (cada vez mais comuns em obra) e as disposições de praxe que mantêm o contrato de pé mesmo se um trecho for questionado.",
+      "itens": [
+        { "txt": "São meios oficiais de comunicação entre as partes os indicados no Quadro-Resumo, válidos para o envio de documentos, solicitações, aprovações, notificações e registros relacionados a este contrato." },
+        { "txt": "A CONTRATANTE declara ciência de que a CONTRATADA não realiza cobranças, envio de boletos ou solicitações de pagamento por canais não oficiais, sendo válidos exclusivamente os contatos informados no Quadro-Resumo. A CONTRATADA não se responsabiliza por prejuízos decorrentes de fraudes, golpes ou contatos de terceiros que se passem por seus representantes, devendo a CONTRATANTE, em caso de dúvida, confirmar a veracidade das comunicações diretamente pelos canais oficiais.",
+          "explicacao": "Golpe do boleto falso com dados de obra é cada vez mais comum. Esta cláusula orienta o cliente e afasta a sua responsabilidade se ele pagar a um golpista." },
+        { "txt": "A CONTRATADA atenderá e responderá às comunicações {{horario}}. Mensagens enviadas fora desse horário, em fins de semana ou feriados, serão respondidas conforme disponibilidade, e a ausência de resposta imediata nesses períodos não caracteriza falha na prestação dos serviços.", "quando": "horarioAtendimento" },
+        { "txt": "Qualquer modificação de escopo, valor, prazo ou demais condições somente terá validade se formalizada por escrito, assinado pelas partes ou validado pelos canais oficiais." },
+        { "txt": "A tolerância de uma parte quanto ao descumprimento de cláusula pela outra não implicará renúncia, novação ou alteração tácita deste contrato." },
+        { "txt": "A entrega de documentos, imagens e arquivos de projeto poderá ocorrer por meio digital (e-mail, link de download, plataforma de nuvem ou equivalente), cabendo à CONTRATANTE efetuar o download e o arquivamento do conteúdo." },
+        { "txt": "Se qualquer cláusula for considerada inválida, as demais permanecerão em vigor, devendo as partes substituí-la por outra de efeito equivalente." },
+        { "txt": "Este contrato obriga as partes e seus sucessores, sendo vedada sua cessão, no todo ou em parte, sem a anuência expressa da outra parte." },
+        { "txt": "Este contrato substitui quaisquer acordos anteriores, escritos ou verbais, sobre o mesmo objeto{{?proposta:, ressalvada a proposta comercial anexa naquilo que não conflitar com este instrumento}}." }
+      ]
+    },
+    {
+      "id": "foro",
+      "titulo": "DO FORO E DA ASSINATURA",
+      "explicacao": "Escolha a comarca onde fica o seu escritório. Atenção: se o cliente for pessoa física contratando pra uso próprio, a Justiça pode aceitar que ele processe na comarca dele mesmo assim, porque é relação de consumo. O texto sobre assinatura eletrônica permite assinar por plataforma como Clicksign, D4Sign ou gov.br.",
+      "itens": [
+        { "txt": "As partes elegem o foro da Comarca de {{foro}} para dirimir quaisquer controvérsias oriundas deste contrato, com renúncia de qualquer outro, por mais privilegiado que seja." },
+        { "txt": "E, por estarem justas e contratadas, as partes assinam o presente contrato na presença das testemunhas abaixo, reconhecendo a veracidade, autenticidade, integridade, validade e eficácia deste instrumento, nos termos do art. 219 do Código Civil, em formato eletrônico ou assinado por meio de certificados eletrônicos, ainda que não emitidos pela ICP-Brasil, conforme o art. 10, § 2º, da Medida Provisória nº 2.200-2/2001." }
+      ]
+    }
+  ]
+}

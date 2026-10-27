@@ -1,0 +1,812 @@
+<title>Contrato na Régua</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Carlito:ital,wght@0,400;0,700;1,400&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
+<style>
+@font-face{font-family:'Borna';src:url(data:font/otf;base64,/*@BORNA@*/) format('opentype');font-weight:700;font-display:swap}
+/* Layout: prancheta de preenchimento à esquerda, folha A4 do contrato à direita; no celular, alterna entre as duas. */
+:root{
+  --bg:#F1EBDF;
+  --panel:#F8F4EC;
+  --ink:#4A2C2A;
+  --ink-soft:#7A5E58;
+  --brand:#6D413E;
+  --accent:#F26F4D;
+  --accent-ink:#C04E2E;
+  --line:#DDD1C0;
+  --paper:#FFFFFF;
+  --paper-ink:#2B211F;
+  --expl:#FBEFE6;
+  --mark:#FFE7A8;
+  --ok:#2F7D5B;
+  --f-display:'Borna',Georgia,serif;
+  --f-ui:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-doc:'Carlito','Calibri',Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#231615;--panel:#2E1F1D;--ink:#F1EBDF;--ink-soft:#C9B8AA;--brand:#3A2725;--accent:#F48165;--accent-ink:#F79B83;
+  --line:#4A3532;--paper:#FBF8F3;--paper-ink:#2B211F;--expl:#F6E6DA;--mark:#FFE29A;--ok:#6CC59B;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#231615;--panel:#2E1F1D;--ink:#F1EBDF;--ink-soft:#C9B8AA;--brand:#3A2725;--accent:#F48165;--accent-ink:#F79B83;
+  --line:#4A3532;--paper:#FBF8F3;--paper-ink:#2B211F;--expl:#F6E6DA;--mark:#FFE29A;--ok:#6CC59B;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:14px;line-height:1.5}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.top{background:#6D413E;color:#F1EBDF;padding-block:14px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.top-in{max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;flex-direction:column;gap:2px}
+.brand small{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#F26F4D;font-weight:600}
+.brand b{font-family:var(--f-display);font-size:26px;line-height:1;letter-spacing:.01em}
+.modes{display:flex;gap:4px;background:rgba(241,235,223,.12);padding:4px;border-radius:999px}
+.modes button{border:0;background:transparent;color:#F1EBDF;padding:7px 14px;border-radius:999px;cursor:pointer;font-weight:500;font-size:13px}
+.modes button[aria-pressed="true"]{background:#F1EBDF;color:#6D413E}
+.modes .bonus{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#F26F4D;margin-left:4px;font-weight:600}
+.modes button[aria-pressed="true"] .bonus{color:#C04E2E}
+
+.wrap{max-width:1380px;margin:0 auto;padding-block:20px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.example{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--panel);border:1px dashed var(--line);border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:13px;color:var(--ink-soft)}
+.example b{color:var(--ink)}
+.example span{min-width:0;flex:1 1 280px}
+.linkbtn{border:0;background:none;color:var(--accent-ink);text-decoration:underline;cursor:pointer;padding:0;font-weight:500}
+.grid{display:grid;grid-template-columns:minmax(340px,460px) minmax(0,1fr);gap:24px;align-items:start}
+.viewtoggle{display:none}
+@media (max-width:960px){
+  .grid{grid-template-columns:1fr}
+  .viewtoggle{display:flex;gap:4px;margin-bottom:14px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:4px}
+  .viewtoggle button{flex:1;border:0;background:transparent;padding:8px;border-radius:999px;cursor:pointer;font-weight:500}
+  .viewtoggle button[aria-pressed="true"]{background:var(--brand);color:#F1EBDF}
+  body[data-view="form"] .preview-col{display:none}
+  body[data-view="doc"] .form-col{display:none}
+}
+
+.form-col{background:var(--panel);border:1px solid var(--line);border-radius:10px;min-width:0}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-bottom:1px solid var(--line)}
+.steps button{min-width:0;border:0;background:none;padding:11px 10px 9px;cursor:pointer;font-size:12.5px;color:var(--ink-soft);border-bottom:2px solid transparent;display:flex;gap:6px;align-items:baseline;white-space:nowrap}
+.steps button span{font-variant-numeric:tabular-nums;font-size:11px;color:var(--ink-soft)}
+.steps button[aria-current="step"]{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+.pane{padding:18px 18px 8px}
+.pane h2{font-family:var(--f-display);font-size:21px;margin:0 0 4px;color:var(--ink);text-wrap:balance}
+.pane .lead{margin:0 0 16px;color:var(--ink-soft);font-size:13px}
+.f{display:flex;flex-direction:column;gap:4px;margin-bottom:12px;min-width:0}
+.f label,.lbl{font-size:11.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft)}
+.f input,.f select,.f textarea{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);min-width:0}
+.f textarea{min-height:64px;resize:vertical}
+.f .hint{font-size:12px;color:var(--ink-soft)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media (max-width:440px){.row,.row3{grid-template-columns:1fr}}
+.seg{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:12px}
+.seg label{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer;font-size:13px;background:var(--bg)}
+.seg input{accent-color:var(--accent)}
+.seg label:has(input:checked){border-color:var(--accent);background:var(--expl);color:#4A2C2A}
+.group{margin:14px 0 6px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);font-weight:600}
+.chk{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.chk:last-child{border-bottom:0}
+.chk input{accent-color:var(--accent);width:16px;height:16px;margin-top:2px;flex:0 0 auto}
+.chk small{display:block;color:var(--ink-soft);font-size:12px}
+.logo-drop{display:flex;align-items:center;gap:12px;border:1px dashed var(--line);border-radius:8px;padding:10px;margin-bottom:12px;background:var(--bg)}
+.logo-drop img{max-height:44px;max-width:140px}
+.logo-drop .ph{width:90px;height:44px;border-radius:4px;display:grid;place-items:center;font-size:11px;color:var(--ink-soft);border:1px solid var(--line)}
+.btn{border:1px solid var(--line);background:var(--bg);border-radius:6px;padding:7px 12px;cursor:pointer;font-weight:500;font-size:13px}
+.btn:hover{border-color:var(--accent)}
+.etapa-card{border:1px solid var(--line);border-radius:8px;margin-bottom:10px;background:var(--bg)}
+.etapa-card summary{padding:10px 12px;cursor:pointer;font-weight:600;display:flex;justify-content:space-between;gap:8px}
+.etapa-card summary small{font-weight:400;color:var(--ink-soft)}
+.etapa-body{padding:0 12px 12px}
+.it{display:flex;gap:8px;align-items:center;margin-bottom:6px}
+.it input[type=checkbox]{accent-color:var(--accent);flex:0 0 auto;width:15px;height:15px}
+.it input[type=text]{flex:1;min-width:0;border:1px solid transparent;background:transparent;padding:4px 6px;border-radius:4px;font-size:13px}
+.it input[type=text]:hover,.it input[type=text]:focus{border-color:var(--line);background:var(--panel)}
+.it.off input[type=text]{text-decoration:line-through;color:var(--ink-soft)}
+.it .x{border:0;background:none;color:var(--ink-soft);cursor:pointer;font-size:16px;line-height:1;padding:2px 6px}
+.add{display:flex;gap:6px;margin:4px 0 10px}
+.add input{flex:1;min-width:0;padding:6px 8px;border:1px dashed var(--line);border-radius:6px;background:transparent;font-size:13px}
+.sum{font-size:12.5px;padding:8px 10px;border-radius:6px;background:var(--bg);border:1px solid var(--line);margin-bottom:12px;font-variant-numeric:tabular-nums}
+.sum.bad{border-color:var(--accent);color:var(--accent-ink)}
+.nav{display:flex;justify-content:space-between;gap:8px;padding:12px 18px;border-top:1px solid var(--line)}
+.gen{padding:14px 18px 18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.cta{border:0;background:var(--accent);color:#fff;font-weight:600;padding:12px 16px;border-radius:8px;cursor:pointer;font-size:15px}
+.cta:hover{filter:brightness(1.05)}
+.cta:disabled{opacity:.6;cursor:wait}
+.status{font-size:12.5px;color:var(--ink-soft);min-height:18px}
+.privacy{font-size:12px;color:var(--ink-soft)}
+
+.preview-col{min-width:0;position:sticky;top:12px}
+@media (max-width:960px){.preview-col{position:static}}
+.ptools{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.ptools .meta{font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.switch{display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;font-weight:500}
+.switch input{accent-color:var(--accent);width:16px;height:16px}
+.paperbox{max-height:calc(100vh - 120px);overflow:auto;border-radius:6px;box-shadow:0 1px 0 var(--line),0 18px 40px -26px rgba(60,30,20,.45)}
+@media (max-width:960px){.paperbox{max-height:none}}
+.paper{background:var(--paper);color:var(--paper-ink);font-family:var(--f-doc);font-size:15px;line-height:1.5;padding:40px 48px 56px;min-width:0}
+@media (max-width:600px){.paper{padding:24px 18px 36px;font-size:14px}}
+.phead{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #E5DDD3;padding-bottom:12px;margin-bottom:22px;gap:12px}
+.phead img{max-height:46px;max-width:180px}
+.phead .ph{border:1px dashed #CDBFB2;color:#9A8A80;font-family:var(--f-ui);font-size:11px;padding:10px 14px;border-radius:4px;cursor:pointer;background:none}
+.phead .who{font-family:var(--f-ui);font-size:10.5px;color:#9A8A80;text-align:right}
+.paper h1{font-size:17px;text-align:center;margin:0 0 18px;font-weight:700;letter-spacing:.02em;text-wrap:balance}
+.paper h3{font-size:15px;margin:22px 0 8px;font-weight:700;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.paper p{margin:0 0 7px;text-align:justify;hyphens:auto}
+.paper p.li{padding-left:28px}
+.paper p.sub{padding-left:28px;font-size:14.5px}
+.paper p.c{text-align:center}
+.qr{width:100%;border-collapse:collapse;margin:0 0 16px;font-size:14px}
+.qr th,.qr td{border:1px solid #D9CEC2;padding:6px 9px;vertical-align:top;text-align:left}
+.qr th{background:#F3ECE2;width:30%;font-weight:700}
+.qrwrap,.anx{overflow-x:auto}
+.anx table{width:100%;border-collapse:collapse;margin:0 0 14px;font-size:14px}
+.anx th,.anx td{border:1px solid #D9CEC2;padding:6px 9px;vertical-align:top;text-align:left;width:50%}
+.anx thead th{background:#F3ECE2}
+.anx ul{margin:4px 0 0;padding-left:18px}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:34px 28px;margin-top:40px}
+@media (max-width:600px){.sig{grid-template-columns:1fr}}
+.sig div{border-top:1px solid #8C7B70;padding-top:6px;font-size:13.5px}
+.sig small{display:block;color:#6E5F57;font-size:12px}
+.pmark{background:var(--mark);border-radius:2px;padding:0 2px}
+.badge{font-family:var(--f-ui);font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:2px 8px;border-radius:999px;background:#FDE3D9;color:#A6401F}
+.badge.aprovacao{background:#E3EEE6;color:#2F6B4C}
+.badge.escopo{background:#E8E2F2;color:#55407E}
+.xpl{font-family:var(--f-ui);font-size:12.5px;line-height:1.55;background:var(--expl);color:#5A3B36;padding:9px 12px;border-radius:6px;margin:4px 0 10px}
+.xpl b{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#C04E2E;margin-bottom:2px}
+.paper:not(.show-xpl) .xpl{display:none}
+.pbreak{border:0;border-top:2px dashed #E5DDD3;margin:30px -48px}
+@media (max-width:600px){.pbreak{margin:24px -18px}}
+.loading{padding:60px 20px;text-align:center;color:var(--ink-soft)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header class="top">
+  <div class="top-in">
+    <div class="brand"><small>Estrutura Legal</small><b>Contrato na Régua</b></div>
+    <div class="modes" role="group" aria-label="Documento">
+      <button type="button" id="modeContrato" aria-pressed="true">Contrato de projeto</button>
+      <button type="button" id="modeTermo" aria-pressed="false">Termo de aceite<span class="bonus">bônus</span></button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="example" id="exampleBar" hidden>
+    <span><b>Exemplo preenchido.</b> Troque pelos dados do seu escritório e do seu cliente. Tudo fica salvo só neste navegador.</span>
+    <button type="button" class="linkbtn" id="clearExample">Começar em branco</button>
+  </div>
+  <div class="viewtoggle" role="group" aria-label="Visualização">
+    <button type="button" id="vForm" aria-pressed="true">Preencher</button>
+    <button type="button" id="vDoc" aria-pressed="false">Ver documento</button>
+  </div>
+  <div class="grid">
+    <section class="form-col" aria-label="Dados">
+      <nav class="steps" id="steps"></nav>
+      <div class="pane" id="pane"><div class="loading">Carregando…</div></div>
+      <div class="nav" id="nav"></div>
+      <div class="gen">
+        <button type="button" class="cta" id="genBtn">Baixar contrato em Word</button>
+        <div class="status" id="status" aria-live="polite"></div>
+        <div class="privacy">O documento é montado aqui no seu navegador. Os dados do seu cliente não são enviados para nenhum servidor.</div>
+      </div>
+    </section>
+    <section class="preview-col" aria-label="Documento">
+      <div class="ptools">
+        <label class="switch"><input type="checkbox" id="xplToggle" checked> Mostrar por que cada cláusula está ali</label>
+        <span class="meta" id="pmeta"></span>
+      </div>
+      <div class="paperbox"><article class="paper show-xpl" id="paper"><div class="loading">Carregando…</div></article></div>
+    </section>
+  </div>
+</div>
+
+<script>
+'use strict';
+var M = null, S = null, step = 0, mode = 'contrato';
+var KEY = 'regua.estado.v1';
+
+/* ---------- utilitários ---------- */
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function getPath(o, p){ return p.split('.').reduce(function(a, k){ return a == null ? a : a[k]; }, o); }
+function setPath(o, p, v){
+  var ks = p.split('.'), last = ks.pop();
+  var t = ks.reduce(function(a, k){ if(a[k] == null) a[k] = {}; return a[k]; }, o);
+  t[last] = v;
+}
+var UN = ['zero','um','dois','três','quatro','cinco','seis','sete','oito','nove','dez','onze','doze','treze','quatorze','quinze','dezesseis','dezessete','dezoito','dezenove'];
+var DZ = ['','','vinte','trinta','quarenta','cinquenta','sessenta','setenta','oitenta','noventa'];
+var CT = ['','cento','duzentos','trezentos','quatrocentos','quinhentos','seiscentos','setecentos','oitocentos','novecentos'];
+function ate999(n){
+  if(n === 100) return 'cem';
+  var c = Math.floor(n / 100), r = n % 100, p = [];
+  if(c) p.push(CT[c]);
+  if(r){ if(r < 20) p.push(UN[r]); else { var d = Math.floor(r / 10), u = r % 10; p.push(DZ[d] + (u ? ' e ' + UN[u] : '')); } }
+  return p.join(' e ');
+}
+function extenso(n, fem){
+  n = Math.floor(Math.abs(Number(n) || 0));
+  if(n === 0) return 'zero';
+  var mi = Math.floor(n / 1e6), mil = Math.floor((n % 1e6) / 1000), r = n % 1000, p = [];
+  if(mi) p.push(mi === 1 ? 'um milhão' : ate999(mi) + ' milhões');
+  if(mil) p.push(mil === 1 ? 'mil' : ate999(mil) + ' mil');
+  var out = p.join(' ');
+  if(r){ out += (p.length ? ((r < 100 || r % 100 === 0) ? ' e ' : ' ') : '') + ate999(r); }
+  if(fem) out = out.replace(/\bum\b/g, 'uma').replace(/\bdois\b/g, 'duas').replace(/entos\b/g, 'entas');
+  return out;
+}
+function reais(v){
+  v = Math.round((Number(v) || 0) * 100) / 100;
+  var int = Math.floor(v), cent = Math.round((v - int) * 100);
+  var num = v.toLocaleString('pt-BR', {style:'currency', currency:'BRL'});
+  var t = '';
+  if(int) t = extenso(int) + ((int % 1e6 === 0) ? ' de reais' : (int === 1 ? ' real' : ' reais'));
+  if(cent) t += (t ? ' e ' : '') + extenso(cent) + (cent === 1 ? ' centavo' : ' centavos');
+  return num + ' (' + (t || 'zero reais') + ')';
+}
+function brl(v){ return (Number(v) || 0).toLocaleString('pt-BR', {style:'currency', currency:'BRL'}); }
+var MESES = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+function dataExt(iso){ if(!iso) return '[data]'; var p = iso.split('-').map(Number); return p[2] + ' de ' + MESES[p[1] - 1] + ' de ' + p[0]; }
+function hoje(){ var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+function ou(v, ph){ v = (v == null ? '' : String(v)).trim(); return v || '[' + ph + ']'; }
+
+/* ---------- estado ---------- */
+function etapaPadrao(e, on, prazo){
+  return { on: on, prazo: prazo || 15,
+    inclui: e.inclui.map(function(t){ return {txt:t, on:true}; }),
+    nao: e.nao_inclui.map(function(t){ return {txt:t, on:true}; }) };
+}
+function estadoInicial(exemplo){
+  var s = {
+    exemplo: !!exemplo,
+    contratada: exemplo
+      ? {tipo:'pj', nome:'Estúdio Linha Arquitetura Ltda', doc:'12.345.678/0001-90', cau:'A123456-7', endereco:'Rua Bocaiúva, 1200, sala 503, Centro, Florianópolis/SC', representante:'Helena Duarte Machado', repCpf:'123.456.789-00', email:'contato@estudiolinha.arq.br', telefone:'(48) 99999-0000'}
+      : {tipo:'pj', nome:'', doc:'', cau:'', endereco:'', representante:'', repCpf:'', email:'', telefone:''},
+    contratante: exemplo
+      ? {tipo:'pf', nome:'Mariana Costa Ribeiro', doc:'987.654.321-00', endereco:'Rua Esteves Júnior, 380, apto 802, Centro, Florianópolis/SC', representante:'', repCpf:'', email:'mariana.ribeiro@email.com', telefone:'(48) 98888-1111'}
+      : {tipo:'pf', nome:'', doc:'', endereco:'', representante:'', repCpf:'', email:'', telefone:''},
+    projeto: exemplo
+      ? {objeto:'Reforma de apartamento residencial', local:'Rua Esteves Júnior, 380, apto 802, Centro, Florianópolis/SC', area:'112', aprovadores:'Mariana Costa Ribeiro e Rafael Ribeiro Lima', canais:'WhatsApp (48) 98888-1111 e e-mail mariana.ribeiro@email.com'}
+      : {objeto:'', local:'', area:'', aprovadores:'', canais:''},
+    etapas: {},
+    pagamento: exemplo
+      ? {valor:24000, modo:'parcelado', entradaPct:30, parcelas:4, diaVenc:10, meios:{pix:true, transferencia:true, boleto:false}, porEtapa:{}, acomp:''}
+      : {valor:'', modo:'parcelado', entradaPct:30, parcelas:3, diaVenc:10, meios:{pix:true, transferencia:true, boleto:false}, porEtapa:{}, acomp:''},
+    vars: clone(M.padroes),
+    opcoes: {},
+    foro: exemplo ? 'Florianópolis/SC' : '',
+    cidade: exemplo ? 'Florianópolis/SC' : '',
+    data: hoje(),
+    observacoes: '',
+    logo: null,
+    termo: {etapa:'estudoPreliminar', entrega: hoje(), aceite: hoje(), materiais:'', ajustes:''}
+  };
+  var marcadas = exemplo ? {estudoPreliminar:15, anteprojeto:20, legal:15, executivo:30} : {};
+  M.etapas.forEach(function(e){ s.etapas[e.id] = etapaPadrao(e, e.id in marcadas, marcadas[e.id]); });
+  M.opcoes.forEach(function(o){ s.opcoes[o.id] = o.padrao; });
+  return s;
+}
+function salvar(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+function carregar(){
+  try{ var raw = localStorage.getItem(KEY); if(raw){ var s = JSON.parse(raw); if(s && s.etapas) return s; } }catch(e){}
+  return null;
+}
+
+/* ---------- condições e preenchimento ---------- */
+function ativo(id){
+  if(S.etapas[id]) return !!S.etapas[id].on;
+  if(id in S.opcoes) return !!S.opcoes[id];
+  return false;
+}
+function cond(expr){
+  if(!expr) return true;
+  return expr.split('||').some(function(t){
+    return t.split('&&').every(function(x){ x = x.trim(); return x[0] === '!' ? !ativo(x.slice(1)) : ativo(x); });
+  });
+}
+function valorVar(k){ if(k === 'foro') return ou(S.foro, 'comarca'); return S.vars[k] == null || S.vars[k] === '' ? M.padroes[k] : S.vars[k]; }
+function fill(txt){
+  return txt
+    .replace(/\{\{\?([^:}]+):([^}]*)\}\}/g, function(_, c, t){ return cond(c) ? t : ''; })
+    .replace(/\{\{(extf?):(\w+)\}\}/g, function(_, f, k){ var v = valorVar(k); return v + ' (' + extenso(v, f === 'extf') + ')'; })
+    .replace(/\{\{(\w+)\}\}/g, function(_, k){ return valorVar(k); });
+}
+var ORD = ['PRIMEIRA','SEGUNDA','TERCEIRA','QUARTA','QUINTA','SEXTA','SÉTIMA','OITAVA','NONA','DÉCIMA','DÉCIMA PRIMEIRA','DÉCIMA SEGUNDA','DÉCIMA TERCEIRA','DÉCIMA QUARTA','DÉCIMA QUINTA','DÉCIMA SEXTA'];
+var ROM = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV'];
+var DESTAQUE = {responsabilidade:'Responsabilidade', aprovacao:'Aprovação e garantia', escopo:'Escopo'};
+
+/* ---------- modelo do documento (usado pela prévia e pelo Word) ---------- */
+function etapasOn(){ return M.etapas.filter(function(e){ return S.etapas[e.id].on; }); }
+function qualifica(p, papel){
+  var l = [ou(p.nome, papel === 'CONTRATADA' ? 'nome ou razão social do escritório' : 'nome do cliente'),
+           (p.tipo === 'pj' ? 'CNPJ ' : 'CPF ') + ou(p.doc, p.tipo === 'pj' ? 'CNPJ' : 'CPF')];
+  if(papel === 'CONTRATADA' && (p.cau || '').trim()) l.push('CAU nº ' + p.cau.trim());
+  if(papel === 'CONTRATADA' && !(p.cau || '').trim()) l.push('CAU nº [registro]');
+  l.push(ou(p.endereco, 'endereço'));
+  if(p.tipo === 'pj') l.push('Representada por ' + ou(p.representante, 'representante legal') + ', CPF ' + ou(p.repCpf, 'CPF do representante'));
+  var ct = [p.email, p.telefone].filter(function(x){ return (x || '').trim(); }).join(' · ');
+  if(ct) l.push(ct);
+  return l;
+}
+function textoPagamento(){
+  var P = S.pagamento, v = Number(P.valor) || 0;
+  if(P.modo === 'avista') return ['À vista, na assinatura do contrato.'];
+  if(P.modo === 'parcelado'){
+    var ent = v * (Number(P.entradaPct) || 0) / 100, n = Math.max(1, Number(P.parcelas) || 1), parc = (v - ent) / n;
+    return ['Entrada de ' + brl(ent) + ' (' + (Number(P.entradaPct) || 0) + '%) na assinatura e saldo de ' + brl(v - ent) + ' em ' + n + ' parcela(s) mensal(is) de ' + brl(parc) + ', com vencimento todo dia ' + (P.diaVenc || '[dia]') + ', a partir do mês seguinte à assinatura.'];
+  }
+  var l = ['Na assinatura: ' + (Number(P.entradaPct) || 0) + '% (' + brl(v * (Number(P.entradaPct) || 0) / 100) + ')'];
+  etapasOn().forEach(function(e){ var pc = Number(P.porEtapa[e.id]) || 0; if(pc) l.push('Na entrega do ' + e.nome + ': ' + pc + '% (' + brl(v * pc / 100) + ')'); });
+  return l;
+}
+function meios(){
+  var m = S.pagamento.meios, l = [];
+  if(m.pix) l.push('PIX'); if(m.transferencia) l.push('transferência bancária'); if(m.boleto) l.push('boleto');
+  return l.length ? l.join(', ').replace(/, ([^,]*)$/, ' ou $1') : '[meio de pagamento]';
+}
+function quadro(){
+  var ets = etapasOn();
+  var rows = [
+    ['CONTRATADA', qualifica(S.contratada, 'CONTRATADA')],
+    ['CONTRATANTE', qualifica(S.contratante, 'CONTRATANTE')],
+    ['Objeto', [ou(S.projeto.objeto, 'descrição do projeto')]],
+    ['Local do projeto', [ou(S.projeto.local, 'endereço do imóvel') + ((S.projeto.area || '').toString().trim() ? ' · área aproximada de ' + S.projeto.area + ' m²' : '')]],
+    ['Serviços contratados e prazos', ets.length ? ets.map(function(e){ return e.nome + (e.grupo === 'Obra' ? ': durante a execução da obra' : ': até ' + (S.etapas[e.id].prazo || '[--]') + ' dias úteis'); }) : ['[marque ao menos uma etapa]']],
+    ['Responsáveis pelas aprovações', [ou(S.projeto.aprovadores, 'quem pode aprovar as etapas')]],
+    ['Canais oficiais de comunicação', [ou(S.projeto.canais, 'WhatsApp e e-mail com os números e endereços')]],
+    ['Honorários', [S.pagamento.valor ? reais(S.pagamento.valor) : '[valor total]']],
+    ['Condições de pagamento', textoPagamento()],
+    ['Forma de pagamento', [meios()]]
+  ];
+  if(cond('acompanhamento || compras')) rows.push(['Remuneração do acompanhamento' + (ativo('compras') ? ' e das compras' : ''), [ou(S.pagamento.acomp, 'valor mensal, por visita ou percentual sobre as compras')]]);
+  var anexos = ['Anexo I – Escopo dos Serviços'];
+  if(ativo('proposta')) anexos.push('Proposta comercial');
+  if(ativo('cronograma')) anexos.push('Cronograma');
+  rows.push(['Anexos', anexos]);
+  if((S.observacoes || '').trim()) rows.push(['Observações', [S.observacoes.trim()]]);
+  return rows;
+}
+function construirContrato(){
+  var B = [];
+  B.push({t:'h1', text:'CONTRATO DE PRESTAÇÃO DE SERVIÇOS PROFISSIONAIS DE ARQUITETURA'});
+  B.push({t:'sub', text:'QUADRO-RESUMO'});
+  B.push({t:'quadro', rows:quadro()});
+  var n = 0;
+  M.clausulas.forEach(function(c){
+    if(!cond(c.quando)) return;
+    if(c.titulo === null){
+      c.itens.forEach(function(it){ if(cond(it.quando)) B.push({t:'p', runs:[{text:fill(it.txt)}]}); });
+      B.push({t:'xpl', text:c.explicacao});
+      return;
+    }
+    n++;
+    B.push({t:'clause', text:'CLÁUSULA ' + ORD[n - 1] + ' – ' + c.titulo, badge:c.destaque});
+    B.push({t:'xpl', text:c.explicacao});
+    var k = 0;
+    c.itens.forEach(function(it){
+      if(!cond(it.quando)) return;
+      k++;
+      B.push({t:'p', runs:[{text:n + '.' + k + '. ', b:true}, {text:fill(it.txt)}]});
+      var r = 0;
+      (it.lista || []).forEach(function(li){ if(cond(li.quando)) B.push({t:'li', runs:[{text:ROM[r++] + ' – '}, {text:fill(li.txt)}]}); });
+      if(it.explicacao) B.push({t:'xpl', text:it.explicacao, item:true});
+    });
+    if(c.gerada === 'etapas'){
+      etapasOn().forEach(function(e){
+        k++;
+        B.push({t:'p', runs:[{text:n + '.' + k + '. ' + e.nome + '. ', b:true}, {text:e.definicao}]});
+        e.ressalvas.forEach(function(rs, j){ B.push({t:'subp', runs:[{text:n + '.' + k + '.' + (j + 1) + '. '}, {text:rs}]}); });
+      });
+    }
+  });
+  B.push({t:'p', runs:[{text:ou(S.cidade, 'cidade/UF') + ', ' + dataExt(S.data) + '.'}], center:true, gap:true});
+  B.push({t:'sig', pares:[
+    [S.contratada.nome || '[CONTRATADA]', 'CONTRATADA'],
+    [S.contratante.nome || '[CONTRATANTE]', 'CONTRATANTE'],
+    ['Nome:  CPF:', 'TESTEMUNHA 1'],
+    ['Nome:  CPF:', 'TESTEMUNHA 2']
+  ]});
+  B.push({t:'break'});
+  B.push({t:'h1', text:'ANEXO I – ESCOPO DOS SERVIÇOS'});
+  B.push({t:'p', runs:[{text:'Este anexo integra o contrato e detalha, para cada etapa contratada, o que está e o que não está incluído nos honorários. Itens não listados como incluídos dependem de orçamento complementar.'}]});
+  B.push({t:'annex', etapas:etapasOn().map(function(e){
+    var st = S.etapas[e.id];
+    return { nome:e.nome,
+      inclui: st.inclui.filter(function(i){ return i.on && i.txt.trim(); }).map(function(i){ return i.txt.trim(); }),
+      nao: st.nao.filter(function(i){ return i.on && i.txt.trim(); }).map(function(i){ return i.txt.trim(); }) };
+  })});
+  return B;
+}
+function construirTermo(){
+  var T = M.termoAceite, e = M.etapas.find(function(x){ return x.id === S.termo.etapa; }) || etapasOn()[0] || M.etapas[0];
+  var ctx = {contratada: ou(S.contratada.nome, 'CONTRATADA'), contratante: ou(S.contratante.nome, 'CONTRATANTE'), objeto: ou(S.projeto.objeto, 'objeto').toLowerCase(), local: ou(S.projeto.local, 'local')};
+  var sub = function(t){ return t.replace(/\{\{(\w+)\}\}/g, function(_, k){ return ctx[k]; }); };
+  var mats = (S.termo.materiais || '').split('\n').map(function(x){ return x.trim(); }).filter(Boolean);
+  if(!mats.length) mats = S.etapas[e.id].inclui.filter(function(i){ return i.on; }).map(function(i){ return i.txt; });
+  var aj = (S.termo.ajustes || '').split('\n').map(function(x){ return x.trim(); }).filter(Boolean);
+  var B = [{t:'h1', text:T.titulo}, {t:'xpl', text:T.explicacao}, {t:'p', runs:[{text:sub(T.abertura)}]},
+    {t:'p', runs:[{text:'Etapa: ', b:true}, {text:e.nome}]},
+    {t:'p', runs:[{text:'Data de entrega dos materiais: ', b:true}, {text:dataExt(S.termo.entrega)}]},
+    {t:'p', runs:[{text:T.materiais, b:true}]}];
+  mats.forEach(function(m, i){ B.push({t:'li', runs:[{text:ROM[i] + ' – '}, {text:m}]}); });
+  B.push({t:'p', runs:[{text:T.aceite}], gap:true});
+  if(aj.length){ B.push({t:'p', runs:[{text:T.ajustes}]}); aj.forEach(function(a, i){ B.push({t:'li', runs:[{text:ROM[i] + ' – '}, {text:a}]}); }); }
+  B.push({t:'p', runs:[{text:T.efeitos}]});
+  B.push({t:'p', runs:[{text:ou(S.cidade, 'cidade/UF') + ', ' + dataExt(S.termo.aceite) + '.'}], center:true, gap:true});
+  B.push({t:'sig', pares:[[S.contratante.nome || '[CONTRATANTE]', 'CONTRATANTE'], [S.contratada.nome || '[CONTRATADA]', 'CONTRATADA, ciente']]});
+  return B;
+}
+
+/* ---------- prévia ---------- */
+function marcar(t){ return esc(t).replace(/\[[^\]]+\]/g, function(m){ return '<span class="pmark">' + m + '</span>'; }); }
+function runsHtml(runs){ return runs.map(function(r){ return r.b ? '<b>' + marcar(r.text) + '</b>' : marcar(r.text); }).join(''); }
+function renderPreview(){
+  var B = mode === 'termo' ? construirTermo() : construirContrato();
+  var h = ['<div class="phead">' + (S.logo ? '<img src="' + S.logo.data + '" alt="Logo do escritório">' : '<button type="button" class="ph" id="phLogo">Sua logo aqui</button>') +
+    '<div class="who">' + esc(S.contratada.nome || '') + '</div></div>'];
+  var palavras = 0, clausulas = 0;
+  B.forEach(function(b){
+    if(b.runs) palavras += b.runs.map(function(r){ return r.text; }).join(' ').split(/\s+/).length;
+    switch(b.t){
+      case 'h1': h.push('<h1>' + esc(b.text) + '</h1>'); break;
+      case 'sub': h.push('<p class="c"><b>' + esc(b.text) + '</b></p>'); break;
+      case 'quadro': h.push('<div class="qrwrap"><table class="qr"><tbody>' + b.rows.map(function(r){ return '<tr><th scope="row">' + esc(r[0]) + '</th><td>' + r[1].map(marcar).join('<br>') + '</td></tr>'; }).join('') + '</tbody></table></div>'); break;
+      case 'clause': clausulas++; h.push('<h3>' + esc(b.text) + (b.badge ? ' <span class="badge ' + b.badge + '">' + DESTAQUE[b.badge] + '</span>' : '') + '</h3>'); break;
+      case 'xpl': h.push('<div class="xpl"><b>' + (b.item ? 'Sobre o item acima' : 'Por que está aqui') + '</b>' + esc(b.text) + '</div>'); break;
+      case 'p': h.push('<p' + (b.center ? ' class="c"' : '') + (b.gap ? ' style="margin-top:18px"' : '') + '>' + runsHtml(b.runs) + '</p>'); break;
+      case 'li': h.push('<p class="li">' + runsHtml(b.runs) + '</p>'); break;
+      case 'subp': h.push('<p class="sub">' + runsHtml(b.runs) + '</p>'); break;
+      case 'sig': h.push('<div class="sig">' + b.pares.map(function(p){ return '<div>' + marcar(p[0]) + '<small>' + esc(p[1]) + '</small></div>'; }).join('') + '</div>'); break;
+      case 'break': h.push('<hr class="pbreak">'); break;
+      case 'annex':
+        if(!b.etapas.length){ h.push('<p><span class="pmark">[marque ao menos uma etapa]</span></p>'); break; }
+        h.push('<div class="anx">' + b.etapas.map(function(e){
+          var li = function(a){ return a.length ? '<ul>' + a.map(function(x){ return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' : '<p>Nada específico.</p>'; };
+          return '<table><thead><tr><th colspan="2">' + esc(e.nome) + '</th></tr></thead><tbody><tr><td><b>Está incluído</b>' + li(e.inclui) + '</td><td><b>Não está incluído</b>' + li(e.nao) + '</td></tr></tbody></table>';
+        }).join('') + '</div>');
+        break;
+    }
+  });
+  $('paper').innerHTML = h.join('');
+  $('pmeta').textContent = mode === 'termo' ? 'Termo de aceite · ' + palavras + ' palavras' : clausulas + ' cláusulas · Anexo I · ' + palavras + ' palavras';
+  var ph = $('phLogo'); if(ph) ph.onclick = function(){ irPara(0); setTimeout(function(){ var i = $('logoInput'); if(i) i.click(); }, 50); };
+}
+
+/* ---------- formulário ---------- */
+var PASSOS = [
+  {id:'voce', nome:'Você'}, {id:'cliente', nome:'Cliente'}, {id:'projeto', nome:'Projeto'},
+  {id:'escopo', nome:'Escopo'}, {id:'valores', nome:'Prazos e valores'}, {id:'clausulas', nome:'Cláusulas'}
+];
+function inp(path, label, opts){
+  opts = opts || {};
+  var v = getPath(S, path); v = v == null ? '' : v;
+  var id = 'f_' + path.replace(/\./g, '_');
+  return '<div class="f"><label for="' + id + '">' + label + '</label>' +
+    (opts.area ? '<textarea id="' + id + '" data-path="' + path + '" placeholder="' + esc(opts.ph || '') + '">' + esc(v) + '</textarea>'
+      : '<input id="' + id + '" type="' + (opts.type || 'text') + '" data-path="' + path + '" value="' + esc(v) + '" placeholder="' + esc(opts.ph || '') + '"' + (opts.type === 'number' ? ' min="0" step="' + (opts.step || 1) + '" inputmode="decimal"' : '') + '>') +
+    (opts.hint ? '<span class="hint">' + opts.hint + '</span>' : '') + '</div>';
+}
+function seg(path, opts, rerender){
+  var v = getPath(S, path);
+  return '<div class="seg" role="radiogroup">' + opts.map(function(o){
+    return '<label><input type="radio" name="' + path + '" data-path="' + path + '" value="' + o[0] + '"' + (v === o[0] ? ' checked' : '') + (rerender ? ' data-rerender="1"' : '') + '> ' + o[1] + '</label>';
+  }).join('') + '</div>';
+}
+function chk(path, label, sub, rerender){
+  return '<label class="chk"><input type="checkbox" data-path="' + path + '"' + (getPath(S, path) ? ' checked' : '') + (rerender ? ' data-rerender="1"' : '') + '><span>' + label + (sub ? '<small>' + sub + '</small>' : '') + '</span></label>';
+}
+function parte(p, papel){
+  var base = papel === 'contratada';
+  var h = seg(p + '.tipo', [['pj', 'Empresa (CNPJ)'], ['pf', 'Pessoa física (CPF)']], true);
+  var tipo = getPath(S, p + '.tipo');
+  h += inp(p + '.nome', tipo === 'pj' ? 'Razão social' : 'Nome completo');
+  h += '<div class="row">' + inp(p + '.doc', tipo === 'pj' ? 'CNPJ' : 'CPF') + (base ? inp(p + '.cau', 'Registro CAU nº') : '<div></div>') + '</div>';
+  h += inp(p + '.endereco', base ? 'Endereço profissional' : 'Endereço');
+  if(tipo === 'pj') h += '<div class="row">' + inp(p + '.representante', 'Representante legal') + inp(p + '.repCpf', 'CPF do representante') + '</div>';
+  h += '<div class="row">' + inp(p + '.email', 'E-mail') + inp(p + '.telefone', 'WhatsApp') + '</div>';
+  return h;
+}
+function paneHtml(){
+  if(mode === 'termo') return paneTermo();
+  var id = PASSOS[step].id, h = '';
+  if(id === 'voce'){
+    h += '<h2>Seu escritório</h2><p class="lead">Esses dados e a logo ficam guardados para os próximos contratos.</p>';
+    h += '<div class="logo-drop">' + (S.logo ? '<img src="' + S.logo.data + '" alt="Logo atual">' : '<span class="ph">sem logo</span>') +
+      '<div><label class="btn" for="logoInput">' + (S.logo ? 'Trocar logo' : 'Enviar logo') + '</label> ' + (S.logo ? '<button type="button" class="linkbtn" id="logoRm">remover</button>' : '') +
+      '<input type="file" id="logoInput" accept="image/png,image/jpeg" hidden><div class="hint" style="font-size:12px;color:var(--ink-soft);margin-top:4px">PNG ou JPG. Vai no cabeçalho de todas as páginas.</div></div></div>';
+    h += parte('contratada', 'contratada');
+  } else if(id === 'cliente'){
+    h += '<h2>Seu cliente</h2><p class="lead">Quem está contratando o projeto.</p>' + parte('contratante', 'contratante');
+  } else if(id === 'projeto'){
+    h += '<h2>Projeto e etapas</h2><p class="lead">Marque só o que está na sua proposta. O contrato e o Anexo I mudam conforme a seleção.</p>';
+    h += inp('projeto.objeto', 'Objeto', {ph:'Ex.: reforma de apartamento residencial'});
+    h += '<div class="row">' + inp('projeto.local', 'Local do projeto') + inp('projeto.area', 'Área aprox. (m²)', {type:'number'}) + '</div>';
+    var g = null;
+    M.etapas.forEach(function(e){
+      if(e.grupo !== g){ g = e.grupo; h += '<div class="group">' + g + '</div>'; }
+      h += chk('etapas.' + e.id + '.on', e.nome, '', true);
+    });
+  } else if(id === 'escopo'){
+    h += '<h2>Anexo I: escopo</h2><p class="lead">Ajuste o que está e o que não está incluído em cada etapa. Desmarque o que não vale para este projeto, edite o texto ou acrescente itens.</p>';
+    var ets = etapasOn();
+    if(!ets.length) h += '<p class="lead">Marque as etapas no passo Projeto.</p>';
+    ets.forEach(function(e, i){
+      var st = S.etapas[e.id];
+      var lista = function(campo, titulo){
+        var s = '<div class="lbl" style="margin:8px 0 6px">' + titulo + '</div>';
+        st[campo].forEach(function(it, j){
+          var p = 'etapas.' + e.id + '.' + campo + '.' + j;
+          s += '<div class="it' + (it.on ? '' : ' off') + '"><input type="checkbox" aria-label="Incluir item" data-path="' + p + '.on"' + (it.on ? ' checked' : '') + ' data-rerender="1"><input type="text" aria-label="Texto do item" data-path="' + p + '.txt" value="' + esc(it.txt) + '">' + (it.extra ? '<button type="button" class="x" data-rm="' + e.id + '.' + campo + '.' + j + '" aria-label="Remover item">×</button>' : '') + '</div>';
+        });
+        s += '<div class="add"><input type="text" placeholder="Acrescentar item" data-add="' + e.id + '.' + campo + '" aria-label="Novo item"><button type="button" class="btn" data-addbtn="' + e.id + '.' + campo + '">Incluir</button></div>';
+        return s;
+      };
+      h += '<details class="etapa-card"' + (i === 0 ? ' open' : '') + '><summary>' + esc(e.nome) + '<small>' + st.inclui.filter(function(x){ return x.on; }).length + ' itens incluídos</small></summary><div class="etapa-body">' + lista('inclui', 'Está incluído') + lista('nao', 'Não está incluído') + '</div></details>';
+    });
+  } else if(id === 'valores'){
+    h += '<h2>Prazos e valores</h2><p class="lead">Prazos em dias úteis, contados como explica a Cláusula Terceira.</p>';
+    var arq = etapasOn().filter(function(e){ return e.grupo !== 'Obra'; });
+    if(arq.length){
+      h += '<div class="lbl" style="margin-bottom:6px">Prazo de cada etapa (dias úteis)</div><div class="row">';
+      arq.forEach(function(e){ h += inp('etapas.' + e.id + '.prazo', e.nome, {type:'number'}); });
+      h += '</div>';
+    }
+    h += '<div class="row3">' + inp('vars.prazoDevolutiva', 'Devolutiva do cliente', {type:'number', hint:'dias úteis'}) + inp('vars.revisoes', 'Revisões por etapa', {type:'number'}) + inp('vars.prazoRevisao', 'Prazo p/ revisar', {type:'number', hint:'dias úteis'}) + '</div>';
+    h += '<div class="group">Honorários</div>';
+    h += inp('pagamento.valor', 'Valor total (R$)', {type:'number', step:'0.01', hint: S.pagamento.valor ? reais(S.pagamento.valor) : ''});
+    h += seg('pagamento.modo', [['avista', 'À vista'], ['parcelado', 'Entrada + parcelas'], ['etapas', 'Por etapa']], true);
+    var P = S.pagamento;
+    if(P.modo === 'parcelado') h += '<div class="row3">' + inp('pagamento.entradaPct', 'Entrada (%)', {type:'number'}) + inp('pagamento.parcelas', 'Parcelas', {type:'number'}) + inp('pagamento.diaVenc', 'Dia do vencimento', {type:'number'}) + '</div>';
+    if(P.modo === 'etapas'){
+      h += inp('pagamento.entradaPct', 'Na assinatura (%)', {type:'number'});
+      h += '<div class="row">';
+      etapasOn().forEach(function(e){ h += inp('pagamento.porEtapa.' + e.id, 'Na entrega: ' + e.nome + ' (%)', {type:'number'}); });
+      h += '</div>';
+      var tot = (Number(P.entradaPct) || 0) + etapasOn().reduce(function(a, e){ return a + (Number(P.porEtapa[e.id]) || 0); }, 0);
+      h += '<div class="sum' + (tot === 100 ? '' : ' bad') + '" id="pctSum">Total: ' + tot + '%' + (tot === 100 ? ' ✓' : ', precisa fechar 100%') + '</div>';
+    }
+    h += '<div class="lbl" style="margin-bottom:6px">Meios aceitos</div><div class="seg">' +
+      ['pix:PIX', 'transferencia:Transferência', 'boleto:Boleto'].map(function(x){ var a = x.split(':'); return '<label><input type="checkbox" data-path="pagamento.meios.' + a[0] + '"' + (P.meios[a[0]] ? ' checked' : '') + '> ' + a[1] + '</label>'; }).join('') + '</div>';
+    if(cond('acompanhamento || compras')) h += inp('pagamento.acomp', 'Remuneração do acompanhamento' + (ativo('compras') ? ' e das compras' : ''), {ph:'Ex.: R$ 1.800,00 por mês, ou 10% sobre as compras'});
+  } else if(id === 'clausulas'){
+    h += '<h2>Cláusulas</h2><p class="lead">Ligue e desligue o que faz sentido para este cliente. A explicação de cada uma aparece no documento ao lado.</p>';
+    M.opcoes.forEach(function(o){
+      if(o.id === 'acompPercentual' && !cond('acompanhamento || compras')) return;
+      h += chk('opcoes.' + o.id, o.rotulo, '', true);
+    });
+    h += '<div class="group">Valores das cláusulas</div><div class="row">' +
+      inp('vars.multa', 'Multa (%)', {type:'number'}) + inp('vars.garantiaDias', 'Garantia (dias)', {type:'number'}) +
+      inp('vars.avisoRescisao', 'Aviso para desistir (dias)', {type:'number'}) + inp('vars.prazoInercia', 'Silêncio que suspende (dias)', {type:'number'}) + '</div>';
+    if(ativo('aliciamento')) h += '<div class="row">' + inp('vars.aliciamentoMulta', 'Multa por aliciamento (%)', {type:'number'}) + inp('vars.aliciamentoAnos', 'Por quantos anos', {type:'number'}) + '</div>';
+    if(ativo('horarioAtendimento')) h += inp('vars.horario', 'Horário de atendimento');
+    h += '<div class="group">Fechamento</div><div class="row">' + inp('foro', 'Foro (comarca)', {ph:'Cidade/UF do escritório'}) + inp('cidade', 'Cidade da assinatura') + '</div>';
+    h += inp('data', 'Data do contrato', {type:'date'});
+    h += inp('observacoes', 'Observações no Quadro-Resumo', {area:true, ph:'Opcional'});
+  }
+  return h;
+}
+function paneTermo(){
+  var ets = etapasOn().filter(function(e){ return e.grupo !== 'Obra'; });
+  if(!ets.some(function(e){ return e.id === S.termo.etapa; }) && ets.length) S.termo.etapa = ets[0].id;
+  var h = '<h2>Termo de aceite de etapa</h2><p class="lead">Usa os dados do contrato. Gere um termo ao fim de cada etapa e peça a assinatura ou o “de acordo” do cliente pelo canal oficial.</p>';
+  h += '<div class="f"><label for="termoEtapa">Etapa entregue</label><select id="termoEtapa" data-path="termo.etapa" data-rerender="1">' +
+    (ets.length ? ets : M.etapas).map(function(e){ return '<option value="' + e.id + '"' + (S.termo.etapa === e.id ? ' selected' : '') + '>' + esc(e.nome) + '</option>'; }).join('') + '</select></div>';
+  h += '<div class="row">' + inp('termo.entrega', 'Entregue em', {type:'date'}) + inp('termo.aceite', 'Data do aceite', {type:'date'}) + '</div>';
+  h += inp('termo.materiais', 'Materiais entregues', {area:true, ph:'Um por linha. Em branco, usa os itens incluídos da etapa no Anexo I.'});
+  h += inp('termo.ajustes', 'Ajustes combinados (opcional)', {area:true, ph:'Um por linha. Ex.: trocar o revestimento da varanda.'});
+  return h;
+}
+function renderSteps(){
+  if(mode === 'termo'){ $('steps').innerHTML = ''; $('steps').hidden = true; $('nav').innerHTML = ''; return; }
+  $('steps').hidden = false;
+  $('steps').innerHTML = PASSOS.map(function(p, i){ return '<button type="button" data-step="' + i + '"' + (i === step ? ' aria-current="step"' : '') + '><span>' + (i + 1) + '</span>' + p.nome + '</button>'; }).join('');
+  $('nav').innerHTML = (step > 0 ? '<button type="button" class="btn" id="prev">← ' + PASSOS[step - 1].nome + '</button>' : '<span></span>') +
+    (step < PASSOS.length - 1 ? '<button type="button" class="btn" id="next">' + PASSOS[step + 1].nome + ' →</button>' : '<span></span>');
+}
+function renderForm(){
+  renderSteps();
+  $('pane').innerHTML = paneHtml();
+  $('genBtn').textContent = mode === 'termo' ? 'Baixar termo em Word' : 'Baixar contrato em Word';
+  $('exampleBar').hidden = !S.exemplo;
+}
+function irPara(i){ step = i; renderForm(); $('pane').scrollIntoView({block:'nearest'}); }
+var tPrev = null;
+function agendarPreview(){ clearTimeout(tPrev); tPrev = setTimeout(renderPreview, 90); }
+function onChange(el){
+  var path = el.getAttribute('data-path'); if(!path) return;
+  var v;
+  if(el.type === 'checkbox') v = el.checked;
+  else if(el.type === 'number') v = el.value === '' ? '' : Number(el.value);
+  else v = el.value;
+  setPath(S, path, v);
+  salvar();
+  if(el.hasAttribute('data-rerender')){ var y = $('pane').scrollTop; renderForm(); $('pane').scrollTop = y; }
+  else if(path.indexOf('pagamento.') === 0 && $('pctSum')){ var keepFocus = el.id; renderForm(); var f = $(keepFocus); if(f){ f.focus(); try{ f.setSelectionRange(f.value.length, f.value.length); }catch(e){} } }
+  agendarPreview();
+}
+function lerLogo(file){
+  if(!file || !/^image\/(png|jpeg)$/.test(file.type)){ status('Use uma imagem PNG ou JPG.'); return; }
+  var r = new FileReader();
+  r.onload = function(){
+    var img = new Image();
+    img.onload = function(){ S.logo = {data:r.result, w:img.naturalWidth, h:img.naturalHeight}; salvar(); renderForm(); renderPreview(); };
+    img.src = r.result;
+  };
+  r.readAsDataURL(file);
+}
+function status(t){ $('status').textContent = t; }
+
+/* ---------- Word ---------- */
+function b64ToBytes(dataUrl){
+  var b = atob(dataUrl.split(',')[1]), u = new Uint8Array(b.length);
+  for(var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i);
+  return u;
+}
+function gerarDocx(B){
+  var D = window.docx;
+  var W = 9071, NONE = {style:D.BorderStyle.NONE, size:0, color:'FFFFFF'}, SEM = {top:NONE, bottom:NONE, left:NONE, right:NONE};
+  var COR = {style:D.BorderStyle.SINGLE, size:4, color:'BFB2A5'}, LIN = {top:COR, bottom:COR, left:COR, right:COR};
+  var MRG = {top:60, bottom:60, left:100, right:100};
+  function runs(rs){ return rs.map(function(r){ return new D.TextRun({text:r.text, bold:!!r.b}); }); }
+  function par(rs, o){
+    o = o || {};
+    return new D.Paragraph({children:runs(rs), alignment:o.center ? D.AlignmentType.CENTER : D.AlignmentType.JUSTIFIED,
+      indent:o.indent ? {left:o.indent} : undefined, spacing:{before:o.before || 0, after:0}, keepNext:!!o.keepNext});
+  }
+  var out = [];
+  B.forEach(function(b){
+    switch(b.t){
+      case 'h1': out.push(new D.Paragraph({children:[new D.TextRun({text:b.text, bold:true, size:24})], alignment:D.AlignmentType.CENTER, spacing:{after:240}})); break;
+      case 'sub': out.push(par([{text:b.text, b:true}], {center:true})); break;
+      case 'quadro':
+        out.push(new D.Table({width:{size:W, type:D.WidthType.DXA}, columnWidths:[2700, W - 2700], rows:b.rows.map(function(r){
+          return new D.TableRow({children:[
+            new D.TableCell({width:{size:2700, type:D.WidthType.DXA}, borders:LIN, margins:MRG, shading:{fill:'F1EBDF', type:D.ShadingType.CLEAR, color:'auto'}, children:[new D.Paragraph({children:[new D.TextRun({text:r[0], bold:true})], spacing:{after:0}})]}),
+            new D.TableCell({width:{size:W - 2700, type:D.WidthType.DXA}, borders:LIN, margins:MRG, children:r[1].map(function(l){ return new D.Paragraph({children:[new D.TextRun(l)], spacing:{after:0}}); })})
+          ]});
+        })}));
+        out.push(new D.Paragraph({children:[]}));
+        break;
+      case 'clause': out.push(par([{text:b.text, b:true}], {before:240, keepNext:true})); break;
+      case 'p': out.push(par(b.runs, {center:b.center, before:b.gap ? 240 : 0})); break;
+      case 'li': out.push(par(b.runs, {indent:567})); break;
+      case 'subp': out.push(par(b.runs, {indent:567})); break;
+      case 'break': out.push(new D.Paragraph({children:[new D.PageBreak()]})); break;
+      case 'sig':
+        var linhas = [];
+        for(var i = 0; i < b.pares.length; i += 2){
+          linhas.push(new D.TableRow({children:[b.pares[i], b.pares[i + 1]].map(function(p){
+            return new D.TableCell({width:{size:W / 2, type:D.WidthType.DXA}, borders:SEM, margins:{top:600, left:100, right:300}, children: p ? [
+              new D.Paragraph({children:[new D.TextRun('____________________________________')], spacing:{after:0}}),
+              new D.Paragraph({children:[new D.TextRun({text:p[0], bold:true})], spacing:{after:0}}),
+              new D.Paragraph({children:[new D.TextRun({text:p[1], size:20})], spacing:{after:0}})] : [new D.Paragraph('')]});
+          })}));
+        }
+        out.push(new D.Table({width:{size:W, type:D.WidthType.DXA}, columnWidths:[W / 2, W / 2], rows:linhas}));
+        break;
+      case 'annex':
+        b.etapas.forEach(function(e){
+          var cel = function(t, a){ return new D.TableCell({width:{size:W / 2, type:D.WidthType.DXA}, borders:LIN, margins:MRG,
+            children:[new D.Paragraph({children:[new D.TextRun({text:t, bold:true})], spacing:{after:60}})].concat((a.length ? a : ['Nada específico.']).map(function(x){
+              return new D.Paragraph({children:[new D.TextRun('• ' + x)], spacing:{after:40}, indent:{left:200, hanging:200}}); }))}); };
+          out.push(new D.Table({width:{size:W, type:D.WidthType.DXA}, columnWidths:[W / 2, W / 2], rows:[
+            new D.TableRow({children:[new D.TableCell({columnSpan:2, borders:LIN, margins:MRG, shading:{fill:'F1EBDF', type:D.ShadingType.CLEAR, color:'auto'}, children:[new D.Paragraph({children:[new D.TextRun({text:e.nome, bold:true})], spacing:{after:0}})]})]}),
+            new D.TableRow({children:[cel('Está incluído', e.inclui), cel('Não está incluído', e.nao)]})
+          ]}));
+          out.push(new D.Paragraph({children:[]}));
+        });
+        break;
+    }
+  });
+  var head = [];
+  if(S.logo){
+    var h = 48, w = Math.round(S.logo.w * h / S.logo.h);
+    if(w > 220){ w = 220; h = Math.round(S.logo.h * w / S.logo.w); }
+    head.push(new D.Paragraph({children:[new D.ImageRun({data:b64ToBytes(S.logo.data), transformation:{width:w, height:h}})], spacing:{after:120}}));
+  } else {
+    head.push(new D.Paragraph({children:[new D.TextRun({text:S.contratada.nome || '', bold:true, color:'6D413E'})]}));
+  }
+  var rod = [S.contratada.nome, S.contratada.email, S.contratada.telefone].filter(function(x){ return (x || '').trim(); }).join(' · ');
+  var doc = new D.Document({
+    creator: S.contratada.nome || 'Contrato na Régua',
+    styles:{default:{document:{run:{font:'Calibri', size:22}, paragraph:{spacing:{line:360, before:0, after:0}}}}},
+    sections:[{
+      properties:{page:{size:{width:11906, height:16838}, margin:{top:1418, bottom:1134, left:1701, right:1134, header:567, footer:567}}},
+      headers:{default:new D.Header({children:head})},
+      footers:{default:new D.Footer({children:[new D.Paragraph({alignment:D.AlignmentType.CENTER, children:[
+        new D.TextRun({text:rod ? rod + '   |   ' : '', size:16, color:'7F7F7F'}),
+        new D.TextRun({children:['Página ', D.PageNumber.CURRENT, ' de ', D.PageNumber.TOTAL_PAGES], size:16, color:'7F7F7F'})]})]})},
+      children: out
+    }]
+  });
+  return D.Packer.toBlob(doc);
+}
+async function baixar(){
+  if(!window.docx){ status('O gerador de Word não carregou. Verifique a conexão e recarregue a página.'); return; }
+  var btn = $('genBtn'); btn.disabled = true; status('Montando o documento…');
+  try{
+    var B = (mode === 'termo' ? construirTermo() : construirContrato()).filter(function(b){ return b.t !== 'xpl'; });
+    var blob = await gerarDocx(B);
+    var nomeCli = (S.contratante.nome || 'cliente').trim();
+    var nome = (mode === 'termo' ? 'Termo de aceite - ' + (M.etapas.find(function(e){ return e.id === S.termo.etapa; }) || {}).nome + ' - ' : 'Contrato de arquitetura - ') + nomeCli + '.docx';
+    var dl = null;
+    try{ dl = window.claude && window.claude.use ? await window.claude.use('downloads') : null; }catch(e){ dl = null; }
+    if(dl){
+      try{ await dl.save({filename:nome, data:blob}); status('Pronto. Arquivo salvo: ' + nome); }
+      catch(e){ status(e && e.code === 'declined' ? 'Download cancelado.' : 'Não foi possível salvar o arquivo aqui. Tente de novo em instantes.'); }
+    } else {
+      var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = nome;
+      document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+      status('Pronto. Arquivo baixado: ' + nome);
+    }
+  }catch(e){ console.error(e); status('Não foi possível gerar o arquivo. Recarregue a página e tente de novo.'); }
+  btn.disabled = false;
+}
+
+/* ---------- eventos ---------- */
+function ligar(){
+  var pane = $('pane');
+  pane.addEventListener('input', function(e){ if(e.target.matches('input[type=text],input[type=number],input[type=date],textarea')) onChange(e.target); });
+  pane.addEventListener('change', function(e){
+    var t = e.target;
+    if(t.id === 'logoInput'){ lerLogo(t.files[0]); return; }
+    if(t.matches('input[type=checkbox],input[type=radio],select')) onChange(t);
+  });
+  pane.addEventListener('click', function(e){
+    var t = e.target;
+    if(t.id === 'logoRm'){ S.logo = null; salvar(); renderForm(); renderPreview(); return; }
+    var rm = t.getAttribute('data-rm');
+    if(rm){ var p = rm.split('.'); S.etapas[p[0]][p[1]].splice(Number(p[2]), 1); salvar(); renderForm(); agendarPreview(); return; }
+    var ab = t.getAttribute('data-addbtn');
+    if(ab) adicionar(ab);
+  });
+  pane.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' && e.target.hasAttribute('data-add')){ e.preventDefault(); adicionar(e.target.getAttribute('data-add')); }
+  });
+  $('steps').addEventListener('click', function(e){ var b = e.target.closest('[data-step]'); if(b) irPara(Number(b.getAttribute('data-step'))); });
+  $('nav').addEventListener('click', function(e){ if(e.target.id === 'prev') irPara(step - 1); if(e.target.id === 'next') irPara(step + 1); });
+  $('genBtn').addEventListener('click', baixar);
+  $('xplToggle').addEventListener('change', function(e){ $('paper').classList.toggle('show-xpl', e.target.checked); });
+  $('modeContrato').addEventListener('click', function(){ trocarModo('contrato'); });
+  $('modeTermo').addEventListener('click', function(){ trocarModo('termo'); });
+  $('vForm').addEventListener('click', function(){ verComo('form'); });
+  $('vDoc').addEventListener('click', function(){ verComo('doc'); });
+  $('clearExample').addEventListener('click', function(){
+    var keep = S.exemplo ? null : {contratada:S.contratada, logo:S.logo};
+    S = estadoInicial(false); if(keep){ S.contratada = keep.contratada; S.logo = keep.logo; }
+    salvar(); step = 0; renderForm(); renderPreview();
+  });
+}
+function adicionar(ref){
+  var p = ref.split('.'), field = document.querySelector('[data-add="' + ref + '"]');
+  var v = field && field.value.trim(); if(!v) return;
+  S.etapas[p[0]][p[1]].push({txt:v, on:true, extra:true}); salvar(); renderForm(); agendarPreview();
+  var f2 = document.querySelector('[data-add="' + ref + '"]'); if(f2) f2.focus();
+}
+function trocarModo(m){
+  mode = m;
+  $('modeContrato').setAttribute('aria-pressed', m === 'contrato');
+  $('modeTermo').setAttribute('aria-pressed', m === 'termo');
+  renderForm(); renderPreview();
+}
+function verComo(v){
+  document.body.setAttribute('data-view', v);
+  $('vForm').setAttribute('aria-pressed', v === 'form');
+  $('vDoc').setAttribute('aria-pressed', v === 'doc');
+}
+
+/* ---------- início ---------- */
+fetch('matriz.json').then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); }).then(function(m){
+  M = m;
+  S = carregar() || estadoInicial(true);
+  M.etapas.forEach(function(e){ if(!S.etapas[e.id]) S.etapas[e.id] = etapaPadrao(e, false); });
+  M.opcoes.forEach(function(o){ if(!(o.id in S.opcoes)) S.opcoes[o.id] = o.padrao; });
+  S.vars = Object.assign(clone(M.padroes), S.vars || {});
+  document.body.setAttribute('data-view', 'form');
+  ligar(); renderForm(); renderPreview();
+}).catch(function(){
+  $('pane').innerHTML = '<div class="loading">Não foi possível carregar as cláusulas. Recarregue a página.</div>';
+  $('paper').innerHTML = '';
+});
+</script>
