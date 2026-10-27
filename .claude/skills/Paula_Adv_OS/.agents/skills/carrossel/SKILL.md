@@ -98,19 +98,15 @@ Se o usuário responder rápido (sem rodar /setup), anotar o essencial em `_cont
 
 ### 5. Playwright
 
-Verificar se Playwright tá instalado:
+A renderização usa o Playwright controlando o **Microsoft Edge já instalado no Windows** (`--channel msedge`). Não rodar `npx playwright install chromium`: o download do navegador do Playwright trava na rede do escritório (descoberto em 2026-10-27) e não é necessário.
+
+Verificar se funciona:
 
 ```bash
 npx playwright screenshot --help 2>/dev/null && echo "OK" || echo "INSTALAR"
 ```
 
-Se precisar instalar:
-
-```bash
-npx playwright install chromium
-```
-
-Avisar o usuário que tá instalando (demora uns 30s na primeira vez).
+Se der "INSTALAR", é só o pacote do Playwright (sem navegador): `npm install playwright`.
 
 ---
 
@@ -120,7 +116,7 @@ Avisar o usuário que tá instalando (demora uns 30s na primeira vez).
 - **Regras de design:** `references/design-carrossel.md` (dentro desta skill)
 - **Contexto:** `_contexto/empresa.md`
 - **Tom de voz:** `_contexto/preferencias.md`
-- **Playwright CLI:** `npx playwright screenshot`
+- **Playwright CLI:** `npx playwright screenshot --channel msedge` (usa o Edge do Windows, sem baixar navegador)
 
 ## Input
 
@@ -248,7 +244,7 @@ O usuário fornece:
 4. Salvar HTMLs em `conteudo/instagram/carrossel/[tema]/`
 5. Renderizar via CLI:
    ```bash
-   npx playwright screenshot --viewport-size=1080,1350 --full-page "file:///caminho/absoluto/slide-01.html" "slide-01.png"
+   npx playwright screenshot --channel msedge --viewport-size=1080,1350 --full-page "file:///caminho/absoluto/slide-01.html" "slide-01.png"
    ```
    Renderizar **slide 1 primeiro** e mostrar pro usuário.
 
@@ -270,7 +266,7 @@ Se sim:
 - **Bottom safe zone:** deixar 230px livres embaixo (UI do TikTok sobrepõe)
 - Renderizar via CLI:
   ```bash
-  npx playwright screenshot --viewport-size=1080,1920 --full-page "file:///caminho/absoluto/slide-01.html" "slide-01.png"
+  npx playwright screenshot --channel msedge --viewport-size=1080,1920 --full-page "file:///caminho/absoluto/slide-01.html" "slide-01.png"
   ```
 - Salvar em `conteudo/tiktok/carrossel/[tema]/` (copiar também `carousel-text.md` e a pasta `imagens/`, se houver, pra deixar a pasta autossuficiente)
 
@@ -290,7 +286,7 @@ Se sim, gerar dois artefatos:
 - **Safe zones do Instagram** (não colocar texto/elementos importantes nessas áreas, ficam cobertas pela UI nativa):
   - Topo: ~250px (foto de perfil, nome, botão fechar)
   - Base: ~250px (caixa de resposta/reply)
-- Renderizar via CLI: `npx playwright screenshot --viewport-size=1080,1920 --full-page "file:///caminho/absoluto/story-teaser.html" "story-teaser.png"`
+- Renderizar via CLI: `npx playwright screenshot --channel msedge --viewport-size=1080,1920 --full-page "file:///caminho/absoluto/story-teaser.html" "story-teaser.png"`
 
 **2. Story caixinha de pergunta** — segunda imagem, também 1080x1920, com o convite pra pergunta:
 - Texto tipo "me pergunta o que quiser sobre [tema do post]" ou "dúvida sobre [tema]? pergunta aqui"

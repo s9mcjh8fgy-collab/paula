@@ -1,0 +1,6 @@
+{
+  "name": "contrato-na-regua",
+  "private": true,
+  "scripts": { "build": "python build.py", "deploy": "python build.py && wrangler pages deploy" },
+  "devDependencies": { "wrangler": "4.127.1" }
+}

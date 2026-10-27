@@ -13,7 +13,7 @@ async function main() {
   const outputPath = path.resolve(args[args.length - 1]);
   const slidePaths = args.slice(0, -1).map((p) => path.resolve(p));
 
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({ channel: 'msedge' });
   const page = await browser.newPage({ viewport: { width: 1920, height: 1080 } });
 
   const pdfPaths = [];

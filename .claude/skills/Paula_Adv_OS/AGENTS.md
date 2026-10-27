@@ -10,7 +10,7 @@ Espaço de trabalho da Paula Corrêa Advocacia pra apoiar o dia a dia jurídico:
 - `inpi/` — painel central (`controle.md`) de todos os pedidos de marca e desenho industrial no INPI, de qualquer cliente. Os documentos de cada pedido ficam na pasta do cliente em `06_INPI/`, não aqui (ver skill `/inpi`)
 - `conteudo/` — redes sociais e site, organizado por canal: `instagram/`, `tiktok/`, `site/`, `youtube/` (cada um com subpastas por tipo, ex: `carrossel/`, `reels/`, `blog/`), mais `casos/` (fonte de ideias) e `estrategia-retomada/` (plano de retomada das postagens)
 - `propostas/[nome-cliente]/` — propostas geradas pela skill `/proposta-comercial`, em dois modelos: deck de slides completo (HTML → PDF, pra empresas/assessoria) ou Proposta Simples de 1 página A4 (recriada do brand template do Canva em 2026-09-29, pra casos pontuais/PF). PDF final vai pra `6_Colaboradores/Paula/02 Vendas/Propostas/`
-- `ferramentas/` — ferramentas próprias publicáveis (ex: `contrato-na-regua/`, gerador de contrato de arquitetura com captura de lead, retomado em 2026-10-23 como produto pago (R$ 67), porta de entrada do Estrutura Legal na parceria com o Desvendarq)
+- `ferramentas/` — ferramentas próprias publicáveis (ex: `contrato-na-regua/`, gerador de contrato de projeto de arquitetura vendido na Hotmart (R$ 97, venda única, acesso vitalício à versão), porta de entrada do Estrutura Legal na parceria com o Desvendarq. App em `app/`, servidor com login e webhook da Hotmart em `servidor/` (ver README), página de vendas em `site/`, guia em PDF e vídeo em `materiais/`)
 - `tarefas.md` — lista de pendências
 - `templates/skills/` — templates de skills prontos pra personalizar com /mapear
 - `templates/ferramentas/catalogo.md` — APIs e ferramentas disponíveis pra usar em skills
@@ -56,7 +56,7 @@ Em peças processuais: formal, técnico, terceira pessoa.
 - Sistema próprio de registro de demandas consultivas: https://paula-blush-rho.vercel.app/ (Supabase
   por trás — tabelas `clients`, `interactions`, `tasks`; credenciais em `.env.local` na raiz do
   workspace, usadas pela skill `/demandas`)
-- Cloudflare Pages — publicação de relatórios estáticos (ex: relatórios de andamento do INPI), token e account ID em `.env`
+- Cloudflare Pages — publicação de relatórios estáticos (ex: relatórios de andamento do INPI), token e account ID em `.env` Também cuida do DNS de `estruturalegal.com.br` desde 2026-10-27 (o registro do domínio continua no Registro.br, vence em 20/02/2027); o token tem permissão de Zone/DNS. `app.estruturalegal.com.br` é o app (projeto Pages `contrato-na-regua`) e a raiz é a página de vendas (projeto `contrato-na-regua-site`)
 - WordPress (site paulacorrea.adv.br) — publicação de posts via API REST, autenticado com senha de
   aplicativo (usuário admin). Yoast SEO instalado, dá pra setar meta descrição/título SEO via API.
   Credenciais em `.env.local` (WORDPRESS_*)

@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "contrato-na-regua",
+  "pages_build_output_dir": "./publico",
+  "compatibility_date": "2026-08-01",
+  "kv_namespaces": [
+    { "binding": "KV", "id": "154a1427e9d245f0b775708787086dd9" }
+  ],
+  "vars": {
+    "EMAIL_FROM": "Contrato na Régua <acesso@paulacorrea.adv.br>",
+    "EMAIL_REPLY_TO": "paula@paulacorrea.adv.br",
+    "HOTMART_PRODUCT_ID": "",
+    "URL_VENDA": ""
+  }
+}

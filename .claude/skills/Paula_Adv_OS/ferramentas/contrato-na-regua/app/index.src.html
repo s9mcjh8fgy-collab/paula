@@ -44,8 +44,6 @@ button,input,select,textarea{font:inherit;color:inherit}
 .modes{display:flex;gap:4px;background:rgba(241,235,223,.12);padding:4px;border-radius:999px}
 .modes button{border:0;background:transparent;color:#F1EBDF;padding:7px 14px;border-radius:999px;cursor:pointer;font-weight:500;font-size:13px}
 .modes button[aria-pressed="true"]{background:#F1EBDF;color:#6D413E}
-.modes .bonus{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#F26F4D;margin-left:4px;font-weight:600}
-.modes button[aria-pressed="true"] .bonus{color:#C04E2E}
 
 .wrap{max-width:1380px;margin:0 auto;padding-block:20px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .example{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--panel);border:1px dashed var(--line);border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:13px;color:var(--ink-soft)}
@@ -165,7 +163,7 @@ button,input,select,textarea{font:inherit;color:inherit}
     <div class="brand"><small>Estrutura Legal</small><b>Contrato na Régua</b></div>
     <div class="modes" role="group" aria-label="Documento">
       <button type="button" id="modeContrato" aria-pressed="true">Contrato de projeto</button>
-      <button type="button" id="modeTermo" aria-pressed="false">Termo de aceite<span class="bonus">bônus</span></button>
+      <button type="button" id="modeTermo" aria-pressed="false">Termo de aceite</button>
     </div>
   </div>
 </header>

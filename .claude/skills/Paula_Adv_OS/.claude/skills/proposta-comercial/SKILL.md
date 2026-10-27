@@ -31,7 +31,6 @@ Se faltar algum, instalar na raiz do workspace (`8_Claude/`):
 
 ```bash
 npm install playwright pdf-lib
-npx playwright install chromium
 ```
 
 ---
@@ -98,7 +97,7 @@ Escrever o texto de cada slide (título + corpo curto, linguagem de apresentaç�
 4. Salvar os HTMLs em `propostas/[nome-cliente]/slide-01.html`, `slide-02.html`, etc.
 5. Renderizar o **slide 1 primeiro** em PNG pra mostrar ao usuário:
    ```bash
-   npx playwright screenshot --viewport-size=1920,1080 --full-page "file:///caminho/absoluto/slide-01.html" "propostas/[nome-cliente]/preview-slide-01.png"
+   npx playwright screenshot --channel msedge --viewport-size=1920,1080 --full-page "file:///caminho/absoluto/slide-01.html" "propostas/[nome-cliente]/preview-slide-01.png"
    ```
 
 **CHECKPOINT:** mostrar o preview do slide 1. Se aprovado, seguir. Se pedir ajuste visual, editar o HTML e gerar novo preview.

@@ -48,7 +48,7 @@ const html = fs.readFileSync(path.join(skillDir, 'templates', 'proposta-simples.
 (async () => {
   const tmp = path.join(path.dirname(path.resolve(outPdf)), '.proposta-simples.html');
   fs.writeFileSync(tmp, html, 'utf8');
-  const browser = await playwright.chromium.launch();
+  const browser = await playwright.chromium.launch({ channel: 'msedge' });
   const page = await browser.newPage();
   await page.goto(pathToFileURL(tmp).href, { waitUntil: 'networkidle' });
   const overflow = await page.evaluate(() => {

@@ -115,7 +115,7 @@ A skill publica direto no WordPress via API REST (`WORDPRESS_SITE_URL`, `WORDPRE
    ("term_exists") com o `id` da tag existente dentro do erro — usar esse id em vez de tratar como
    falha. Depois, associar as tags ao post (`POST /wp-json/wp/v2/posts/{id}` com `tags: [ids]`)
 3. Gerar a capa: HTML simples (fundo sólido da marca, frase-gancho curta e diferente do título,
-   renderizado via Playwright em 1200x630), subir como mídia (`POST /wp-json/wp/v2/media`) e setar
+   renderizado via Playwright com o Edge, `--channel msedge`, em 1200x630), subir como mídia (`POST /wp-json/wp/v2/media`) e setar
    como `featured_media` do post
 4. Mostrar o link de edição (`{site}/wp-admin/post.php?post={id}&action=edit`) pra Paula revisar o
    rascunho de verdade no WordPress antes de aprovar
