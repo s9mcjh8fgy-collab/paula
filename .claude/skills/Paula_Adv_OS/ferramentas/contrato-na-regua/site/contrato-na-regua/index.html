@@ -1,16 +1,316 @@
 <!doctype html><html lang="pt-br"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
 <title>Contrato na Régua · Estrutura Legal</title>
+<meta name="description" content="Gerador de contrato de projeto de arquitetura: da proposta aprovada ao contrato em Word, com a sua logo e o escopo item por item. R$ 97, pagamento único.">
+<meta property="og:title" content="Contrato na Régua · Estrutura Legal">
+<meta property="og:description" content="Da proposta aprovada ao contrato assinado, sem deixar brecha no escopo.">
+<meta property="og:image" content="https://estruturalegal.com.br/contrato-na-regua/img/app-visao.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <style>
 @font-face{font-family:'Borna';src:url(/borna.otf) format('opentype');font-weight:700;font-display:swap}
-body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#6D413E;color:#F1EBDF;font:17px/1.6 Inter,system-ui,sans-serif;padding:24px 16px;box-sizing:border-box;text-align:center}
-small{display:block;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#F26F4D;font-weight:600;margin-bottom:8px}
-h1{font-family:Borna,Georgia,serif;font-size:clamp(36px,8vw,64px);line-height:1.05;margin:0 0 18px}
-p{max-width:520px;margin:0 auto;color:#E3D6C6}
-</style></head><body><main>
-<small>Estrutura Legal</small>
-<h1>Contrato na Régua</h1>
-<p>O gerador de contrato de projeto de arquitetura, do orçamento aprovado ao contrato assinado. Em breve.</p>
-</main></body></html>
+:root{--brown:#6D413E;--beige:#F1EBDF;--orange:#F26F4D;--ink:#3E2624;--soft:#7A5E58;--line:#E2D6C6;--paper:#FFFDF9;--cream:#E3D6C6}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;display:block}
+img{height:auto}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.kick{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);font-weight:700;margin:0 0 12px}
+h1,h2,h3{font-family:Borna,Georgia,serif;font-weight:700;line-height:1.1;margin:0}
+h2{font-size:clamp(28px,4.4vw,42px);color:var(--brown);margin-bottom:16px}
+.lead{font-size:clamp(17px,2vw,19px);color:var(--soft);max-width:640px;margin:0 0 8px}
+section{padding:clamp(64px,9vw,104px) 0}
+
+/* botão */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--orange);color:#fff;text-decoration:none;font-weight:600;font-size:17px;padding:16px 30px;border-radius:999px;border:0;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 6px 18px rgba(242,111,77,.28)}
+.btn:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(242,111,77,.36)}
+.btn[aria-disabled="true"]{background:#B9A79A;box-shadow:none;cursor:default;transform:none}
+.nota-btn{font-size:14px;color:inherit;opacity:.75;margin:12px 0 0}
+
+/* topo */
+header.hero{background:var(--brown);color:var(--beige);padding:28px 0 0;overflow:hidden}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+.bar span{color:var(--orange)}
+.bar a{letter-spacing:0;text-transform:none;font-weight:500;font-size:14px;color:var(--cream);text-decoration:none;border:1px solid rgba(241,235,223,.3);padding:7px 14px;border-radius:999px;white-space:nowrap}
+.bar a:hover{background:rgba(241,235,223,.1)}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:40px;padding:clamp(48px,7vw,80px) 0 0}
+.hero h1{font-size:clamp(46px,8.4vw,86px);line-height:.98;margin-bottom:22px}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero .sub{font-size:clamp(18px,2.2vw,21px);color:var(--cream);max-width:560px;margin:0 0 30px}
+.hero .preco{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.hero .preco b{font-family:Borna,Georgia,serif;font-size:30px;color:var(--beige);line-height:1}
+.hero .preco small{display:block;font-family:Inter,sans-serif;font-size:13px;color:var(--cream);font-weight:400;margin-top:4px}
+.ruler{display:flex;align-items:flex-end;height:42px;border-bottom:2px solid rgba(241,235,223,.55);margin-top:clamp(48px,7vw,72px)}
+.ruler i{flex:1;border-left:1px solid rgba(241,235,223,.45);height:10px}
+.ruler i:nth-child(5n+1){height:22px}
+.ruler i:nth-child(10n+1){height:36px;border-color:var(--orange)}
+.video{position:relative;border-radius:14px;overflow:hidden;background:#2b1b1a;box-shadow:0 24px 60px rgba(0,0,0,.35);aspect-ratio:16/9}
+.video video{width:100%;height:100%;object-fit:cover}
+.video-cap{font-size:13px;color:var(--cream);opacity:.8;margin:12px 0 0}
+
+/* dor */
+.dor{background:var(--beige)}
+.frase{font-family:Borna,Georgia,serif;font-size:clamp(34px,6vw,60px);color:var(--brown);line-height:1.05;margin:0 0 20px}
+.frase span{color:var(--orange)}
+.dores{display:grid;grid-template-columns:1fr;gap:14px;margin-top:40px;list-style:none;padding:0}
+.dores li{background:var(--paper);border-left:3px solid var(--orange);padding:18px 22px;border-radius:0 10px 10px 0}
+.dores b{display:block;color:var(--brown);margin-bottom:2px}
+.dores p{margin:0;color:var(--soft);font-size:16px}
+
+/* passos */
+.passos{display:grid;grid-template-columns:1fr;gap:0;margin-top:40px;counter-reset:p;border-top:2px solid var(--brown)}
+.passos div{padding:22px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:54px 1fr;gap:4px 14px}
+.passos em{font-style:normal;font-family:Borna,Georgia,serif;font-size:30px;color:var(--orange);line-height:1;grid-row:span 2}
+.passos b{color:var(--brown);font-size:18px}
+.passos p{margin:0;color:var(--soft);font-size:16px}
+.shot{margin-top:48px}
+.shot img{border-radius:12px;border:1px solid var(--line);box-shadow:0 18px 44px rgba(109,65,62,.14)}
+.shot p{font-size:14px;color:var(--soft);margin:12px 0 0}
+
+/* anexo */
+.anexo{background:var(--brown);color:var(--beige)}
+.anexo h2{color:var(--beige)}
+.anexo .lead{color:var(--cream)}
+.cmp{width:100%;border-collapse:collapse;margin:36px 0 0;font-size:16px}
+.cmp th,.cmp td{text-align:left;padding:14px 16px;border-bottom:1px solid rgba(241,235,223,.18);vertical-align:top}
+.cmp th{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+.cmp th:first-child{color:#E8A08C}.cmp th:last-child{color:var(--orange)}
+.cmp td:first-child{color:var(--cream);opacity:.75;text-decoration:line-through;text-decoration-color:rgba(242,111,77,.6);width:38%}
+.anexo-grid{display:grid;grid-template-columns:1fr;gap:40px;align-items:center}
+.anexo img{border-radius:12px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+
+/* recebe */
+.recebe{display:grid;grid-template-columns:1fr;gap:16px;margin-top:40px}
+.recebe div{background:var(--beige);border-radius:12px;padding:24px}
+.recebe h3{font-size:21px;color:var(--brown);margin-bottom:8px}
+.recebe p{margin:0;color:var(--soft);font-size:16px}
+.recebe svg{width:28px;height:28px;color:var(--orange);margin-bottom:12px}
+
+/* autora */
+.autora{background:var(--beige)}
+.autora-grid{display:grid;grid-template-columns:1fr;gap:32px;align-items:center}
+.autora img{width:min(280px,70%);aspect-ratio:1;object-fit:cover;object-position:top;border-radius:50%;border:6px solid var(--paper)}
+.autora p{color:var(--soft);margin:0 0 14px}
+.autora .assin{font-size:14px;color:var(--brown);font-weight:600}
+
+/* oferta */
+.oferta{text-align:center}
+.card{max-width:560px;margin:36px auto 0;background:var(--brown);color:var(--beige);border-radius:18px;padding:clamp(28px,5vw,44px);text-align:left;box-shadow:0 24px 60px rgba(109,65,62,.25)}
+.card .nome{font-family:Borna,Georgia,serif;font-size:26px;margin:0 0 4px}
+.card .valor{font-family:Borna,Georgia,serif;font-size:clamp(52px,9vw,68px);line-height:1;margin:18px 0 4px;color:var(--beige)}
+.card .valor small{font-size:.4em;vertical-align:.9em;margin-right:4px}
+.card .tipo{color:var(--cream);font-size:15px;margin:0 0 24px}
+.card ul{list-style:none;padding:0;margin:0 0 28px;border-top:1px solid rgba(241,235,223,.2)}
+.card li{padding:11px 0 11px 30px;border-bottom:1px solid rgba(241,235,223,.2);position:relative;font-size:16px}
+.card li::before{content:"";position:absolute;left:4px;top:18px;width:12px;height:7px;border-left:2px solid var(--orange);border-bottom:2px solid var(--orange);transform:rotate(-45deg)}
+.card .btn{width:100%}
+.garantia{display:flex;gap:14px;align-items:flex-start;max-width:560px;margin:22px auto 0;text-align:left;font-size:15px;color:var(--soft)}
+.garantia svg{flex:none;width:40px;height:40px;color:var(--brown)}
+.garantia b{color:var(--brown)}
+
+/* faq */
+.faq{background:var(--beige)}
+.faq details{background:var(--paper);border-radius:10px;margin:0 0 10px;max-width:800px}
+.faq summary{cursor:pointer;list-style:none;padding:18px 52px 18px 22px;font-weight:600;color:var(--brown);position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:22px;top:12px;font-size:26px;font-weight:400;color:var(--orange);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin:0;padding:0 22px 20px;color:var(--soft);font-size:16px}
+.faq h2{margin-bottom:32px}
+
+footer{background:var(--brown);color:var(--cream);padding:40px 0;font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+footer b{color:var(--beige);letter-spacing:.18em;text-transform:uppercase;font-size:12px}
+footer p{margin:0;max-width:620px;opacity:.85}
+
+@media (min-width:860px){
+  .hero-grid{grid-template-columns:1fr 1.1fr;align-items:center}
+  .dores{grid-template-columns:1fr 1fr}
+  .passos{grid-template-columns:1fr 1fr;column-gap:48px}
+  .anexo-grid{grid-template-columns:1fr 1fr}
+  .recebe{grid-template-columns:repeat(3,1fr)}
+  .autora-grid{grid-template-columns:300px 1fr;gap:56px}
+}
+@media (max-width:520px){
+  .cmp{font-size:14px}.cmp th,.cmp td{padding:12px 8px}
+  .bar a{display:none}
+}
+</style></head><body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="bar"><span>Estrutura Legal</span><a href="https://app.estruturalegal.com.br">Já comprei: entrar</a></div>
+    <div class="hero-grid">
+      <div>
+        <p class="kick">Para escritórios de arquitetura</p>
+        <h1>Contrato<br>na <em>Régua</em></h1>
+        <p class="sub">Da proposta aprovada ao contrato assinado, sem deixar brecha no escopo. Você preenche o que já combinou com o cliente e baixa um contrato de projeto completo, em Word, com a logo do seu escritório.</p>
+        <div class="preco">
+          <a class="btn comprar" href="#oferta">Quero o Contrato na Régua</a>
+          <b>R$ 97<small>pagamento único</small></b>
+        </div>
+      </div>
+      <div>
+        <div class="video">
+          <video controls preload="none" playsinline poster="img/app-visao.jpg">
+            <source src="demonstracao.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p class="video-cap">Veja o app funcionando: 2 minutos, do primeiro passo ao Word baixado.</p>
+      </div>
+    </div>
+    <div class="ruler" aria-hidden="true"></div>
+  </div>
+</header>
+
+<section class="dor">
+  <div class="wrap">
+    <p class="frase">“Achei que estava <span>incluído</span>.”</p>
+    <p class="lead">Essa frase custa revisão de graça, visita que não estava no preço e cliente insatisfeito. Quase sempre ela nasce de um contrato que não conversa com a proposta.</p>
+    <ul class="dores">
+      <li><b>O cliente some e o prazo corre contra você</b><p>O contrato define em quantos dias ele precisa responder e o que acontece se ficar em silêncio.</p></li>
+      <li><b>A terceira revisão vira a sétima</b><p>O número de revisões incluídas fica escrito, e as extras têm regra própria.</p></li>
+      <li><b>Acompanhar a obra vira responder pela obra</b><p>Uma cláusula deixa claro que acompanhamento não é execução nem gestão da obra.</p></li>
+      <li><b>Seu projeto aparece onde não devia</b><p>Uso no portfólio, proibição de uso em inteligência artificial e direitos autorais, do jeito que você escolher.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kick">Como funciona</p>
+    <h2>Seis passos, com a proposta aberta ao lado</h2>
+    <p class="lead">À esquerda você preenche. À direita o contrato se monta na hora, com a explicação de cada cláusula em linguagem simples.</p>
+    <div class="passos">
+      <div><em>1</em><b>Você</b><p>Dados do escritório, registro no CAU e a logo. Ficam salvos para os próximos contratos.</p></div>
+      <div><em>2</em><b>Cliente</b><p>Pessoa física ou empresa. Para empresa, também quem assina por ela.</p></div>
+      <div><em>3</em><b>Projeto</b><p>Arquitetura, interiores e acompanhamento de obra. O contrato muda conforme as etapas marcadas.</p></div>
+      <div><em>4</em><b>Escopo</b><p>O Anexo I: o que está e o que não está incluído em cada etapa, item por item.</p></div>
+      <div><em>5</em><b>Prazos e valores</b><p>Prazo de cada etapa, retorno do cliente, revisões e forma de pagamento, com valor por extenso.</p></div>
+      <div><em>6</em><b>Cláusulas</b><p>Opções que você liga e desliga: multa, aprovação por mensagem, portfólio, uso em IA, foro.</p></div>
+    </div>
+    <figure class="shot">
+      <img src="img/app-visao.jpg" alt="Tela do app: formulário à esquerda e o contrato montado à direita, com as explicações de cada cláusula" loading="lazy" width="1600" height="900">
+      <p>As caixas “por que está aqui” aparecem só na tela. Não vão para o documento do seu cliente.</p>
+    </figure>
+  </div>
+</section>
+
+<section class="anexo">
+  <div class="wrap anexo-grid">
+    <div>
+      <p class="kick">Onde mora a proteção</p>
+      <h2>O escopo deixa de ser uma frase e vira uma lista</h2>
+      <p class="lead">O Anexo I já vem com o que costuma estar incluído e, principalmente, o que costuma gerar cobrança indevida em cada etapa. Você ajusta até ficar igual à sua proposta.</p>
+      <table class="cmp">
+        <thead><tr><th>Vago</th><th>No Contrato na Régua</th></tr></thead>
+        <tbody>
+          <tr><td>Opções de layout</td><td>Até 2 (duas) opções de layout para análise</td></tr>
+          <tr><td>Imagens 3D</td><td>Até 6 imagens renderizadas dos ambientes social e suíte</td></tr>
+          <tr><td>Acompanhamento da obra</td><td>Visitas técnicas agendadas, em média 2 por mês, por até 4 meses</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <img src="img/app-escopo.jpg" alt="Passo Escopo do app, com a lista do que está e do que não está incluído no Estudo Preliminar" loading="lazy" width="1600" height="900">
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kick">O que você recebe</p>
+    <h2>Tudo o que vai do orçamento à entrega</h2>
+    <div class="recebe">
+      <div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>
+        <h3>Contrato de projeto</h3>
+        <p>Até 15 cláusulas que se ajustam às etapas e opções marcadas, mais o Anexo I de escopo. Em Word, editável, com a sua logo no cabeçalho.</p>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>
+        <h3>Termo de Aceite de Etapa</h3>
+        <p>Aproveita os dados do contrato, lista o que foi entregue e registra a aprovação do cliente por escrito, ao fim de cada fase.</p>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>
+        <h3>Guia rápido e vídeo</h3>
+        <p>O fluxo completo da proposta à entrega, como escrever um escopo conferível e o que cada opção muda no contrato.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="autora">
+  <div class="wrap autora-grid">
+    <img src="img/paula.jpg" alt="Paula Corrêa" loading="lazy" width="640" height="640">
+    <div>
+      <p class="kick">Quem fez</p>
+      <h2>Feito a partir de contratos reais de escritórios de arquitetura</h2>
+      <p>Os modelos foram elaborados por Paula Corrêa, advogada, a partir dos contratos usados no dia a dia de escritórios de arquitetura e dos conflitos que mais aparecem entre arquiteto e cliente.</p>
+      <p>O Contrato na Régua é a porta de entrada do Estrutura Legal: documentos para o arquiteto organizar a relação com o cliente do primeiro contato à entrega.</p>
+      <p class="assin">Paula Corrêa · OAB/SC 28.118</p>
+    </div>
+  </div>
+</section>
+
+<section class="oferta" id="oferta">
+  <div class="wrap">
+    <p class="kick">Acesso</p>
+    <h2>Um pagamento, sem mensalidade</h2>
+    <div class="card">
+      <p class="nome">Contrato na Régua</p>
+      <p class="valor"><small>R$</small>97</p>
+      <p class="tipo">Pagamento único pela Hotmart, no Pix, cartão ou boleto</p>
+      <ul>
+        <li>Contratos ilimitados, para todos os seus clientes</li>
+        <li>Anexo I de escopo, item por item</li>
+        <li>Termo de Aceite de Etapa</li>
+        <li>Guia rápido em PDF e vídeo de demonstração</li>
+        <li>Acesso vitalício a esta versão, com as correções incluídas</li>
+      </ul>
+      <a class="btn comprar" href="#oferta">Quero o Contrato na Régua</a>
+      <p class="nota-btn">O acesso chega no e-mail usado na compra.</p>
+    </div>
+    <div class="garantia">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+      <p><b>Garantia de 7 dias.</b> Se não for o que você esperava, peça o reembolso pela Hotmart em até 7 dias da compra e recebe o valor de volta, sem precisar explicar o motivo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <p class="kick">Dúvidas</p>
+    <h2>Perguntas frequentes</h2>
+    <details><summary>Como recebo o acesso?</summary><p>Assim que a compra é aprovada, o acesso fica liberado para o e-mail usado na Hotmart. Entre em app.estruturalegal.com.br, digite esse e-mail e clique no link que chega na sua caixa de entrada.</p></details>
+    <details><summary>Preciso pagar todo mês?</summary><p>Não. É um pagamento único, com acesso vitalício à versão comprada. Você pode gerar quantos contratos quiser.</p></details>
+    <details><summary>E quando a lei mudar?</summary><p>Correções de redação e ajustes por mudança na lei ou nas normas do CAU entram automaticamente, sem custo. Quando sair uma versão nova, com recursos que não existem hoje, você recebe um aviso no e-mail da compra, com condição especial para quem já comprou.</p></details>
+    <details><summary>Os dados dos meus clientes vão para algum servidor?</summary><p>Não. O contrato é montado no seu próprio navegador. Os dados do cliente, do escritório e a logo ficam salvos só no computador onde você preencheu.</p></details>
+    <details><summary>Posso editar o contrato depois de baixar?</summary><p>Sim. O documento sai em Word, editável. Dá para ajustar qualquer detalhe antes de mandar para o cliente.</p></details>
+    <details><summary>Serve para qualquer tipo de projeto?</summary><p>Serve para a contratação típica de projeto de arquitetura, interiores e acompanhamento de obra, para cliente pessoa física ou empresa. Situações fora do padrão, como obras com execução pelo próprio escritório, pedem orientação jurídica específica.</p></details>
+    <details><summary>Funciona no celular?</summary><p>Funciona no navegador, mas a experiência é pensada para o computador, onde dá para ver o formulário e o contrato lado a lado.</p></details>
+    <details><summary>E se eu não gostar?</summary><p>Você tem 7 dias de garantia. Peça o reembolso pela Hotmart dentro desse prazo e recebe o valor de volta.</p></details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <b>Estrutura Legal</b>
+    <p>Dúvidas sobre o produto: <a href="mailto:contato@estruturalegal.com.br">contato@estruturalegal.com.br</a>. O Contrato na Régua é um modelo de contrato para a contratação típica de projeto e não substitui orientação jurídica para situações específicas.</p>
+  </div>
+</footer>
+
+<script>
+// Link do checkout da Hotmart. Enquanto estiver vazio, os botões de compra ficam como "em breve".
+var CHECKOUT = '';
+document.querySelectorAll('.comprar').forEach(function (a, i) {
+  if (CHECKOUT) { a.href = CHECKOUT; return; }
+  if (i === 0) return; // o botão do topo leva até a oferta
+  a.removeAttribute('href'); a.setAttribute('aria-disabled', 'true'); a.textContent = 'Vendas abrem em breve';
+});
+document.querySelectorAll('.ruler').forEach(function (r) {
+  r.innerHTML = new Array(81).join('<i></i>');
+});
+</script>
+</body></html>

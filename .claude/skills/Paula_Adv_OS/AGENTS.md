@@ -69,7 +69,10 @@ Em peças processuais: formal, técnico, terceira pessoa.
   `alerta-site-paula`, que manda e-mail via Resend só quando algo falha
 - Resend — envio de e-mail transacional, domínio `paulacorrea.adv.br` verificado em 2026-09-25.
   Usado hoje pro alerta de saúde do site (`alerta-site-paula`); chave de API fica como secret do
-  Worker, não no `.env.local` do workspace
+  Worker, não no `.env.local` do workspace. Domínio `estruturalegal.com.br` verificado em 2026-10-27,
+  usado pelo app Contrato na Régua (remetente `acesso@`, resposta para `contato@estruturalegal.com.br`,
+  alias da caixa da Paula no M365). A chave do app só envia por esse domínio e fica como secret do
+  Pages; a chave admin fica em `.env` (`RESEND_ADMIN_KEY`)
 - Google Search Console — dados de SEO (cliques, impressões, posição) via service account do
   Google Cloud. Chave em `.credenciais/google-search-console-service-account.json`
   (fora do git), referenciada em `.env.local` (propriedade correta é sem "www":

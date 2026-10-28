@@ -24,7 +24,7 @@ Parte 2
 
 ## Legenda Instagram
 
-Final da História em Série. Obrigada a quem acompanhou desde terça.
+Final da História em Série.
 
 O Rafael não errou na técnica. Errou em assumir, no grupo da obra, um papel que o contrato não dava a ele. Boa vontade na obra é ótimo, mas precisa de limite escrito.
 

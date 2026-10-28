@@ -7,8 +7,8 @@
     { "binding": "KV", "id": "154a1427e9d245f0b775708787086dd9" }
   ],
   "vars": {
-    "EMAIL_FROM": "Contrato na Régua <acesso@paulacorrea.adv.br>",
-    "EMAIL_REPLY_TO": "paula@paulacorrea.adv.br",
+    "EMAIL_FROM": "Contrato na Régua <acesso@estruturalegal.com.br>",
+    "EMAIL_REPLY_TO": "contato@estruturalegal.com.br",
     "HOTMART_PRODUCT_ID": "",
     "URL_VENDA": ""
   }

@@ -25,7 +25,8 @@ Mudança no `matriz.json` também exige novo deploy, porque ele vai embutido no 
 ## Segredos (`npx wrangler pages secret put NOME --project-name contrato-na-regua`)
 - `SESSION_SECRET`: assina o cookie. Trocar derruba todas as sessões (todo mundo entra de novo).
 - `HOTMART_HOTTOK`: hoje provisório. Trocar pelo hottok da conta Hotmart quando o produto existir.
-- `RESEND_API_KEY`: falta configurar. Sem ela, o pedido de link responde "envio indisponível".
+- `RESEND_API_KEY`: chave só de envio, restrita ao domínio `estruturalegal.com.br`. Sem ela, o pedido
+  de link responde "envio indisponível".
 - `TESTE_TOKEN`: cópia em `Paula_Adv_OS/.env` (`CNR_TESTE_TOKEN`). `POST /entrar` com o header
   `x-teste: <token>` devolve o link na tela em vez de mandar e-mail.
 
@@ -35,3 +36,7 @@ Gravar no KV `contrato-na-regua` (id `154a1427e9d245f0b775708787086dd9`) a chave
 {"nome":"Nome","transacoes":{"cortesia":"ativo"},"atualizado":"2026-10-27T00:00:00Z"}
 ```
 Para tirar o acesso, trocar `"ativo"` por `"bloqueado:manual"` ou apagar a chave.
+
+Sem terminal: dash.cloudflare.com → Storage & Databases → KV → `contrato-na-regua` → Add entry, com a
+mesma chave e o mesmo valor. Não mexer nas chaves `t:` (links de login) e `r:` (trava de reenvio),
+que expiram sozinhas.

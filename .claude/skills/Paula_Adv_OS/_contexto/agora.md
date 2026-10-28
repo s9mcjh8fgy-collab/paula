@@ -5,13 +5,16 @@
 > Mantenha curto: o que passou de ~30 dias sai daqui (vai pro histórico ou some).
 
 ## Onde paramos
-Contrato na Régua: app, servidor com login e Hotmart, guia em PDF e vídeo prontos. DNS do estruturalegal.com.br trocado para a Cloudflare em 27/10, aguardando propagar. Próximo passo: página de vendas.
+Consisa #0142 (28/10): minuta do contrato de parceria com a Alcance pronta em `03_Demandas/#0142 Contrato Parceria Alcance/CONTRATO PARCERIA ALCANCE_V28-10-26.docx` (rascunho em `contratos/consisa-alcance-parceria-contrato.md`). Falta revisar e enviar ao Lucas. Próxima: #0143 (aplicativos por IA).
+
+Contrato na Régua: página de vendas no ar em estruturalegal.com.br/contrato-na-regua (28/10), com garantia de 7 dias. Ainda sem indexação no Google, e o botão mostra "Vendas abrem em breve" até existir o link da Hotmart (variável `CHECKOUT` no `index.html`). Acesso de cortesia liberado pra Miriam e pro Anderson Borba. Próximo passo: Hotmart.
 
 Tersaúde (Serv 2920, 27/10): vesting da Caroline ajustado conforme a reunião com a Monique (23/10) e revisado por inteiro. Arquivo `Acordo de Parceria Estratégica e Plano de Vesting - Tersaúde e Caroline_v27-10.docx`, com as alterações em amarelo, comentários para as decisões da Monique e respostas aos 4 comentários dela. Novo Anexo II com os termos principais do Acordo de Sócios. Planilha `Plano de Metas do Vesting - Caroline.xlsx`, em que o status "Atingida" e o percentual se calculam sozinhos.
 
-Instagram 27/10: publicada a Parte 1 da História em Série "Era uma vez... um arquiteto que foi acompanhar a obra (e saiu responsável por ela)". Caso real de responsabilidade civil: o arquiteto contratado pra acompanhar a obra deu ordens à equipe pelo WhatsApp e acabou visto como executor. Pagou R$ 10 mil num acordo negociado pela Paula pelo refazimento do box. Post: https://www.instagram.com/p/DfAhxCdCRJp/. A Parte 2 está pronta em `conteudo/instagram/carrossel/serie-acompanhamento-obra-parte-2/`.
+Instagram 27/10: publicada a Parte 1 da História em Série "Era uma vez... um arquiteto que foi acompanhar a obra (e saiu responsável por ela)". Caso real de responsabilidade civil: o arquiteto contratado pra acompanhar a obra deu ordens à equipe pelo WhatsApp e acabou visto como executor. Pagou R$ 10 mil num acordo negociado pela Paula pelo refazimento do box. Post: https://www.instagram.com/p/DfAhxCdCRJp/. Parte 2 publicada em 28/10 (um dia antes do previsto): https://www.instagram.com/p/DfC3og1iXIQ/. Série concluída.
 
 ## Decisões recentes
+- 2026-10-28: parceria Consisa x Alcance (#0142): um contrato só para Coleta (com PAC), Ordena Campo e o sistema de transportadoras. Cotitularidade de 75% para a Consisa e 25% para a Alcance, com administração e exploração só pela Consisa. A Alcance recebe 25% da receita líquida, que substituem a manutenção do Coleta (cerca de R$ 4 mil/mês) e o valor por usuário, sem mínimo garantido e sem pagamento extra por melhoria. Prazo indeterminado com aviso de 60 dias. Multa de R$ 15 mil corrigida pelo INPC desde a infração. Na saída, a Consisa escolhe entre continuar pagando os 25% sobre a carteira ativa ou comprar a quota por 12 vezes a média mensal dos repasses.
 - 2026-10-27: na Consisa, o reajuste compulsório de mensalidade segue a regra do contrato novo, com comunicado e aviso de 60 dias. Não vale para contratos com menos de 1 ano. A recomendação é aplicar só a quem tem mais de 2 anos de contrato. O reajuste só entra depois que a Isa estabilizar (2027).
 - 2026-10-27: na Consisa, o módulo da IA Isa entra por termo aditivo. A contratação da IA e os tokens ficam por conta do cliente, e o aditivo pode recomendar um provedor. O ponto por reconhecimento facial não exige alteração de contrato, só cuidado com a LGPD, porque a biometria é dado sensível. O processamento é local, no próprio aparelho.
 - 2026-10-27: Nordyk com investidor. O valor do estudo é um percentual sobre o valor atribuído ao terreno na venda ou permuta. A construtora escolhe entre contratar o projeto (preço de referência por m²) ou pagar o estudo. O investidor responde só se a cláusula não entrar no contrato de permuta ou se a construtora escolher pagar o estudo e não pagar. Se a construtora contratar o projeto, o investidor fica liberado, sem responder por inadimplemento futuro.
@@ -124,11 +127,13 @@ Instagram 27/10: publicada a Parte 1 da História em Série "Era uma vez... um a
 
 - 2026-10-27: a Paula achou simples demais as pautas sugeridas pra semana (multa por atraso como carrossel, post fixo com hook de contraste, retomar o conto do pilar). Ela prefere histórias de casos reais com tema jurídico de peso, como responsabilidade civil. O #0063 foi a única sugestão que ela aprovou.
 - 2026-10-27: alternar o gênero do protagonista nas histórias. As últimas tinham mulher, então esta série usou um arquiteto homem.
+- 2026-10-28: legenda do último episódio da História em Série não leva agradecimento ("Obrigada a quem acompanhou..."). Abre só com "Final da História em Série." e vai direto pro conteúdo.
 - 2026-10-27: no vesting da Tersaúde, as quotas são cedidas por um preço fixo em dinheiro, e não "quitadas com o trabalho". Quitar com trabalho traz risco trabalhista, de IR como remuneração e de doação/ITCMD. O art. 1.055, §2º não se aplica, porque é cessão de quotas já integralizadas. O trabalho durante o vesting dá o direito de comprar por um preço bem abaixo do valor real.
 - 2026-10-27: comentário do cliente num contrato que volta pra ele é respondido, e não excluído. Assim o cliente vê onde cada pedido foi resolvido e marca como resolvido.
+- 2026-10-28: Contrato na Régua com garantia de 7 dias. Acesso manual (cortesia, parceiros, testes) é gravado no KV pela chave `c:<email>`. A Paula pode pedir a liberação ou fazer pelo painel da Cloudflare (passo a passo no README do servidor).
 
 ## Pendências
-- #0142 (Consisa x Alcance): mandar a minuta ao Lucas como proposta (tarefa até 30/10). Base: as minutas de 16/12/2025 em `06_Arquivo_morto/Alcance` e o `05_Modelos/Contrato Parceria Alcance.v2.docx`. O Lucas quer fechar a negociação até a 1ª semana de novembro.
+- #0142 (Consisa x Alcance): revisar a minuta V28-10-26 e enviar ao Lucas como proposta (tarefa até 30/10). Antes, preencher o nome do sistema de transportadoras, os dados bancários da Alcance e o Anexo I (carteira). Depois do envio, registrar o andamento na demanda e concluir a tarefa. O Lucas quer fechar a negociação até a 1ª semana de novembro.
 - #0143 e #0144 (Consisa): tarefas até 30/10. O Lucas aceitava a semana que vem para o contrato dos aplicativos, e o comunicado de reajuste não tem urgência. Os links do SharePoint das três demandas foram gravados pelo caminho da pasta; conferir na próxima vez.
 - Consisa: pode surgir trabalho de internacionalização no Uruguai, começando pelo produto de laticínios. A missão com a associação de software do Paraná é na 2ª semana de novembro. Se avançar, estudar a legislação contratual de lá.
 - #0141 (Nordyk): revisar e enviar ao Bruno o termo do investidor (tarefa até 30/10). Definir o percentual do estudo e o preço por m². Depois de aprovado, salvar no `05_Modelos` da Nordyk.
@@ -138,16 +143,16 @@ Instagram 27/10: publicada a Parte 1 da História em Série "Era uma vez... um a
 - Apagar no Canva a pasta "_Temp - conversão Word (pode apagar)" (12 cópias usadas só pra leitura; o conector não apaga).
 - Avaliar conector de WhatsApp Business e integração com Legal One (sem MCP pronto no catálogo ainda).
 - Seguir o calendário fixo a partir de 21/09/2026 (terça Instagram, quinta blog + Instagram) — próximo do blog: semana 8, multa por atraso em obra (ver `conteudo/estrategia-retomada/calendario-blog.md`).
-- Qui 29/10: publicar a Parte 2 da série do acompanhamento de obra via `/postar-instagram`. Ela ocupa o Instagram de quinta. Confirmar se o blog da semana 8 (multa por atraso) sai mesmo assim.
+- Quinta 29/10: Instagram livre (a Parte 2 saiu na quarta). Decidir se entra o blog da semana 8 (multa por atraso) com post de apoio.
 - Próxima semana: Conto ou História sobre câmeras em obra (deveres de quem instala, aviso a quem está na obra, captação indevida de imagem e som).
 - Conto do pilar/IA (texto pronto em `conteudo/instagram/carrossel/conto-pilar-ia/`): ficou parado. Em 27/10 a Paula não quis usar, então confirmar se descarta.
 - Fátima (arquiteta, prospecção 22/10): aguardar a resposta. Se ela responder, oferecer o modelo de cláusula de IA e mandar o link do post novo. Se não responder, retomar em 7 a 10 dias com conteúdo, sem oferta.
 - Confirmar com qual conta do Google a Paula acessa o painel do Search Console e registrar na skill.
 - Candidatas a História em Série ou conto: #0063 (próxima da fila, aprovada pela Paula em 27/10; cliente que sumiu e voltou com advogado; reviravolta: depois da demolição o terreno era menor) e #0104 (eletricista "não atendo mais"; mesmo tema do post de 08/10, esperar um pouco).
 - #0062: consultar o andamento do protocolo 52601432511 no CREA-SC em 16/10 (tarefa já criada no sistema).
-- Contrato na Régua (com a Paula): chave do Resend; conta na Hotmart, decidindo antes com o contador se fica no CPF ou num CNPJ (o CNPJ do escritório pode não servir, pelo objeto exclusivo de advocacia); produto a R$ 97 com cupom; hottok e ID do produto; garantia (7 dias ou mais); confirmar com a Miriam os 15% sobre o preço com cupom; remover o domínio no Canva; renovar o domínio (vence em 20/02/2027).
+- Contrato na Régua (com a Paula): conta na Hotmart, decidindo antes com o contador se fica no CPF ou num CNPJ (o CNPJ do escritório pode não servir, pelo objeto exclusivo de advocacia); produto a R$ 97 com cupom e garantia de 7 dias; link do checkout, hottok e ID do produto; conferir na página de vendas a foto (perfil.jpg), as formas de pagamento (Pix, cartão, boleto) e a menção ao nome/OAB; confirmar com a Miriam os 15% sobre o preço com cupom; remover o domínio no Canva; renovar o domínio (vence em 20/02/2027).
 - Contrato na Régua, revisão jurídica da matriz e do Termo de Aceite: aprovação tácita, art. 16 da Lei 12.378/2010, declaração de reserva técnica, multa imotivada de 10% e retirada da cl. 7.4/7.5.
-- Contrato na Régua (comigo): conferir a ativação do domínio na Cloudflare; página de vendas; voz definitiva do vídeo (Azure ou ElevenLabs), depois que o roteiro for aprovado.
+- Contrato na Régua (comigo): no lançamento, preencher o `CHECKOUT` da página de vendas, tirar o `noindex` e configurar hottok/ID do produto no servidor; voz definitiva do vídeo (Azure ou ElevenLabs), depois que o roteiro for aprovado.
 - Se a Paula quiser: corrigir nos modelos do Zanatta "CONTRATNE" (2.1.5), "as CONTRATADAS" (9.4) e "solicitação da CONTRATADA" (11.1.1), e a contradição entre as cl. 7.4/7.5 e 3.14 nos modelos do Zanatta e da Nordyk.
 - Desvendarq: enviar a proposta e o "Conheça" à Miriam, definir a data da aula e montar o roteiro da aula de responsabilidade civil.
 - Leonardo Zanatta: falta uma foto ou render da Luminária de teto BR 30 2025 005775 2.
@@ -178,5 +183,5 @@ Instagram 27/10: publicada a Parte 1 da História em Série "Era uma vez... um a
 
 ## Quente agora
 Calendário fixo do Instagram e do blog rodando (terça e quinta). Em 15/10 saíram 2 posts no blog (reserva técnica e contrato de arquitetura/engenharia, este com seção sobre uso de IA). Semana 7 do blog publicada em 22/10 (IA, uso indevido do projeto pelo cliente). Próximo: semana 8, multa por atraso em obra.
-Terceira História em Série no ar (acompanhamento de obra, 27 e 29/10), puxando o tema responsabilidade civil, que também é o da aula Desvendarq.
-Contrato na Régua: produto pronto. Faltam a página de vendas, a Hotmart e o e-mail. Aula da Miriam em novembro.
+Terceira História em Série concluída (acompanhamento de obra, 27 e 28/10), puxando o tema responsabilidade civil, que também é o da aula Desvendarq.
+Contrato na Régua: produto, e-mail e página de vendas prontos. Faltam a Hotmart e a revisão jurídica. Aula da Miriam em novembro.
