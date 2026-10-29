@@ -5,7 +5,13 @@
 > Mantenha curto: o que passou de ~30 dias sai daqui (vai pro histórico ou some).
 
 ## Onde paramos
-Consisa #0142 (28/10): minuta do contrato de parceria com a Alcance pronta em `03_Demandas/#0142 Contrato Parceria Alcance/CONTRATO PARCERIA ALCANCE_V28-10-26.docx` (rascunho em `contratos/consisa-alcance-parceria-contrato.md`). Falta revisar e enviar ao Lucas. Próxima: #0143 (aplicativos por IA).
+Grupo Ao Cubo #0061 (29/10): a Dra. Vivian respondeu em 23/10 que ia conversar com a R&J sobre a melhor estratégia. Como não veio posicionamento, a Paula mandou um e-mail em 29/10 à Dra. Vivian, com cópia ao Angelo, ao João Paulo e ao compras@blutech (a Menegildo não foi copiada). Nele, ela oferece ajudar no que for preciso pra resolver a situação com a Menegildo e pergunta como a R&J quer que se faça a porta da área técnica, que segue em aberto. A ideia foi deixar registrada a boa-fé e a intenção de concluir a obra. A demanda continua pendente e ficou sem nenhuma tarefa em aberto, por pedido da Paula.
+
+Ágile #0146 (29/10): o Felipe perguntou se o síndico morador pode abrir um MEI pra emitir nota e evitar o INSS (11% + 20%). A resposta foi enviada pelo WhatsApp: a recomendação é não usar MEI, e a Paula complementou por áudio sobre o risco prático. A demanda está registrada como `done` e os dois áudios estão na pasta `#0146 Síndico Morador MEI e INSS`.
+
+Excel #0110 (29/10): demanda reaberta (`pending`, sem tarefa). Houve um desentendimento entre o Denis e o Sr. Fred, e o Rafael está intermediando. A "Proposta de reestruturação" do Rafael prevê a saída do Fred da Exxell para um conselho (R$ 5 mil/mês + 6%), a Excel Estrutural com 40/40/20 e o acerto das permutas pelo terreno da Vila Nova. O Rafael leva a proposta ao Fred e depois faz a ponte com o Denis.
+
+Consisa (29/10): minutas das #0142 (parceria Alcance), #0143 (Aplicativos Gerenciais) e #0144 (comunicado de revisão de valores e aditivo da Isa Automação) enviadas ao Lucas por e-mail. As três demandas e tarefas foram concluídas no sistema; reabrir se ele pedir ajuste. Rascunhos em `contratos/consisa-*.md`.
 
 Contrato na Régua: página de vendas no ar em estruturalegal.com.br/contrato-na-regua (28/10), com garantia de 7 dias. Ainda sem indexação no Google, e o botão mostra "Vendas abrem em breve" até existir o link da Hotmart (variável `CHECKOUT` no `index.html`). Acesso de cortesia liberado pra Miriam e pro Anderson Borba. Próximo passo: Hotmart.
 
@@ -14,6 +20,7 @@ Tersaúde (Serv 2920, 27/10): vesting da Caroline ajustado conforme a reunião c
 Instagram 27/10: publicada a Parte 1 da História em Série "Era uma vez... um arquiteto que foi acompanhar a obra (e saiu responsável por ela)". Caso real de responsabilidade civil: o arquiteto contratado pra acompanhar a obra deu ordens à equipe pelo WhatsApp e acabou visto como executor. Pagou R$ 10 mil num acordo negociado pela Paula pelo refazimento do box. Post: https://www.instagram.com/p/DfAhxCdCRJp/. Parte 2 publicada em 28/10 (um dia antes do previsto): https://www.instagram.com/p/DfC3og1iXIQ/. Série concluída.
 
 ## Decisões recentes
+- 2026-10-29: Consisa #0143: Aplicativos Gerenciais no padrão do Contrato Unificado, com valor do projeto + mensalidade, sem suporte e sem SLA (só acesso liberado e garantia de 30 dias após o aceite), homologação em 7 dias úteis, prazo indeterminado sem fidelidade, desistência antes da entrega com 20% do saldo. #0144: comunicado de revisão com aviso de 60 dias (o Unificado, item 9.8, pede 30), substitui o reajuste anual de 2027; aditivo da Isa só para a fase de automação. Contrato de cliente da Consisa segue o estilo do Contrato Unificado (`05_Modelos`).
 - 2026-10-28: parceria Consisa x Alcance (#0142): um contrato só para Coleta (com PAC), Ordena Campo e o sistema de transportadoras. Cotitularidade de 75% para a Consisa e 25% para a Alcance, com administração e exploração só pela Consisa. A Alcance recebe 25% da receita líquida, que substituem a manutenção do Coleta (cerca de R$ 4 mil/mês) e o valor por usuário, sem mínimo garantido e sem pagamento extra por melhoria. Prazo indeterminado com aviso de 60 dias. Multa de R$ 15 mil corrigida pelo INPC desde a infração. Na saída, a Consisa escolhe entre continuar pagando os 25% sobre a carteira ativa ou comprar a quota por 12 vezes a média mensal dos repasses.
 - 2026-10-27: na Consisa, o reajuste compulsório de mensalidade segue a regra do contrato novo, com comunicado e aviso de 60 dias. Não vale para contratos com menos de 1 ano. A recomendação é aplicar só a quem tem mais de 2 anos de contrato. O reajuste só entra depois que a Isa estabilizar (2027).
 - 2026-10-27: na Consisa, o módulo da IA Isa entra por termo aditivo. A contratação da IA e os tokens ficam por conta do cliente, e o aditivo pode recomendar um provedor. O ponto por reconhecimento facial não exige alteração de contrato, só cuidado com a LGPD, porque a biometria é dado sensível. O processamento é local, no próprio aparelho.
@@ -29,43 +36,6 @@ Instagram 27/10: publicada a Parte 1 da História em Série "Era uma vez... um a
 - 2026-10-26: no gerador dos modelos (`gerar_modelos.py`), quando uma cláusula nova empurra local, data e assinaturas para uma página sozinha, o parâmetro `cond` diminui um pouco o espaço entre as linhas das cláusulas.
 - 2026-10-26: locação de 12 meses que passou a valer por prazo indeterminado não pode ser encerrada pela dona só com aviso de 30 dias (art. 47 da Lei do Inquilinato). Para vender, o caminho é a notificação de preferência (art. 27) e, depois da venda, o comprador encerra a locação dando 90 dias (art. 8º).
 - 2026-10-08: blog do site não tem seção de comentários. CTA de fechamento no blog é sempre convite pra compartilhar o texto ("se você conhece alguém que..., compartilha este texto com essa pessoa"); no Instagram, convidar pra comentar continua ok.
-- 2026-09-28: fonte editorial padrão pra capas/cards de texto sobre foto fixada como **Borna Bold**
-  (fonte oficial da marca, Manual de Marca 2023 — arquivo completo em
-  `1_Gestão/4_Marketing/05 TIPOGRAFIA/borna-complete-desktop.zip`, cópia em `marca/fonts/`). Antes
-  dessa decisão foram testadas (e descartadas) Poppins e Playfair Display — não usar nenhuma das
-  duas em peça nova. Padrão de composição pra texto sobre foto também fixado: sem caixa cinza,
-  gradiente escuro (marrom da marca, não preto) só na base da imagem, texto centralizado por linha
-  (drawtext do ffmpeg não centraliza multi-linha automaticamente, precisa uma chamada por linha),
-  cor alternando entre laranja `#F26F4D` (frase de efeito/gancho) e off-white `#F1EBDF` (texto de
-  explicação), seguindo o mesmo padrão já usado no carrossel "Acho chic".
-- 2026-09-28: causa raiz definitiva do erro recorrente do Wordfence identificada — modo "Proteção
-  Estendida" do firewall (usa `auto_prepend_file` apontando pro `wordfence-waf.php`, rodando antes
-  do `wp-config.php`). Removida via wp-admin → Wordfence → Firewall → Gerenciar WAF → Remover
-  Proteção Estendida. A causa anterior (falta de cron, 25/09) não era a raiz real, só um fator
-  secundário. Ver memória `project_wordfence_bloqueia_post_api`.
-- 2026-09-28: **não temos visibilidade do que já foi postado no Instagram** — antes de escolher foto
-  do banco pra uma peça nova, perguntar pra Paula se já foi usada (ela lembra, o histórico de posts
-  não é acessível). Lista de fotos já usadas registrada em `marca/design-guide.md`.
-- 2026-09-28: publicar Reels via API exige vídeo com `moov atom` no início do arquivo
-  (`-movflags +faststart` no ffmpeg) e ao menos uma trilha de áudio (mesmo que silenciosa) — sem
-  isso a Graph API recusa com "media upload failed" (erro 2207052/2207076). Cuidado extra: um remux
-  posterior (ex: adicionar a trilha de áudio depois de já ter aplicado faststart) pode derrubar o
-  faststart de novo — sempre aplicar `-movflags +faststart` como o último passo antes de publicar,
-  nunca no meio do pipeline. Vídeo final também precisa de `pix_fmt yuv420p` com `color_range tv`
-  (não `yuvj420p`/full range, que o libx264 gera por padrão a partir de imagens JPEG). Outro motivo
-  do mesmo erro: vídeo montado a partir de fotos JPEG pode sair com `color_space=bt470bg` (padrão de
-  TV antiga/SD), incompatível com um vídeo 1080x1920 — forçar `-colorspace bt709 -color_primaries
-  bt709 -color_trc bt709` no encode final resolve.
-- 2026-09-28: texto sobreposto em vídeo de Reels não pode ficar colado na base — a UI do Instagram
-  (nome do perfil, legenda, ícones de curtir/comentar/compartilhar) cobre uma faixa grande na parte
-  de baixo quando o Reels é aberto no app (diferente de um post de imagem estática, onde isso não
-  existe). Manter o texto por volta de 70-74% da altura do quadro, não mais embaixo que isso.
-- 2026-09-30: nome público do formato multi-parte é **"História em Série"**, nunca "Série Real" nas
-  legendas/slides ("real" dá a entender que os outros contos "Era uma vez..." não eram). "Série Real"
-  fica só como nome interno nos arquivos antigos.
-- 2026-09-30: `preparar.js` da `/postar-instagram` falhava com erro 2207052 porque criava os
-  containers antes de o Cloudflare Pages servir as imagens recém-publicadas. Corrigido: agora espera
-  cada URL responder 200 + 15s de folga, e tenta de novo até 3 vezes se a Meta ainda não baixar.
 - 2026-09-30: denúncia ao CREA-SC da #0062 na hipótese 2 (infração ao Código de Ética, Res.
   1002/2002, rito da Res. 1004/2003) contra o RT da execução, Eng. José Marcos Braga Guimarães
   (CREA-SC 177828-0, ART 9034658-2), com pedido de fiscalização prioritária. Sem citar áudios, sem
@@ -131,10 +101,12 @@ Instagram 27/10: publicada a Parte 1 da História em Série "Era uma vez... um a
 - 2026-10-27: no vesting da Tersaúde, as quotas são cedidas por um preço fixo em dinheiro, e não "quitadas com o trabalho". Quitar com trabalho traz risco trabalhista, de IR como remuneração e de doação/ITCMD. O art. 1.055, §2º não se aplica, porque é cessão de quotas já integralizadas. O trabalho durante o vesting dá o direito de comprar por um preço bem abaixo do valor real.
 - 2026-10-27: comentário do cliente num contrato que volta pra ele é respondido, e não excluído. Assim o cliente vê onde cada pedido foi resolvido e marca como resolvido.
 - 2026-10-28: Contrato na Régua com garantia de 7 dias. Acesso manual (cortesia, parceiros, testes) é gravado no KV pela chave `c:<email>`. A Paula pode pedir a liberação ou fazer pelo painel da Cloudflare (passo a passo no README do servidor).
+- 2026-10-29: síndico morador remunerado (inclusive pela isenção da cota) é contribuinte individual (Lei 8.212/91, art. 12, V, "f", conferido no Planalto), com 20% do condomínio (art. 22, III) e retenção de 11% (Lei 10.666/2003, art. 4º). Pagar por MEI não é recomendável: pode ser desconsiderado pela Receita, e a economia some na troca de síndico.
 
 ## Pendências
-- #0142 (Consisa x Alcance): revisar a minuta V28-10-26 e enviar ao Lucas como proposta (tarefa até 30/10). Antes, preencher o nome do sistema de transportadoras, os dados bancários da Alcance e o Anexo I (carteira). Depois do envio, registrar o andamento na demanda e concluir a tarefa. O Lucas quer fechar a negociação até a 1ª semana de novembro.
-- #0143 e #0144 (Consisa): tarefas até 30/10. O Lucas aceitava a semana que vem para o contrato dos aplicativos, e o comunicado de reajuste não tem urgência. Os links do SharePoint das três demandas foram gravados pelo caminho da pasta; conferir na próxima vez.
+- #0110: a versão `PROPOSTA DE REESTRUTURAÇÃO SOCIETÁRIA_v29-10 sugestões Paula.docx` foi enviada ao Rafael com os acréscimos em amarelo: conselho com 12 meses fixos e depois pagamento por convocação; lucros com pró-labore recomendado na Excel Estrutural; novo item 5 de óbito e invalidez, com valor de referência anual e fórmula PL + lucro médio. Aguardar o retorno do Rafael depois da conversa com o Fred. Quando avançar, o novo acordo da Exxell entra com as correções da memória `project_exxell_acordo_socios_correcoes`.
+- #0146: conferir se a renomeação da pasta sincronizou com o SharePoint (o link já foi gravado pelo caminho novo).
+- Consisa #0142, #0143 e #0144: minutas enviadas ao Lucas em 29/10, aguardando retorno. Se ele pedir ajuste, reabrir a demanda. Pontos que dependem da Consisa: na #0142, o nome do sistema de transportadoras, os dados da Alcance e o Anexo I (o Lucas quer fechar até a 1ª semana de novembro); na #0143, a cláusula 10 (dados no servidor, opção A ou B) e o distribuidor; na #0144, os tokens da degustação, o valor do aumento e se o reajuste sai ainda em 2026 (para valer em janeiro, o comunicado precisa sair até o início de novembro).
 - Consisa: pode surgir trabalho de internacionalização no Uruguai, começando pelo produto de laticínios. A missão com a associação de software do Paraná é na 2ª semana de novembro. Se avançar, estudar a legislação contratual de lá.
 - #0141 (Nordyk): revisar e enviar ao Bruno o termo do investidor (tarefa até 30/10). Definir o percentual do estudo e o preço por m². Depois de aprovado, salvar no `05_Modelos` da Nordyk.
 - #0140 (Nordyk): enviar ao Bruno o termo das imobiliárias revisado, junto com o do investidor. O cadastro da Nordyk no sistema está sem `folder_url`.
@@ -162,7 +134,7 @@ Instagram 27/10: publicada a Parte 1 da História em Série "Era uma vez... um a
 - Cadastrar no app financeiro (como recorrente) os impostos, o salário da Thaís e as parcelas de empréstimo assim que a Paula tiver valores/prazos confiáveis pra projetar — hoje ficam de fora por variarem demais mês a mês.
 - Confirmar nas próximas semanas que o erro do Wordfence não volta mais depois da remoção da Proteção Estendida (28/09) — se voltar, não é mais o mesmo problema, investigar do zero.
 - Demanda #0116 (Grupo Ao Cubo): Paula revisar as versões `_v2` (conferir os números definidos: 15 dias, 48h, 5 dias úteis, 12 meses, 0,5%/10%), aprovar e tirar o destaque amarelo; atualizar a demanda no sistema.
-- #0061: aguardando a orientação da Dra. Vivian sobre como seguir diante do silêncio da Menegildo (cobrar em 26/10). Combinar com ela o caminho se a Menegildo recusar os R$ 18.250,00.
+- #0061: aguardando a R&J/Blutech responder ao e-mail de 29/10, sobre a tratativa com a Menegildo e sobre como fazer a porta da área técnica. A demanda está sem tarefa, então quem cobra a resposta é a Paula. Se a Menegildo recusar os R$ 18.250,00, o caminho continua o da decisão de 16/10.
 - #0127 (Projjetta x FORNAC): minuta revisada enviada ao Fernando em 13/10 (link do SharePoint já gravado). Aguardando a decisão dele sobre o acúmulo das horas (2.7), a proposta comercial (Anexo I) e se a mensalidade é antecipada ou vencida; demanda encerrada e sem tarefa, o Fernando chama quando tiver retorno, e aí reabrir e ajustar o 2.7. A limitação de responsabilidade foi retirada pela Paula, para não criar mais um obstáculo.
 - #0048: aguardando a Santer (Larisi) responder à contraproposta de 22/10 (cobrar em 27/10). Se aprovarem, preparar o `06 ADITIVO` com a nova Cláusula Terceira.
 - #0128: aguardar o retorno da CustomerX sobre o aceite do desconto sem a renovação. Se ela condicionar o desconto à renovação, rever a estratégia.

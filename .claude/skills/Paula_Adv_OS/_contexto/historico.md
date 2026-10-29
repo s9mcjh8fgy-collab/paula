@@ -34,6 +34,43 @@
 - 2026-09-25: descoberto que o DNS público de `paulacorrea.adv.br` fica no Registro.br (painel.registro.br), não no cPanel — a zona do cPanel existe mas não é autoritativa. Confirmar sempre no Registro.br quando precisar mexer em DNS desse domínio.
 - 2026-09-25: criado alerta automático de saúde do site — Cloudflare Worker `alerta-site-paula` (código em `8_Claude/alerta-site/`), roda 2x/dia (10h e 15h) e manda e-mail via Resend só quando algo falha. Corrigidos dois falsos positivos na lógica de checagem (`.user.ini` aceitando >=512M em vez de exatamente 512M; header de User-Agent no wp-login pra não ser bloqueado como bot pelo Wordfence) — aplicado tanto no Worker quanto na skill `/checar-site` local.
 - 2026-09-25: causa raiz do erro recorrente do Wordfence (fatal error de memória em `wflogs/rules.php`) identificada — `DISABLE_WP_CRON` estava `true` no wp-config.php e não existia nenhum cron job real no cPanel pra substituir, então nenhuma tarefa agendada do WordPress rodava. Criado cron de sistema (a cada 15 min, `wget` em `wp-cron.php`) via API do cPanel.
+- 2026-09-28: fonte editorial padrão pra capas/cards de texto sobre foto fixada como **Borna Bold**
+  (fonte oficial da marca, Manual de Marca 2023 — arquivo completo em
+  `1_Gestão/4_Marketing/05 TIPOGRAFIA/borna-complete-desktop.zip`, cópia em `marca/fonts/`). Antes
+  dessa decisão foram testadas (e descartadas) Poppins e Playfair Display — não usar nenhuma das
+  duas em peça nova. Padrão de composição pra texto sobre foto também fixado: sem caixa cinza,
+  gradiente escuro (marrom da marca, não preto) só na base da imagem, texto centralizado por linha
+  (drawtext do ffmpeg não centraliza multi-linha automaticamente, precisa uma chamada por linha),
+  cor alternando entre laranja `#F26F4D` (frase de efeito/gancho) e off-white `#F1EBDF` (texto de
+  explicação), seguindo o mesmo padrão já usado no carrossel "Acho chic".
+- 2026-09-28: causa raiz definitiva do erro recorrente do Wordfence identificada — modo "Proteção
+  Estendida" do firewall (usa `auto_prepend_file` apontando pro `wordfence-waf.php`, rodando antes
+  do `wp-config.php`). Removida via wp-admin → Wordfence → Firewall → Gerenciar WAF → Remover
+  Proteção Estendida. A causa anterior (falta de cron, 25/09) não era a raiz real, só um fator
+  secundário. Ver memória `project_wordfence_bloqueia_post_api`.
+- 2026-09-28: **não temos visibilidade do que já foi postado no Instagram** — antes de escolher foto
+  do banco pra uma peça nova, perguntar pra Paula se já foi usada (ela lembra, o histórico de posts
+  não é acessível). Lista de fotos já usadas registrada em `marca/design-guide.md`.
+- 2026-09-28: publicar Reels via API exige vídeo com `moov atom` no início do arquivo
+  (`-movflags +faststart` no ffmpeg) e ao menos uma trilha de áudio (mesmo que silenciosa) — sem
+  isso a Graph API recusa com "media upload failed" (erro 2207052/2207076). Cuidado extra: um remux
+  posterior (ex: adicionar a trilha de áudio depois de já ter aplicado faststart) pode derrubar o
+  faststart de novo — sempre aplicar `-movflags +faststart` como o último passo antes de publicar,
+  nunca no meio do pipeline. Vídeo final também precisa de `pix_fmt yuv420p` com `color_range tv`
+  (não `yuvj420p`/full range, que o libx264 gera por padrão a partir de imagens JPEG). Outro motivo
+  do mesmo erro: vídeo montado a partir de fotos JPEG pode sair com `color_space=bt470bg` (padrão de
+  TV antiga/SD), incompatível com um vídeo 1080x1920 — forçar `-colorspace bt709 -color_primaries
+  bt709 -color_trc bt709` no encode final resolve.
+- 2026-09-28: texto sobreposto em vídeo de Reels não pode ficar colado na base — a UI do Instagram
+  (nome do perfil, legenda, ícones de curtir/comentar/compartilhar) cobre uma faixa grande na parte
+  de baixo quando o Reels é aberto no app (diferente de um post de imagem estática, onde isso não
+  existe). Manter o texto por volta de 70-74% da altura do quadro, não mais embaixo que isso.
+- 2026-09-30: nome público do formato multi-parte é **"História em Série"**, nunca "Série Real" nas
+  legendas/slides ("real" dá a entender que os outros contos "Era uma vez..." não eram). "Série Real"
+  fica só como nome interno nos arquivos antigos.
+- 2026-09-30: `preparar.js` da `/postar-instagram` falhava com erro 2207052 porque criava os
+  containers antes de o Cloudflare Pages servir as imagens recém-publicadas. Corrigido: agora espera
+  cada URL responder 200 + 15s de folga, e tenta de novo até 3 vezes se a Meta ainda não baixar.
 
 ## Onde paramos (setembro/2026, até 22/09)
 Instagram e blog retomados de verdade em 2026-09-17. Dois formatos novos criados a partir de análise

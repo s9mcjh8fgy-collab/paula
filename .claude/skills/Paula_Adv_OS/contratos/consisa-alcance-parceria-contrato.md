@@ -27,7 +27,7 @@ Considerando que a ALCANCE desenvolve projetos na área de tecnologia da informa
 
 Considerando que a CONSISA é empresa especializada no desenvolvimento e fornecimento de soluções tecnológicas para gestão empresarial, com ampla atuação no mercado e sólida base de clientes, sendo responsável por comercializar, integrar e prestar suporte às soluções ofertadas aos seus clientes;
 
-Considerando que o software Coleta, criado pela ALCANCE, é comercializado há anos aos clientes da CONSISA, que por sua vez custeou o desenvolvimento do módulo PAC e do software Ordena Campo, executados pela ALCANCE, sem que a relação entre as PARTES tenha sido formalizada até a presente data;
+Considerando que o software Coleta, criado pela ALCANCE, é comercializado aos clientes da CONSISA, que por sua vez custeou o desenvolvimento do módulo PAC e do software Ordena Campo, executados pela ALCANCE, sem que a relação entre as PARTES tenha sido formalizada até a presente data;
 
 Considerando que a ALCANCE desenvolveu software de gestão de transportadoras e possui carteira própria de clientes desse software, e que a CONSISA tem interesse em incorporá-lo ao seu portfólio e à sua base de clientes do segmento de transportes;
 
