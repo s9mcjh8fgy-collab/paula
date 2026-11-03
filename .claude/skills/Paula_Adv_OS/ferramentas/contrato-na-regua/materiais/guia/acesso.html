@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Contrato na Régua · Guia rápido</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+@font-face{font-family:'Borna';src:url('../../../../marca/fonts/Borna-Bold.otf');font-weight:700}
+@font-face{font-family:'Borna';src:url('../../../../marca/fonts/Borna-SemiBold.otf');font-weight:600}
+@page{size:A4;margin:0}
+:root{--brown:#6D413E;--beige:#F1EBDF;--orange:#F26F4D;--ink:#3E2624;--soft:#7A5E58;--line:#E2D6C6;--paper:#FFFDF9}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;color:var(--ink);font-size:10.5pt;line-height:1.55;background:#fff}
+.page{width:210mm;height:297mm;padding:22mm 20mm 18mm;position:relative;overflow:hidden;page-break-after:always;background:var(--paper)}
+.page:last-child{page-break-after:auto}
+.foot{position:absolute;left:20mm;right:20mm;bottom:10mm;display:flex;justify-content:space-between;font-size:8pt;color:var(--soft);border-top:1px solid var(--line);padding-top:3mm}
+.kick{font-size:8.5pt;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);font-weight:700;margin-bottom:3mm}
+h1{font-family:'Borna',serif;font-weight:700;font-size:26pt;line-height:1.08;color:var(--brown);margin-bottom:5mm}
+h2{font-family:'Borna',serif;font-weight:700;font-size:13pt;color:var(--brown);margin:6mm 0 2mm}
+p{margin-bottom:3mm;max-width:165mm}
+.lead{font-size:12pt;color:var(--soft);margin-bottom:7mm;max-width:150mm}
+b{font-weight:600}
+ul{margin:0 0 3mm 5mm}
+li{margin-bottom:1.5mm}
+
+/* capa */
+.cover{background:var(--brown);color:var(--beige);display:flex;flex-direction:column;justify-content:space-between;padding:26mm 22mm}
+.cover .brand{font-size:9pt;letter-spacing:.24em;text-transform:uppercase;color:var(--orange);font-weight:700}
+.cover h1{color:var(--beige);font-size:46pt;line-height:1;margin:0 0 6mm}
+.cover h1 span{color:var(--orange)}
+.cover .sub{font-family:'Borna',serif;font-weight:600;font-size:16pt;line-height:1.3;max-width:130mm;opacity:.95}
+.ruler{display:flex;align-items:flex-end;gap:0;height:16mm;margin:14mm 0 0;border-bottom:1.5px solid var(--beige);opacity:.7}
+.ruler i{flex:1;border-left:1px solid var(--beige);height:4mm}
+.ruler i:nth-child(5n+1){height:9mm}
+.ruler i:nth-child(10n+1){height:14mm}
+.cover .who{font-size:9.5pt;line-height:1.6;opacity:.85}
+.cover .who b{color:var(--beige);font-weight:600}
+
+/* fluxo */
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:3mm;margin:4mm 0 7mm}
+.flow div{background:var(--beige);border-radius:3mm;padding:4mm 3.5mm;position:relative}
+.flow em{font-style:normal;font-family:'Borna',serif;font-size:20pt;color:var(--orange);display:block;line-height:1}
+.flow b{display:block;color:var(--brown);margin:2mm 0 1mm;font-size:10pt}
+.flow span{font-size:8.6pt;color:var(--soft);line-height:1.4;display:block}
+.shot{width:100%;height:66mm;object-fit:cover;object-position:top left;border:1px solid var(--line);border-radius:2mm;display:block;margin:3mm 0 2mm}
+.cap{font-size:8.5pt;color:var(--soft);margin-bottom:5mm}
+
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:4mm 7mm;margin-top:3mm}
+.steps div{border-top:2px solid var(--brown);padding-top:2.5mm}
+.steps b{color:var(--brown);font-size:10.5pt;display:block;margin-bottom:1mm}
+.steps b span{color:var(--orange);margin-right:1.5mm}
+.steps p{font-size:9.5pt;margin:0}
+
+.cmp{width:100%;border-collapse:collapse;margin:3mm 0 5mm;font-size:9.5pt}
+.cmp th,.cmp td{border-bottom:1px solid var(--line);padding:1.8mm 3mm;text-align:left;vertical-align:top}
+.cmp thead th{background:var(--beige);color:var(--brown);font-weight:600}
+.cmp td:first-child{width:38%}
+.no{color:#A6401F}.ok{color:#2F6B4C}
+.note{background:var(--beige);border-radius:3mm;padding:4mm 5mm;font-size:9.5pt;margin:4mm 0}
+.note b{color:var(--brown)}
+
+.opts td:first-child{font-weight:600;color:var(--brown);width:34%}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+.box{border:1px solid var(--line);border-radius:3mm;padding:4mm 5mm}
+.box h2{margin-top:0}
+.faq h2{font-family:'Inter',sans-serif;font-size:10.5pt;font-weight:700;margin:4.5mm 0 1mm}
+.faq p{font-size:9.8pt}
+</style>
+</head>
+<style>
+.passo{display:grid;grid-template-columns:14mm 1fr;gap:0 5mm;padding:6mm 0;border-bottom:1px solid var(--line)}
+.passo em{font-style:normal;font-family:'Borna',serif;font-size:30pt;color:var(--orange);line-height:1}
+.passo b{display:block;color:var(--brown);font-size:13pt;margin-bottom:1mm}
+.passo p{margin:0;font-size:11pt}
+.url{display:inline-block;background:var(--brown);color:var(--beige);font-weight:600;font-size:13pt;padding:2.5mm 6mm;border-radius:99px;margin-top:2mm}
+</style>
+<body>
+<section class="page">
+  <div class="kick">Seu acesso</div>
+  <h1>Como entrar no Contrato na Régua</h1>
+  <p class="lead">O Contrato na Régua funciona no navegador, sem instalar nada. O acesso fica liberado para o e-mail usado na compra.</p>
+  <div class="passo"><em>1</em><div><b>Entre no endereço do app</b><p>De preferência no computador, onde dá para ver o formulário e o contrato lado a lado.</p><span class="url">app.estruturalegal.com.br</span></div></div>
+  <div class="passo"><em>2</em><div><b>Digite o e-mail da compra</b><p>Use o mesmo e-mail informado na Hotmart.</p></div></div>
+  <div class="passo"><em>3</em><div><b>Clique no link que chega no seu e-mail</b><p>O e-mail vem de acesso@estruturalegal.com.br. O link vale por 30 minutos e serve uma vez só. Se não aparecer na caixa de entrada, confira o spam e a aba Promoções.</p></div></div>
+  <div class="passo"><em>4</em><div><b>Pronto, é só usar</b><p>O acesso fica salvo no navegador por 90 dias. Depois disso, ou em outro computador, basta repetir os passos 1 a 3.</p></div></div>
+  <div class="note" style="margin-top:8mm"><b>Alguma dificuldade para entrar?</b> Escreva para contato@estruturalegal.com.br informando o e-mail usado na compra.</div>
+  <p style="margin-top:8mm">Nas próximas páginas, o guia rápido mostra o fluxo completo, da proposta aprovada ao aceite de cada etapa.</p>
+  <div class="foot"><span>Contrato na Régua · Como acessar</span><span></span></div>
+</section>
+</body></html>

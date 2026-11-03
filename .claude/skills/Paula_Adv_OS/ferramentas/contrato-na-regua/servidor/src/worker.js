@@ -6,8 +6,8 @@
 //   c:<email>  -> { nome, transacoes: { <id>: <status> }, atualizado }   comprador
 //   t:<hash>   -> email (expira em 30 min)                               link mágico, uso único
 //   r:<email>  -> 1 (expira em 60 s)                                     trava de reenvio
-// Segredos: SESSION_SECRET, HOTMART_HOTTOK, RESEND_API_KEY, TESTE_TOKEN (opcional)
-// Variáveis: EMAIL_FROM, EMAIL_REPLY_TO, HOTMART_PRODUCT_ID (opcional), URL_VENDA (opcional)
+// Segredos: SESSION_SECRET, HOTMART_HOTTOK, RESEND_API_KEY, TESTE_TOKEN (opcional), REVISAO_SENHA (opcional)
+// Variáveis: EMAIL_FROM, EMAIL_REPLY_TO, HOTMART_PRODUCT_ID (opcional), URL_VENDA (opcional), REVISAO_EMAIL (opcional)
 
 import matriz from '../../conteudo/matriz.json';
 
@@ -85,6 +85,16 @@ async function entrar(req, env, url) {
   await env.KV.put('r:' + email, '1', { expirationTtl: 60 });
 
   const c = await env.KV.get('c:' + email, 'json');
+
+  // Conta de revisão (avaliador da Hotmart): entra com senha, sem link. A trava de 60 s acima
+  // limita as tentativas.
+  const senha = String((f && f.get('senha')) || '');
+  if (senha) {
+    const ok = env.REVISAO_EMAIL && env.REVISAO_SENHA && email === normalizar(env.REVISAO_EMAIL)
+      && igual(senha, env.REVISAO_SENHA) && ativo(c);
+    if (!ok) return html(paginaEntrar(env, 'E-mail ou senha incorretos. Aguarde um minuto para tentar de novo.', email), 401);
+    return criarSessao(env, email);
+  }
   let linkTeste = null;
   if (ativo(c)) {
     const token = hex(crypto.getRandomValues(new Uint8Array(32)));
@@ -119,6 +129,10 @@ async function acesso(req, env) {
   const email = t && (await env.KV.get(chave));
   if (!email) return html(pagina('Link expirado', '<p>Este link já foi usado ou passou dos 30 minutos. <a href="/">Peça um novo</a>.</p>'), 400);
   await env.KV.delete(chave);
+  return criarSessao(env, email);
+}
+
+async function criarSessao(env, email) {
   const exp = Date.now() + SESSAO_DIAS * 864e5;
   const valor = await assinar(env, JSON.stringify({ e: email, x: exp }));
   return new Response(null, { status: 303, headers: {
@@ -174,6 +188,10 @@ function paginaEntrar(env, aviso = '', email = '') {
      <form method="post" action="/entrar">
        <label for="email">E-mail da compra</label>
        <input id="email" name="email" type="email" required autocomplete="email" value="${esc(email)}" placeholder="voce@escritorio.com.br">
+       <details class="revisao"><summary>Tenho uma senha de revisão</summary>
+         <label for="senha">Senha</label>
+         <input id="senha" name="senha" type="password" autocomplete="current-password">
+       </details>
        <button type="submit">Enviar link de acesso</button>
      </form>${venda}`);
 }
@@ -204,6 +222,7 @@ button{width:100%;margin-top:14px;font:inherit;font-weight:600;background:var(--
 button:hover{background:#E05E3D}
 a{color:#C04E2E}
 .muted{color:var(--soft);font-size:14px}
+.revisao{margin:10px 0 0;font-size:13px;color:var(--soft)}.revisao summary{cursor:pointer}
 .aviso{background:#FBEFE6;border-left:3px solid var(--accent);padding:10px 12px;border-radius:6px;font-size:14px}
 .teste{word-break:break-all;font-size:12px}
 </style></head><body>

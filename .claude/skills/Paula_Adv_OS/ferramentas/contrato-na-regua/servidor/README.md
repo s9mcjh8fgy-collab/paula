@@ -30,6 +30,13 @@ Mudança no `matriz.json` também exige novo deploy, porque ele vai embutido no 
 - `TESTE_TOKEN`: cópia em `Paula_Adv_OS/.env` (`CNR_TESTE_TOKEN`). `POST /entrar` com o header
   `x-teste: <token>` devolve o link na tela em vez de mandar e-mail.
 
+## Conta de revisão (avaliador da Hotmart)
+A Hotmart exige login e senha da área de membros externa para revisar o produto. A conta
+`revisao@estruturalegal.com.br` (var `REVISAO_EMAIL`, cortesia no KV) entra com senha: na tela de
+entrada, "Tenho uma senha de revisão". A senha é o segredo `REVISAO_SENHA`, cópia em
+`Paula_Adv_OS/.env` (`CNR_REVISAO_SENHA`). Só essa conta aceita senha, e a trava de 60 s limita as
+tentativas. Para desligar, apagar a chave `c:revisao@estruturalegal.com.br` no KV.
+
 ## Liberar acesso manual (cortesia, Miriam, testes)
 Gravar no KV `contrato-na-regua` (id `154a1427e9d245f0b775708787086dd9`) a chave `c:<email em minúsculas>`:
 ```json

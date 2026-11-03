@@ -89,15 +89,16 @@ O modelo oficial de papel timbrado está em `processual/Papel Timbrado.docx` (ca
 margens e fonte já configurados, corpo em branco). Sempre partir desse arquivo como base pra peça
 nova, nunca de uma peça antiga de cliente.
 
-1. Copiar `processual/Papel Timbrado.docx` pra um novo arquivo (nome sugerido:
-   `processual/[nome-do-caso]-[tipo-de-peça].docx`)
+1. Copiar `processual/Papel Timbrado.docx` pra um novo arquivo salvo **direto na pasta do
+   cliente/processo** em `3_Jurídico/` (nome: `[Tipo de peça].docx`, ex: `Manifestação sobre
+   Estudo Social.docx`), nunca em `processual/` (pedido da Paula em 2026-10-30). Ajustes depois
+   da revisão são feitos no próprio arquivo da pasta do cliente
 2. Usar a skill nativa `/docx` pra inserir o texto do corpo nesse arquivo, aplicando fonte Inter 11,
    espaçamento 1,5, recuo de primeira linha 3cm (exceto endereçamento) e 1 linha entre parágrafos sem
    espaçamento extra
 3. Mostrar o resultado pro usuário aprovar
 
-Depois de aprovada, a peça final vai pra pasta do cliente em `3_Jurídico/` (perguntar o nome do
-cliente se a pasta não for óbvia).
+Se a pasta do cliente/processo não for óbvia, perguntar antes de salvar.
 
 ## Regras
 

@@ -71,6 +71,6 @@ Calendário definido em 2026-09-10.
 - [x] Semana 6 — publicado em 2026-10-15 (post 6525): https://paulacorrea.adv.br/reserva-tecnica-arquiteto-premios-lojas-cau/ (tema trocado pelo caso real #0107, gancho da História em Série do prêmio da arquiteta; multa por atraso passou pra semana 7)
 - [x] Extra (fora do calendário, tema que ficou de fora na semana 5, com cláusula de uso de IA) — publicado em 2026-10-15 (post 6529): https://paulacorrea.adv.br/contrato-prestacao-servicos-arquitetura-engenharia/ (feito também pra servir de link nas abordagens a arquitetos/engenheiros indicados)
 - [x] Semana 7 — publicado em 2026-10-22 (post 6532, capa = mídia 6535): https://paulacorrea.adv.br/cliente-colocou-projeto-na-ia-direito-autoral-contrato/ (recorte só do uso indevido do projeto pelo cliente em IA, arquitetos e engenheiros; multa por atraso passou pra semana 8)
-- [ ] Semana 8
+- [x] Semana 8 — publicado em 2026-10-30 (post 6547, capa = mídia 6548): https://paulacorrea.adv.br/obra-sem-responsavel-tecnico-art-rrt/ (tema trocado a pedido da Paula: ART/RRT e o autor do projeto que visita obra sem responsável técnico pela execução, gancho da História em Série do arquiteto no grupo da obra; sem FAQ porque o texto ficou extenso; multa por atraso passou pra semana 9)
 - [ ] Semana 9
 - [ ] Semana 10

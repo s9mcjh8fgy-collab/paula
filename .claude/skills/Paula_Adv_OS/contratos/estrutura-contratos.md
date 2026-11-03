@@ -49,7 +49,7 @@ Cada cláusula é dividida em itens numerados (ex: 3.1, 3.2, 3.3...).
 - Tolerância de uma parte quanto a descumprimento não gera novação ou renúncia de direito
 - Contrato irrevogável e irretratável
 - Foro eleito: normalmente o foro da comarca do contratante, com renúncia a qualquer outro
-- Aceite de assinatura eletrônica (art. 219 do Código Civil e art. 10, §2º da MP 2.220-2/2001),
+- Aceite de assinatura eletrônica (art. 219 do Código Civil e art. 10, §2º da MP 2.200-2/2001),
   válida mesmo sem certificado ICP-Brasil
 
 ### Bloco de assinatura
