@@ -1,0 +1,77 @@
+<style>
+.conta{display:flex;align-items:center;gap:8px}
+@media (max-width:440px){.modes{width:100%}.modes button{flex:1 1 0;padding:7px 4px;font-size:12px;line-height:1.2}}
+.comousar{position:relative}
+.comousar summary{list-style:none;border:1px solid rgba(241,235,223,.35);color:#F1EBDF;font-size:13px;padding:7px 14px;border-radius:999px;cursor:pointer}
+.comousar summary::-webkit-details-marker{display:none}
+.comousar summary:hover{background:rgba(241,235,223,.12)}
+.comousar div{position:absolute;right:0;top:calc(100% + 6px);z-index:20;min-width:210px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+@media (max-width:760px){.comousar div{right:auto;left:0}}
+.comousar a{display:block;padding:8px 10px;border-radius:6px;color:var(--ink);text-decoration:none;font-size:13px}
+.comousar a:hover{background:var(--bg)}
+.outro{display:block;margin-top:10px;font-size:12.5px;text-align:left}
+#dlgContato{width:min(420px,calc(100vw - 32px));border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);padding:22px}
+#dlgContato::backdrop{background:rgba(40,25,24,.55)}
+#dlgContato h2{font-family:var(--f-display);font-size:22px;line-height:1.15;margin:0 0 6px}
+#dlgContato p{margin:0 0 14px;color:var(--ink-soft);font-size:13px}
+#dlgContato .acoes{display:flex;justify-content:flex-end;align-items:center;gap:14px;margin-top:4px}
+#dlgContato .enviar{border:0;border-radius:8px;background:var(--accent);color:#fff;font-weight:600;padding:10px 18px;cursor:pointer}
+#dlgContato .enviar[disabled]{opacity:.6;cursor:default}
+#dlgContato .nota{font-size:12px;margin:12px 0 0}
+#dlgContato .erro{color:#C04E2E;margin:8px 0 0}
+</style>
+
+<dialog id="dlgContato" aria-labelledby="ctTitulo">
+  <form id="ctForm">
+    <h2 id="ctTitulo">Precisa de outro formato de contrato?</h2>
+    <p>Execução de obra, só acompanhamento ou um contrato mais completo. Deixe seus dados e a gente chama você em até 24 horas.</p>
+    <div class="f"><label for="ctNome">Nome</label><input id="ctNome" name="nome" required maxlength="120" autocomplete="name"></div>
+    <div class="f"><label for="ctTelefone">Telefone</label><input id="ctTelefone" name="telefone" type="text" inputmode="tel" data-mask="fone" required maxlength="30" autocomplete="tel" placeholder="(00) 00000-0000"></div>
+    <div class="f"><label for="ctEmail">E-mail</label><input id="ctEmail" name="email" type="email" required maxlength="160" autocomplete="email"></div>
+    <div class="acoes">
+      <button type="button" class="linkbtn" id="ctFechar">Cancelar</button>
+      <button type="submit" class="enviar" id="ctEnviar">Enviar</button>
+    </div>
+    <p class="erro" id="ctErro" role="alert" hidden></p>
+    <p class="nota">Estes dados são usados só para responder a este pedido.</p>
+  </form>
+  <div id="ctOk" hidden>
+    <h2>Pedido recebido</h2>
+    <p>A gente chama você em até 24 horas.</p>
+    <div class="acoes"><button type="button" class="enviar" id="ctOkFechar">Fechar</button></div>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  var dlg = document.getElementById('dlgContato'), form = document.getElementById('ctForm'),
+      ok = document.getElementById('ctOk'), erro = document.getElementById('ctErro'),
+      enviar = document.getElementById('ctEnviar'), ajuda = document.querySelector('.comousar');
+  function abrir(){
+    form.hidden = false; ok.hidden = true; erro.hidden = true;
+    dlg.showModal();
+  }
+  document.getElementById('outroFormato').addEventListener('click', abrir);
+  document.getElementById('outroContrato').addEventListener('click', abrir);
+  document.getElementById('ctTelefone').addEventListener('input', function(ev){ aplicarMascara(ev.target); });
+  document.getElementById('ctFechar').addEventListener('click', function(){ dlg.close(); });
+  document.getElementById('ctOkFechar').addEventListener('click', function(){ dlg.close(); });
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    erro.hidden = true; enviar.disabled = true;
+    var d = new FormData(form);
+    fetch('/api/contato', {
+      method: 'POST', credentials: 'same-origin', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({nome: d.get('nome'), telefone: d.get('telefone'), email: d.get('email')})
+    }).then(function(r){ return r.json().then(function(j){ return {ok: r.ok, j: j}; }); }).then(function(r){
+      if (!r.ok) throw new Error(r.j.erro || '');
+      form.reset(); form.hidden = true; ok.hidden = false;
+    }).catch(function(e){
+      erro.textContent = e.message || 'Não foi possível enviar agora. Tente de novo em instantes.';
+      erro.hidden = false;
+    }).then(function(){ enviar.disabled = false; });
+  });
+  // o menu "Como usar" fecha ao clicar fora dele
+  document.addEventListener('click', function(ev){ if (ajuda.open && !ajuda.contains(ev.target)) ajuda.open = false; });
+})();
+</script>

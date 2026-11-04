@@ -6,8 +6,9 @@
 //   c:<email>  -> { nome, transacoes: { <id>: <status> }, atualizado }   comprador
 //   t:<hash>   -> email (expira em 30 min)                               link mágico, uso único
 //   r:<email>  -> 1 (expira em 60 s)                                     trava de reenvio
-// Segredos: SESSION_SECRET, HOTMART_HOTTOK, RESEND_API_KEY, TESTE_TOKEN (opcional), REVISAO_SENHA (opcional)
-// Variáveis: EMAIL_FROM, EMAIL_REPLY_TO, HOTMART_PRODUCT_ID (opcional), URL_VENDA (opcional), REVISAO_EMAIL (opcional)
+//   f:<email>  -> 1 (expira em 60 s)                                     trava do formulário de contato
+// Segredos: SESSION_SECRET, HOTMART_HOTTOK, RESEND_API_KEY, TESTE_TOKEN (opcional)
+// Variáveis: EMAIL_FROM, EMAIL_REPLY_TO, HOTMART_PRODUCT_ID (opcional), URL_VENDA (opcional)
 
 import matriz from '../../conteudo/matriz.json';
 
@@ -31,6 +32,14 @@ export default {
       if (p === '/api/matriz') {
         if (!email) return json({ erro: 'sem acesso' }, 401);
         return json(matriz, 200, { 'cache-control': 'private, no-store' });
+      }
+      if (p === '/api/contato' && req.method === 'POST') {
+        if (!email) return json({ erro: 'Sua sessão expirou. Entre de novo para enviar.' }, 401);
+        return contato(req, env, email);
+      }
+      if (p === '/guia.pdf') {
+        if (!email) return html(paginaEntrar(env), 401);
+        return env.ASSETS.fetch(req);
       }
       if (p === '/' || p === '/index.html') {
         if (!email) return html(paginaEntrar(env));
@@ -63,10 +72,14 @@ async function hotmart(req, env) {
   if (!LIBERA.includes(evento) && !BLOQUEIA.includes(evento)) return json({ ok: true, ignorado: evento });
 
   const c = (await env.KV.get('c:' + email, 'json')) || { transacoes: {} };
+  // o e-mail sai só na primeira notícia da compra; o evento de teste da Hotmart não traz ID de produto
+  const avisar = LIBERA.includes(evento) && produto && !c.transacoes[transacao];
   c.nome = (d.buyer && d.buyer.name) || c.nome || '';
   c.transacoes[transacao] = LIBERA.includes(evento) ? 'ativo' : 'bloqueado:' + evento;
   c.atualizado = new Date().toISOString();
   await env.KV.put('c:' + email, JSON.stringify(c));
+  // falha no envio não derruba o webhook: o acesso já foi gravado
+  if (avisar && env.RESEND_API_KEY) await enviarBoasVindas(env, email, c.nome, new URL(req.url).origin).catch(e => console.error(e));
   return json({ ok: true, email, ativo: ativo(c) });
 }
 
@@ -85,16 +98,6 @@ async function entrar(req, env, url) {
   await env.KV.put('r:' + email, '1', { expirationTtl: 60 });
 
   const c = await env.KV.get('c:' + email, 'json');
-
-  // Conta de revisão (avaliador da Hotmart): entra com senha, sem link. A trava de 60 s acima
-  // limita as tentativas.
-  const senha = String((f && f.get('senha')) || '');
-  if (senha) {
-    const ok = env.REVISAO_EMAIL && env.REVISAO_SENHA && email === normalizar(env.REVISAO_EMAIL)
-      && igual(senha, env.REVISAO_SENHA) && ativo(c);
-    if (!ok) return html(paginaEntrar(env, 'E-mail ou senha incorretos. Aguarde um minuto para tentar de novo.', email), 401);
-    return criarSessao(env, email);
-  }
   let linkTeste = null;
   if (ativo(c)) {
     const token = hex(crypto.getRandomValues(new Uint8Array(32)));
@@ -178,6 +181,71 @@ async function enviarLink(env, email, nome, link) {
   if (!r.ok) throw new Error('Resend ' + r.status + ' ' + (await r.text()));
 }
 
+async function enviarBoasVindas(env, email, nome, origem) {
+  const ola = nome ? 'Olá, ' + esc(nome.split(' ')[0]) + '!' : 'Olá!';
+  const r = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      from: env.EMAIL_FROM,
+      to: [email],
+      reply_to: env.EMAIL_REPLY_TO || undefined,
+      subject: 'Seu acesso ao Contrato na Régua',
+      text: `${ola.replace(/<[^>]+>/g, '')}\n\nSua compra foi aprovada e o acesso já está liberado.\n\nEntre em ${origem} e digite este e-mail. Um link de acesso chega na sua caixa de entrada.\n\nEm caso de dúvida, é só responder a esta mensagem.\n\nEstrutura Legal`,
+      html: `<div style="font-family:Arial,sans-serif;color:#4A2C2A;max-width:520px;line-height:1.5">
+        <p style="font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:#F26F4D;font-weight:bold;margin:0 0 4px">Estrutura Legal</p>
+        <p style="font-size:22px;font-weight:bold;color:#6D413E;margin:0 0 20px">Contrato na Régua</p>
+        <p>${ola}</p><p>Sua compra foi aprovada e o acesso já está liberado. Clique no botão abaixo e digite este e-mail. Um link de acesso chega na sua caixa de entrada.</p>
+        <p style="margin:24px 0"><a href="${origem}" style="background:#F26F4D;color:#fff;text-decoration:none;padding:12px 22px;border-radius:8px;font-weight:bold">Abrir o Contrato na Régua</a></p>
+        <p style="font-size:13px;color:#7A5E58">Em caso de dúvida, é só responder a esta mensagem.</p></div>`,
+    }),
+  });
+  if (!r.ok) throw new Error('Resend ' + r.status + ' ' + (await r.text()));
+}
+
+// ---------- Formulário de contato ----------
+
+async function contato(req, env, comprador) {
+  const b = (await req.json().catch(() => null)) || {};
+  const nome = String(b.nome || '').trim().slice(0, 120);
+  const telefone = String(b.telefone || '').trim().slice(0, 30);
+  const email = normalizar(b.email).slice(0, 160);
+  if (!nome) return json({ erro: 'Preencha o nome.' }, 400);
+  if (telefone.replace(/\D/g, '').length < 10) return json({ erro: 'Confira o telefone, com DDD.' }, 400);
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return json({ erro: 'Confira o e-mail digitado.' }, 400);
+
+  // clique repetido não gera dois e-mails
+  if (await env.KV.get('f:' + comprador)) return json({ ok: true });
+  await env.KV.put('f:' + comprador, '1', { expirationTtl: 60 });
+  try {
+    await enviarContato(env, { nome, telefone, email, comprador });
+  } catch (e) {
+    console.error(e);
+    await env.KV.delete('f:' + comprador);
+    return json({ erro: 'Não foi possível enviar agora. Tente de novo em instantes.' }, 502);
+  }
+  return json({ ok: true });
+}
+
+async function enviarContato(env, { nome, telefone, email, comprador }) {
+  const linhas = [['Nome', nome], ['Telefone', telefone], ['E-mail', email], ['E-mail da compra', comprador]];
+  const r = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      from: env.EMAIL_FROM,
+      to: [env.EMAIL_REPLY_TO],
+      reply_to: email,
+      subject: `Outro formato de contrato: ${nome}`,
+      text: `Pedido enviado pelo Contrato na Régua. O formulário informa retorno em até 24 horas.\n\n${linhas.map(l => l.join(': ')).join('\n')}`,
+      html: `<div style="font-family:Arial,sans-serif;color:#4A2C2A;max-width:520px;line-height:1.5">
+        <p>Pedido enviado pelo Contrato na Régua, no formulário "Precisa de outro formato de contrato?". O formulário informa retorno em até 24 horas.</p>
+        ${linhas.map(l => `<p style="margin:0 0 6px"><b>${l[0]}:</b> ${esc(l[1])}</p>`).join('')}</div>`,
+    }),
+  });
+  if (!r.ok) throw new Error('Resend ' + r.status + ' ' + (await r.text()));
+}
+
 // ---------- Páginas ----------
 
 function paginaEntrar(env, aviso = '', email = '') {
@@ -188,10 +256,6 @@ function paginaEntrar(env, aviso = '', email = '') {
      <form method="post" action="/entrar">
        <label for="email">E-mail da compra</label>
        <input id="email" name="email" type="email" required autocomplete="email" value="${esc(email)}" placeholder="voce@escritorio.com.br">
-       <details class="revisao"><summary>Tenho uma senha de revisão</summary>
-         <label for="senha">Senha</label>
-         <input id="senha" name="senha" type="password" autocomplete="current-password">
-       </details>
        <button type="submit">Enviar link de acesso</button>
      </form>${venda}`);
 }
@@ -222,7 +286,6 @@ button{width:100%;margin-top:14px;font:inherit;font-weight:600;background:var(--
 button:hover{background:#E05E3D}
 a{color:#C04E2E}
 .muted{color:var(--soft);font-size:14px}
-.revisao{margin:10px 0 0;font-size:13px;color:var(--soft)}.revisao summary{cursor:pointer}
 .aviso{background:#FBEFE6;border-left:3px solid var(--accent);padding:10px 12px;border-radius:6px;font-size:14px}
 .teste{word-break:break-all;font-size:12px}
 </style></head><body>

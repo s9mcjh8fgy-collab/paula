@@ -74,6 +74,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 .f input,.f select,.f textarea{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);min-width:0}
 .f textarea{min-height:64px;resize:vertical}
 .f .hint{font-size:12px;color:var(--ink-soft)}
+.aviso-campo{font-size:12px;color:var(--accent-ink)}
+.aviso-campo:empty{display:none}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 @media (max-width:440px){.row,.row3{grid-template-columns:1fr}}
@@ -212,6 +214,92 @@ function setPath(o, p, v){
   var ks = p.split('.'), last = ks.pop();
   var t = ks.reduce(function(a, k){ if(a[k] == null) a[k] = {}; return a[k]; }, o);
   t[last] = v;
+}
+/* Máscaras: '#' recebe um caractere digitado; a pontuação só entra quando há caractere depois dela. */
+function aplicarPadrao(padrao, cs){
+  var r = '', i = 0;
+  for(var p = 0; p < padrao.length && i < cs.length; p++) r += padrao[p] === '#' ? cs[i++] : padrao[p];
+  return r;
+}
+function mascarar(tipo, s){
+  s = String(s || '');
+  if(tipo === 'cnpj'){
+    // CNPJ alfanumérico (desde 07/2026): 12 posições com letras ou números e 2 dígitos verificadores
+    var cs = '';
+    s.toUpperCase().replace(/[^A-Z0-9]/g, '').split('').forEach(function(c){
+      if(cs.length < 12 || (cs.length < 14 && /\d/.test(c))) cs += c;
+    });
+    return aplicarPadrao('##.###.###/####-##', cs);
+  }
+  if(tipo === 'cpf') return aplicarPadrao('###.###.###-##', s.replace(/\D/g, '').slice(0, 11));
+  if(tipo === 'fone'){
+    if(s.trim()[0] === '+') return s; // número estrangeiro fica como digitado
+    var d = s.replace(/\D/g, '');
+    if(d.length > 11 && d.indexOf('55') === 0) d = d.slice(2);
+    d = d.slice(0, 11);
+    return aplicarPadrao(d.length > 10 ? '(##) #####-####' : '(##) ####-####', d);
+  }
+  return s;
+}
+function aplicarMascara(el){
+  var antes = el.value, cursor = el.selectionStart;
+  var novo = mascarar(el.getAttribute('data-mask'), antes);
+  if(novo === antes) return;
+  // mantém o cursor depois do mesmo caractere, para dar para corrigir no meio do número
+  var n = antes.slice(0, cursor).replace(/[^A-Za-z0-9]/g, '').length, pos = 0;
+  while(pos < novo.length && n > 0){ if(/[A-Za-z0-9]/.test(novo[pos])) n--; pos++; }
+  el.value = novo;
+  el.setSelectionRange(pos, pos);
+}
+/* Avisos: conferem tamanho e dígito verificador, sem bloquear o download. */
+function digitoVerificador(valores, pesos){
+  var r = pesos.reduce(function(soma, p, i){ return soma + valores[i] * p; }, 0) % 11;
+  return r < 2 ? 0 : 11 - r;
+}
+function numeroConfere(cs, pesos1, pesos2){
+  if(/^(.)\1+$/.test(cs)) return false;
+  // no CNPJ alfanumérico cada caractere vale o código dele menos 48; para dígitos, é o próprio número
+  var v = cs.split('').map(function(c){ return c.charCodeAt(0) - 48; });
+  return digitoVerificador(v, pesos1) === v[pesos1.length] && digitoVerificador(v, pesos2) === v[pesos2.length];
+}
+function avisoNumero(tipo, valor){
+  var s = String(valor || '').trim();
+  if(!s) return null;
+  if(tipo === 'fone'){
+    if(s[0] === '+' || s.replace(/\D/g, '').length >= 10) return null;
+    return {texto:'Confira o número: faltam dígitos.', incompleto:true};
+  }
+  var cs = s.replace(/[^A-Za-z0-9]/g, '').toUpperCase();
+  var nome = tipo === 'cnpj' ? 'CNPJ' : 'CPF', total = tipo === 'cnpj' ? 14 : 11;
+  if(cs.length < total) return {texto:'Confira o ' + nome + ': faltam caracteres.', incompleto:true};
+  var ok = tipo === 'cnpj'
+    ? numeroConfere(cs, [5,4,3,2,9,8,7,6,5,4,3,2], [6,5,4,3,2,9,8,7,6,5,4,3,2])
+    : numeroConfere(cs, [10,9,8,7,6,5,4,3,2], [11,10,9,8,7,6,5,4,3,2]);
+  return ok ? null : {texto:'Confira o ' + nome + ': o número não confere.', incompleto:false};
+}
+function valorDeExemplo(path, v){ return !!S.exemplo && v === getPath(estadoInicial(true), path); }
+// enquanto a pessoa digita, "faltam caracteres" espera ela sair do campo
+function mostrarAviso(el, saiu){
+  var box = $(el.id + '_aviso'); if(!box) return;
+  var a = avisoNumero(el.getAttribute('data-mask'), el.value);
+  box.textContent = a && (saiu || !a.incompleto) ? a.texto : '';
+}
+function numerosParaConferir(){
+  var r = [];
+  [['contratada', 'da contratada'], ['contratante', 'do contratante']].forEach(function(x){
+    var p = x[0], pj = getPath(S, p + '.tipo') === 'pj';
+    [[p + '.doc', pj ? 'cnpj' : 'cpf', (pj ? 'CNPJ ' : 'CPF ') + x[1]],
+     [p + '.repCpf', pj ? 'cpf' : '', 'CPF do representante ' + x[1]],
+     [p + '.telefone', 'fone', 'WhatsApp ' + x[1]]].forEach(function(c){
+      var v = getPath(S, c[0]);
+      if(c[1] && !valorDeExemplo(c[0], v) && avisoNumero(c[1], v)) r.push(c[2]);
+    });
+  });
+  return r;
+}
+function statusBaixado(texto){
+  var r = numerosParaConferir();
+  status(texto + (r.length ? ' Vale conferir: ' + r.join(', ') + '.' : ''));
 }
 var UN = ['zero','um','dois','três','quatro','cinco','seis','sete','oito','nove','dez','onze','doze','treze','quatorze','quinze','dezesseis','dezessete','dezoito','dezenove'];
 var DZ = ['','','vinte','trinta','quarenta','cinquenta','sessenta','setenta','oitenta','noventa'];
@@ -480,9 +568,11 @@ function inp(path, label, opts){
   opts = opts || {};
   var v = getPath(S, path); v = v == null ? '' : v;
   var id = 'f_' + path.replace(/\./g, '_');
+  var aviso = opts.mask && !valorDeExemplo(path, v) ? avisoNumero(opts.mask, v) : null;
   return '<div class="f"><label for="' + id + '">' + label + '</label>' +
     (opts.area ? '<textarea id="' + id + '" data-path="' + path + '" placeholder="' + esc(opts.ph || '') + '">' + esc(v) + '</textarea>'
-      : '<input id="' + id + '" type="' + (opts.type || 'text') + '" data-path="' + path + '" value="' + esc(v) + '" placeholder="' + esc(opts.ph || '') + '"' + (opts.type === 'number' ? ' min="0" step="' + (opts.step || 1) + '" inputmode="decimal"' : '') + '>') +
+      : '<input id="' + id + '" type="' + (opts.type || 'text') + '" data-path="' + path + '" value="' + esc(v) + '" placeholder="' + esc(opts.ph || '') + '"' + (opts.type === 'number' ? ' min="0" step="' + (opts.step || 1) + '" inputmode="decimal"' : '') + (opts.mask ? ' data-mask="' + opts.mask + '"' + (opts.mask === 'cnpj' ? '' : ' inputmode="tel"') : '') + '>') +
+    (opts.mask ? '<span class="aviso-campo" id="' + id + '_aviso" aria-live="polite">' + (aviso ? esc(aviso.texto) : '') + '</span>' : '') +
     (opts.hint ? '<span class="hint">' + opts.hint + '</span>' : '') + '</div>';
 }
 function seg(path, opts, rerender){
@@ -499,10 +589,10 @@ function parte(p, papel){
   var h = seg(p + '.tipo', [['pj', 'Empresa (CNPJ)'], ['pf', 'Pessoa física (CPF)']], true);
   var tipo = getPath(S, p + '.tipo');
   h += inp(p + '.nome', tipo === 'pj' ? 'Razão social' : 'Nome completo');
-  h += '<div class="row">' + inp(p + '.doc', tipo === 'pj' ? 'CNPJ' : 'CPF') + (base ? inp(p + '.cau', 'Registro CAU nº') : '<div></div>') + '</div>';
+  h += '<div class="row">' + inp(p + '.doc', tipo === 'pj' ? 'CNPJ' : 'CPF', tipo === 'pj' ? {mask:'cnpj', ph:'00.000.000/0000-00'} : {mask:'cpf', ph:'000.000.000-00'}) + (base ? inp(p + '.cau', 'Registro CAU nº') : '<div></div>') + '</div>';
   h += inp(p + '.endereco', base ? 'Endereço profissional' : 'Endereço');
-  if(tipo === 'pj') h += '<div class="row">' + inp(p + '.representante', 'Representante legal') + inp(p + '.repCpf', 'CPF do representante') + '</div>';
-  h += '<div class="row">' + inp(p + '.email', 'E-mail') + inp(p + '.telefone', 'WhatsApp') + '</div>';
+  if(tipo === 'pj') h += '<div class="row">' + inp(p + '.representante', 'Representante legal') + inp(p + '.repCpf', 'CPF do representante', {mask:'cpf', ph:'000.000.000-00'}) + '</div>';
+  h += '<div class="row">' + inp(p + '.email', 'E-mail') + inp(p + '.telefone', 'WhatsApp', {mask:'fone', ph:'(00) 00000-0000'}) + '</div>';
   return h;
 }
 function paneHtml(){
@@ -731,12 +821,12 @@ async function baixar(){
     var dl = null;
     try{ dl = window.claude && window.claude.use ? await window.claude.use('downloads') : null; }catch(e){ dl = null; }
     if(dl){
-      try{ await dl.save({filename:nome, data:blob}); status('Pronto. Arquivo salvo: ' + nome); }
+      try{ await dl.save({filename:nome, data:blob}); statusBaixado('Pronto. Arquivo salvo: ' + nome + '.'); }
       catch(e){ status(e && e.code === 'declined' ? 'Download cancelado.' : 'Não foi possível salvar o arquivo aqui. Tente de novo em instantes.'); }
     } else {
       var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = nome;
       document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 1000);
-      status('Pronto. Arquivo baixado: ' + nome);
+      statusBaixado('Pronto. Arquivo baixado: ' + nome + '.');
     }
   }catch(e){ console.error(e); status('Não foi possível gerar o arquivo. Recarregue a página e tente de novo.'); }
   btn.disabled = false;
@@ -745,7 +835,11 @@ async function baixar(){
 /* ---------- eventos ---------- */
 function ligar(){
   var pane = $('pane');
-  pane.addEventListener('input', function(e){ if(e.target.matches('input[type=text],input[type=number],input[type=date],textarea')) onChange(e.target); });
+  pane.addEventListener('input', function(e){
+    if(e.target.hasAttribute('data-mask')){ aplicarMascara(e.target); mostrarAviso(e.target, false); }
+    if(e.target.matches('input[type=text],input[type=number],input[type=date],textarea')) onChange(e.target);
+  });
+  pane.addEventListener('focusout', function(e){ if(e.target.hasAttribute('data-mask')) mostrarAviso(e.target, true); });
   pane.addEventListener('change', function(e){
     var t = e.target;
     if(t.id === 'logoInput'){ lerLogo(t.files[0]); return; }

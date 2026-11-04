@@ -1,0 +1,46 @@
+<!doctype html><html><head><meta charset="utf-8">
+<!-- Imagens da área do comprador na Hotmart. Abrir com ?v=banner, ?v=vertical ou ?v=horizontal. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap">
+<style>
+@font-face{font-family:Borna;src:url(borna.otf);font-weight:700}
+*{margin:0;box-sizing:border-box}
+body{background:#6D413E;color:#F1EBDF;font-family:Inter,sans-serif;position:relative;overflow:hidden}
+.k{position:absolute;letter-spacing:.24em;text-transform:uppercase;color:#F26F4D;font-weight:700}
+h1{position:absolute;font-family:Borna;line-height:.95;font-weight:700}
+h1 em{font-style:normal;color:#F26F4D}
+p{position:absolute;line-height:1.35;color:#E3D6C6}
+.shot{position:absolute;border-radius:14px;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+.ruler{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:flex-end;background:#6D413E;border-bottom:3px solid #F1EBDF}
+.ruler i{flex:1;border-left:2px solid rgba(241,235,223,.55);height:22%}
+.ruler i:nth-child(5n+1){height:48%}.ruler i:nth-child(10n+1){height:82%;border-color:#F26F4D}
+
+/* banner: a Hotmart põe o título à esquerda e a capa à direita, então só o miolo fica ocupado */
+.banner{width:1920px;height:640px}
+.banner .k,.banner h1,.banner p{display:none}
+.banner .shot{left:450px;top:64px;width:860px}
+.banner .ruler{height:64px}
+
+.vertical{width:720px;height:1040px}
+.vertical .k{left:56px;top:60px;font-size:20px}
+.vertical h1{left:52px;top:108px;font-size:122px}
+.vertical p{left:56px;top:352px;width:600px;font-size:27px}
+.vertical .shot{left:56px;top:510px;width:1000px}
+.vertical .ruler{height:64px}
+
+.horizontal{width:1280px;height:720px}
+.horizontal .k{left:64px;top:92px;font-size:20px}
+.horizontal h1{left:60px;top:142px;font-size:112px}
+.horizontal p{left:64px;top:372px;width:470px;font-size:26px}
+.horizontal .shot{left:600px;top:84px;width:1040px}
+.horizontal .ruler{height:64px}
+</style></head><body>
+<div class="k">Estrutura Legal</div>
+<h1>Contrato<br>na <em>Régua</em></h1>
+<p>Da proposta aprovada ao contrato de projeto de arquitetura, em Word, com a sua logo.</p>
+<img class="shot" src="app-tela.jpg" alt="">
+<div class="ruler" id="r"></div>
+<script>
+document.body.className = new URLSearchParams(location.search).get('v') || 'banner';
+document.getElementById('r').innerHTML = new Array(document.body.className === 'vertical' ? 41 : 81).join('<i></i>');
+</script>
+</body></html>

@@ -13,6 +13,10 @@ Endereço provisório: https://contrato-na-regua.pages.dev. Definitivo: `app.est
   ativa: reembolso derruba o acesso na hora.
 - O texto do contrato (`conteudo/matriz.json`) vai embutido no Worker e só sai por `/api/matriz` com
   sessão válida. Nunca fica em `publico/`.
+- O menu "Como usar" abre o guia (`/guia.pdf`, só com sessão válida) e o vídeo da página de vendas.
+- O formulário "Precisa de outro formato de contrato?" (`src/extras.html`) chama `POST /api/contato`,
+  só com sessão válida, e manda os dados por e-mail para `EMAIL_REPLY_TO`. Não grava os dados no KV.
+  A tela promete retorno em até 24 horas.
 
 ## Publicar uma mudança
 ```bash
@@ -24,18 +28,15 @@ Mudança no `matriz.json` também exige novo deploy, porque ele vai embutido no 
 
 ## Segredos (`npx wrangler pages secret put NOME --project-name contrato-na-regua`)
 - `SESSION_SECRET`: assina o cookie. Trocar derruba todas as sessões (todo mundo entra de novo).
-- `HOTMART_HOTTOK`: hoje provisório. Trocar pelo hottok da conta Hotmart quando o produto existir.
+- `HOTMART_HOTTOK`: hottok da conta Hotmart, cópia em `Paula_Adv_OS/.env` (`CNR_HOTTOK`). Produto 8883953.
 - `RESEND_API_KEY`: chave só de envio, restrita ao domínio `estruturalegal.com.br`. Sem ela, o pedido
   de link responde "envio indisponível".
 - `TESTE_TOKEN`: cópia em `Paula_Adv_OS/.env` (`CNR_TESTE_TOKEN`). `POST /entrar` com o header
   `x-teste: <token>` devolve o link na tela em vez de mandar e-mail.
 
-## Conta de revisão (avaliador da Hotmart)
-A Hotmart exige login e senha da área de membros externa para revisar o produto. A conta
-`revisao@estruturalegal.com.br` (var `REVISAO_EMAIL`, cortesia no KV) entra com senha: na tela de
-entrada, "Tenho uma senha de revisão". A senha é o segredo `REVISAO_SENHA`, cópia em
-`Paula_Adv_OS/.env` (`CNR_REVISAO_SENHA`). Só essa conta aceita senha, e a trava de 60 s limita as
-tentativas. Para desligar, apagar a chave `c:revisao@estruturalegal.com.br` no KV.
+## Conta de revisão
+Desligada em 04/11/2026: o formato eBook não exige login para a revisão da Hotmart. A conta, a entrada
+com senha, a var `REVISAO_EMAIL` e o segredo `REVISAO_SENHA` foram removidos.
 
 ## Liberar acesso manual (cortesia, Miriam, testes)
 Gravar no KV `contrato-na-regua` (id `154a1427e9d245f0b775708787086dd9`) a chave `c:<email em minúsculas>`:
