@@ -25,3 +25,4 @@ A pasta `3_Jurídico/` em `00_Novo Diretório/` já tem a organização oficial 
 ## Contexto adicional
 Legal One é o sistema oficial de registro processual (Thomson Reuters) — não é substituído pelas pastas de trabalho aqui, apenas complementado.
 Os últimos clientes chegaram por indicação (informado em 04/11/2026). O escritório tem Perfil da Empresa no Google.
+Grupo Ao Cubo (assessoria) tem 2 CNPJs, ambos com colaboradores: Grupo Ao Cubo Ltda (47.084.234/0001-28, cadastrada no sistema de demandas) e Rental Ao Cubo Ltda (63.929.271/0001-46, sócio-administrador Angelo Michelin Boemo).

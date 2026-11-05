@@ -107,8 +107,12 @@ A skill publica direto no WordPress via API REST (`WORDPRESS_SITE_URL`, `WORDPRE
 `WORDPRESS_APP_PASSWORD` em `.env.local`), sem precisar copiar e colar. Fluxo:
 
 1. Criar o post como **rascunho** (`status: draft`) via `POST /wp-json/wp/v2/posts`, com título,
-   `content` (HTML) e `excerpt` (a meta descrição — também setar como
-   `meta._yoast_wpseo_metadesc` pro Yoast SEO)
+   `content` (HTML), `excerpt` (a meta descrição — também setar como
+   `meta._yoast_wpseo_metadesc` pro Yoast SEO) e `categories` com **uma** categoria, conforme o tema
+   principal do artigo. Sem esse campo, o post cai em "Uncategorized" e o selo aparece no Blog.
+   Categorias em uso: Contratos (98), Responsabilidade Civil e Indenizações (57), Direito Condominial
+   (47), Direito Empresarial (11), Assessoria Jurídica (97). Nunca usar Uncategorized (1). Mostrar a
+   categoria escolhida junto com o artigo no Passo 4; se nenhuma servir, perguntar antes de criar outra
 2. Criar as tags direto via `POST /wp-json/wp/v2/tags` (**nunca usar `GET ?search=`** — esse
    endpoint especificamente dispara o Fatal error do Wordfence quase toda vez, ver memória
    `project_wordfence_bloqueia_post_api`). Se a tag já existir, a API retorna erro de duplicata
