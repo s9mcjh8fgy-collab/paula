@@ -5,7 +5,7 @@
 **OAB:** OAB/SC 28.118
 **O que faz:** Advocacia com atendimento a pessoas físicas e jurídicas — consultivo (pareceres, dúvidas via WhatsApp/e-mail), análise de contratos e documentos, e peças processuais.
 **Áreas de atuação:** praticamente todas, exceto criminal. Pouco tributário (só o necessário quando um cliente PJ demanda).
-**Posicionamento estratégico:** "Advocacia da Construção Civil" — termo escolhido pela Paula por ser mais abrangente e diferenciado do que "advocacia imobiliária". Foco em atender empresas e profissionais do setor: arquitetos, engenheiros, empreiteiras, construtoras, imobiliárias, administradoras de condomínio.
+**Posicionamento estratégico:** "Advocacia da Construção Civil" — termo escolhido pela Paula por ser mais abrangente e diferenciado. A advocacia imobiliária também é foco e é quase sinônimo na prática (definido em 05/11/2026); usar os dois termos em conteúdo e SEO. Foco em atender empresas e profissionais do setor: arquitetos, engenheiros, empreiteiras, construtoras, imobiliárias, administradoras de condomínio.
 **Perfil:** freelancer (advocacia solo com uma assistente)
 **Atende clientes:** sim — carteira mista de PF e PJ. Continua atendendo casos de outras áreas (família, trabalhista, consumidor) que surgem naturalmente, inclusive de clientes do nicho de construção civil (ex: trabalhista de uma construtora).
 **Equipe:** Paula + Thaís (formada em Direito, não advogada, auxilia em demandas de menor complexidade)

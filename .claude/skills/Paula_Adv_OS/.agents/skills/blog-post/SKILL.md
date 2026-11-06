@@ -15,7 +15,7 @@ description: >
 ## Dependências
 
 - **Fonte de ideias:** `conteudo/casos/` — casos anonimizados do escritório
-- **Contexto do negócio:** `_contexto/empresa.md` (posicionamento "Advocacia da Construção Civil")
+- **Contexto do negócio:** `_contexto/empresa.md` (posicionamento "Advocacia Imobiliária e da Construção Civil")
 - **Tom de voz:** `_contexto/preferencias.md`
 - **Identidade visual (se precisar de capa):** `marca/design-guide.md`
 

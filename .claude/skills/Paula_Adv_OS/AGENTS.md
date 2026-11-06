@@ -58,10 +58,10 @@ Em peças processuais: formal, técnico, terceira pessoa.
   workspace, usadas pela skill `/demandas`)
 - Cloudflare Pages — publicação de relatórios estáticos (ex: relatórios de andamento do INPI), token e account ID em `.env` Também cuida do DNS de `estruturalegal.com.br` desde 2026-10-27 (o registro do domínio continua no Registro.br, vence em 20/02/2027); o token tem permissão de Zone/DNS. `app.estruturalegal.com.br` é o app (projeto Pages `contrato-na-regua`) e a raiz é a página de vendas (projeto `contrato-na-regua-site`)
 - WordPress (site paulacorrea.adv.br) — publicação de posts via API REST, autenticado com senha de
-  aplicativo (usuário admin). Yoast SEO instalado, dá pra setar meta descrição/título SEO via API.
+  aplicativo (usuário admin). Yoast SEO instalado, dá pra setar meta descrição/título SEO via API só em posts (em páginas a API responde 200 e ignora: editar no painel). Filtro de spam do formulário em `wp-content/mu-plugins/paula-filtro-formulario.php`.
   Credenciais em `.env.local` (WORDPRESS_*)
 - cPanel (hospedagem do site) — acesso via token de API (sem prazo de expiração, acesso amplo à
-  conta). Usado pra upload de arquivos etc. Credenciais em `.env.local` (CPANEL_*). **DNS público de
+  conta). Usado pra upload de arquivos etc. O domínio principal da conta é `correaadvogados.net`, com 7 caixas de e-mail e remetente do formulário do site; antes de desligá-lo, resolver as caixas, trocar o domínio principal com a hospedagem e mudar o remetente (via Resend). Credenciais em `.env.local` (CPANEL_*). **DNS público de
   paulacorrea.adv.br NÃO fica aqui** — é gerenciado no Registro.br (painel.registro.br); a zona do
   cPanel existe mas não é autoritativa (descoberto em 2026-09-25 ao configurar o Resend). Saúde do
   site (no ar, API REST, wp-admin, `.user.ini`, erros de PHP) checada pela skill `/checar-site`
