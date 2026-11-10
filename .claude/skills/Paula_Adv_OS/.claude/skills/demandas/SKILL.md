@@ -128,8 +128,14 @@ Confirmar o que foi feito:
 - Demanda (`criadoPor`) e tarefa (`assigned_to`) são sempre da Paula por padrão, sem perguntar.
   Só ficam com a Thaís quando a Paula disser
 - Seguimento de demanda com tarefa: antes de criar, listar as tarefas da interação
-  (`tasks?interaction_id=eq.<id>`). Se já tem tarefa pendente com o mesmo tema (ex: cobrar a mesma
-  pessoa sobre o mesmo assunto), fazer PATCH nela (nova `due_date` + andamento na `description`),
-  nunca duplicar. Criar tarefa nova só quando o tema muda
+  (`tasks?interaction_id=eq.<id>`). O critério é se a tarefa em si (o que precisa ser feito) muda:
+  - **Continua a mesma** (ex: consultou o CREA, não teve novidade, vai consultar de novo; cobrou a
+    mesma pessoa e segue sem retorno): PATCH na tarefa pendente (nova `due_date` + andamento na
+    `description`), nunca duplicar.
+  - **Mudou** (ex: antes era consultar o protocolo da denúncia, agora é acompanhar o processo
+    administrativo ao qual ela foi anexada): concluir a tarefa antiga (`status: done`, mantendo
+    título e data originais, com o resultado anotado na `description`) e criar uma tarefa nova pro
+    próximo passo. Nunca reescrever título/objeto da tarefa antiga, pra preservar o histórico na
+    demanda
 - Sem travessão, tom de conversa real (exceto se a resposta virar algo formal tipo parecer robusto,
   que ainda assim não é peça processual)

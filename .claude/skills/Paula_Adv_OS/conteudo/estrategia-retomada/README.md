@@ -171,6 +171,10 @@ funcionou: anunciar que é mais uma da série + uma linha de gancho sem spoiler 
 conto que já é marrom/bege quebra a consistência visual — a Paula preferiu manter a cor de fundo do
 conto e usar **negrito** pra destacar a frase decisiva, sem trocar de cor no meio da história.
 
+## Ajuste de rota (2026-11-10)
+
+Reels voltam no formato trend curta, sem fala (banco de cenas em `conteudo/instagram/reels/banco-de-cenas.md`). Instagram com 2 posts por semana, em rodízio de post fixo → reel → carrossel. Calendário até 22/12 em `calendario-nov-dez-2026.md`.
+
 ## Status
 Estratégia definida, execução em andamento. Kickoff completo:
 - 17/09/2026 — "Acho chic..." (https://www.instagram.com/p/DdZYurFDS5o/)

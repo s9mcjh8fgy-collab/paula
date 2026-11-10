@@ -3,3 +3,4 @@
 __pycache__/
 propostas/*/
 .claude/settings.local.json
+marca/videos/

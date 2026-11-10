@@ -43,6 +43,15 @@ identidade da marca — a Borna é a fonte oficial e é o padrão definitivo pra
 mais trocar. Não usar outra fonte serif editorial pra isso (ex: o carrossel "Acho chic", anterior a
 essa decisão, usa Source Serif 4 — não seguir esse padrão antigo em peças novas).
 
+**Maiúscula no início das frases (2026-11-10):** capas, títulos, subtítulos e textos de qualquer
+peça começam sempre com letra maiúscula. Nada de estética "tudo minúsculo" de trend (a capa do
+"como agradar sua advogada", de 06/10, saiu toda em minúscula; não seguir).
+
+**Capa de reel (2026-11-10):** sempre foto do ensaio (`marca/fotos/`) com degradê marrom
+(#6D413E) na metade de baixo, título Borna Bold laranja (#F26F4D, ~104px) e subtítulo Borna
+Regular bege (#F1EBDF, ~50px), centralizados. Modelo pronto em
+`conteudo/instagram/reels/contrato-so-formalidade/gerar_capa.py`. Variar a foto de um reel pro outro.
+
 ---
 
 ## Estilo geral
