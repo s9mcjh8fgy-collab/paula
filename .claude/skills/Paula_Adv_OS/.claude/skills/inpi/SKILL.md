@@ -161,6 +161,15 @@ exigência, 156 = procurador) e **Publicações** (RPI, data, despacho e "Detalh
 rodapé diz até qual RPI os dados vão. Pedido protocolado há poucas semanas ainda não aparece (normal).
 A busca por número de GRU não é confiável (devolve resultado sem relação), não usar.
 
+**Busca prévia por nome (marca nova, título de livro etc.):** abrir antes
+`/pePI/jsp/marcas/Pesquisa_classe_basica.jsp` e fazer POST em `MarcasServletController` com
+`Action=searchMarca`, `tipoPesquisa=BY_MARCA_CLASSIF_BASICA`, `marca=<termo>`, `classeInter=<classe>`
+(vazio = todas), `buscaExata=sim|nao` (nao = radical), `txt=` e `registerPerPage=100`. Radical de
+termo curto (ex: "ROTA") traz muito ruído e corta em 100, ordenado do mais antigo: preferir a exata
+por classe e a radical com a expressão composta. Livro: classes 16 (impressos) e 41 (publicação,
+treinamento). O catálogo da Biblioteca Nacional (acervo.bn.gov.br) bloqueia curl/WebFetch
+(Cloudflare 403): conferir pelo navegador.
+
 **Cruzar sempre com a pasta**: se a Paula registrou uma petição (ex: cumprimento de exigência) e
 ela não aparece na lista de Petições do pePI, avisar a Paula internamente, mas não mudar nada no
 relatório do cliente sem ela decidir.

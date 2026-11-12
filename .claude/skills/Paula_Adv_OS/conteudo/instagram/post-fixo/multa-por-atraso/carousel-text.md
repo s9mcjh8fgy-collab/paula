@@ -7,13 +7,14 @@ Artigo: semana 9 do blog, `conteudo/site/blog/multa-por-atraso-em-obra.md`.
 
 ## Imagem
 
-Multa por atraso que não está no contrato não se cobra sozinha. / E aí, quem paga pelos dias perdidos?
+Multa por atraso mal escrita não protege ninguém. / Nem quem contrata, nem quem executa.
+(Trocado em 12/11 a pedido da Paula: a versão anterior, "não se cobra sozinha / quem paga pelos dias perdidos?", puxava para PF.)
 
 ## Legenda Instagram
 
-Prazo de obra sem multa no contrato é só uma data no papel.
+Prazo de obra sem uma multa bem escrita é só uma data no papel.
 
-Quando a obra atrasa e não existe multa combinada, quem sofreu o atraso precisa provar cada real que perdeu. Com a multa escrita, basta mostrar o atraso. E quem executa também ganha: sabe quanto arrisca e em quais situações o atraso não é responsabilidade dele.
+Para quem contrata, a multa evita ter que provar cada real perdido: basta mostrar o atraso. Para quem executa, ela mostra quanto se arrisca e deixa claro quando o atraso não é responsabilidade sua, como no caso do fornecedor contratado direto pelo cliente.
 
 Expliquei no blog como calcular, quando a multa começa a contar e o que afasta a culpa pelo atraso, com um exemplo em números. Link na bio.
 

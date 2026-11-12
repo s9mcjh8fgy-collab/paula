@@ -17,7 +17,7 @@
 
 | Data | Formato | Tema | Origem |
 |---|---|---|---|
-| Qui 12/11 | Post fixo com foto | Multa por atraso que não está no contrato não se cobra sozinha | blog do mesmo dia |
+| Qui 12/11 | Post fixo com foto | ✅ Multa por atraso mal escrita não protege ninguém (publicado: https://www.instagram.com/p/Dfpl0z8nOxC/) | blog do mesmo dia |
 | Sex 13/11 | **Reel** (1º) | "Quando o cliente diz que o contrato é só formalidade" | vídeo gravado em 10/11 (digitando) |
 | Ter 17/11 | Carrossel: História em Série, parte 1 | Era uma vez... um cliente que sumiu (e voltou com advogado) | #0063 |
 | Qui 19/11 | Carrossel: História em Série, parte 2 (final) | Reviravolta: depois da demolição, o terreno era menor | #0063 |
@@ -39,7 +39,7 @@ Ficaram para janeiro: Conto da porta pela metade (#0111) e do cliente do Pix (#0
 
 | Data | Semana | Tema | Origem | Palavra-chave |
 |---|---|---|---|---|
-| Qui 12/11 | 9 | Multa por atraso em obra: como calcular, cobrar ou se defender | #0139 (0,1% ao dia, teto de 10%) e #0061 | multa atraso obra |
+| Qui 12/11 | 9 | ✅ Multa por atraso em obra: como calcular, cobrar ou se defender (publicado) | #0139 (0,1% ao dia, teto de 10%) e #0061 | multa atraso obra |
 | Qui 19/11 | 10 | Vício construtivo: quem responde e qual o prazo de garantia | caso a definir com a Paula | vício construtivo (100 a 1 mil/mês) |
 | Qui 26/11 | 11 | Contratar PJ na obra ou no escritório: quando vira vínculo de emprego | #0089, #0073 | pejotização construção civil |
 | Qui 03/12 | 12 | Reforma tributária: o que revisar nos contratos de obra e serviço antes de 2027 | #0154, #0139 | reforma tributária contratos |

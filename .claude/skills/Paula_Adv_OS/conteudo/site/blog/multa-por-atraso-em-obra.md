@@ -66,6 +66,8 @@ A multa só é devida se o atraso for culpa de quem executa. Algumas situações
 
 Em qualquer desses casos, o que decide a discussão é o registro. Diário de obra, e-mail, mensagem pedindo a liberação do local, aditivo de prazo assinado. Quem documenta o motivo do atraso enquanto ele acontece tem muito mais força do que quem tenta explicar meses depois.
 
+Foi o que aconteceu nessa mesma obra da loja. O fornecedor da climatização, indicado pelo cliente, não apareceu no dia marcado para começar o serviço e remarcou para o dia seguinte. A orientação para a empreiteira foi simples: registrar no grupo da obra, naquele mesmo dia, que o fornecedor faltou e que esse dia de atraso não era dela, mandando foto junto. Parece pouco, mas é esse tipo de registro feito na hora que vai fazer a diferença se, lá no fim, alguém quiser calcular multa.
+
 <h5><strong>Leia também:</strong> <a href="https://paulacorrea.adv.br/advogado-na-construcao-civil/">Advogado na construção civil</a></h5>
 
 #### E se não tem multa no contrato?
