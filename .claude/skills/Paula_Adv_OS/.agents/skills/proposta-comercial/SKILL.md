@@ -107,7 +107,7 @@ Escrever o texto de cada slide (título + corpo curto, linguagem de apresentaç�
    node ".claude/skills/proposta-comercial/scripts/render-pdf.js" propostas/[nome-cliente]/slide-01.html propostas/[nome-cliente]/slide-02.html ... "propostas/[nome-cliente]/Proposta Comercial - [Cliente].pdf"
    ```
 
-7. Copiar o PDF final pra pasta de propostas em `6_Colaboradores/Paula/`, mesmo lugar onde as propostas anteriores já ficam guardadas. **O número da pasta "Vendas" pode mudar** (já foi renomeada de "03 Vendas" pra "02 Vendas"). Antes de copiar, localizar a pasta certa com `Glob` (padrão `6_Colaboradores/Paula/*Vendas/Propostas`) em vez de assumir o número fixo.
+7. Copiar o PDF final pra pasta de propostas em `9_Vendas/Propostas/` (na raiz de `00_Novo Diretório`, caminho relativo `../../../../9_Vendas/Propostas/` a partir de `Paula_Adv_OS`), mesmo lugar onde as propostas anteriores já ficam guardadas. **A pasta de Vendas já mudou de lugar e de número** (`6_Colaboradores/Paula/03 Vendas` → `02 Vendas` → `9_Vendas` em 2026-11). Antes de copiar, confirmar que ela existe (`ls` ou `Glob` com padrão `*Vendas/Propostas` na raiz) em vez de assumir o caminho fixo.
 
 ---
 
@@ -172,5 +172,5 @@ assinatura → rodapé com site, e-mail e telefone.
    ```
 4. Mostrar o `preview.png`. Se o script avisar que o texto invadiu a área da assinatura, enxugar o
    texto (a proposta simples é sempre 1 página, nunca quebrar em duas).
-5. Copiar o PDF pra `6_Colaboradores/Paula/*Vendas/Propostas/` (localizar com Glob), com o nome
+5. Copiar o PDF pra `9_Vendas/Propostas/` (localizar como no passo 7 do deck), com o nome
    `Proposta - [Cliente].pdf`, padrão das propostas simples já salvas lá.

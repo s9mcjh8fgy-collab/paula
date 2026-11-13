@@ -7,7 +7,7 @@
 // JSON de entrada:
 // {
 //   "cliente": "Grupo Ao Cubo",              // nome (ou parte do nome) do cliente cadastrado
-//   "canal": "whatsapp",                      // whatsapp | email | telefone | presencial
+//   "canal": "whatsapp",                      // whatsapp | email | call | meeting | in_person
 //   "solicitadoPor": "Angelo",
 //   "titulo": "Termo aditivo de contrato",
 //   "resumo": "Cliente pediu...",
