@@ -1,0 +1,8 @@
+{
+  "name": "contrato-sob-medida",
+  "private": true,
+  "type": "module",
+  "scripts": { "build": "python build.py", "deploy": "python build.py && wrangler pages deploy" },
+  "dependencies": { "@anthropic-ai/sdk": "1.3.0" },
+  "devDependencies": { "wrangler": "4.127.1" }
+}

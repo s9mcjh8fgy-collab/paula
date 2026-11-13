@@ -1,0 +1,196 @@
+<style>
+.steps{grid-template-columns:repeat(4,minmax(0,1fr))}
+.steps button{overflow:hidden;text-overflow:ellipsis}
+.steps button b{font-weight:600;color:var(--accent-ink);margin-left:2px}
+.drop{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;border:1.5px dashed var(--line);border-radius:10px;padding:22px 14px;background:var(--bg);cursor:pointer;margin-bottom:10px}
+.drop:hover,.drop.over{border-color:var(--accent);background:var(--expl);color:#4A2C2A}
+.drop b{font-size:14px}
+.drop span{font-size:12px;color:var(--ink-soft)}
+.drop.over span{color:#7A5E58}
+.arqs{list-style:none;margin:0 0 10px;padding:0}
+.arqs li{display:flex;align-items:center;gap:8px;font-size:13px;padding:6px 10px;border:1px solid var(--line);border-radius:6px;margin-bottom:6px;background:var(--bg)}
+.arqs li span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.arqs li small{color:var(--ink-soft)}
+.arqs .x{border:0;background:none;color:var(--ink-soft);cursor:pointer;font-size:16px;line-height:1;padding:2px 6px}
+.uso{font-size:12px;color:var(--ink-soft);margin:6px 0 0;text-align:center}
+.lendo{display:flex;gap:10px;align-items:center;font-size:13px;color:var(--ink-soft);margin-top:10px}
+.lendo i{width:14px;height:14px;border-radius:50%;border:2px solid var(--line);border-top-color:var(--accent);animation:gira .8s linear infinite;flex:0 0 auto}
+@keyframes gira{to{transform:rotate(360deg)}}
+.erro-ia{background:#FDE3D9;color:#7A2A12;border-radius:6px;padding:9px 12px;font-size:13px;margin-top:10px}
+.res{border-top:1px solid var(--line);margin-top:18px;padding-top:14px}
+.res h3{font-family:var(--f-display);font-size:18px;margin:0 0 6px}
+.res .resumo{font-size:13.5px;margin:0 0 12px}
+.al{display:flex;gap:8px;align-items:flex-start;font-size:13px;padding:8px 10px;border-radius:6px;margin-bottom:6px;border-left:3px solid}
+.al.revisar{background:#FDE3D9;color:#6B2410;border-color:#C04E2E}
+.al.atencao{background:#FFF3D6;color:#5C4210;border-color:#C9962B}
+.al.ok{background:#E3EEE6;color:#24563D;border-color:#2F7D5B}
+.al b{font-size:10px;letter-spacing:.1em;text-transform:uppercase;flex:0 0 auto;margin-top:2px}
+.falta{font-size:13px;margin:10px 0 0}
+.falta ul{margin:4px 0 0;padding-left:18px}
+.res .acoes{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<script>
+'use strict';
+/* ---------- Sob Medida: leitura da proposta por IA ----------
+   Entra antes dos passos do Contrato na Régua. A IA devolve só dados e escolhas do banco de
+   cláusulas; quem monta o contrato continua sendo o app, com o texto aprovado. */
+var ARQS = [], TXT = '', LENDO = false, ERRO = '', USO = null;
+var MAX_TOTAL = 15 * 1024 * 1024;
+PASSOS.unshift({id:'proposta', nome:'Proposta'});
+PASSOS.forEach(function(p){ if(p.id === 'valores') p.nome = 'Valores'; }); // 7 abas: rótulo curto para caber
+
+var _paneOriginal = paneHtml;
+paneHtml = function(){
+  var ta = $('propTexto'); if(ta) TXT = ta.value; // o painel vai ser redesenhado: guarda o que foi digitado
+  if(mode !== 'termo' && PASSOS[step].id === 'proposta') return paneProposta();
+  return _paneOriginal();
+};
+var _stepsOriginal = renderSteps;
+renderSteps = function(){
+  _stepsOriginal();
+  var n = S && S.ia ? S.ia.alertas.filter(function(a){ return a.nivel === 'revisar'; }).length : 0;
+  var b = document.querySelector('#steps [data-step="0"]');
+  if(b && n) b.insertAdjacentHTML('beforeend', '<b aria-label="' + n + ' pontos para revisar">· ' + n + '</b>');
+};
+
+function tamanho(n){ return n > 1048576 ? (n / 1048576).toFixed(1).replace('.', ',') + ' MB' : Math.max(1, Math.round(n / 1024)) + ' KB'; }
+
+function paneProposta(){
+  var h = '<h2>Comece pela proposta</h2><p class="lead">Envie a proposta comercial que você mandou para o cliente. A leitura identifica escopo, prazos e valores e preenche o contrato com as cláusulas do banco. Depois é só conferir os passos seguintes.</p>';
+  h += '<label class="drop" id="propDrop" for="propArq"><b>Escolher ou arrastar arquivos</b><span>PDF, Word, JPG ou PNG · até 4 arquivos</span>' +
+       '<input type="file" id="propArq" multiple hidden accept=".pdf,.docx,.jpg,.jpeg,.png,.webp,application/pdf,image/jpeg,image/png,image/webp,application/vnd.openxmlformats-officedocument.wordprocessingml.document"></label>';
+  if(ARQS.length) h += '<ul class="arqs">' + ARQS.map(function(a, i){
+    return '<li><span>' + esc(a.nome) + '</span><small>' + tamanho(a.bytes) + '</small><button type="button" class="x" data-rmarq="' + i + '" aria-label="Tirar ' + esc(a.nome) + '">×</button></li>';
+  }).join('') + '</ul>';
+  h += '<div class="f"><label for="propTexto">Texto da proposta ou dados do cliente</label><textarea id="propTexto" rows="4" placeholder="Opcional. Cole aqui o texto da proposta, se não tiver o arquivo, ou os dados do cliente que chegaram por WhatsApp (nome, CPF, endereço).">' + esc(TXT) + '</textarea></div>';
+  h += '<button type="button" class="cta" id="propLer" style="width:100%"' + (LENDO ? ' disabled' : '') + '>' + (LENDO ? 'Lendo a proposta…' : 'Ler proposta e preencher o contrato') + '</button>';
+  if(USO) h += '<p class="uso">' + USO.usadas + ' de ' + USO.limite + ' leituras usadas neste mês</p>';
+  if(LENDO) h += '<div class="lendo" role="status"><i aria-hidden="true"></i>Lendo escopo, prazos e valores. Leva de 20 a 60 segundos.</div>';
+  if(ERRO) h += '<div class="erro-ia" role="alert">' + esc(ERRO) + '</div>';
+  if(S.ia) h += resultado();
+  return h;
+}
+
+function resultado(){
+  var ia = S.ia, h = '<div class="res"><h3>O que a leitura encontrou</h3>';
+  if(ia.resumo) h += '<p class="resumo">' + esc(ia.resumo) + '</p>';
+  var rev = ia.alertas.filter(function(a){ return a.nivel === 'revisar'; });
+  var aten = ia.alertas.filter(function(a){ return a.nivel !== 'revisar'; });
+  rev.forEach(function(a){ h += '<div class="al revisar"><b>Revisão jurídica</b><span>' + esc(a.texto) + '</span></div>'; });
+  aten.forEach(function(a){ h += '<div class="al atencao"><b>Conferir</b><span>' + esc(a.texto) + '</span></div>'; });
+  if(!ia.alertas.length) h += '<div class="al ok"><b>Tudo certo</b><span>A proposta se encaixa no banco de cláusulas.</span></div>';
+  if(ia.faltando.length) h += '<div class="falta"><b>Faltou na proposta</b>, complete nos próximos passos:<ul>' + ia.faltando.map(function(f){ return '<li>' + esc(f) + '</li>'; }).join('') + '</ul></div>';
+  if(rev.length) h += '<p class="lead" style="margin:10px 0 0">Os pontos de revisão jurídica ficam fora do contrato padrão. Fale com a advogada antes de enviar o contrato para assinatura.</p>';
+  h += '<div class="acoes"><button type="button" class="btn" id="propIr">Conferir os dados →</button></div></div>';
+  return h;
+}
+
+function lerArquivo(f){
+  return new Promise(function(ok, falha){
+    var r = new FileReader();
+    r.onerror = function(){ falha(new Error('leitura')); };
+    if(/\.docx$/i.test(f.name)){
+      r.onload = function(){
+        if(!window.mammoth){ falha(new Error('O leitor de Word não carregou. Recarregue a página ou envie em PDF.')); return; }
+        window.mammoth.extractRawText({arrayBuffer:r.result}).then(function(x){ ok({nome:f.name, bytes:f.size, texto:x.value}); }, function(){ falha(new Error('Não foi possível abrir ' + f.name + '. Envie em PDF.')); });
+      };
+      r.readAsArrayBuffer(f);
+    } else {
+      var tipo = f.type || (/\.pdf$/i.test(f.name) ? 'application/pdf' : '');
+      if(!/^(application\/pdf|image\/(jpeg|png|webp))$/.test(tipo)){ falha(new Error(f.name + ': use PDF, Word, JPG ou PNG.')); return; }
+      r.onload = function(){ ok({nome:f.name, bytes:f.size, media_type:tipo, dados:String(r.result).split(',')[1]}); };
+      r.readAsDataURL(f);
+    }
+  });
+}
+
+async function adicionarArquivos(lista){
+  ERRO = '';
+  for(var i = 0; i < lista.length; i++){
+    if(ARQS.length >= 4){ ERRO = 'Envie no máximo 4 arquivos por vez.'; break; }
+    try{ ARQS.push(await lerArquivo(lista[i])); }catch(e){ ERRO = e.message === 'leitura' ? 'Não foi possível abrir ' + lista[i].name + '.' : e.message; }
+  }
+  var total = ARQS.reduce(function(a, x){ return a + x.bytes; }, 0);
+  if(total > MAX_TOTAL) ERRO = 'Os arquivos passam de 15 MB. Envie só as páginas com escopo, prazos e valores.';
+  renderForm();
+}
+
+async function lerProposta(){
+  if(LENDO) return;
+  var ta = $('propTexto'); if(ta) TXT = ta.value;
+  var docs = ARQS.filter(function(a){ return a.dados; });
+  var textos = ARQS.filter(function(a){ return a.texto; }).map(function(a){ return '[Arquivo Word: ' + a.nome + ']\n' + a.texto; });
+  if(TXT.trim()) textos.push(TXT.trim());
+  if(!docs.length && !textos.join('').trim()){ ERRO = 'Envie a proposta ou cole o texto dela.'; renderForm(); return; }
+  if(ARQS.reduce(function(a, x){ return a + x.bytes; }, 0) > MAX_TOTAL){ ERRO = 'Os arquivos passam de 15 MB. Envie só as páginas com escopo, prazos e valores.'; renderForm(); return; }
+  if(S.ia && !confirm('Ler de novo substitui os dados do cliente, do projeto e dos valores que estão no contrato. Os dados do seu escritório ficam. Continuar?')) return;
+  LENDO = true; ERRO = ''; renderForm();
+  try{
+    var r = await fetch('/api/ler-proposta', {method:'POST', credentials:'same-origin', headers:{'content-type':'application/json'},
+      body: JSON.stringify({arquivos: docs.map(function(a){ return {nome:a.nome, media_type:a.media_type, dados:a.dados}; }), texto: textos.join('\n\n')})});
+    var b = await r.json().catch(function(){ return {}; });
+    if(b.limite) USO = {usadas:b.usadas, limite:b.limite};
+    if(!r.ok) throw new Error(b.erro || 'Não foi possível ler agora. Tente de novo em instantes.');
+    aplicar(b.dados, ARQS.map(function(a){ return a.nome; }));
+  }catch(e){ ERRO = e.message || 'Sem conexão. Confira a internet e tente de novo.'; }
+  LENDO = false; renderForm(); renderPreview();
+}
+
+function vazio(v){ return v == null || String(v).trim() === ''; }
+function copiar(dest, orig, soVazios){
+  Object.keys(orig || {}).forEach(function(k){
+    if(k === 'tipo' || vazio(orig[k]) || !(k in dest)) return;
+    if(soVazios && !vazio(dest[k])) return;
+    dest[k] = String(orig[k]);
+  });
+}
+function aplicar(d, nomes){
+  var manter = S.exemplo ? null : {contratada:S.contratada, logo:S.logo, vars:S.vars};
+  S = estadoInicial(false);
+  if(manter){ S.contratada = manter.contratada; S.logo = manter.logo; S.vars = manter.vars; }
+  if(d.contratada){
+    if(d.contratada.tipo && vazio(S.contratada.nome)) S.contratada.tipo = d.contratada.tipo;
+    copiar(S.contratada, d.contratada, true);
+  }
+  if(d.contratante){ if(d.contratante.tipo) S.contratante.tipo = d.contratante.tipo; copiar(S.contratante, d.contratante, false); }
+  copiar(S.projeto, d.projeto, false);
+  (d.etapas || []).forEach(function(e){
+    var st = S.etapas[e.id]; if(!st) return;
+    st.on = true;
+    if(e.prazo) st.prazo = e.prazo;
+    (e.itens_extra || []).forEach(function(t){ if(t.trim()) st.inclui.push({txt:t.trim(), on:true, extra:true}); });
+    (e.itens_fora || []).forEach(function(t){ if(t.trim()) st.nao.push({txt:t.trim(), on:true, extra:true}); });
+  });
+  var P = d.pagamento || {};
+  ['valor', 'entradaPct', 'parcelas', 'diaVenc'].forEach(function(k){ if(P[k] != null) S.pagamento[k] = P[k]; });
+  if(P.modo) S.pagamento.modo = P.modo;
+  if(P.meios && ['pix', 'transferencia', 'boleto'].some(function(k){ return P.meios[k] != null; }))
+    ['pix', 'transferencia', 'boleto'].forEach(function(k){ S.pagamento.meios[k] = !!P.meios[k]; });
+  (P.porEtapa || []).forEach(function(x){ S.pagamento.porEtapa[x.id] = x.pct; });
+  if(!vazio(P.acomp)) S.pagamento.acomp = P.acomp;
+  Object.keys(d.vars || {}).forEach(function(k){ if(d.vars[k] != null && d.vars[k] !== '') S.vars[k] = d.vars[k]; });
+  (d.opcoes || []).forEach(function(o){ if(o.id in S.opcoes) S.opcoes[o.id] = !!o.valor; });
+  ['cidade', 'foro', 'observacoes'].forEach(function(k){ if(!vazio(d[k])) S[k] = d[k]; });
+  S.ia = {resumo:d.resumo || '', alertas:d.alertas || [], faltando:d.faltando || [], opcoes:d.opcoes || [], arquivos:nomes, quando:new Date().toISOString()};
+  salvar();
+}
+
+/* eventos do passo Proposta (o painel é redesenhado a cada render, então os eventos ficam no #pane) */
+(function(){
+  var pane = $('pane');
+  pane.addEventListener('change', function(e){ if(e.target.id === 'propArq'){ adicionarArquivos(Array.prototype.slice.call(e.target.files)); } });
+  pane.addEventListener('input', function(e){ if(e.target.id === 'propTexto') TXT = e.target.value; });
+  pane.addEventListener('click', function(e){
+    var t = e.target;
+    if(t.id === 'propLer') lerProposta();
+    else if(t.id === 'propIr') irPara(1);
+    else if(t.hasAttribute('data-rmarq')){ ARQS.splice(Number(t.getAttribute('data-rmarq')), 1); ERRO = ''; renderForm(); }
+  });
+  pane.addEventListener('dragover', function(e){ var d = e.target.closest && e.target.closest('#propDrop'); if(d){ e.preventDefault(); d.classList.add('over'); } });
+  pane.addEventListener('dragleave', function(e){ var d = e.target.closest && e.target.closest('#propDrop'); if(d) d.classList.remove('over'); });
+  pane.addEventListener('drop', function(e){ var d = e.target.closest && e.target.closest('#propDrop'); if(d){ e.preventDefault(); adicionarArquivos(Array.prototype.slice.call(e.dataTransfer.files)); } });
+  fetch('/api/uso', {credentials:'same-origin'}).then(function(r){ return r.ok ? r.json() : null; }).then(function(u){ if(u){ USO = u; if(S && step === 0 && mode !== 'termo') renderForm(); } }).catch(function(){});
+})();
+</script>

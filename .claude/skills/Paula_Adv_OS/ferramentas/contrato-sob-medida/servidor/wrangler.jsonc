@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "contrato-sob-medida",
+  "pages_build_output_dir": "./publico",
+  "compatibility_date": "2026-08-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "kv_namespaces": [
+    { "binding": "KV", "id": "bd76883af71d44d7a20175bc1e329c88" }
+  ],
+  "vars": {
+    "EMAIL_FROM": "Contrato na Régua <acesso@estruturalegal.com.br>",
+    "EMAIL_REPLY_TO": "contato@estruturalegal.com.br",
+    "LIMITE_MENSAL": "15"
+  }
+}

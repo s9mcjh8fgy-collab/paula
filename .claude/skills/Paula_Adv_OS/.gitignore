@@ -4,3 +4,6 @@ __pycache__/
 propostas/*/
 .claude/settings.local.json
 marca/videos/
+
+# áudios de WhatsApp soltos (dados de cliente)
+ferramentas/*.ogg
