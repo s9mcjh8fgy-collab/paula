@@ -20,6 +20,13 @@ dados e escolhe etapas e opções. O que não cabe no banco volta como alerta de
   no navegador (mammoth) e vai como texto; PDF e imagens vão como arquivo.
 - `servidor/build.py`: monta `publico/app.html` **a partir do app do Contrato na Régua** (não é cópia).
   Mudança no app ou no `matriz.json` do Contrato na Régua vale aqui no próximo build + deploy.
+- Regra do foro (Paula, 16/11/2026): sempre a comarca do domicílio da contratada ("Cidade/UF" do
+  endereço dela), mesmo que a proposta indique outro; nesse caso sai um alerta. Se a IA não preencher,
+  o código tira do endereço (`cidadeUf()` em `leitura.js`).
+- Formato da resposta: a API limita o tamanho do esquema (no máximo 16 campos com null, e a
+  "gramática" não pode ser grande). Por isso campo não encontrado volta vazio e vira null no código,
+  ids de etapa/opção vão como texto e são filtrados, e vars/meios vão como listas. Ao acrescentar
+  campos, testar a leitura antes de publicar.
 - Limite de leituras por mês: `limite` no registro do assinante, senão `LIMITE_MENSAL` (15). Só conta
   leitura que deu certo. O preenchimento manual nunca é bloqueado.
 
