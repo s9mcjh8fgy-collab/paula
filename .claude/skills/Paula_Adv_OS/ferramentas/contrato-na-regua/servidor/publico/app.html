@@ -193,7 +193,7 @@ button,input,select,textarea{font:inherit;color:inherit}
         <button type="button" class="cta" id="genBtn">Baixar contrato em Word</button>
         <div class="status" id="status" aria-live="polite"></div>
         <div class="privacy">O documento é montado aqui no seu navegador. Os dados do seu cliente não são enviados para nenhum servidor.</div>
-        <button type="button" class="linkbtn outro" id="outroFormato">Precisa de outro formato de contrato?</button>
+        <button type="button" class="linkbtn outro" id="outroFormato">Precisa de outro contrato ou de uma consulta?</button>
       </div>
     </section>
     <section class="preview-col" aria-label="Documento">
@@ -927,17 +927,20 @@ fetch('/api/matriz',{credentials:'same-origin'}).then(function(r){ if(!r.ok) thr
 #dlgContato .acoes{display:flex;justify-content:flex-end;align-items:center;gap:14px;margin-top:4px}
 #dlgContato .enviar{border:0;border-radius:8px;background:var(--accent);color:#fff;font-weight:600;padding:10px 18px;cursor:pointer}
 #dlgContato .enviar[disabled]{opacity:.6;cursor:default}
+#dlgContato p.aviso{margin-top:-6px;font-size:12.5px;font-weight:600;color:var(--ink)}
 #dlgContato .nota{font-size:12px;margin:12px 0 0}
 #dlgContato .erro{color:#C04E2E;margin:8px 0 0}
 </style>
 
 <dialog id="dlgContato" aria-labelledby="ctTitulo">
   <form id="ctForm">
-    <h2 id="ctTitulo">Precisa de outro formato de contrato?</h2>
-    <p>Execução de obra, só acompanhamento ou um contrato mais completo. Deixe seus dados e a gente chama você em até 24 horas.</p>
+    <h2 id="ctTitulo">Precisa de outra informação ou formato de contrato?</h2>
+    <p>Um atendimento, um esclarecimento, uma consulta ou um contrato diferente (execução de obra, só acompanhamento, um contrato mais completo). Deixe seus dados e a gente chama você em até 24 horas para entender a sua demanda.</p>
+    <p class="aviso">Conte abaixo a sua dúvida, sua mensagem não tem nenhum custo. Outros serviços não estão incluídos no Contrato na Régua e poderão ser contratados à parte.</p>
     <div class="f"><label for="ctNome">Nome</label><input id="ctNome" name="nome" required maxlength="120" autocomplete="name"></div>
     <div class="f"><label for="ctTelefone">Telefone</label><input id="ctTelefone" name="telefone" type="text" inputmode="tel" data-mask="fone" required maxlength="30" autocomplete="tel" placeholder="(00) 00000-0000"></div>
     <div class="f"><label for="ctEmail">E-mail</label><input id="ctEmail" name="email" type="email" required maxlength="160" autocomplete="email"></div>
+    <div class="f"><label for="ctMensagem">O que você precisa? (opcional)</label><textarea id="ctMensagem" name="mensagem" maxlength="1500" placeholder="Conte em poucas palavras o que você gostaria"></textarea></div>
     <div class="acoes">
       <button type="button" class="linkbtn" id="ctFechar">Cancelar</button>
       <button type="submit" class="enviar" id="ctEnviar">Enviar</button>
@@ -947,7 +950,7 @@ fetch('/api/matriz',{credentials:'same-origin'}).then(function(r){ if(!r.ok) thr
   </form>
   <div id="ctOk" hidden>
     <h2>Pedido recebido</h2>
-    <p>A gente chama você em até 24 horas.</p>
+    <p>A gente chama você em até 24 horas para entender a sua demanda.</p>
     <div class="acoes"><button type="button" class="enviar" id="ctOkFechar">Fechar</button></div>
   </div>
 </dialog>
@@ -972,7 +975,7 @@ fetch('/api/matriz',{credentials:'same-origin'}).then(function(r){ if(!r.ok) thr
     var d = new FormData(form);
     fetch('/api/contato', {
       method: 'POST', credentials: 'same-origin', headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({nome: d.get('nome'), telefone: d.get('telefone'), email: d.get('email')})
+      body: JSON.stringify({nome: d.get('nome'), telefone: d.get('telefone'), email: d.get('email'), mensagem: d.get('mensagem')})
     }).then(function(r){ return r.json().then(function(j){ return {ok: r.ok, j: j}; }); }).then(function(r){
       if (!r.ok) throw new Error(r.j.erro || '');
       form.reset(); form.hidden = true; ok.hidden = false;

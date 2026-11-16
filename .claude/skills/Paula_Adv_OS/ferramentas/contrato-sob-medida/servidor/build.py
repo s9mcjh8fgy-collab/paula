@@ -1,4 +1,4 @@
-"""Monta a pasta publico/ do Contrato na Régua Sob Medida.
+"""Monta a pasta publico/ do Contrato Sob Medida.
 
 O app NÃO é uma cópia: parte do app do Contrato na Régua (../../contrato-na-regua/app/index.src.html),
 troca nome, chave de armazenamento e aviso de privacidade, e acrescenta o passo "Proposta"
@@ -25,11 +25,11 @@ def trocar(texto, antes, depois):
 
 src = APP.read_text(encoding='utf-8')
 src = src.replace('/*@BORNA@*/', base64.b64encode(FONTE.read_bytes()).decode('ascii'))
-src = trocar(src, '<title>Contrato na Régua</title>', '<title>Contrato na Régua Sob Medida</title>')
+src = trocar(src, '<title>Contrato na Régua</title>', '<title>Contrato Sob Medida</title>')
 src = trocar(src, "fetch('matriz.json')", "fetch('/api/matriz',{credentials:'same-origin'})")
 src = trocar(src, "var KEY = 'regua.estado.v1';", "var KEY = 'sobmedida.estado.v1';")
 src = trocar(src, '<meta name="claude:viewport-fit-sides" content="cover">\n', '')
-src = trocar(src, '<small>Estrutura Legal</small>', '<small>Estrutura Legal · Sob Medida</small>')
+src = trocar(src, '<small>Estrutura Legal</small><b>Contrato na Régua</b>', '<small>Estrutura Legal</small><b>Contrato Sob Medida</b>')
 src = trocar(src, 'O documento é montado aqui no seu navegador. Os dados do seu cliente não são enviados para nenhum servidor.',
              'O contrato é montado aqui no seu navegador. A proposta enviada para leitura é processada por IA, '
              'não fica guardada na ferramenta e não é usada para treinar a IA.')

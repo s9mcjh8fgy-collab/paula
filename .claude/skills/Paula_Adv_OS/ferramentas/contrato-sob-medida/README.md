@@ -1,4 +1,4 @@
-# Contrato na Régua Sob Medida
+# Contrato Sob Medida
 
 Assinatura mensal (piloto em nov/2026). O arquiteto envia a proposta comercial que mandou para o cliente
 (PDF, Word, foto ou texto colado), a IA lê escopo, prazos e valores e preenche o contrato do
@@ -37,12 +37,12 @@ dados e escolhe etapas e opções. O que não cabe no banco volta como alerta de
   "gramática" não pode ser grande). Por isso campo não encontrado volta vazio e vira null no código,
   ids de etapa/opção vão como texto e são filtrados, e vars/meios vão como listas. Ao acrescentar
   campos, testar a leitura antes de publicar.
-- Limite de leituras por mês: `limite` no registro do assinante, senão `LIMITE_MENSAL` (15). Só conta
+- Limite de leituras por mês: `limite` no registro do assinante, senão `LIMITE_MENSAL` (10). Planos: Essencial 10 e Escritório 20 contratos/mês (cada leitura = 1 contrato). Só conta
   leitura que deu certo. O preenchimento manual nunca é bloqueado.
 
 ## Custo da IA
 Cerca de 5 mil tokens de instruções (em cache) + a proposta. Estimativa: US$ 0,05 a 0,15 por leitura
-(R$ 0,30 a 0,90). Com 15 leituras/mês, uns R$ 9 por assinante no pior caso. O uso de tokens de cada
+(R$ 0,30 a 0,90). Com 10 leituras/mês, uns R$ 9 por assinante no pior caso. O uso de tokens de cada
 leitura sai no log do Worker (`wrangler pages deployment tail`).
 
 ## Publicar

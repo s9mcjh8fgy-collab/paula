@@ -14,9 +14,9 @@ Endereço provisório: https://contrato-na-regua.pages.dev. Definitivo: `app.est
 - O texto do contrato (`conteudo/matriz.json`) vai embutido no Worker e só sai por `/api/matriz` com
   sessão válida. Nunca fica em `publico/`.
 - O menu "Como usar" abre o guia (`/guia.pdf`, só com sessão válida) e o vídeo da página de vendas.
-- O formulário "Precisa de outro formato de contrato?" (`src/extras.html`) chama `POST /api/contato`,
+- O formulário "Precisa de outra informação ou formato de contrato?" (`src/extras.html`) chama `POST /api/contato`,
   só com sessão válida, e manda os dados por e-mail para `EMAIL_REPLY_TO`. Não grava os dados no KV.
-  A tela promete retorno em até 24 horas.
+  Tem campo opcional "O que você precisa?". A tela promete retorno em até 24 horas para entender a demanda e avisa que mandar a mensagem não tem custo e que um eventual serviço poderá ser contratado à parte.
 
 ## Publicar uma mudança
 ```bash

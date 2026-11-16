@@ -86,7 +86,7 @@ function paneProposta(){
   }).join('') + '</ul>';
   h += '<div class="f"><label for="propTexto">Texto da proposta ou dados do cliente</label><textarea id="propTexto" rows="4" placeholder="Opcional. Cole aqui o texto da proposta, se não tiver o arquivo, ou os dados do cliente que chegaram por WhatsApp (nome, CPF, endereço).">' + esc(TXT) + '</textarea></div>';
   h += '<button type="button" class="cta" id="propLer" style="width:100%"' + (LENDO ? ' disabled' : '') + '>' + (LENDO ? 'Lendo a proposta…' : 'Ler proposta e preencher o contrato') + '</button>';
-  if(USO) h += '<p class="uso">' + USO.usadas + ' de ' + USO.limite + ' leituras usadas neste mês</p>';
+  if(USO) h += '<p class="uso">' + USO.usadas + ' de ' + USO.limite + ' contratos com leitura usados neste mês</p>';
   if(LENDO) h += '<div class="lendo" role="status"><i aria-hidden="true"></i>Lendo escopo, prazos e valores. Leva de 20 a 60 segundos.</div>';
   if(ERRO) h += '<div class="erro-ia" role="alert">' + esc(ERRO) + '</div>';
   if(S.ia) h += resultado();

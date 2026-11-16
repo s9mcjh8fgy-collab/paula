@@ -1,0 +1,18 @@
+{
+  "voz": "pt-BR-FranciscaNeural",
+  "velocidade": "+4%",
+  "cenas": [
+    { "id": "abertura", "texto": "Este é o Contrato Sob Medida, do Estrutura Legal. Você envia a proposta comercial que mandou para o cliente, e a leitura preenche o contrato de projeto de arquitetura. Vamos ver como funciona." },
+    { "id": "entrar", "texto": "Para entrar, digite o e-mail que você usou na compra. Chega um link na sua caixa de entrada, e é só clicar. Não tem senha para guardar." },
+    { "id": "guia", "texto": "O primeiro passo é a Proposta. Abrindo esta lista, você vê o que a proposta precisa ter para a leitura sair completa. Se quiser, baixe o nosso modelo de proposta em Word. Mas você pode usar o seu próprio modelo." },
+    { "id": "enviar", "texto": "Escolha o arquivo da proposta. Pode ser PDF, Word ou foto, até quatro arquivos juntos, como a proposta e o documento do cliente. Se os dados do cliente chegaram pelo WhatsApp, é só colar aqui embaixo." },
+    { "id": "ler", "texto": "Agora clique em Ler proposta. A leitura leva de vinte a sessenta segundos." },
+    { "id": "resultado", "texto": "Pronto. No alto, um resumo do que foi lido. Os alertas vermelhos são pontos de revisão jurídica. Os amarelos são para você conferir. Por exemplo: o prazo em dias corridos, que virou dias úteis, e o foro, que fica sempre na cidade do seu escritório." },
+    { "id": "observacoes", "texto": "O que a sua proposta tem de específico, e não está no banco de cláusulas, entra nas Observações do contrato, grifado em vermelho. Confira o texto e, estando tudo certo, clique em Marcar como revisado." },
+    { "id": "passos", "texto": "Depois, passe pelos passos para conferir. Partes, etapas, prazos e pagamento já estão preenchidos. O que faltou na proposta, você completa aqui, e o contrato ao lado muda na hora." },
+    { "id": "baixar", "texto": "Com tudo conferido, baixe o contrato em Word, com a sua logo, pronto para enviar ao cliente." },
+    { "id": "termo", "texto": "E, a cada etapa entregue, use o Termo de Aceite. Ele aproveita os dados do contrato e não conta no limite do seu plano." },
+    { "id": "limite", "texto": "Cada proposta lida conta um contrato do seu plano. Se a leitura der erro, não conta. E o preenchimento manual, passo a passo, fica sempre liberado." },
+    { "id": "fecho", "texto": "Contrato Sob Medida. Mande a proposta. Confira o contrato." }
+  ]
+}

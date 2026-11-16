@@ -210,6 +210,7 @@ async function contato(req, env, comprador) {
   const nome = String(b.nome || '').trim().slice(0, 120);
   const telefone = String(b.telefone || '').trim().slice(0, 30);
   const email = normalizar(b.email).slice(0, 160);
+  const mensagem = String(b.mensagem || '').trim().slice(0, 1500);
   if (!nome) return json({ erro: 'Preencha o nome.' }, 400);
   if (telefone.replace(/\D/g, '').length < 10) return json({ erro: 'Confira o telefone, com DDD.' }, 400);
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return json({ erro: 'Confira o e-mail digitado.' }, 400);
@@ -218,7 +219,7 @@ async function contato(req, env, comprador) {
   if (await env.KV.get('f:' + comprador)) return json({ ok: true });
   await env.KV.put('f:' + comprador, '1', { expirationTtl: 60 });
   try {
-    await enviarContato(env, { nome, telefone, email, comprador });
+    await enviarContato(env, { nome, telefone, email, mensagem, comprador });
   } catch (e) {
     console.error(e);
     await env.KV.delete('f:' + comprador);
@@ -227,8 +228,8 @@ async function contato(req, env, comprador) {
   return json({ ok: true });
 }
 
-async function enviarContato(env, { nome, telefone, email, comprador }) {
-  const linhas = [['Nome', nome], ['Telefone', telefone], ['E-mail', email], ['E-mail da compra', comprador]];
+async function enviarContato(env, { nome, telefone, email, mensagem, comprador }) {
+  const linhas = [['Nome', nome], ['Telefone', telefone], ['E-mail', email], ['E-mail da compra', comprador], ['O que precisa', mensagem || '(não preenchido)']];
   const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
@@ -237,10 +238,10 @@ async function enviarContato(env, { nome, telefone, email, comprador }) {
       to: [env.EMAIL_REPLY_TO],
       reply_to: email,
       subject: `Outro formato de contrato: ${nome}`,
-      text: `Pedido enviado pelo Contrato na Régua. O formulário informa retorno em até 24 horas.\n\n${linhas.map(l => l.join(': ')).join('\n')}`,
+      text: `Pedido enviado pelo Contrato na Régua. O formulário informa retorno em até 24 horas para entender a demanda (mandar a mensagem não tem custo; se houver serviço, poderá ser contratado à parte).\n\n${linhas.map(l => l.join(': ')).join('\n')}`,
       html: `<div style="font-family:Arial,sans-serif;color:#4A2C2A;max-width:520px;line-height:1.5">
-        <p>Pedido enviado pelo Contrato na Régua, no formulário "Precisa de outro formato de contrato?". O formulário informa retorno em até 24 horas.</p>
-        ${linhas.map(l => `<p style="margin:0 0 6px"><b>${l[0]}:</b> ${esc(l[1])}</p>`).join('')}</div>`,
+        <p>Pedido enviado pelo Contrato na Régua, no formulário "Precisa de outra informação ou formato de contrato?". O formulário informa retorno em até 24 horas para entender a demanda (mandar a mensagem não tem custo; se houver serviço, poderá ser contratado à parte).</p>
+        ${linhas.map(l => `<p style="margin:0 0 6px;white-space:pre-wrap"><b>${l[0]}:</b> ${esc(l[1])}</p>`).join('')}</div>`,
     }),
   });
   if (!r.ok) throw new Error('Resend ' + r.status + ' ' + (await r.text()));

@@ -1,17 +1,21 @@
-// Contrato na Régua Sob Medida — servidor (Cloudflare Pages, modo avançado).
-// Assinatura mensal: o acesso é liberado por e-mail no KV (manual no piloto). O assinante entra com
+// Contrato Sob Medida — servidor (Cloudflare Pages, modo avançado).
+// Assinatura mensal na Hotmart: o webhook libera o e-mail do assinante (no piloto, liberação manual
+// com "ativo": true). O assinante entra com
 // link mágico, envia a proposta comercial, a IA lê e preenche o contrato a partir do banco de
 // cláusulas. O contrato em Word continua sendo montado no navegador.
 //
 // KV (binding KV):
-//   c:<email>          -> { nome, ativo, plano, limite, atualizado }   assinante
+//   c:<email>          -> { nome, ativo, limite, atualizado,             assinante
+//                           assinaturas: { <código>: { status, plano, limite, ate } } }
+//                         ativo/limite à mão (piloto); assinaturas vêm da Hotmart
 //   m:<email>          -> matriz.json própria (cliente de assessoria)  opcional
-//   u:<email>:<AAAA-MM> -> nº de leituras no mês
+//   u:<email>:<AAAA-MM> -> nº de leituras no mês (cada leitura = 1 contrato do plano)
 //   t:<hash>           -> email (expira em 30 min)                     link mágico, uso único
 //   r:<email>          -> 1 (expira em 60 s)                           trava de reenvio
 //   l:<email>          -> 1 (expira em 90 s)                           uma leitura por vez
-// Segredos: SESSION_SECRET, RESEND_API_KEY, ANTHROPIC_API_KEY, TESTE_TOKEN (opcional)
-// Variáveis: EMAIL_FROM, EMAIL_REPLY_TO, LIMITE_MENSAL (padrão de leituras/mês), URL_VENDA (opcional)
+// Segredos: SESSION_SECRET, RESEND_API_KEY, ANTHROPIC_API_KEY, HOTMART_HOTTOK, TESTE_TOKEN (opcional)
+// Variáveis: EMAIL_FROM, EMAIL_REPLY_TO, LIMITE_MENSAL (padrão de leituras/mês), URL_VENDA (opcional),
+//   HOTMART_PRODUCT_ID (opcional: ignora eventos de outros produtos)
 
 import matrizPadrao from '../../../contrato-na-regua/conteudo/matriz.json';
 import { lerProposta, ErroLeitura } from './leitura.js';
@@ -20,7 +24,7 @@ const SESSAO_DIAS = 90;
 const MAX_ARQUIVOS = 4;
 const MAX_BYTES = 24 * 1024 * 1024; // corpo da requisição, já em base64
 const TIPOS = ['application/pdf', 'image/jpeg', 'image/png', 'image/webp'];
-const NOME = 'Contrato na Régua Sob Medida';
+const NOME = 'Contrato Sob Medida';
 
 export default {
   async fetch(req, env) {
@@ -28,6 +32,7 @@ export default {
     const p = url.pathname;
     try {
       if (p === '/borna.otf' || p === '/modelo-proposta.docx') return env.ASSETS.fetch(req);
+      if (p === '/api/hotmart' && req.method === 'POST') return hotmart(req, env);
       if (p === '/entrar' && req.method === 'POST') return entrar(req, env, url);
       if (p === '/acesso' && req.method === 'GET') return confirmarAcesso(url);
       if (p === '/acesso' && req.method === 'POST') return acesso(req, env);
@@ -67,7 +72,11 @@ async function matrizDe(env, email) {
 }
 const mes = () => new Date().toISOString().slice(0, 7);
 async function usadas(env, email) { return Number(await env.KV.get('u:' + email + ':' + mes())) || 0; }
-function limiteDe(env, c) { return Number(c && c.limite) || Number(env.LIMITE_MENSAL) || 15; }
+function limiteDe(env, c) {
+  if (c && Number(c.limite)) return Number(c.limite);
+  const vivas = vigentes(c).map(a => Number(a.limite) || 0);
+  return Math.max(0, ...vivas) || Number(env.LIMITE_MENSAL) || 10;
+}
 
 async function ler(req, env, s) {
   if (Number(req.headers.get('content-length') || 0) > MAX_BYTES) return json({ erro: 'Arquivos grandes demais. Envie até 15 MB no total.' }, 413);
@@ -84,7 +93,7 @@ async function ler(req, env, s) {
 
   const limite = limiteDe(env, s.c);
   const feitas = await usadas(env, s.email);
-  if (feitas >= limite) return json({ erro: `Você usou as ${limite} leituras do seu plano neste mês. O preenchimento manual continua liberado.`, usadas: feitas, limite }, 429);
+  if (feitas >= limite) return json({ erro: `Você usou os ${limite} contratos com leitura do seu plano neste mês. O preenchimento manual continua liberado.`, usadas: feitas, limite }, 429);
   if (await env.KV.get('l:' + s.email)) return json({ erro: 'Já tem uma leitura em andamento. Aguarde terminar.' }, 429);
   await env.KV.put('l:' + s.email, '1', { expirationTtl: 90 });
 
@@ -105,7 +114,96 @@ async function ler(req, env, s) {
 // ---------- Acesso ----------
 
 function ativo(c) {
-  return !!c && (c.ativo === true || Object.values(c.transacoes || {}).some(x => x === 'ativo'));
+  return !!c && (c.ativo === true || vigentes(c).length > 0);
+}
+// assinatura em dia, ou cancelada mas ainda dentro do período pago
+function vigentes(c) {
+  const agora = Date.now();
+  return Object.values((c && c.assinaturas) || {}).filter(a => (a.status === 'ativa' || a.status === 'cancelada') && (!a.ate || a.ate > agora));
+}
+
+// ---------- Hotmart ----------
+
+// Planos: o nome do plano na Hotmart decide o limite. "Escritório" (ou um nome com 20) tem 20
+// leituras (contratos) por mês; qualquer outro, 10.
+const PAGOU = ['PURCHASE_APPROVED', 'PURCHASE_COMPLETE'];
+const ESTORNO = ['PURCHASE_REFUNDED', 'PURCHASE_CHARGEBACK', 'PURCHASE_CANCELED', 'PURCHASE_PROTEST'];
+const CANCELOU = ['SUBSCRIPTION_CANCELLATION'];
+const TROCOU = ['SWITCH_PLAN'];
+const DIA = 86400000;
+
+function limiteDoPlano(nome) {
+  return /escrit|20/i.test(String(nome || '')) ? 20 : 10;
+}
+
+async function hotmart(req, env) {
+  if (!env.HOTMART_HOTTOK) return json({ erro: 'webhook não configurado' }, 503);
+  const corpo = await req.json().catch(() => null);
+  const token = req.headers.get('x-hotmart-hottok') || (corpo && corpo.hottok) || '';
+  if (!corpo || !igual(token, env.HOTMART_HOTTOK)) return json({ erro: 'não autorizado' }, 401);
+
+  const evento = corpo.event || '';
+  const d = corpo.data || {};
+  const sub = d.subscription || {};
+  const email = normalizar((d.buyer && d.buyer.email) || (d.subscriber && d.subscriber.email) || (sub.subscriber && sub.subscriber.email));
+  const produto = String((d.product && d.product.id) || '');
+  if (!email) return json({ ok: true, ignorado: 'sem e-mail' });
+  if (env.HOTMART_PRODUCT_ID && produto && produto !== String(env.HOTMART_PRODUCT_ID)) return json({ ok: true, ignorado: 'outro produto' });
+  if (![...PAGOU, ...ESTORNO, ...CANCELOU, ...TROCOU].includes(evento)) return json({ ok: true, ignorado: evento });
+
+  // a assinatura é identificada pelo código do assinante: as renovações caem no mesmo registro
+  const codigo = String((sub.subscriber && sub.subscriber.code) || (d.subscriber && d.subscriber.code) || sub.id
+    || (d.purchase && d.purchase.transaction) || corpo.id || 'sem-codigo');
+  const plano = (d.new_plan && d.new_plan.name) || (sub.plan && sub.plan.name) || (d.plan && d.plan.name) || '';
+
+  const c = (await env.KV.get('c:' + email, 'json')) || {};
+  c.assinaturas = c.assinaturas || {};
+  const a = c.assinaturas[codigo] || {};
+  const nova = !a.status;
+  if (PAGOU.includes(evento)) {
+    // um mês pago vale até a próxima cobrança, com 5 dias de folga para a renovação chegar
+    const prox = Date.parse((d.purchase && d.purchase.date_next_charge) || sub.date_next_charge || '') || 0;
+    a.status = 'ativa';
+    a.ate = Math.max(a.ate || 0, prox ? prox + 5 * DIA : Date.now() + 35 * DIA);
+  } else if (CANCELOU.includes(evento)) {
+    if (a.status !== 'estornada') a.status = 'cancelada'; // continua valendo até o fim do período pago
+  } else if (ESTORNO.includes(evento)) {
+    a.status = 'estornada'; a.ate = Date.now();
+  }
+  if (plano) { a.plano = plano; a.limite = limiteDoPlano(plano); }
+  if (!a.limite) a.limite = limiteDoPlano(plano);
+  a.evento = evento;
+  c.assinaturas[codigo] = a;
+  c.nome = (d.buyer && d.buyer.name) || (d.subscriber && d.subscriber.name) || c.nome || '';
+  c.atualizado = new Date().toISOString();
+  await env.KV.put('c:' + email, JSON.stringify(c));
+  // boas-vindas só na primeira compra; o evento de teste da Hotmart não traz ID de produto
+  if (nova && PAGOU.includes(evento) && produto && env.RESEND_API_KEY)
+    await enviarBoasVindas(env, email, c.nome, a.limite, new URL(req.url).origin).catch(e => console.error(e));
+  return json({ ok: true, email, ativo: ativo(c), limite: limiteDe(env, c) });
+}
+
+async function enviarBoasVindas(env, email, nome, limite, origem) {
+  const ola = nome ? 'Olá, ' + nome.split(' ')[0] + '!' : 'Olá!';
+  const r = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      from: env.EMAIL_FROM,
+      to: [email],
+      reply_to: env.EMAIL_REPLY_TO || undefined,
+      subject: 'Sua assinatura do ' + NOME + ' está ativa',
+      text: `${ola}\n\nSua assinatura do ${NOME} está ativa, com até ${limite} contratos por mês preenchidos pela leitura da proposta.\n\nPara entrar: abra ${origem}, digite este e-mail e clique no link que chega na sua caixa de entrada.\n\nNo passo Proposta, envie a proposta comercial que você mandou para o cliente. A leitura preenche o contrato e mostra o que conferir antes de enviar.\n\nEstrutura Legal`,
+      html: `<div style="font-family:Arial,sans-serif;color:#4A2C2A;max-width:520px;line-height:1.5">
+        <p style="font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:#F26F4D;font-weight:bold;margin:0 0 4px">Estrutura Legal</p>
+        <p style="font-size:22px;font-weight:bold;color:#6D413E;margin:0 0 20px">Contrato Sob Medida</p>
+        <p>${esc(ola)}</p><p>Sua assinatura do ${NOME} está ativa, com <b>até ${limite} contratos por mês</b> preenchidos pela leitura da proposta.</p>
+        <p>Para entrar, abra o app, digite este e-mail e clique no link que chega na sua caixa de entrada.</p>
+        <p style="margin:24px 0"><a href="${origem}" style="background:#F26F4D;color:#fff;text-decoration:none;padding:12px 22px;border-radius:8px;font-weight:bold">Abrir o app</a></p>
+        <p>No passo Proposta, envie a proposta comercial que você mandou para o cliente. A leitura preenche o contrato e mostra o que conferir antes de enviar.</p></div>`,
+    }),
+  });
+  if (!r.ok) throw new Error('Resend ' + r.status + ' ' + (await r.text()));
 }
 
 async function entrar(req, env, url) {
@@ -186,8 +284,8 @@ async function enviarLink(env, email, nome, link) {
       subject: 'Seu link de acesso ao ' + NOME,
       text: `${ola.replace(/<[^>]+>/g, '')}\n\nClique no link abaixo para entrar no ${NOME}. Ele vale por 30 minutos e funciona uma vez só:\n\n${link}\n\nSe você não pediu este acesso, é só ignorar este e-mail.\n\nEstrutura Legal`,
       html: `<div style="font-family:Arial,sans-serif;color:#4A2C2A;max-width:520px;line-height:1.5">
-        <p style="font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:#F26F4D;font-weight:bold;margin:0 0 4px">Estrutura Legal · Sob Medida</p>
-        <p style="font-size:22px;font-weight:bold;color:#6D413E;margin:0 0 20px">Contrato na Régua</p>
+        <p style="font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:#F26F4D;font-weight:bold;margin:0 0 4px">Estrutura Legal</p>
+        <p style="font-size:22px;font-weight:bold;color:#6D413E;margin:0 0 20px">Contrato Sob Medida</p>
         <p>${ola}</p><p>Clique no botão abaixo para entrar. O link vale por 30 minutos e funciona uma vez só.</p>
         <p style="margin:24px 0"><a href="${link}" style="background:#F26F4D;color:#fff;text-decoration:none;padding:12px 22px;border-radius:8px;font-weight:bold">Entrar</a></p>
         <p style="font-size:13px;color:#7A5E58">Se você não pediu este acesso, é só ignorar este e-mail.</p></div>`,
@@ -239,7 +337,7 @@ a{color:#C04E2E}
 .aviso{background:#FBEFE6;border-left:3px solid var(--accent);padding:10px 12px;border-radius:6px;font-size:14px}
 .teste{word-break:break-all;font-size:12px}
 </style></head><body>
-<header><div><small>Estrutura Legal · Sob Medida</small><b>Contrato na Régua</b></div></header>
+<header><div><small>Estrutura Legal</small><b>Contrato Sob Medida</b></div></header>
 <main><div class="card"><h1>${esc(titulo)}</h1>${corpo}</div></main>
 </body></html>`;
 }

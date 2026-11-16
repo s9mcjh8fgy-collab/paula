@@ -97,8 +97,10 @@ Estrutura do artigo:
 
 ### Passo 4 — Mostrar e ajustar
 
-Mostrar o artigo completo no chat (título, meta descrição, frase-gancho da capa, corpo) antes de
-publicar. Esperar aprovação ou pedidos de ajuste — nunca publicar (nem como rascunho) sem essa
+Mostrar o artigo completo no chat (título, título SEO, meta descrição, frase-gancho da capa, corpo) antes de
+publicar. O título SEO é o que aparece no Google: até 60 caracteres (senão é cortado), com o termo que
+as pessoas buscam no começo, e a sigla que o meio usa quando houver (ex: "Reserva técnica (RT)"). Meta
+descrição com até 155 caracteres. Esperar aprovação ou pedidos de ajuste — nunca publicar (nem como rascunho) sem essa
 aprovação.
 
 ### Passo 5 — Publicar
@@ -108,7 +110,9 @@ A skill publica direto no WordPress via API REST (`WORDPRESS_SITE_URL`, `WORDPRE
 
 1. Criar o post como **rascunho** (`status: draft`) via `POST /wp-json/wp/v2/posts`, com título,
    `content` (HTML), `excerpt` (a meta descrição — também setar como
-   `meta._yoast_wpseo_metadesc` pro Yoast SEO) e `categories` com **uma** categoria, conforme o tema
+   `meta._yoast_wpseo_metadesc` pro Yoast SEO), o título SEO em `meta._yoast_wpseo_title` (sempre;
+   sem ele o Yoast usa "título do post - Paula Corrêa Advocacia", que fica cortado no Google e derruba
+   os cliques, como visto em 16/11/2026) e `categories` com **uma** categoria, conforme o tema
    principal do artigo. Sem esse campo, o post cai em "Uncategorized" e o selo aparece no Blog.
    Categorias em uso: Contratos (98), Responsabilidade Civil e Indenizações (57), Direito Condominial
    (47), Direito Empresarial (11), Assessoria Jurídica (97). Nunca usar Uncategorized (1). Mostrar a

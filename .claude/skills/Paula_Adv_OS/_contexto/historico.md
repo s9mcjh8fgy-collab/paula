@@ -183,3 +183,9 @@ Reels retomado (28/09), puxado por um gancho de atualidade (temporada CASA COR):
 - 2026-10-13: o `render-pdf.js` da `/proposta-comercial` gerava o PDF antes de carregar o Inter, e o texto saía em Arial. O script foi corrigido para esperar as fontes. As propostas anteriores feitas com ele provavelmente saíram em Arial.
 - 2026-10-13: no e-mail da Consisa à CustomerX pedindo os dados, não perguntar sobre custos.
 - 2026-10-13: na #0127, a cláusula de limitação de responsabilidade ficou de fora. O contrato já veio revisado pela outra parte e a Paula não quis criar mais um obstáculo.
+
+## Decisões (15 e 16/10/2026, arquivado em 2026-11-16)
+- 2026-10-15: a API do WordPress devolve 406 quando a chamada manda User-Agent "Mozilla/5.0". Nos scripts de publicação não se define User-Agent.
+- 2026-10-15: e-mail ou mensagem que a Paula pede para enviar usa a saudação conforme o horário do pedido (bom dia, boa tarde ou boa noite), porque ela envia na hora.
+- 2026-10-16: na #0061 não se rebate a acusação de responsabilidade do Ao Cubo feita pela Blutech; as cl. 13.4 e 13.8 seguem guardadas. Se a Menegildo recusar os R$ 18.250,00, os caminhos são consignação em pagamento (art. 335, I do CC e art. 539, §1º do CPC), pagamento do incontroverso com ressalva, ou pagamento do total e busca judicial da diferença.
+- 2026-10-16: no aceite do desconto da CustomerX, o tom ficou mais suave por decisão da Paula. Em vez de dizer "não vamos renovar", o texto diz que a Consisa vai avaliar e pede que o contrato não seja renovado automaticamente.

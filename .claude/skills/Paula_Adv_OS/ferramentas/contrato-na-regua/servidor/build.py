@@ -43,7 +43,7 @@ src = trocar(src, '      <button type="button" id="modeTermo" aria-pressed="fals
              '    </div>\n')
 fim_gen = 'Os dados do seu cliente não são enviados para nenhum servidor.</div>\n'
 src = trocar(src, fim_gen, fim_gen + '        <button type="button" class="linkbtn outro" id="outroFormato">'
-             'Precisa de outro formato de contrato?</button>\n')
+             'Precisa de outro contrato ou de uma consulta?</button>\n')
 
 doc = ('<!doctype html><html lang="pt-br"><head><meta charset="utf-8">'
        '<meta name="viewport" content="width=device-width,initial-scale=1">'

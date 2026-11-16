@@ -8,8 +8,9 @@
     { "binding": "KV", "id": "bd76883af71d44d7a20175bc1e329c88" }
   ],
   "vars": {
-    "EMAIL_FROM": "Contrato na Régua <acesso@estruturalegal.com.br>",
+    "EMAIL_FROM": "Contrato Sob Medida <acesso@estruturalegal.com.br>",
     "EMAIL_REPLY_TO": "contato@estruturalegal.com.br",
-    "LIMITE_MENSAL": "15"
+    "LIMITE_MENSAL": "10",
+    "HOTMART_PRODUCT_ID": "8989695"
   }
 }
