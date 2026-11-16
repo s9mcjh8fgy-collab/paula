@@ -48,5 +48,6 @@ doc = ('<!doctype html><html lang="pt-br"><head><meta charset="utf-8">'
 PUB.mkdir(exist_ok=True)
 (PUB / 'app.html').write_text(doc, encoding='utf-8')
 shutil.copyfile(FONTE, PUB / 'borna.otf')
+shutil.copyfile(AQUI.parent / 'materiais' / 'modelo-proposta.docx', PUB / 'modelo-proposta.docx')
 (PUB / '_worker.js').write_text("export { default } from '../src/worker.js';\n", encoding='utf-8')
 print('ok', PUB)

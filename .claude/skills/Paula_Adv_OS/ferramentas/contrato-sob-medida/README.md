@@ -23,6 +23,16 @@ dados e escolhe etapas e opções. O que não cabe no banco volta como alerta de
 - Regra do foro (Paula, 16/11/2026): sempre a comarca do domicílio da contratada ("Cidade/UF" do
   endereço dela), mesmo que a proposta indique outro; nesse caso sai um alerta. Se a IA não preencher,
   o código tira do endereço (`cidadeUf()` em `leitura.js`).
+- Observações (Paula, 16/11/2026): a IA escreve um texto em linguagem de contrato (`sugestao_observacoes`,
+  só premissas da proposta que o banco não cobre) direto no campo Observações. Na tela, o texto fica
+  grifado em vermelho no contrato e há um alerta de revisão jurídica com o botão "Marcar como
+  revisado", que tira o grifo. No Word sai sem grifo. Explicações sobre o que a IA interpretou vão
+  para os alertas, nunca para as Observações.
+- Modelo de proposta (16/11/2026): `materiais/modelo-proposta.docx`, gerado por
+  `materiais/gerar_modelo_proposta.py` (neutro, sem a marca do Estrutura Legal, porque vai para o
+  cliente do arquiteto). O build copia para `publico/` e o app oferece o download no passo Proposta,
+  junto com a lista do que a proposta precisa ter. Mudou um item? Atualizar o modelo e a lista em
+  `src/proposta.html`.
 - Formato da resposta: a API limita o tamanho do esquema (no máximo 16 campos com null, e a
   "gramática" não pode ser grande). Por isso campo não encontrado volta vazio e vira null no código,
   ids de etapa/opção vão como texto e são filtrados, e vars/meios vão como listas. Ao acrescentar

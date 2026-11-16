@@ -27,7 +27,7 @@ export default {
     const url = new URL(req.url);
     const p = url.pathname;
     try {
-      if (p === '/borna.otf') return env.ASSETS.fetch(req);
+      if (p === '/borna.otf' || p === '/modelo-proposta.docx') return env.ASSETS.fetch(req);
       if (p === '/entrar' && req.method === 'POST') return entrar(req, env, url);
       if (p === '/acesso' && req.method === 'GET') return confirmarAcesso(url);
       if (p === '/acesso' && req.method === 'POST') return acesso(req, env);

@@ -24,6 +24,14 @@
 .al.revisar{background:#FDE3D9;color:#6B2410;border-color:#C04E2E}
 .al.atencao{background:#FFF3D6;color:#5C4210;border-color:#C9962B}
 .al.ok{background:#E3EEE6;color:#24563D;border-color:#2F7D5B}
+.guia{border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:0 0 14px;font-size:13px;background:var(--panel)}
+.guia summary{cursor:pointer;font-weight:600;color:var(--ink)}
+.guia ul{margin:8px 0;padding-left:18px}
+.guia li{margin-bottom:3px}
+.guia p{margin:6px 0 10px;color:var(--ink-soft)}
+.guia .btn{display:inline-block;text-decoration:none}
+.prev{background:#FDE3D9;color:#A3321A;box-shadow:inset 0 -2px 0 #C04E2E;border-radius:2px;padding:0 2px}
+.al .mini{font-size:12px;padding:6px 12px;margin-top:4px}
 .al b{font-size:10px;letter-spacing:.1em;text-transform:uppercase;flex:0 0 auto;margin-top:2px}
 .falta{font-size:13px;margin:10px 0 0}
 .falta ul{margin:4px 0 0;padding-left:18px}
@@ -50,7 +58,7 @@ paneHtml = function(){
 var _stepsOriginal = renderSteps;
 renderSteps = function(){
   _stepsOriginal();
-  var n = S && S.ia ? S.ia.alertas.filter(function(a){ return a.nivel === 'revisar'; }).length : 0;
+  var n = S && S.ia ? S.ia.alertas.filter(function(a){ return a.nivel === 'revisar'; }).length + (S.ia.obsRev ? 1 : 0) : 0;
   var b = document.querySelector('#steps [data-step="0"]');
   if(b && n) b.insertAdjacentHTML('beforeend', '<b aria-label="' + n + ' pontos para revisar">· ' + n + '</b>');
 };
@@ -59,6 +67,18 @@ function tamanho(n){ return n > 1048576 ? (n / 1048576).toFixed(1).replace('.', 
 
 function paneProposta(){
   var h = '<h2>Comece pela proposta</h2><p class="lead">Envie a proposta comercial que você mandou para o cliente. A leitura identifica escopo, prazos e valores e preenche o contrato com as cláusulas do banco. Depois é só conferir os passos seguintes.</p>';
+  h += '<details class="guia"><summary>O que a proposta precisa ter para a leitura sair completa</summary><ul>'
+    + ['Seus dados: nome ou razão social, CPF ou CNPJ, CAU, endereço, e-mail e WhatsApp',
+       'Dados do cliente: nome, CPF ou CNPJ, endereço, e-mail e WhatsApp',
+       'O imóvel: endereço e área aproximada',
+       'Cada etapa com o que é entregue e o prazo em dias úteis',
+       'Quantas revisões estão incluídas',
+       'O que não está incluído',
+       'Acompanhamento de obra e compras: se tem e como é cobrado',
+       'Valor total, entrada, parcelas, dia de vencimento e meios de pagamento',
+       'Data da proposta e validade'].map(function(t){ return '<li>' + t + '</li>'; }).join('')
+    + '</ul><p>Pode usar o seu próprio modelo, desde que traga esses itens. Se faltar algo, a leitura avisa e você completa nos passos seguintes.</p>'
+    + '<a class="btn mini" href="/modelo-proposta.docx" download>Baixar modelo de proposta (Word)</a></details>';
   h += '<label class="drop" id="propDrop" for="propArq"><b>Escolher ou arrastar arquivos</b><span>PDF, Word, JPG ou PNG · até 4 arquivos</span>' +
        '<input type="file" id="propArq" multiple hidden accept=".pdf,.docx,.jpg,.jpeg,.png,.webp,application/pdf,image/jpeg,image/png,image/webp,application/vnd.openxmlformats-officedocument.wordprocessingml.document"></label>';
   if(ARQS.length) h += '<ul class="arqs">' + ARQS.map(function(a, i){
@@ -79,13 +99,24 @@ function resultado(){
   var rev = ia.alertas.filter(function(a){ return a.nivel === 'revisar'; });
   var aten = ia.alertas.filter(function(a){ return a.nivel !== 'revisar'; });
   rev.forEach(function(a){ h += '<div class="al revisar"><b>Revisão jurídica</b><span>' + esc(a.texto) + '</span></div>'; });
+  if(ia.sugestao) h += ia.obsRev
+    ? '<div class="al revisar"><b>Revisão jurídica</b><span>As Observações do contrato foram escritas a partir da proposta e estão grifadas em vermelho. Esse texto não faz parte do banco de cláusulas: confira com a advogada antes de enviar. Dá para editar no passo Cláusulas.'
+      + '<br><button type="button" class="btn mini" id="propObs">Marcar como revisado</button></span></div>'
+    : '<div class="al ok"><b>Revisado</b><span>Observações do contrato conferidas.</span></div>';
   aten.forEach(function(a){ h += '<div class="al atencao"><b>Conferir</b><span>' + esc(a.texto) + '</span></div>'; });
-  if(!ia.alertas.length) h += '<div class="al ok"><b>Tudo certo</b><span>A proposta se encaixa no banco de cláusulas.</span></div>';
+  if(!ia.alertas.length && !ia.sugestao) h += '<div class="al ok"><b>Tudo certo</b><span>A proposta se encaixa no banco de cláusulas.</span></div>';
   if(ia.faltando.length) h += '<div class="falta"><b>Faltou na proposta</b>, complete nos próximos passos:<ul>' + ia.faltando.map(function(f){ return '<li>' + esc(f) + '</li>'; }).join('') + '</ul></div>';
-  if(rev.length) h += '<p class="lead" style="margin:10px 0 0">Os pontos de revisão jurídica ficam fora do contrato padrão. Fale com a advogada antes de enviar o contrato para assinatura.</p>';
+  if(rev.length || ia.sugestao) h += '<p class="lead" style="margin:10px 0 0">Os pontos de revisão jurídica ficam fora do contrato padrão. Fale com a advogada antes de enviar o contrato para assinatura.</p>';
   h += '<div class="acoes"><button type="button" class="btn" id="propIr">Conferir os dados →</button></div></div>';
   return h;
 }
+
+var marcarBase = marcar;
+marcar = function(t){
+  var h = marcarBase(t);
+  if(S && S.ia && S.ia.obsRev && (S.observacoes || '').trim() && t === S.observacoes.trim()) return '<span class="prev">' + h.split(String.fromCharCode(10)).join('<br>') + '</span>';
+  return h;
+};
 
 function lerArquivo(f){
   return new Promise(function(ok, falha){
@@ -172,8 +203,10 @@ function aplicar(d, nomes){
   if(!vazio(P.acomp)) S.pagamento.acomp = P.acomp;
   Object.keys(d.vars || {}).forEach(function(k){ if(d.vars[k] != null && d.vars[k] !== '') S.vars[k] = d.vars[k]; });
   (d.opcoes || []).forEach(function(o){ if(o.id in S.opcoes) S.opcoes[o.id] = !!o.valor; });
-  ['cidade', 'foro', 'observacoes'].forEach(function(k){ if(!vazio(d[k])) S[k] = d[k]; });
-  S.ia = {resumo:d.resumo || '', alertas:d.alertas || [], faltando:d.faltando || [], opcoes:d.opcoes || [], arquivos:nomes, quando:new Date().toISOString()};
+  ['cidade', 'foro'].forEach(function(k){ if(!vazio(d[k])) S[k] = d[k]; });
+  var sug = (d.sugestao_observacoes || '').trim();
+  if(sug) S.observacoes = sug;
+  S.ia = {resumo:d.resumo || '', sugestao:sug, obsRev:!!sug, alertas:d.alertas || [], faltando:d.faltando || [], opcoes:d.opcoes || [], arquivos:nomes, quando:new Date().toISOString()};
   salvar();
 }
 
@@ -186,6 +219,9 @@ function aplicar(d, nomes){
     var t = e.target;
     if(t.id === 'propLer') lerProposta();
     else if(t.id === 'propIr') irPara(1);
+    else if(t.id === 'propObs' && S.ia){
+      S.ia.obsRev = false; salvar(); renderSteps(); renderForm(); renderPreview();
+    }
     else if(t.hasAttribute('data-rmarq')){ ARQS.splice(Number(t.getAttribute('data-rmarq')), 1); ERRO = ''; renderForm(); }
   });
   pane.addEventListener('dragover', function(e){ var d = e.target.closest && e.target.closest('#propDrop'); if(d){ e.preventDefault(); d.classList.add('over'); } });
