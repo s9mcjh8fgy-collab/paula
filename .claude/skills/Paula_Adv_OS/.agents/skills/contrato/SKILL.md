@@ -125,6 +125,33 @@ simplificada: apontar só risco muito alto, não editar o contrato e entregar os
 curto pro WhatsApp (cláusula + problema em linguagem simples + ajuste a pedir). O Felipe repassa à
 empresa contratada, que faz os ajustes. Registrar via `/demandas` (exemplos: #0057, #0123).
 
+**NDAs (acordos de confidencialidade) em que o cliente é o fornecedor/prestador** (ex: Projjetta
+com a Ciser, #0163). Orientação da Paula (17/11/2026, áudios na pasta da #0163):
+- **Sempre tornar o NDA recíproco** quando vier protegendo só a empresa contratante. Na pré-venda o
+  cliente acaba mostrando como funciona o trabalho, as soluções e os preços antes de fechar a venda,
+  e já houve caso acompanhado pela Paula em que a empresa viu a solução e copiou internamente.
+- Checklist do que ajustar:
+  - Finalidade definida ("Projeto": análise, proposta e execução do serviço), nunca "aproximação
+    entre as partes".
+  - Know-how, metodologias, ferramentas e soluções preexistentes ou independentes do cliente
+    continuam sendo dele.
+  - Liberdade de atender outros clientes com serviços semelhantes, sem usar informações da outra
+    parte.
+  - Exceção de desenvolvimento independente.
+  - Confidencialidade da equipe por termo individual **ou** cláusula de sigilo já vigente nos
+    contratos, sem precisar apresentar esses documentos à outra parte.
+  - Prazo coerente: durante a relação e por mais 5 anos.
+  - Devolução das informações em prazo razoável (10 dias úteis), com ressalva de backup e de guarda
+    exigida por lei.
+  - Responsabilidade limitada a danos diretos comprovados. Multa compensatória, por culpa ou dolo,
+    como mínimo da indenização (art. 416, parágrafo único, do Código Civil).
+  - Retirar cláusulas herdadas de outros modelos que não se aplicam à relação (ex: exclusividade e
+    "Term Sheet" de modelo de M&A).
+- Caminho padrão: editar direto no `.docx` com controle de alterações (autor "Paula Corrêa") e
+  mandar um e-mail curto ao cliente dizendo que o revisado está em anexo, com os principais ajustes
+  em tópicos. A Paula complementa por áudio no WhatsApp.
+- NDA que já vem equilibrado: só liberar a assinatura (ex: #0152, Prati-Donaduzzi).
+
 ### 4. Executar
 
 Seguir o caminho aprovado. Mostrar o resultado antes de salvar.

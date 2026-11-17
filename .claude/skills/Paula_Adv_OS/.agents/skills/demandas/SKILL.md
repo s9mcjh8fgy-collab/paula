@@ -115,6 +115,14 @@ Confirmar o que foi feito:
 
 ## Regras
 
+- Demanda de análise ou revisão de documento (contrato, NDA, aditivo etc.) fica `done` assim que o
+  documento revisado é enviado ao cliente, sem tarefa de acompanhamento do retorno da outra parte.
+  Se houver desdobramento, o cliente avisa e a mesma demanda é atualizada (ex: #0163)
+
+- Demanda que é análise de contrato ou NDA de terceiro: seguir também o Fluxo de Análise da skill
+  `/contrato` (inclui as orientações fixas pra NDA, como sempre torná-lo recíproco quando o cliente
+  é o prestador)
+
 - O campo `cliente` do script busca pelo nome cadastrado, e acento conta. Ex: "Agile" não acha
   nada, porque o cadastro é "Ágile Administradora de Condomínios". Se a busca falhar com um cliente
   que já tem demandas, conferir o nome exato em `clients` antes de concluir que ele é esporádico

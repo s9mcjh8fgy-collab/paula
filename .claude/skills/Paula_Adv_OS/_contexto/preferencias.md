@@ -16,6 +16,7 @@ Exceção: peças processuais e documentos formais seguem o formalismo jurídico
 - Azul em títulos, subtítulos e cabeçalhos de tabela de documentos (.docx, relatórios, rascunhos para clientes), porque "parece coisa do ChatGPT". Usar grafite/preto ou a paleta da marca quando o documento for do escritório (2026-10-19)
 - Artigo de blog que mistura ângulos diferentes do mesmo tema (ex: o profissional que usa IA e o cliente que usa o projeto numa IA). Um recorte só por texto, senão fica completo demais e confuso (2026-10-22)
 - Texto de imagem e gancho no Instagram falando com o dono da obra pessoa física. O público são empresas e profissionais da construção (construtoras, empreiteiras, arquitetos). Quando o tema serve aos dois lados, usar um ângulo neutro (ex: "nem quem contrata, nem quem executa").
+- Chamar o cliente só de "Ao Cubo" em textos que vão para o cliente ou terceiros (mensagens de obra, e-mails, documentos). Escrever sempre "Grupo Ao Cubo" (2026-11-17)
 
 ## Estilo geral
 - Fora de peças processuais: informal-profissional, direto, como uma conversa real
