@@ -23,9 +23,12 @@ function loadCreds(skillRoot) {
 
   const contasPath = path.join(skillRoot, '..', 'meta-ads-ratos', 'contas.yaml');
   const contasRaw = fs.readFileSync(contasPath, 'utf8');
-  // parse simples: pega o bloco "paula:" e o instagram_id dentro dele
-  const m = contasRaw.match(/paula:\s*[\s\S]*?instagram_id:\s*"?(\d+)"?/);
-  if (!m) throw new Error('instagram_id da conta "paula" nao encontrado em contas.yaml');
+  // parse simples: pega o bloco da conta e o instagram_id dentro dele.
+  // Conta padrao "paula" (@paulacorrea.adv); para outra, IG_CONTA=estruturalegal (no preparar E no confirmar).
+  const conta = process.env.IG_CONTA || 'paula';
+  const m = contasRaw.match(new RegExp('\\n  ' + conta + ':\\s*\\n[\\s\\S]*?instagram_id:\\s*"?(\\d+)"?'));
+  if (!m) throw new Error(`instagram_id da conta "${conta}" nao encontrado em contas.yaml`);
+  console.log(`Conta do Instagram: ${conta}`);
   const igUserId = m[1];
 
   return { token, igUserId };

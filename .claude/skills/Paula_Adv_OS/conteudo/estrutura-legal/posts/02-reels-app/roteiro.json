@@ -1,0 +1,18 @@
+{
+  "fonte": "../../../../ferramentas/contrato-na-regua/materiais/video/Contrato na Régua - demonstração.mp4",
+  "voz": "pt-BR-FranciscaNeural",
+  "velocidade": "+6%",
+  "cenas": [
+    {"id":"gancho", "ini":35.0, "x":150, "kicker":"Contrato de arquitetura", "titulo":"Ainda monta o contrato <em>do zero</em> a cada cliente?",
+     "fala":"Você ainda monta o seu contrato de arquitetura do zero, a cada cliente novo?"},
+    {"id":"etapas", "ini":40.0, "x":150, "kicker":"No app", "titulo":"Marque as etapas. O contrato se monta <em>na hora</em>.",
+     "fala":"No Contrato na Régua, você marca as etapas do seu projeto, e o contrato se monta na hora."},
+    {"id":"escopo", "ini":51.0, "x":740, "kicker":"Anexo de escopo", "titulo":"O que está e o que <em>não</em> está incluído.",
+     "fala":"No anexo de escopo, fica escrito o que está e o que não está incluído."},
+    {"id":"explica", "ini":94.0, "x":760, "kicker":"Cláusulas", "titulo":"Cada cláusula com a <em>explicação</em>.",
+     "fala":"E cada cláusula vem com a explicação do que ela faz por você."},
+    {"id":"word", "ini":15.0, "x":150, "kicker":"No final", "titulo":"Contrato em Word, com a <em>sua logo</em>.",
+     "fala":"No final, é só baixar em Word, com a logo do seu escritório."},
+    {"id":"fecho", "card":true, "fala":"Contrato na Régua. Noventa e sete reais, pagamento único. O link está na bio.", "legenda":"Contrato na Régua. R$ 97, pagamento único. O link está na bio."}
+  ]
+}

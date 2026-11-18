@@ -1,0 +1,80 @@
+{
+ "fonte": "../../../../ferramentas/contrato-na-regua/materiais/video/Contrato na Régua - demonstração.mp4",
+ "voz": "pt-BR-FranciscaNeural",
+ "velocidade": "+8%",
+ "cenas": [
+  {
+   "id": "f1",
+   "tipo": "frase",
+   "kicker": "3 frases que todo arquiteto já ouviu",
+   "num": "1",
+   "texto": "Mas eu achei que estava incluído...",
+   "fala": "Mas eu achei que estava incluído...",
+   "voz": "pt-BR-AntonioNeural",
+   "velocidade": "+0%",
+   "legenda": false,
+   "pausa": 0.5,
+   "tam": 128
+  },
+  {
+   "id": "r1",
+   "tipo": "doc",
+   "kicker": "A resposta",
+   "titulo": "Está no anexo de <em>escopo</em>.",
+   "fala": "O anexo de escopo lista o que está e o que não está incluído.",
+   "doc": "<div class=\"cab\">Anexo I · Escopo · Estudo preliminar</div><div class=\"col sim\"><h4>Está incluído</h4><div>Até 3 (três) opções de layout</div><div>Plantas esquemáticas e estudos iniciais de layout</div></div><div class=\"col nao\"><h4>Não está incluído</h4><div>Imagens renderizadas fotorrealistas</div><div>Levantamento topográfico ou cadastral</div><div>Detalhamentos técnicos e especificações definitivas</div></div>"
+  },
+  {
+   "id": "f2",
+   "tipo": "frase",
+   "kicker": "3 frases que todo arquiteto já ouviu",
+   "num": "2",
+   "texto": "Não ficou igual ao 3D.",
+   "fala": "Não ficou igual ao 3D.",
+   "voz": "pt-BR-AntonioNeural",
+   "velocidade": "+0%",
+   "legenda": false,
+   "pausa": 0.5,
+   "tam": 128
+  },
+  {
+   "id": "r2",
+   "tipo": "doc",
+   "kicker": "A resposta",
+   "titulo": "O contrato <em>já avisou</em>.",
+   "fala": "O contrato já avisa que o resultado pode variar em relação às imagens.",
+   "doc": "<div class=\"cab\">Cláusula oitava · item 8.5</div><div class=\"it\">Acabamentos, iluminação, tonalidades, marcenaria, paisagismo, mobiliário e demais elementos sujeitos à execução prática <mark>poderão apresentar variações naturais em relação às imagens</mark> e representações desenvolvidas.</div><div class=\"porque\"><span>SOBRE O ITEM ACIMA</span>Protege contra a reclamação mais comum depois da obra pronta: “não ficou igual ao 3D”.</div>"
+  },
+  {
+   "id": "f3",
+   "tipo": "frase",
+   "kicker": "3 frases que todo arquiteto já ouviu",
+   "num": "3",
+   "texto": "A obra atrasou por causa do projeto.",
+   "fala": "A obra atrasou por causa do projeto.",
+   "voz": "pt-BR-AntonioNeural",
+   "velocidade": "+0%",
+   "legenda": false,
+   "pausa": 0.5,
+   "tam": 128
+  },
+  {
+   "id": "r3",
+   "tipo": "doc",
+   "kicker": "A resposta",
+   "titulo": "Projeto não é <em>execução</em>.",
+   "fala": "E deixa claro que você responde pelo projeto, não pela execução da obra.",
+   "doc": "<div class=\"cab\">Cláusula oitava · item 8.2</div><div class=\"it\">A responsabilidade técnica da CONTRATADA limita-se aos serviços efetivamente contratados e desenvolvidos, <mark>não se estendendo à execução da obra</mark>, a falhas construtivas ou executivas, à fiscalização e ao gerenciamento de equipes.</div><div class=\"porque\"><span>POR QUE ESTÁ AQUI</span>Você responde pelo projeto, não pela obra.</div>"
+  },
+  {
+   "id": "fim",
+   "tipo": "fecho",
+   "titulo": "As 3 respostas já vêm <em>prontas</em>.",
+   "sub": "Contrato na Régua · R$ 97",
+   "tam": 120,
+   "fala": "As três respostas já vêm prontas no Contrato na Régua. O link está na bio.",
+   "legenda": "As 3 respostas já vêm prontas no Contrato na Régua. O link está na bio.",
+   "pausa": 1.2
+  }
+ ]
+}

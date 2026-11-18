@@ -139,7 +139,11 @@ footer p{margin:0;max-width:620px;opacity:.85}
   .cmp{font-size:14px}.cmp th,.cmp td{padding:12px 8px}
   .bar a{display:none}
 }
-</style></head><body>
+</style><!-- Meta Pixel (Estrutura Legal) -->
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1140358028912865');fbq('track','PageView');fbq('track','ViewContent',{content_name:'Contrato na Régua',value:97,currency:'BRL'});</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1140358028912865&ev=PageView&noscript=1"/></noscript>
+</head><body>
 
 <header class="hero">
   <div class="wrap">
@@ -312,7 +316,7 @@ footer p{margin:0;max-width:620px;opacity:.85}
 // Link do checkout da Hotmart. Enquanto estiver vazio, os botões de compra ficam como "em breve".
 var CHECKOUT = 'https://pay.hotmart.com/U108336676U';
 document.querySelectorAll('.comprar').forEach(function (a, i) {
-  if (CHECKOUT) { a.href = CHECKOUT; return; }
+  if (CHECKOUT) { a.href = CHECKOUT; a.addEventListener('click', function () { if (window.fbq) fbq('trackCustom', 'CliqueComprar', {content_name: 'Contrato na Régua'}); }); return; }
   if (i === 0) return; // o botão do topo leva até a oferta
   a.removeAttribute('href'); a.setAttribute('aria-disabled', 'true'); a.textContent = 'Vendas abrem em breve';
 });

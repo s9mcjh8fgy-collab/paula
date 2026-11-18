@@ -14,7 +14,7 @@ Produto novo em piloto (nov/2026): Contrato Sob Medida, assinatura de R$ 49,90 a
 Nada registrado no momento.
 
 ## Contexto com prazo
-Encontro com o Desvendarq em 17/11/2026, 19h às 20h30 ("Arquitetura Legal: você sabe onde está pisando?"), com venda do Contrato na Régua no final (cupom de R$ 37, preço R$ 60, até 18/11). Contrato na Régua já pronto.
+Instagram @estruturalegal relançado em 18/11 como perfil comercial do Contrato na Régua (oferta única por enquanto). Teste de mídia paga de R$ 500 a R$ 1.500 por mês, com teto de R$ 50 por venda nas 2 primeiras semanas.
 
 ---
 *Atualize esse arquivo quando suas prioridades mudarem.*

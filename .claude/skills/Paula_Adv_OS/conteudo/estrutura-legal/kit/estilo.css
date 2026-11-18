@@ -1,0 +1,71 @@
+/* Kit visual do Instagram @estruturalegal
+   Paleta e fonte do site/app do Contrato na Régua. Formato padrão 1080x1350 (4:5).
+   Story/reels: adicionar class="v" no body (1080x1920). */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@font-face{font-family:Borna;src:url(borna.otf);font-weight:700}
+:root{
+  --orange:#F26F4D; --brown:#6D413E; --ink:#3E2624; --beige:#F1EBDF;
+  --cream:#E3D6C6; --paper:#FFFDF9; --soft:#7A5E58; --line:#E2D6C6;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;overflow:hidden;position:relative;font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased}
+body.v{height:1920px}
+
+/* fundos */
+.escuro{background:var(--brown);color:var(--beige)}
+.claro{background:var(--beige);color:var(--ink)}
+.laranja{background:var(--orange);color:var(--ink)}
+
+/* tipografia */
+.kicker{font-size:26px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--orange)}
+.laranja .kicker{color:var(--ink)}
+.titulo{font-family:Borna;line-height:.98;letter-spacing:-.01em}
+.titulo em{font-style:normal;color:var(--orange)}
+.laranja .titulo em{color:var(--paper)}
+.texto{font-size:38px;line-height:1.4}
+.escuro .texto{color:var(--cream)}
+.claro .texto{color:var(--soft)}
+.texto b{font-weight:700;color:inherit}
+.claro .texto b{color:var(--ink)}
+
+/* área útil */
+.box{position:absolute;left:90px;right:90px;top:96px;bottom:150px;display:flex;flex-direction:column}
+
+/* régua do rodapé (assinatura visual da marca) */
+.regua{position:absolute;left:0;right:0;bottom:0;height:64px;display:flex;align-items:flex-end;border-bottom:4px solid currentColor}
+.regua i{flex:1;border-left:2px solid currentColor;opacity:.5;height:14px}
+.regua i:nth-child(5n+1){height:30px}
+.regua i:nth-child(10n+1){height:50px;opacity:1;border-color:var(--orange)}
+.laranja .regua i:nth-child(10n+1){border-color:var(--ink)}
+
+/* rodapé com @ e paginação */
+.pe{position:absolute;left:90px;right:90px;bottom:88px;display:flex;justify-content:space-between;font-size:24px;font-weight:600;letter-spacing:.04em;opacity:.75}
+
+/* cartões "sem / com" */
+.par{display:flex;flex-direction:column;gap:26px;margin-top:auto}
+.cartao{border-radius:22px;padding:34px 40px;font-size:33px;line-height:1.38}
+.cartao .rot{display:block;font-size:22px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px}
+.cartao.sem{background:var(--paper);color:var(--soft);border:2px solid var(--line)}
+.cartao.sem .rot{color:var(--soft)}
+.cartao.com{background:var(--brown);color:var(--beige)}
+.cartao.com .rot{color:var(--orange)}
+
+.num{font-family:Borna;font-size:200px;line-height:.8;color:var(--orange)}
+.selo{display:inline-block;background:var(--ink);color:var(--beige);border-radius:999px;padding:14px 30px;font-size:28px;font-weight:700}
+.shot{border-radius:20px;box-shadow:0 30px 70px rgba(0,0,0,.35);display:block}
+.laranja .num{color:var(--ink)}
+
+/* documento (trecho do contrato em destaque) */
+.doc{position:absolute;left:40px;right:40px;background:var(--paper);color:var(--ink);border-radius:24px;padding:46px 50px;box-shadow:0 30px 70px rgba(0,0,0,.3)}
+.doc .cab{font-size:24px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:24px}
+.doc .it{font-size:38px;line-height:1.42}
+.doc .it b{color:var(--orange)}
+.doc mark{background:linear-gradient(transparent 55%,rgba(242,111,77,.35) 55%);color:inherit}
+.doc .porque{margin-top:30px;background:#FBE6DE;border-radius:16px;padding:26px 30px;font-size:34px;line-height:1.38}
+.doc .porque span{display:block;font-size:22px;font-weight:700;letter-spacing:.16em;color:var(--orange);margin-bottom:8px}
+.doc .col h4{font-size:24px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 12px;color:var(--brown)}
+.doc .col div{font-size:36px;line-height:1.3;padding:8px 0 8px 52px;position:relative}
+.doc .col div::before{position:absolute;left:0;top:6px;font-weight:800;font-size:38px}
+.doc .sim div::before{content:"✓";color:#3E8E5E}
+.doc .nao div::before{content:"✕";color:var(--orange)}
+.doc .nao{margin-top:30px}

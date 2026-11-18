@@ -42,3 +42,13 @@ clientes:
     instagram_username: "@paulacorrea.adv"
     moeda: "BRL"
     notas: "Conta própria do escritório (antes chamado Corrêa Advogados)"
+
+  estruturalegal:
+    nome: "Estrutura Legal (Contrato na Régua)"
+    conta_anuncio: "act_1810075666928959"
+    pagina_facebook: "1515278704991849"
+    pixel: "1140358028912865"
+    instagram_id: "17841447400429801"
+    instagram_username: "@estruturalegal"
+    moeda: "BRL"
+    notas: "Perfil comercial do Contrato na Régua, sem rosto/voz da Paula. Plano em conteudo/estrutura-legal/plano.md. Postar com IG_CONTA=estruturalegal"

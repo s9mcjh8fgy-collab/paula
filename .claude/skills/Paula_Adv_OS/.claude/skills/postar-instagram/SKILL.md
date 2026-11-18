@@ -20,6 +20,13 @@ imagens são publicadas antes num projeto do Cloudflare Pages (`paula-ig-media`,
 `CLOUDFLARE_API_TOKEN`/`CLOUDFLARE_ACCOUNT_ID` do `.env` na raiz do workspace) só pra servir de fonte
 temporária — depois que o Instagram baixa e processa a imagem, não depende mais dessa URL.
 
+## Outra conta (@estruturalegal)
+
+O padrão é @paulacorrea.adv (conta `paula` em `meta-ads-ratos/contas.yaml`). Para publicar em outra
+conta cadastrada lá, prefixar **os dois passos** com a variável `IG_CONTA` (ex: `IG_CONTA=estruturalegal`).
+O script imprime "Conta do Instagram: ..." no início: conferir antes de confirmar. Conteúdo do
+Estrutura Legal fica em `conteudo/estrutura-legal/posts/` (ver `conteudo/estrutura-legal/plano.md`).
+
 ## Fluxo — SEMPRE em dois passos, nunca um só
 
 **Passo 1 — Preparar (não publica nada ainda):**

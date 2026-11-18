@@ -8,7 +8,7 @@ Espaço de trabalho da Paula Corrêa Advocacia pra apoiar o dia a dia jurídico:
 - `contratos/` — análise de contratos e documentos
 - `processual/` — peças processuais
 - `inpi/` — painel central (`controle.md`) de todos os pedidos de marca e desenho industrial no INPI, de qualquer cliente. Os documentos de cada pedido ficam na pasta do cliente em `06_INPI/`, não aqui (ver skill `/inpi`)
-- `conteudo/` — redes sociais e site, organizado por canal: `instagram/`, `tiktok/`, `site/`, `youtube/` (cada um com subpastas por tipo, ex: `carrossel/`, `reels/`, `blog/`), mais `casos/` (fonte de ideias) e `estrategia-retomada/` (plano de retomada das postagens)
+- `conteudo/` — redes sociais e site, organizado por canal: `instagram/`, `tiktok/`, `site/`, `youtube/` (cada um com subpastas por tipo, ex: `carrossel/`, `reels/`, `blog/`), mais `casos/` (fonte de ideias), `estrategia-retomada/` (plano de retomada das postagens) e `estrutura-legal/` (perfil comercial @estruturalegal do Contrato na Régua, sem rosto nem voz da Paula: plano em `plano.md`, kit visual em `kit/`, posts em `posts/`)
 - `propostas/[nome-cliente]/` — propostas geradas pela skill `/proposta-comercial`, em dois modelos: deck de slides completo (HTML → PDF, pra empresas/assessoria) ou Proposta Simples de 1 página A4 (recriada do brand template do Canva em 2026-09-29, pra casos pontuais/PF). PDF final vai pra `../../../../9_Vendas/Propostas/` (pasta `9_Vendas` na raiz do diretório, desde 2026-11)
 - `ferramentas/` — ferramentas próprias publicáveis (ex: `contrato-na-regua/`, gerador de contrato de projeto de arquitetura vendido na Hotmart (produto 8883953, formato eBook; R$ 97, venda única, acesso vitalício à versão; app com menu Como usar e formulário de outro contrato), porta de entrada do Estrutura Legal na parceria com o Desvendarq. App em `app/`, servidor com login e webhook da Hotmart em `servidor/` (ver README), site em `site/` (a raiz é a página do Estrutura Legal, com `/contrato-na-regua` e `/sob-medida`), guia em PDF e vídeo em `materiais/`, capa e arquivos de entrega da Hotmart em `materiais/hotmart/`; e `contrato-sob-medida/`, piloto de assinatura mensal (nov/2026) em que a IA lê a proposta comercial do arquiteto e preenche o contrato do Contrato na Régua, montado a partir do app dele no build (não é cópia). Projeto Pages `contrato-sob-medida`, assinatura na Hotmart (produto 8989695, planos Essencial e Escritório com 10/20 contratos por mês), webhook `/api/hotmart` que libera o e-mail no KV, capa e vídeo tutorial em `materiais/`, IA via API da Anthropic (`ANTHROPIC_API_KEY` como secret do Pages). Ver README)
 - `tarefas.md` — lista de pendências
@@ -81,12 +81,17 @@ Em peças processuais: formal, técnico, terceira pessoa.
 - Meta Ads (Facebook/Instagram Ads) — skill `/meta-ads-ratos`, gestão de campanhas via SDK oficial
   `facebook-business`. App "Paula Corrêa Advocacia" (ID 530584914965449) em modo Live, token de
   system user em `.claude/skills/meta-ads-ratos/.env` (fora do git). Conta de anúncio própria do
-  escritório cadastrada em `contas.yaml` como `paula` (act_450995911083244)
+  escritório cadastrada em `contas.yaml` como `paula` (act_450995911083244). Conta do Estrutura Legal cadastrada como
+  `estruturalegal` (act_1810075666928959, página 1515278704991849, @estruturalegal), com o Pixel Estrutura Legal
+  `1140358028912865` instalado na página do Contrato na Régua e na Hotmart (Web e API de Conversões). Conta do Estrutura Legal
+  cadastrada como `estruturalegal` (act_1810075666928959, pixel 1140358028912865, @estruturalegal)
 - Canva — conector do claude.ai (conectado em 2026-09-24). Pasta "Advocacia - Modelos da Marca" com os modelos da marca (brand templates); pra ler um brand template é preciso criar um design a partir dele (a API não lê o template direto)
 - Instagram (publicação direta) — skill `/postar-instagram`, via Graph API do Instagram,
   reaproveitando o token da `meta-ads-ratos` (já com permissão `instagram_content_publish`).
   Imagens hospedadas temporariamente via Cloudflare Pages (projeto `paula-ig-media`) só pra servir
-  de URL pública na hora de criar o post
+  de URL pública na hora de criar o post. Publica também no @estruturalegal, com `IG_CONTA=estruturalegal` no
+  preparar e no confirmar. Pra postar no @estruturalegal, prefixar os dois passos com
+  `IG_CONTA=estruturalegal`
 
 ## Financeiro
 Controle financeiro do escritório fica em `1_Gestão/2_Financeiro/` (fora do `8_Claude`, caminho
