@@ -1,21 +1,21 @@
 {
-  "date": "2026-10-14",
+  "date": "2026-11-19",
   "allOk": true,
   "results": [
     {
       "label": "Site no ar (homepage)",
       "ok": true,
-      "detail": "HTTP 200, 6941ms"
+      "detail": "HTTP 200, 2160ms"
     },
     {
       "label": "API REST do WordPress",
       "ok": true,
-      "detail": "HTTP 200, 2791ms"
+      "detail": "HTTP 200, 1062ms"
     },
     {
       "label": "Login do wp-admin acessivel",
       "ok": true,
-      "detail": "HTTP 200, 1233ms"
+      "detail": "HTTP 200, 1652ms"
     },
     {
       "label": ".user.ini (memory_limit)",

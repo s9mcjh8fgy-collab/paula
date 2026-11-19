@@ -28,7 +28,7 @@ editorial "Advocacia através dos meus casos".
 | 7 | Cliente colocou seu projeto numa IA? O que a lei diz e o que o contrato precisa prever (trocado: gancho da conversa de prospecção com arquiteta em 22/10) | assessoria-juridica-para-arquitetos | cliente usou meu projeto na IA / direito autoral projeto IA |
 | 8 | Obra sem responsável técnico: ART/RRT e o autor do projeto que visita a obra (trocado a pedido da Paula; multa por atraso foi pra semana 9) | assessoria-juridica-para-arquitetos | ART RRT obra |
 | 9 | Multa por atraso em obra: como calcular, cobrar ou se defender (caso real #0139) | advogado-na-construcao-civil | multa atraso obra |
-| 10 | Vício construtivo: quem responde e qual o prazo de garantia (caso a definir) | advogado-na-construcao-civil | vício construtivo |
+| 10 | Vício construtivo: quem responde e qual o prazo de garantia (Proc 4872, publicado 19/11, post 6611) | advogado-na-construcao-civil | vício construtivo |
 | 11 | Contratar PJ na obra ou no escritório: quando vira vínculo de emprego (#0089, #0073) | advogado-na-construcao-civil | pejotização construção civil |
 | 12 | Reforma tributária: o que revisar nos contratos de obra e serviço antes de 2027 (#0154, #0139) | advogado-na-construcao-civil | reforma tributária contratos |
 | 13 | Imagens das câmeras do condomínio: quem pode ver e quando entregar (#0088, #0115, #0121) | advogado-em-blumenau | advogado condominial |

@@ -24,3 +24,8 @@ Contrato não é papel pra cumprir tabela. É o documento que vai ser lido quand
 Qual a frase que você mais escuta quando fala em contrato? Conta aqui nos comentários.
 
 #advocacia #construcaocivil #contratos #arquitetura #engenharia #advogadaempreendedora
+
+## Correção 19/11/2026
+O vídeo saiu marcado como HDR (HLG/BT.2020, herdado do .MOV do iPhone) e abria com brilho de HDR no PC.
+Reprocessado como SDR BT.709 (mesmos pixels, só a marcação de cor trocada; tonemapping deixava tudo
+alaranjado). Em reels futuros a partir de vídeo do iPhone, sempre fixar bt709 na exportação.

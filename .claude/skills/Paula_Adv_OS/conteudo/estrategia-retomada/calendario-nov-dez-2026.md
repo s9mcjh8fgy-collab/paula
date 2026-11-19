@@ -18,11 +18,9 @@
 | Data | Formato | Tema | Origem |
 |---|---|---|---|
 | Qui 12/11 | Post fixo com foto | ✅ Multa por atraso mal escrita não protege ninguém (publicado: https://www.instagram.com/p/Dfpl0z8nOxC/) | blog do mesmo dia |
-| Sex 13/11 | **Reel** (1º) | "Quando o cliente diz que o contrato é só formalidade" | vídeo gravado em 10/11 (digitando) |
-| Ter 17/11 | Carrossel: História em Série, parte 1 | Era uma vez... um cliente que sumiu (e voltou com advogado) | #0063 |
-| Qui 19/11 | Carrossel: História em Série, parte 2 (final) | Reviravolta: depois da demolição, o terreno era menor | #0063 |
-| Ter 24/11 | Post fixo com foto | Vício construtivo: o problema que aparece depois da entrega | blog de 19/11 |
-| Qui 26/11 | Carrossel: Conto Jurídico | Era uma vez... uma vaga PJ com horário de CLT | #0089 (mesmo dia do blog de PJ) |
+| Qui 19/11 | **Reel** (1º) | ✅ "Quando o cliente diz que o contrato é só formalidade" (publicado pela Paula em 19/11, depois de corrigir o HDR do vídeo; previsto pra 13/11) | vídeo gravado em 10/11 (digitando) |
+| Ter 24/11 | Carrossel: História em Série, parte 1 | Era uma vez... um cliente que sumiu (e voltou com advogado). Pronto em `carrossel/serie-cliente-sumiu-parte-1/` (ficcionalizado como área de piscina de uma casa) | #0063 |
+| Qui 26/11 | Carrossel: História em Série, parte 2 (final) | Reviravolta: depois da demolição, o terreno era menor. Pronto em `carrossel/serie-cliente-sumiu-parte-2/` | #0063 |
 | Ter 01/12 | **Reel** | "POV: o prestador parou de responder no meio da obra" | cenas 6, 7 e 13 |
 | Qui 03/12 | Carrossel: Conto Jurídico | Era uma vez... uma câmera que viu tudo (e ninguém sabia se podia mostrar) | #0088, #0121 |
 | Ter 08/12 | Post fixo com foto | Seu contrato diz "impostos inclusos"? Em 2027 isso vai dar conversa | blog de 03/12 |
@@ -40,14 +38,14 @@ Ficaram para janeiro: Conto da porta pela metade (#0111) e do cliente do Pix (#0
 | Data | Semana | Tema | Origem | Palavra-chave |
 |---|---|---|---|---|
 | Qui 12/11 | 9 | ✅ Multa por atraso em obra: como calcular, cobrar ou se defender (publicado) | #0139 (0,1% ao dia, teto de 10%) e #0061 | multa atraso obra |
-| Qui 19/11 | 10 | Vício construtivo: quem responde e qual o prazo de garantia | caso a definir com a Paula | vício construtivo (100 a 1 mil/mês) |
+| Qui 19/11 | 10 | ✅ Vício construtivo: quem responde e qual o prazo de garantia (publicado em 19/11, post 6611) | Proc 4872 | vício construtivo (100 a 1 mil/mês) |
 | Qui 26/11 | 11 | Contratar PJ na obra ou no escritório: quando vira vínculo de emprego | #0089, #0073 | pejotização construção civil |
 | Qui 03/12 | 12 | Reforma tributária: o que revisar nos contratos de obra e serviço antes de 2027 | #0154, #0139 | reforma tributária contratos |
 | Qui 10/12 | 13 | Imagens das câmeras do condomínio: quem pode ver e quando entregar | #0088, #0115, #0121 | advogado condominial (100 a 1 mil/mês) |
 | Qui 17/12 | 14 | Inquilino que não paga: notificação, acordo e despejo | #0109, #0126, #0156 | advogado imobiliário |
 
 ## Pendências
-- Caso real pra vício construtivo (19/11).
+- Série #0063 passou pra 24 e 26/11 (decisão da Paula em 19/11). Ficaram sem data: post fixo de vício construtivo e conto da vaga PJ (#0089). Reencaixar no calendário.
 - Conto do pilar/IA: confirmar se descarta.
 - Gravar o banco de cenas até 17/11 (o primeiro reel é dia 19/11).
 - Fora do calendário por enquanto: aula Desvendarq (sem data) e divulgação do Contrato na Régua.

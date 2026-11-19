@@ -83,15 +83,13 @@ Em peças processuais: formal, técnico, terceira pessoa.
   system user em `.claude/skills/meta-ads-ratos/.env` (fora do git). Conta de anúncio própria do
   escritório cadastrada em `contas.yaml` como `paula` (act_450995911083244). Conta do Estrutura Legal cadastrada como
   `estruturalegal` (act_1810075666928959, página 1515278704991849, @estruturalegal), com o Pixel Estrutura Legal
-  `1140358028912865` instalado na página do Contrato na Régua e na Hotmart (Web e API de Conversões). Conta do Estrutura Legal
-  cadastrada como `estruturalegal` (act_1810075666928959, pixel 1140358028912865, @estruturalegal)
+  `1140358028912865` instalado na página do Contrato na Régua e na Hotmart (Web e API de Conversões).
 - Canva — conector do claude.ai (conectado em 2026-09-24). Pasta "Advocacia - Modelos da Marca" com os modelos da marca (brand templates); pra ler um brand template é preciso criar um design a partir dele (a API não lê o template direto)
 - Instagram (publicação direta) — skill `/postar-instagram`, via Graph API do Instagram,
   reaproveitando o token da `meta-ads-ratos` (já com permissão `instagram_content_publish`).
   Imagens hospedadas temporariamente via Cloudflare Pages (projeto `paula-ig-media`) só pra servir
   de URL pública na hora de criar o post. Publica também no @estruturalegal, com `IG_CONTA=estruturalegal` no
-  preparar e no confirmar. Pra postar no @estruturalegal, prefixar os dois passos com
-  `IG_CONTA=estruturalegal`
+  preparar e no confirmar.
 
 ## Financeiro
 Controle financeiro do escritório fica em `1_Gestão/2_Financeiro/` (fora do `8_Claude`, caminho
